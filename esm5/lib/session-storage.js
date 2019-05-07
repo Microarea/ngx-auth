@@ -1,0 +1,11 @@
+var SessionStorageVars = /** @class */ (function () {
+    function SessionStorageVars() {
+    }
+    SessionStorageVars.JWT = 'M4_jwt_token';
+    SessionStorageVars.CULTURE = 'M4_culture';
+    SessionStorageVars.UI_CULTURE = 'M4_ui_culture';
+    SessionStorageVars.ACCOUNT_NAME = 'M4_account_name';
+    return SessionStorageVars;
+}());
+export { SessionStorageVars };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2Vzc2lvbi1zdG9yYWdlLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQHRiL2F1dGgvIiwic291cmNlcyI6WyJsaWIvc2Vzc2lvbi1zdG9yYWdlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQUE7SUFLQSxDQUFDO0lBSmlCLHNCQUFHLEdBQUcsY0FBYyxDQUFDO0lBQ3JCLDBCQUFPLEdBQUcsWUFBWSxDQUFDO0lBQ3ZCLDZCQUFVLEdBQUcsZUFBZSxDQUFDO0lBQzdCLCtCQUFZLEdBQUcsaUJBQWlCLENBQUM7SUFDbkQseUJBQUM7Q0FBQSxBQUxELElBS0M7U0FMWSxrQkFBa0IiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY2xhc3MgU2Vzc2lvblN0b3JhZ2VWYXJzIHtcclxuICAgIHB1YmxpYyBzdGF0aWMgSldUID0gJ000X2p3dF90b2tlbic7XHJcbiAgICBwdWJsaWMgc3RhdGljIENVTFRVUkUgPSAnTTRfY3VsdHVyZSc7XHJcbiAgICBwdWJsaWMgc3RhdGljIFVJX0NVTFRVUkUgPSAnTTRfdWlfY3VsdHVyZSc7XHJcbiAgICBwdWJsaWMgc3RhdGljIEFDQ09VTlRfTkFNRSA9ICdNNF9hY2NvdW50X25hbWUnO1xyXG59XHJcbiJdfQ==

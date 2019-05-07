@@ -1,0 +1,21 @@
+{
+  "name": "@tb/auth",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^8.0.0-rc.1",
+    "@angular/core": "^8.0.0-rc.1"
+  },
+  "main": "bundles/tb-auth.umd.js",
+  "module": "fesm5/tb-auth.js",
+  "es2015": "fesm2015/tb-auth.js",
+  "esm5": "esm5/tb-auth.js",
+  "esm2015": "esm2015/tb-auth.js",
+  "fesm5": "fesm5/tb-auth.js",
+  "fesm2015": "fesm2015/tb-auth.js",
+  "typings": "tb-auth.d.ts",
+  "metadata": "tb-auth.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}
