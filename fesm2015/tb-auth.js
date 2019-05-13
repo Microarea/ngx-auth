@@ -4,7 +4,7 @@ import { tap, map } from 'rxjs/operators';
 import * as moment_ from 'moment';
 import { __awaiter } from 'tslib';
 import { Router } from '@angular/router';
-import { Injectable, Inject, NgModule, Component, defineInjectable, inject } from '@angular/core';
+import { Injectable, Inject, Component, NgModule, defineInjectable, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { InputsModule } from '@progress/kendo-angular-inputs';
@@ -175,12 +175,14 @@ class TbAuthService {
     /**
      * @return {?}
      */
-    getExpiration() {
+    isExpired() {
         /** @type {?} */
         const expiration = localStorage.getItem(StorageVars.EXP);
+        if (!expiration)
+            return false;
         /** @type {?} */
         const expiresAt = JSON.parse(expiration);
-        return moment(expiresAt);
+        return moment().isAfter(moment(expiresAt));
     }
 }
 TbAuthService.decorators = [
@@ -200,8 +202,6 @@ TbAuthService.ctorParameters = () => [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/** @type {?} */
-const moment$1 = moment_;
 class TbAuthGuard {
     /**
      * @param {?} authService
@@ -231,16 +231,14 @@ class TbAuthGuard {
                     SubscriptionKey: subKey
                 };
             }
-            /** @type {?} */
-            const authtoken = localStorage.getItem(StorageVars.JWT);
-            /** @type {?} */
-            const expiration = localStorage.getItem(StorageVars.EXP);
-            if (!expiration || moment$1().isAfter(this.authService.getExpiration())) {
+            if (!autologinToken && this.authService.isExpired()) {
                 this.authService.errorMessage = 'Token expired';
                 this.authService.clearStorage();
                 this.router.navigate(['login']);
                 return true;
             }
+            /** @type {?} */
+            const authtoken = localStorage.getItem(StorageVars.JWT);
             if (authtoken || autologinToken) {
                 // ho un token, ma ne verifico la validità
                 /** @type {?} */
@@ -399,6 +397,7 @@ class TbLoginComponent {
                 this.authService.errorMessage = err.error && err.error.Message;
                 return;
             }));
+            this.loading = false;
             if (!result)
                 return;
             // todo controlla come vengono mostrati errori sia login sia checkdb

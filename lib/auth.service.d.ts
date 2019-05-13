@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import * as moment_ from 'moment';
 import { Observable } from 'rxjs';
 import { AutologinToken } from './models/autologin-token.model';
 import { LoginRequest } from './models/login-request';
@@ -29,5 +28,5 @@ export declare class TbAuthService {
     logoff(): void;
     saveCulture(culture?: string, uiCulture?: string): void;
     clearStorage(): void;
-    getExpiration(): moment_.Moment;
+    isExpired(): boolean;
 }

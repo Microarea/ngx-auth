@@ -329,15 +329,17 @@
         /**
          * @return {?}
          */
-        TbAuthService.prototype.getExpiration = /**
+        TbAuthService.prototype.isExpired = /**
          * @return {?}
          */
             function () {
                 /** @type {?} */
                 var expiration = localStorage.getItem(StorageVars.EXP);
+                if (!expiration)
+                    return false;
                 /** @type {?} */
                 var expiresAt = JSON.parse(expiration);
-                return moment(expiresAt);
+                return moment().isAfter(moment(expiresAt));
             };
         TbAuthService.decorators = [
             { type: i0.Injectable, args: [{
@@ -360,8 +362,6 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    /** @type {?} */
-    var moment$1 = moment_;
     var TbAuthGuard = /** @class */ (function () {
         function TbAuthGuard(authService, router) {
             this.authService = authService;
@@ -379,7 +379,7 @@
          */
             function (next, state) {
                 return __awaiter(this, void 0, void 0, function () {
-                    var autologinToken, jwt, subKey, authtoken, expiration, res;
+                    var autologinToken, jwt, subKey, authtoken, res;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
@@ -392,14 +392,13 @@
                                         SubscriptionKey: subKey
                                     };
                                 }
-                                authtoken = localStorage.getItem(StorageVars.JWT);
-                                expiration = localStorage.getItem(StorageVars.EXP);
-                                if (!expiration || moment$1().isAfter(this.authService.getExpiration())) {
+                                if (!autologinToken && this.authService.isExpired()) {
                                     this.authService.errorMessage = 'Token expired';
                                     this.authService.clearStorage();
                                     this.router.navigate(['login']);
                                     return [2 /*return*/, true];
                                 }
+                                authtoken = localStorage.getItem(StorageVars.JWT);
                                 if (!(authtoken || autologinToken))
                                     return [3 /*break*/, 2];
                                 // ho un token, ma ne verifico la validità
@@ -602,6 +601,7 @@
                                     }))];
                             case 1:
                                 result = _a.sent();
+                                this.loading = false;
                                 if (!result)
                                     return [2 /*return*/];
                                 // todo controlla come vengono mostrati errori sia login sia checkdb
