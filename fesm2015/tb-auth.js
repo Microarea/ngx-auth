@@ -14,6 +14,44 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class AutologinToken {
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class Instance {
+    constructor() { }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class LoginRequest {
+    constructor() {
+        this.accountName = '';
+        this.password = '';
+        this.subscriptionKey = null;
+        this.appid = 'GENERIC';
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class LoginResponse {
+    constructor() {
+        this.Result = false;
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class StorageVars {
 }
 StorageVars.JWT = 'M4_jwt_token';
@@ -21,6 +59,24 @@ StorageVars.EXP = 'M4_jwt_token_expiration_date';
 StorageVars.CULTURE = 'M4_culture';
 StorageVars.UI_CULTURE = 'M4_ui_culture';
 StorageVars.ACCOUNT_NAME = 'M4_account_name';
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class Subscription {
+    constructor() { }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class Token {
+    constructor() {
+        this.JwtToken = '';
+    }
+}
 
 /**
  * @fileoverview added by tsickle
@@ -317,19 +373,6 @@ TbAuthInterceptor.ctorParameters = () => [];
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class LoginRequest {
-    constructor() {
-        this.accountName = '';
-        this.password = '';
-        this.subscriptionKey = null;
-        this.appid = 'GENERIC';
-    }
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class TbLoginComponent {
     /**
      * @param {?} authService
@@ -504,6 +547,6 @@ TbAuthModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { TbAuthService, TbAuthGuard, TbAuthInterceptor, TbLoginComponent, TbLogoutComponent, TbAuthModule };
+export { AutologinToken, Instance, LoginRequest, LoginResponse, StorageVars, Subscription, Token, TbAuthService, TbAuthGuard, TbAuthInterceptor, TbLoginComponent, TbLogoutComponent, TbAuthModule };
 
 //# sourceMappingURL=tb-auth.js.map

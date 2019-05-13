@@ -4,6 +4,87 @@
     (factory((global.tb = global.tb || {}, global.tb.auth = {}),global.ng.common.http,global.rxjs,global.rxjs.operators,global.moment_,global.ng.router,global.ng.core,global.ng.common,global.ng.forms,global.kendoAngularInputs,global.kendoAngularButtons));
 }(this, (function (exports,i1,rxjs,operators,moment_,i2,i0,common,forms,kendoAngularInputs,kendoAngularButtons) { 'use strict';
 
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var AutologinToken = /** @class */ (function () {
+        function AutologinToken() {
+        }
+        return AutologinToken;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var Instance = /** @class */ (function () {
+        function Instance() {
+        }
+        return Instance;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var LoginRequest = /** @class */ (function () {
+        function LoginRequest() {
+            this.accountName = '';
+            this.password = '';
+            this.subscriptionKey = null;
+            this.appid = 'GENERIC';
+        }
+        return LoginRequest;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var LoginResponse = /** @class */ (function () {
+        function LoginResponse() {
+            this.Result = false;
+        }
+        return LoginResponse;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StorageVars = /** @class */ (function () {
+        function StorageVars() {
+        }
+        StorageVars.JWT = 'M4_jwt_token';
+        StorageVars.EXP = 'M4_jwt_token_expiration_date';
+        StorageVars.CULTURE = 'M4_culture';
+        StorageVars.UI_CULTURE = 'M4_ui_culture';
+        StorageVars.ACCOUNT_NAME = 'M4_account_name';
+        return StorageVars;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var Subscription = /** @class */ (function () {
+        function Subscription() {
+        }
+        return Subscription;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var Token = /** @class */ (function () {
+        function Token() {
+            this.JwtToken = '';
+        }
+        return Token;
+    }());
+
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
     Licensed under the Apache License, Version 2.0 (the "License"); you may not use
@@ -105,21 +186,6 @@
             return { value: op[0] ? op[1] : void 0, done: true };
         }
     }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StorageVars = /** @class */ (function () {
-        function StorageVars() {
-        }
-        StorageVars.JWT = 'M4_jwt_token';
-        StorageVars.EXP = 'M4_jwt_token_expiration_date';
-        StorageVars.CULTURE = 'M4_culture';
-        StorageVars.UI_CULTURE = 'M4_ui_culture';
-        StorageVars.ACCOUNT_NAME = 'M4_account_name';
-        return StorageVars;
-    }());
 
     /**
      * @fileoverview added by tsickle
@@ -491,20 +557,6 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var LoginRequest = /** @class */ (function () {
-        function LoginRequest() {
-            this.accountName = '';
-            this.password = '';
-            this.subscriptionKey = null;
-            this.appid = 'GENERIC';
-        }
-        return LoginRequest;
-    }());
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var TbLoginComponent = /** @class */ (function () {
         function TbLoginComponent(authService, router) {
             this.authService = authService;
@@ -730,6 +782,13 @@
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
+    exports.AutologinToken = AutologinToken;
+    exports.Instance = Instance;
+    exports.LoginRequest = LoginRequest;
+    exports.LoginResponse = LoginResponse;
+    exports.StorageVars = StorageVars;
+    exports.Subscription = Subscription;
+    exports.Token = Token;
     exports.TbAuthService = TbAuthService;
     exports.TbAuthGuard = TbAuthGuard;
     exports.TbAuthInterceptor = TbAuthInterceptor;

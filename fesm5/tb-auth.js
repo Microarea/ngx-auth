@@ -14,6 +14,51 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var AutologinToken = /** @class */ (function () {
+    function AutologinToken() {
+    }
+    return AutologinToken;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var Instance = /** @class */ (function () {
+    function Instance() {
+    }
+    return Instance;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var LoginRequest = /** @class */ (function () {
+    function LoginRequest() {
+        this.accountName = '';
+        this.password = '';
+        this.subscriptionKey = null;
+        this.appid = 'GENERIC';
+    }
+    return LoginRequest;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var LoginResponse = /** @class */ (function () {
+    function LoginResponse() {
+        this.Result = false;
+    }
+    return LoginResponse;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 var StorageVars = /** @class */ (function () {
     function StorageVars() {
     }
@@ -23,6 +68,27 @@ var StorageVars = /** @class */ (function () {
     StorageVars.UI_CULTURE = 'M4_ui_culture';
     StorageVars.ACCOUNT_NAME = 'M4_account_name';
     return StorageVars;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var Subscription = /** @class */ (function () {
+    function Subscription() {
+    }
+    return Subscription;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var Token = /** @class */ (function () {
+    function Token() {
+        this.JwtToken = '';
+    }
+    return Token;
 }());
 
 /**
@@ -386,20 +452,6 @@ var TbAuthInterceptor = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var LoginRequest = /** @class */ (function () {
-    function LoginRequest() {
-        this.accountName = '';
-        this.password = '';
-        this.subscriptionKey = null;
-        this.appid = 'GENERIC';
-    }
-    return LoginRequest;
-}());
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 var TbLoginComponent = /** @class */ (function () {
     function TbLoginComponent(authService, router) {
         this.authService = authService;
@@ -622,6 +674,6 @@ var TbAuthModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { TbAuthService, TbAuthGuard, TbAuthInterceptor, TbLoginComponent, TbLogoutComponent, TbAuthModule };
+export { AutologinToken, Instance, LoginRequest, LoginResponse, StorageVars, Subscription, Token, TbAuthService, TbAuthGuard, TbAuthInterceptor, TbLoginComponent, TbLogoutComponent, TbAuthModule };
 
 //# sourceMappingURL=tb-auth.js.map
