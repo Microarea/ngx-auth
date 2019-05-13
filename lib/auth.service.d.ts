@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import * as moment_ from 'moment';
 import { Observable } from 'rxjs';
 import { AutologinToken } from './models/autologin-token.model';
 import { LoginRequest } from './models/login-request';
@@ -14,6 +15,7 @@ export declare class TbAuthService {
     constructor(env: any, http: HttpClient, router: Router);
     isValidToken(autologinToken?: AutologinToken): Promise<any>;
     login(loginRequest: LoginRequest): Observable<LoginResponse>;
+    private storageData;
     getIsValidTokenUrl(): string;
     getLoginUrl(): string;
     getLogoutUrl(): string;
@@ -26,4 +28,6 @@ export declare class TbAuthService {
     getBaseUrl(): string;
     logoff(): void;
     saveCulture(culture?: string, uiCulture?: string): void;
+    clearStorage(): void;
+    getExpiration(): moment_.Moment;
 }

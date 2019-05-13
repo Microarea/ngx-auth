@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('rxjs'), require('rxjs/operators'), require('@angular/router'), require('@angular/core'), require('@angular/common'), require('@angular/forms'), require('@progress/kendo-angular-inputs'), require('@progress/kendo-angular-buttons')) :
-    typeof define === 'function' && define.amd ? define('@tb/auth', ['exports', '@angular/common/http', 'rxjs', 'rxjs/operators', '@angular/router', '@angular/core', '@angular/common', '@angular/forms', '@progress/kendo-angular-inputs', '@progress/kendo-angular-buttons'], factory) :
-    (factory((global.tb = global.tb || {}, global.tb.auth = {}),global.ng.common.http,global.rxjs,global.rxjs.operators,global.ng.router,global.ng.core,global.ng.common,global.ng.forms,global.kendoAngularInputs,global.kendoAngularButtons));
-}(this, (function (exports,i1,rxjs,operators,i2,i0,common,forms,kendoAngularInputs,kendoAngularButtons) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('rxjs'), require('rxjs/operators'), require('moment'), require('@angular/router'), require('@angular/core'), require('@angular/common'), require('@angular/forms'), require('@progress/kendo-angular-inputs'), require('@progress/kendo-angular-buttons')) :
+    typeof define === 'function' && define.amd ? define('@tb/auth', ['exports', '@angular/common/http', 'rxjs', 'rxjs/operators', 'moment', '@angular/router', '@angular/core', '@angular/common', '@angular/forms', '@progress/kendo-angular-inputs', '@progress/kendo-angular-buttons'], factory) :
+    (factory((global.tb = global.tb || {}, global.tb.auth = {}),global.ng.common.http,global.rxjs,global.rxjs.operators,global.moment_,global.ng.router,global.ng.core,global.ng.common,global.ng.forms,global.kendoAngularInputs,global.kendoAngularButtons));
+}(this, (function (exports,i1,rxjs,operators,moment_,i2,i0,common,forms,kendoAngularInputs,kendoAngularButtons) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -110,20 +110,23 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var SessionStorageVars = /** @class */ (function () {
-        function SessionStorageVars() {
+    var StorageVars = /** @class */ (function () {
+        function StorageVars() {
         }
-        SessionStorageVars.JWT = 'M4_jwt_token';
-        SessionStorageVars.CULTURE = 'M4_culture';
-        SessionStorageVars.UI_CULTURE = 'M4_ui_culture';
-        SessionStorageVars.ACCOUNT_NAME = 'M4_account_name';
-        return SessionStorageVars;
+        StorageVars.JWT = 'M4_jwt_token';
+        StorageVars.EXP = 'M4_jwt_token_expiration_date';
+        StorageVars.CULTURE = 'M4_culture';
+        StorageVars.UI_CULTURE = 'M4_ui_culture';
+        StorageVars.ACCOUNT_NAME = 'M4_account_name';
+        return StorageVars;
     }());
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /** @type {?} */
+    var moment = moment_;
     var TbAuthService = /** @class */ (function () {
         function TbAuthService(env, http, router) {
             this.env = env;
@@ -147,7 +150,7 @@
                     var authtoken;
                     var _this = this;
                     return __generator(this, function (_a) {
-                        authtoken = sessionStorage.getItem(SessionStorageVars.JWT);
+                        authtoken = localStorage.getItem(StorageVars.JWT);
                         console.log('isValidToken - authtoken', authtoken);
                         if (!authtoken && !autologinToken) {
                             return [2 /*return*/, rxjs.of(false)];
@@ -160,10 +163,8 @@
                          */function (jObj) {
                                 console.log('isValidToken - response', jObj);
                                 if (!jObj.Result) {
-                                    jObj.Message = jObj.Message ? jObj.Message : 'Login error...';
-                                    // sessionStorage.removeItem(SessionStorageVars.JWT);
-                                    // sessionStorage.removeItem(SessionStorageVars.CULTURE);
-                                    // sessionStorage.removeItem(SessionStorageVars.UI_CULTURE);
+                                    jObj.Message = jObj.Message ? jObj.Message : 'isValidToken error...';
+                                    _this.clearStorage();
                                     _this.errorMessage = jObj.Message;
                                 }
                             })))
@@ -185,24 +186,38 @@
                  * @param {?} loginResponse
                  * @return {?}
                  */function (loginResponse) {
-                    /** @type {?} */
-                    var respCulture = loginResponse.Culture === undefined || loginResponse.Culture.length === 0
-                        ? window.navigator.language
-                        : loginResponse.Culture;
-                    /** @type {?} */
-                    var respUiCulture = loginResponse.UICulture === undefined || loginResponse.UICulture.length === 0
-                        ? window.navigator.language
-                        : loginResponse.UICulture;
-                    _this.saveCulture(respCulture, respUiCulture);
                     if (!loginResponse.Result) {
+                        _this.clearStorage();
                         loginResponse.Message = loginResponse.Message ? loginResponse.Message : 'Login error...';
-                        sessionStorage.removeItem(SessionStorageVars.JWT);
                         _this.errorMessage = loginResponse.Message;
                         return loginResponse;
                     }
-                    sessionStorage.setItem(SessionStorageVars.JWT, loginResponse.JwtToken);
+                    _this.storageData(loginResponse);
                     return loginResponse;
                 })));
+            };
+        /**
+         * @private
+         * @param {?} loginResponse
+         * @return {?}
+         */
+        TbAuthService.prototype.storageData = /**
+         * @private
+         * @param {?} loginResponse
+         * @return {?}
+         */
+            function (loginResponse) {
+                /** @type {?} */
+                var respCulture = loginResponse.Culture === undefined || loginResponse.Culture.length === 0 ? window.navigator.language : loginResponse.Culture;
+                /** @type {?} */
+                var respUiCulture = loginResponse.UICulture === undefined || loginResponse.UICulture.length === 0
+                    ? window.navigator.language
+                    : loginResponse.UICulture;
+                this.saveCulture(respCulture, respUiCulture);
+                localStorage.setItem(StorageVars.JWT, loginResponse.JwtToken);
+                /** @type {?} */
+                var exp = loginResponse.Exp ? moment(loginResponse.Exp) : moment().add(1, 'day');
+                localStorage.setItem(StorageVars.EXP, JSON.stringify(exp.valueOf()));
             };
         /**
          * @return {?}
@@ -296,8 +311,33 @@
                 if (uiCulture === void 0) {
                     uiCulture = '';
                 }
-                localStorage.setItem(SessionStorageVars.CULTURE, culture);
-                localStorage.setItem(SessionStorageVars.UI_CULTURE, uiCulture);
+                localStorage.setItem(StorageVars.CULTURE, culture);
+                localStorage.setItem(StorageVars.UI_CULTURE, uiCulture);
+            };
+        /**
+         * @return {?}
+         */
+        TbAuthService.prototype.clearStorage = /**
+         * @return {?}
+         */
+            function () {
+                localStorage.removeItem(StorageVars.JWT);
+                localStorage.removeItem(StorageVars.EXP);
+                localStorage.removeItem(StorageVars.CULTURE);
+                localStorage.removeItem(StorageVars.UI_CULTURE);
+            };
+        /**
+         * @return {?}
+         */
+        TbAuthService.prototype.getExpiration = /**
+         * @return {?}
+         */
+            function () {
+                /** @type {?} */
+                var expiration = localStorage.getItem(StorageVars.EXP);
+                /** @type {?} */
+                var expiresAt = JSON.parse(expiration);
+                return moment(expiresAt);
             };
         TbAuthService.decorators = [
             { type: i0.Injectable, args: [{
@@ -320,6 +360,8 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /** @type {?} */
+    var moment$1 = moment_;
     var TbAuthGuard = /** @class */ (function () {
         function TbAuthGuard(authService, router) {
             this.authService = authService;
@@ -337,7 +379,7 @@
          */
             function (next, state) {
                 return __awaiter(this, void 0, void 0, function () {
-                    var autologinToken, jwt, subKey, authtoken, res;
+                    var autologinToken, jwt, subKey, authtoken, expiration, res;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
@@ -350,15 +392,23 @@
                                         SubscriptionKey: subKey
                                     };
                                 }
-                                authtoken = sessionStorage.getItem(SessionStorageVars.JWT);
+                                authtoken = localStorage.getItem(StorageVars.JWT);
+                                expiration = localStorage.getItem(StorageVars.EXP);
+                                if (!expiration || moment$1().isAfter(this.authService.getExpiration())) {
+                                    this.authService.errorMessage = 'Token expired';
+                                    this.authService.clearStorage();
+                                    this.router.navigate(['login']);
+                                    return [2 /*return*/, true];
+                                }
                                 if (!(authtoken || autologinToken))
                                     return [3 /*break*/, 2];
                                 // ho un token, ma ne verifico la validità
                                 return [4 /*yield*/, this.authService.isValidToken(autologinToken)];
                             case 1:
                                 res = _a.sent();
+                                // TODO test isValidToken
                                 console.log('isValidToken', res);
-                                if (res.Success) {
+                                if (res.Result) {
                                     return [2 /*return*/, true];
                                 }
                                 else {
@@ -414,7 +464,7 @@
                  * @type {?}
                  */
                 var token = JSON.stringify({
-                    token: sessionStorage.getItem(SessionStorageVars.JWT)
+                    token: localStorage.getItem(StorageVars.JWT)
                 });
                 if (token) {
                     request = request.clone({
@@ -446,6 +496,8 @@
         function LoginRequest() {
             this.accountName = '';
             this.password = '';
+            this.subscriptionKey = null;
+            this.appid = 'GENERIC';
         }
         return LoginRequest;
     }());
@@ -579,7 +631,7 @@
              * @return {?}
              */
             function () {
-                this.loginRequest.accountName = localStorage.getItem(SessionStorageVars.ACCOUNT_NAME);
+                this.loginRequest.accountName = localStorage.getItem(StorageVars.ACCOUNT_NAME);
             };
         // -------------------------------------------------------------------------------------
         // -------------------------------------------------------------------------------------
@@ -592,7 +644,7 @@
              * @return {?}
              */
             function () {
-                localStorage.setItem(SessionStorageVars.ACCOUNT_NAME, this.loginRequest.accountName);
+                localStorage.setItem(StorageVars.ACCOUNT_NAME, this.loginRequest.accountName);
             };
         TbLoginComponent.decorators = [
             { type: i0.Component, args: [{
@@ -619,7 +671,7 @@
         function TbLogoutComponent(authService, router) {
             this.authService = authService;
             this.router = router;
-            // const authtoken = sessionStorage.getItem(SessionStorageVars.JWT);
+            // const authtoken = localStorage.getItem(StorageVars.JWT);
             // if (authtoken) authService.logoff();
             // router.navigate([authService.getLoginUrl()]);
         }

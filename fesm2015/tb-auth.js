@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
+import * as moment_ from 'moment';
 import { __awaiter } from 'tslib';
 import { Router } from '@angular/router';
-import { Injectable, Inject, Component, NgModule, defineInjectable, inject } from '@angular/core';
+import { Injectable, Inject, NgModule, Component, defineInjectable, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { InputsModule } from '@progress/kendo-angular-inputs';
@@ -13,17 +14,20 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class SessionStorageVars {
+class StorageVars {
 }
-SessionStorageVars.JWT = 'M4_jwt_token';
-SessionStorageVars.CULTURE = 'M4_culture';
-SessionStorageVars.UI_CULTURE = 'M4_ui_culture';
-SessionStorageVars.ACCOUNT_NAME = 'M4_account_name';
+StorageVars.JWT = 'M4_jwt_token';
+StorageVars.EXP = 'M4_jwt_token_expiration_date';
+StorageVars.CULTURE = 'M4_culture';
+StorageVars.UI_CULTURE = 'M4_ui_culture';
+StorageVars.ACCOUNT_NAME = 'M4_account_name';
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @type {?} */
+const moment = moment_;
 class TbAuthService {
     /**
      * @param {?} env
@@ -43,7 +47,7 @@ class TbAuthService {
     isValidToken(autologinToken = null) {
         return __awaiter(this, void 0, void 0, function* () {
             /** @type {?} */
-            const authtoken = sessionStorage.getItem(SessionStorageVars.JWT);
+            const authtoken = localStorage.getItem(StorageVars.JWT);
             console.log('isValidToken - authtoken', authtoken);
             if (!authtoken && !autologinToken) {
                 return of(false);
@@ -57,10 +61,8 @@ class TbAuthService {
             (jObj) => {
                 console.log('isValidToken - response', jObj);
                 if (!jObj.Result) {
-                    jObj.Message = jObj.Message ? jObj.Message : 'Login error...';
-                    // sessionStorage.removeItem(SessionStorageVars.JWT);
-                    // sessionStorage.removeItem(SessionStorageVars.CULTURE);
-                    // sessionStorage.removeItem(SessionStorageVars.UI_CULTURE);
+                    jObj.Message = jObj.Message ? jObj.Message : 'isValidToken error...';
+                    this.clearStorage();
                     this.errorMessage = jObj.Message;
                 }
             })))
@@ -77,24 +79,33 @@ class TbAuthService {
          * @return {?}
          */
         (loginResponse) => {
-            /** @type {?} */
-            const respCulture = loginResponse.Culture === undefined || loginResponse.Culture.length === 0
-                ? window.navigator.language
-                : loginResponse.Culture;
-            /** @type {?} */
-            const respUiCulture = loginResponse.UICulture === undefined || loginResponse.UICulture.length === 0
-                ? window.navigator.language
-                : loginResponse.UICulture;
-            this.saveCulture(respCulture, respUiCulture);
             if (!loginResponse.Result) {
+                this.clearStorage();
                 loginResponse.Message = loginResponse.Message ? loginResponse.Message : 'Login error...';
-                sessionStorage.removeItem(SessionStorageVars.JWT);
                 this.errorMessage = loginResponse.Message;
                 return loginResponse;
             }
-            sessionStorage.setItem(SessionStorageVars.JWT, loginResponse.JwtToken);
+            this.storageData(loginResponse);
             return loginResponse;
         })));
+    }
+    /**
+     * @private
+     * @param {?} loginResponse
+     * @return {?}
+     */
+    storageData(loginResponse) {
+        /** @type {?} */
+        const respCulture = loginResponse.Culture === undefined || loginResponse.Culture.length === 0 ? window.navigator.language : loginResponse.Culture;
+        /** @type {?} */
+        const respUiCulture = loginResponse.UICulture === undefined || loginResponse.UICulture.length === 0
+            ? window.navigator.language
+            : loginResponse.UICulture;
+        this.saveCulture(respCulture, respUiCulture);
+        localStorage.setItem(StorageVars.JWT, loginResponse.JwtToken);
+        /** @type {?} */
+        const exp = loginResponse.Exp ? moment(loginResponse.Exp) : moment().add(1, 'day');
+        localStorage.setItem(StorageVars.EXP, JSON.stringify(exp.valueOf()));
     }
     /**
      * @return {?}
@@ -149,8 +160,27 @@ class TbAuthService {
      * @return {?}
      */
     saveCulture(culture = '', uiCulture = '') {
-        localStorage.setItem(SessionStorageVars.CULTURE, culture);
-        localStorage.setItem(SessionStorageVars.UI_CULTURE, uiCulture);
+        localStorage.setItem(StorageVars.CULTURE, culture);
+        localStorage.setItem(StorageVars.UI_CULTURE, uiCulture);
+    }
+    /**
+     * @return {?}
+     */
+    clearStorage() {
+        localStorage.removeItem(StorageVars.JWT);
+        localStorage.removeItem(StorageVars.EXP);
+        localStorage.removeItem(StorageVars.CULTURE);
+        localStorage.removeItem(StorageVars.UI_CULTURE);
+    }
+    /**
+     * @return {?}
+     */
+    getExpiration() {
+        /** @type {?} */
+        const expiration = localStorage.getItem(StorageVars.EXP);
+        /** @type {?} */
+        const expiresAt = JSON.parse(expiration);
+        return moment(expiresAt);
     }
 }
 TbAuthService.decorators = [
@@ -170,6 +200,8 @@ TbAuthService.ctorParameters = () => [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @type {?} */
+const moment$1 = moment_;
 class TbAuthGuard {
     /**
      * @param {?} authService
@@ -200,13 +232,22 @@ class TbAuthGuard {
                 };
             }
             /** @type {?} */
-            const authtoken = sessionStorage.getItem(SessionStorageVars.JWT);
+            const authtoken = localStorage.getItem(StorageVars.JWT);
+            /** @type {?} */
+            const expiration = localStorage.getItem(StorageVars.EXP);
+            if (!expiration || moment$1().isAfter(this.authService.getExpiration())) {
+                this.authService.errorMessage = 'Token expired';
+                this.authService.clearStorage();
+                this.router.navigate(['login']);
+                return true;
+            }
             if (authtoken || autologinToken) {
                 // ho un token, ma ne verifico la validità
                 /** @type {?} */
                 const res = yield this.authService.isValidToken(autologinToken);
+                // TODO test isValidToken
                 console.log('isValidToken', res);
-                if (res.Success) {
+                if (res.Result) {
                     return true;
                 }
                 else {
@@ -251,7 +292,7 @@ class TbAuthInterceptor {
          * @type {?}
          */
         let token = JSON.stringify({
-            token: sessionStorage.getItem(SessionStorageVars.JWT)
+            token: localStorage.getItem(StorageVars.JWT)
         });
         if (token) {
             request = request.clone({
@@ -282,6 +323,8 @@ class LoginRequest {
     constructor() {
         this.accountName = '';
         this.password = '';
+        this.subscriptionKey = null;
+        this.appid = 'GENERIC';
     }
 }
 
@@ -377,14 +420,14 @@ class TbLoginComponent {
      * @return {?}
      */
     loadAccountName() {
-        this.loginRequest.accountName = localStorage.getItem(SessionStorageVars.ACCOUNT_NAME);
+        this.loginRequest.accountName = localStorage.getItem(StorageVars.ACCOUNT_NAME);
     }
     // -------------------------------------------------------------------------------------
     /**
      * @return {?}
      */
     saveAccountName() {
-        localStorage.setItem(SessionStorageVars.ACCOUNT_NAME, this.loginRequest.accountName);
+        localStorage.setItem(StorageVars.ACCOUNT_NAME, this.loginRequest.accountName);
     }
 }
 TbLoginComponent.decorators = [
@@ -412,7 +455,7 @@ class TbLogoutComponent {
     constructor(authService, router) {
         this.authService = authService;
         this.router = router;
-        // const authtoken = sessionStorage.getItem(SessionStorageVars.JWT);
+        // const authtoken = localStorage.getItem(StorageVars.JWT);
         // if (authtoken) authService.logoff();
         // router.navigate([authService.getLoginUrl()]);
     }
