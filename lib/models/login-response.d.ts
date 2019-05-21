@@ -1,9 +1,9 @@
 export declare class LoginResponse {
     Result: boolean;
-    JwtToken: string;
-    Exp: string;
     Message: string;
-    ErrorCode: number;
-    Culture: string;
-    UICulture: string;
+    ResultCode: number;
+    JwtToken: string;
+    ExpirationDate: string;
+    RegionalSettings: string;
+    Language: string;
 }

@@ -5,10 +5,11 @@ import { LoginRequest } from '../models/login-request';
 export declare class TbLoginComponent implements OnInit {
     authService: TbAuthService;
     router: Router;
+    private env;
     capsLockOn: boolean;
     loading: boolean;
     loginRequest: LoginRequest;
-    constructor(authService: TbAuthService, router: Router);
+    constructor(authService: TbAuthService, router: Router, env: any);
     ngOnInit(): void;
     keyUpFunction(event: any): void;
     disabledButton(): boolean;

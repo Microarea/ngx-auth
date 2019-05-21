@@ -1,4 +1,3 @@
-export * from './lib/models/autologin-token.model';
 export * from './lib/models/instance.model';
 export * from './lib/models/login-request';
 export * from './lib/models/login-response';
