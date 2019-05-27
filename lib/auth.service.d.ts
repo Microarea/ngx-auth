@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoginRequest } from './models/login-request';
 import { LoginResponse } from './models/login-response';
+import { LogoffResponse } from './models/logoff-response';
 export declare class TbAuthService {
     private env;
     private http;
@@ -14,6 +15,7 @@ export declare class TbAuthService {
     isValidToken(authtoken?: any): Promise<any>;
     getRedirectUrl(): string;
     setRedirectUrl(url: string): void;
+    getAccountName(): void;
     /**
      * Ritorna la base url del backend,
      * caricata da un file di configurazione caricato dinamicamente (assets/environment.json)
@@ -25,7 +27,7 @@ export declare class TbAuthService {
     getChangePasswordUrl(): string;
     getResetPasswordUrl(): string;
     getSubsKeysForAccountUrl(): string;
-    logoff(): void;
+    logoff(): Promise<LogoffResponse>;
     saveCulture(culture?: string, uiCulture?: string): void;
     clearStorage(): void;
     isExpired(): boolean;
