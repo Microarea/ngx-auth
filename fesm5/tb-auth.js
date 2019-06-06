@@ -3,7 +3,7 @@ import { of } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import * as moment_ from 'moment';
 import { __awaiter, __generator } from 'tslib';
-import { Injectable, Inject, Component, NgModule, defineInjectable, inject } from '@angular/core';
+import { Injectable, Inject, NgModule, Component, defineInjectable, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -109,6 +109,18 @@ var Token = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var IsValidTokenRequest = /** @class */ (function () {
+    function IsValidTokenRequest(token) {
+        if (token === void 0) { token = ''; }
+        this.token = token;
+    }
+    return IsValidTokenRequest;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /** @type {?} */
 var moment = moment_;
 var TbAuthService = /** @class */ (function () {
@@ -164,13 +176,13 @@ var TbAuthService = /** @class */ (function () {
                     return [2 /*return*/, of(false)];
                 }
                 return [2 /*return*/, this.http
-                        .get(this.getIsValidTokenUrl() + authtoken)
+                        .post(this.getIsValidTokenUrl(), new IsValidTokenRequest(authtoken))
                         .pipe(tap((/**
                      * @param {?} jObj
                      * @return {?}
                      */
                     function (jObj) {
-                        console.log('isValidToken - response', jObj);
+                        // console.log('isValidToken - response', jObj);
                         if (!jObj.Result) {
                             jObj.Message = jObj.Message ? jObj.Message : 'isValidToken error...';
                             _this.clearStorage();

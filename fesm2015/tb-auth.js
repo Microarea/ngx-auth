@@ -3,7 +3,7 @@ import { of } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import * as moment_ from 'moment';
 import { __awaiter } from 'tslib';
-import { Injectable, Inject, Component, NgModule, defineInjectable, inject } from '@angular/core';
+import { Injectable, Inject, NgModule, Component, defineInjectable, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -95,6 +95,19 @@ class Token {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class IsValidTokenRequest {
+    /**
+     * @param {?=} token
+     */
+    constructor(token = '') {
+        this.token = token;
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /** @type {?} */
 const moment = moment_;
 class TbAuthService {
@@ -143,13 +156,13 @@ class TbAuthService {
                 return of(false);
             }
             return this.http
-                .get(this.getIsValidTokenUrl() + authtoken)
+                .post(this.getIsValidTokenUrl(), new IsValidTokenRequest(authtoken))
                 .pipe(tap((/**
              * @param {?} jObj
              * @return {?}
              */
             (jObj) => {
-                console.log('isValidToken - response', jObj);
+                // console.log('isValidToken - response', jObj);
                 if (!jObj.Result) {
                     jObj.Message = jObj.Message ? jObj.Message : 'isValidToken error...';
                     this.clearStorage();
@@ -433,7 +446,7 @@ class TbAuthInterceptor {
          * Aggiungo a ogni httprequest l'header 'Authorization' con il nostro token
          * @type {?}
          */
-        let token = JSON.stringify({
+        const token = JSON.stringify({
             token: localStorage.getItem(StorageVars.JWT)
         });
         if (token) {
