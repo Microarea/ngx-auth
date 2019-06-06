@@ -85,6 +85,19 @@ class Subscription {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class IsValidTokenRequest {
+    /**
+     * @param {?=} token
+     */
+    constructor(token = '') {
+        this.token = token;
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class Token {
     constructor() {
         this.JwtToken = '';
@@ -143,13 +156,13 @@ class TbAuthService {
                 return of(false);
             }
             return this.http
-                .get(this.getIsValidTokenUrl() + authtoken)
+                .post(this.getIsValidTokenUrl(), new IsValidTokenRequest(authtoken))
                 .pipe(tap((/**
              * @param {?} jObj
              * @return {?}
              */
             (jObj) => {
-                console.log('isValidToken - response', jObj);
+                // console.log('isValidToken - response', jObj);
                 if (!jObj.Result) {
                     jObj.Message = jObj.Message ? jObj.Message : 'isValidToken error...';
                     this.clearStorage();
@@ -433,7 +446,7 @@ class TbAuthInterceptor {
          * Aggiungo a ogni httprequest l'header 'Authorization' con il nostro token
          * @type {?}
          */
-        let token = JSON.stringify({
+        const token = JSON.stringify({
             token: localStorage.getItem(StorageVars.JWT)
         });
         if (token) {
@@ -640,6 +653,6 @@ TbAuthModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { Instance, LoginRequest, LoginResponse, LogoffRequest, LogoffResponse, StorageVars, Subscription, Token, TbAuthService, TbAuthGuard, TbAuthInterceptor, TbLoginComponent, TbLogoffComponent, TbAuthModule };
+export { Instance, LoginRequest, LoginResponse, LogoffRequest, LogoffResponse, StorageVars, Subscription, IsValidTokenRequest, Token, TbAuthService, TbAuthGuard, TbAuthInterceptor, TbLoginComponent, TbLogoffComponent, TbAuthModule };
 
 //# sourceMappingURL=tb-auth.js.map

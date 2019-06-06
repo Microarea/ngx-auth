@@ -92,6 +92,20 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    var IsValidTokenRequest = /** @class */ (function () {
+        function IsValidTokenRequest(token) {
+            if (token === void 0) {
+                token = '';
+            }
+            this.token = token;
+        }
+        return IsValidTokenRequest;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var Token = /** @class */ (function () {
         function Token() {
             this.JwtToken = '';
@@ -261,12 +275,12 @@
                             return [2 /*return*/, rxjs.of(false)];
                         }
                         return [2 /*return*/, this.http
-                                .get(this.getIsValidTokenUrl() + authtoken)
+                                .post(this.getIsValidTokenUrl(), new IsValidTokenRequest(authtoken))
                                 .pipe(operators.tap(( /**
                          * @param {?} jObj
                          * @return {?}
                          */function (jObj) {
-                                console.log('isValidToken - response', jObj);
+                                // console.log('isValidToken - response', jObj);
                                 if (!jObj.Result) {
                                     jObj.Message = jObj.Message ? jObj.Message : 'isValidToken error...';
                                     _this.clearStorage();
@@ -887,6 +901,7 @@
     exports.LogoffResponse = LogoffResponse;
     exports.StorageVars = StorageVars;
     exports.Subscription = Subscription;
+    exports.IsValidTokenRequest = IsValidTokenRequest;
     exports.Token = Token;
     exports.TbAuthService = TbAuthService;
     exports.TbAuthGuard = TbAuthGuard;
