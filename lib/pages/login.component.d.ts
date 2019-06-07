@@ -9,6 +9,7 @@ export declare class TbLoginComponent implements OnInit {
     capsLockOn: boolean;
     loading: boolean;
     loginRequest: LoginRequest;
+    logoB64: string;
     constructor(authService: TbAuthService, router: Router, env: any);
     ngOnInit(): void;
     keyUpFunction(event: any): void;
