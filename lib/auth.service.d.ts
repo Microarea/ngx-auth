@@ -1,18 +1,21 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpBackend } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { LoginRequest } from './models/login-request';
 import { LoginResponse } from './models/login-response';
 import { LogoffResponse } from './models/logoff-response';
 export declare class TbAuthService {
     private env;
     private http;
+    private handler;
     router: Router;
     loginUrl: string;
     errorMessage: string;
     redirectUrl: string;
-    constructor(env: any, http: HttpClient, router: Router);
+    constructor(env: any, http: HttpClient, handler: HttpBackend, router: Router);
     login(loginRequest: LoginRequest): Promise<LoginResponse>;
     isValidToken(authtoken?: any): Promise<any>;
+    getCompaniesForUser(user: string): Observable<any>;
     getRedirectUrl(): string;
     setRedirectUrl(url: string): void;
     getAccountName(): void;
