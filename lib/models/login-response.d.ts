@@ -6,4 +6,6 @@ export declare class LoginResponse {
     ExpirationDate: string;
     RegionalSettings: string;
     Language: string;
+    Mail: string;
+    Roles: string;
 }
