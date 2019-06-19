@@ -3,7 +3,7 @@ import { of } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import * as moment_ from 'moment';
 import { __awaiter, __generator } from 'tslib';
-import { Injectable, Inject, NgModule, Component, defineInjectable, inject } from '@angular/core';
+import { Injectable, Inject, Component, NgModule, defineInjectable, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -83,7 +83,6 @@ var StorageVars = /** @class */ (function () {
     StorageVars.UI_CULTURE = 'M4_ui_culture';
     StorageVars.ACCOUNT_NAME = 'M4_account_name';
     StorageVars.ACCOUNT_ROLES = 'M4_account_roles';
-    StorageVars.ACCOUNT_MAIL = 'M4_account_mail';
     return StorageVars;
 }());
 
@@ -384,7 +383,6 @@ var TbAuthService = /** @class */ (function () {
         localStorage.removeItem(StorageVars.CULTURE);
         localStorage.removeItem(StorageVars.UI_CULTURE);
         localStorage.removeItem(StorageVars.ACCOUNT_ROLES);
-        localStorage.removeItem(StorageVars.ACCOUNT_MAIL);
         localStorage.removeItem(StorageVars.ACCOUNT_NAME); //?
     };
     /**
@@ -423,8 +421,9 @@ var TbAuthService = /** @class */ (function () {
             : loginResponse.Language;
         this.saveCulture(respCulture, respUiCulture);
         localStorage.setItem(StorageVars.JWT, loginResponse.JwtToken);
-        localStorage.setItem(StorageVars.ACCOUNT_MAIL, loginResponse.Mail);
-        localStorage.setItem(StorageVars.ACCOUNT_ROLES, loginResponse.Roles);
+        /** @type {?} */
+        var roles = JSON.stringify(loginResponse.Roles);
+        localStorage.setItem(StorageVars.ACCOUNT_ROLES, roles);
         /** @type {?} */
         var exp = loginResponse.ExpirationDate ? moment(loginResponse.ExpirationDate) : moment().add(1, 'day');
         localStorage.setItem(StorageVars.EXP, JSON.stringify(exp.valueOf()));
