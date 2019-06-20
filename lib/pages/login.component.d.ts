@@ -9,6 +9,7 @@ export declare class TbLoginComponent implements OnInit {
     capsLockOn: boolean;
     loading: boolean;
     loginRequest: LoginRequest;
+    redirectUrl: string;
     logoB64: string;
     subscriptionSelection: boolean;
     loginSubscriptions: Array<{

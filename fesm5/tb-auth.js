@@ -3,7 +3,7 @@ import { of } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import * as moment_ from 'moment';
 import { __awaiter, __generator } from 'tslib';
-import { Injectable, Inject, Component, NgModule, defineInjectable, inject } from '@angular/core';
+import { Injectable, Inject, NgModule, Component, defineInjectable, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -148,6 +148,7 @@ var TbAuthService = /** @class */ (function () {
     function (loginRequest) {
         var _this = this;
         // console.log('authService.login - loginRequest', loginRequest);
+        this.redirectUrl = this.env.auth.redirectUrl;
         return this.http
             .post(this.getLoginUrl(), loginRequest)
             .pipe(map((/**
@@ -227,30 +228,29 @@ var TbAuthService = /** @class */ (function () {
             return res.Content.subscriptions ? res.Content.subscriptions : [];
         })));
     };
+    //getRedirectUrl(): string {
+    //    return this.redirectUrl;
+    //}
+    //setRedirectUrl(url: string): void {
+    //    this.redirectUrl = url;
+    //}
+    //getRedirectUrl(): string {
+    //    return this.redirectUrl;
+    //}
+    //setRedirectUrl(url: string): void {
+    //    this.redirectUrl = url;
+    //}
     /**
      * @return {?}
      */
-    TbAuthService.prototype.getRedirectUrl = /**
-     * @return {?}
-     */
-    function () {
-        return this.redirectUrl;
-    };
+    TbAuthService.prototype.getAccountName = 
+    //getRedirectUrl(): string {
+    //    return this.redirectUrl;
+    //}
+    //setRedirectUrl(url: string): void {
+    //    this.redirectUrl = url;
+    //}
     /**
-     * @param {?} url
-     * @return {?}
-     */
-    TbAuthService.prototype.setRedirectUrl = /**
-     * @param {?} url
-     * @return {?}
-     */
-    function (url) {
-        this.redirectUrl = url;
-    };
-    /**
-     * @return {?}
-     */
-    TbAuthService.prototype.getAccountName = /**
      * @return {?}
      */
     function () {
@@ -383,7 +383,7 @@ var TbAuthService = /** @class */ (function () {
         localStorage.removeItem(StorageVars.CULTURE);
         localStorage.removeItem(StorageVars.UI_CULTURE);
         localStorage.removeItem(StorageVars.ACCOUNT_ROLES);
-        localStorage.removeItem(StorageVars.ACCOUNT_NAME); //?
+        localStorage.removeItem(StorageVars.ACCOUNT_NAME); // ?
     };
     /**
      * @return {?}
@@ -466,7 +466,7 @@ var TbAuthGuard = /** @class */ (function () {
      */
     function (next, state) {
         return __awaiter(this, void 0, void 0, function () {
-            var jwt, subKey, loginRequest, loginResponse, url, authtoken, res;
+            var jwt, subKey, loginRequest, loginResponse, authtoken, res;
             var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -495,9 +495,8 @@ var TbAuthGuard = /** @class */ (function () {
                             return [2 /*return*/, false];
                         }
                         if (loginResponse.Result) {
-                            url = this.authService.getRedirectUrl();
                             this.authService.errorMessage = '';
-                            this.router.navigate([url]);
+                            this.router.navigate([this.authService.redirectUrl]);
                         }
                         _a.label = 2;
                     case 2:
@@ -619,6 +618,7 @@ var TbLoginComponent = /** @class */ (function () {
         this.loginRequest = new LoginRequest();
         this.loginRequest.appId = env.auth.appid;
         this.subscriptionSelection = env.auth.subs;
+        this.redirectUrl = env.auth.redirectUrl;
     }
     /**
      * @return {?}
@@ -686,7 +686,7 @@ var TbLoginComponent = /** @class */ (function () {
      */
     function () {
         return __awaiter(this, void 0, void 0, function () {
-            var result, url;
+            var result;
             var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -710,9 +710,8 @@ var TbLoginComponent = /** @class */ (function () {
                             return [2 /*return*/];
                         // todo controlla come vengono mostrati errori sia login sia checkdb
                         if (result.Result) {
-                            url = this.authService.getRedirectUrl();
                             this.authService.errorMessage = '';
-                            this.router.navigate([url]);
+                            this.router.navigate([this.redirectUrl]);
                         }
                         else {
                             this.loading = false;

@@ -3,7 +3,7 @@ import { of } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import * as moment_ from 'moment';
 import { __awaiter } from 'tslib';
-import { Injectable, Inject, Component, NgModule, defineInjectable, inject } from '@angular/core';
+import { Injectable, Inject, NgModule, Component, defineInjectable, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -133,6 +133,7 @@ class TbAuthService {
      */
     login(loginRequest) {
         // console.log('authService.login - loginRequest', loginRequest);
+        this.redirectUrl = this.env.auth.redirectUrl;
         return this.http
             .post(this.getLoginUrl(), loginRequest)
             .pipe(map((/**
@@ -194,19 +195,12 @@ class TbAuthService {
             return res.Content.subscriptions ? res.Content.subscriptions : [];
         })));
     }
-    /**
-     * @return {?}
-     */
-    getRedirectUrl() {
-        return this.redirectUrl;
-    }
-    /**
-     * @param {?} url
-     * @return {?}
-     */
-    setRedirectUrl(url) {
-        this.redirectUrl = url;
-    }
+    //getRedirectUrl(): string {
+    //    return this.redirectUrl;
+    //}
+    //setRedirectUrl(url: string): void {
+    //    this.redirectUrl = url;
+    //}
     /**
      * @return {?}
      */
@@ -299,7 +293,7 @@ class TbAuthService {
         localStorage.removeItem(StorageVars.CULTURE);
         localStorage.removeItem(StorageVars.UI_CULTURE);
         localStorage.removeItem(StorageVars.ACCOUNT_ROLES);
-        localStorage.removeItem(StorageVars.ACCOUNT_NAME); //?
+        localStorage.removeItem(StorageVars.ACCOUNT_NAME); // ?
     }
     /**
      * @return {?}
@@ -405,10 +399,8 @@ class TbAuthGuard {
                     return false;
                 }
                 if (loginResponse.Result) {
-                    /** @type {?} */
-                    const url = this.authService.getRedirectUrl();
                     this.authService.errorMessage = '';
-                    this.router.navigate([url]);
+                    this.router.navigate([this.authService.redirectUrl]);
                 }
             }
             /**
@@ -527,6 +519,7 @@ class TbLoginComponent {
         this.loginRequest = new LoginRequest();
         this.loginRequest.appId = env.auth.appid;
         this.subscriptionSelection = env.auth.subs;
+        this.redirectUrl = env.auth.redirectUrl;
     }
     /**
      * @return {?}
@@ -584,10 +577,8 @@ class TbLoginComponent {
                 return;
             // todo controlla come vengono mostrati errori sia login sia checkdb
             if (result.Result) {
-                /** @type {?} */
-                const url = this.authService.getRedirectUrl();
                 this.authService.errorMessage = '';
-                this.router.navigate([url]);
+                this.router.navigate([this.redirectUrl]);
             }
             else {
                 this.loading = false;

@@ -16,8 +16,6 @@ export declare class TbAuthService {
     login(loginRequest: LoginRequest): Promise<LoginResponse>;
     isValidToken(authtoken?: any): Promise<any>;
     getCompaniesForUser(user: string): Observable<any>;
-    getRedirectUrl(): string;
-    setRedirectUrl(url: string): void;
     getAccountName(): void;
     /**
      * Ritorna la base url del backend,
