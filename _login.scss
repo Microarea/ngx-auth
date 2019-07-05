@@ -1,0 +1,21 @@
+@import '~bootstrap/dist/css/bootstrap-reboot.min.css';
+@import '~bootstrap/dist/css/bootstrap-grid.min.css';
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400');
+
+@import 'vars';
+
+$primary: $blue;
+$accent: $blue;
+$secondary: $darkerblue;
+$font-size: 12px;
+$font-family: $tb-font-family;
+@import '~@progress/kendo-theme-default/scss/all';
+
+body,
+html {
+    font-family: $tb-font-family !important;
+    background: #00578c;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
