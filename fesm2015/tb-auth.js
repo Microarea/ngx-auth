@@ -1,9 +1,9 @@
 import { HttpClient, HttpBackend } from '@angular/common/http';
 import { of } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
-import * as moment_ from 'moment';
+import 'moment';
 import { __awaiter } from 'tslib';
-import { Injectable, Inject, NgModule, Component, defineInjectable, inject } from '@angular/core';
+import { Injectable, Inject, Component, NgModule, defineInjectable, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -69,7 +69,6 @@ class LogoffResponse {
 class StorageVars {
 }
 StorageVars.JWT = 'M4_jwt_token';
-StorageVars.EXP = 'M4_jwt_token_expiration_date';
 StorageVars.CULTURE = 'M4_culture';
 StorageVars.UI_CULTURE = 'M4_ui_culture';
 StorageVars.ACCOUNT_NAME = 'M4_account_name';
@@ -110,8 +109,6 @@ class Token {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/** @type {?} */
-const moment = moment_;
 class TbAuthService {
     /**
      * @param {?} env
@@ -288,23 +285,10 @@ class TbAuthService {
      */
     clearStorage() {
         localStorage.removeItem(StorageVars.JWT);
-        localStorage.removeItem(StorageVars.EXP);
         localStorage.removeItem(StorageVars.CULTURE);
         localStorage.removeItem(StorageVars.UI_CULTURE);
         localStorage.removeItem(StorageVars.ACCOUNT_ROLES);
         localStorage.removeItem(StorageVars.ACCOUNT_NAME); // ?
-    }
-    /**
-     * @return {?}
-     */
-    isExpired() {
-        /** @type {?} */
-        const expiration = localStorage.getItem(StorageVars.EXP);
-        if (!expiration)
-            return false;
-        /** @type {?} */
-        const expiresAt = JSON.parse(expiration);
-        return moment().isAfter(moment(expiresAt));
     }
     /**
      * @private
@@ -325,9 +309,6 @@ class TbAuthService {
         /** @type {?} */
         let roles = JSON.stringify(loginResponse.Roles);
         localStorage.setItem(StorageVars.ACCOUNT_ROLES, roles);
-        /** @type {?} */
-        const exp = loginResponse.ExpirationDate ? moment(loginResponse.ExpirationDate) : moment().add(1, 'day');
-        localStorage.setItem(StorageVars.EXP, JSON.stringify(exp.valueOf()));
     }
 }
 TbAuthService.decorators = [
@@ -401,15 +382,6 @@ class TbAuthGuard {
                     this.authService.errorMessage = '';
                     this.router.navigate([this.authService.redirectUrl]);
                 }
-            }
-            /**
-             * Se il token salvato in localStorage risulta scaduto, svuoto localStorage e rimando alla login
-             */
-            if (this.authService.isExpired()) {
-                // this.authService.errorMessage = 'Token expired';
-                this.authService.clearStorage();
-                this.router.navigate(['login']);
-                return true;
             }
             /**
              * Se arrivo qua vuol dire che ho già un token salvato e non scaduto quindi chiedo conferma della validità

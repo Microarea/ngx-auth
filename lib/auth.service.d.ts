@@ -31,6 +31,5 @@ export declare class TbAuthService {
     logoff(): Promise<LogoffResponse>;
     saveCulture(culture?: string, uiCulture?: string): void;
     clearStorage(): void;
-    isExpired(): boolean;
     private storageData;
 }
