@@ -14,7 +14,7 @@ export declare class TbLoginComponent implements OnInit {
     subscriptionSelection: boolean;
     loginSubscriptions: Array<{
         description: string;
-        subscriptionkey: string;
+        subscriptionKey: string;
     }>;
     constructor(authService: TbAuthService, router: Router, env: any);
     ngOnInit(): void;

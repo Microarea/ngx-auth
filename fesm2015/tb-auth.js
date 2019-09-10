@@ -72,6 +72,7 @@ StorageVars.CULTURE = 'M4_culture';
 StorageVars.UI_CULTURE = 'M4_ui_culture';
 StorageVars.ACCOUNT_NAME = 'M4_account_name';
 StorageVars.ACCOUNT_ROLES = 'M4_account_roles';
+StorageVars.SUBSCRIPTION = 'M4_subscription';
 
 /**
  * @fileoverview added by tsickle
@@ -130,6 +131,23 @@ class TbAuthService {
      */
     getBaseUrl() {
         return this.loginUrl;
+    }
+    /*
+          {
+            type: JWT,
+            appid: M4,
+            securityValue: jwtEncoded
+          }
+        */
+    /**
+     * @return {?}
+     */
+    getAuthorizationHeader() {
+        return JSON.stringify({
+            Type: 'JWT',
+            AppId: 'M4',
+            SecurityValue: this.getToken()
+        });
     }
     /**
      * @param {?} loginRequest
@@ -282,12 +300,14 @@ class TbAuthService {
             : loginResponse.Language;
         if (this.env.auth.session) {
             sessionStorage.setItem(StorageVars.JWT, loginResponse.JwtToken);
+            sessionStorage.getItem(StorageVars.SUBSCRIPTION);
             sessionStorage.setItem(StorageVars.CULTURE, respCulture);
             sessionStorage.setItem(StorageVars.UI_CULTURE, respUiCulture);
             sessionStorage.setItem(StorageVars.ACCOUNT_ROLES, JSON.stringify(loginResponse.Roles));
         }
         else {
             localStorage.setItem(StorageVars.JWT, loginResponse.JwtToken);
+            localStorage.getItem(StorageVars.SUBSCRIPTION);
             localStorage.setItem(StorageVars.CULTURE, respCulture);
             localStorage.setItem(StorageVars.UI_CULTURE, respUiCulture);
             localStorage.setItem(StorageVars.ACCOUNT_ROLES, JSON.stringify(loginResponse.Roles));
@@ -310,6 +330,15 @@ class TbAuthService {
             return sessionStorage.getItem(StorageVars.ACCOUNT_NAME);
         else
             return localStorage.getItem(StorageVars.ACCOUNT_NAME);
+    }
+    /**
+     * @return {?}
+     */
+    getSubscription() {
+        if (this.env.auth.session)
+            return sessionStorage.getItem(StorageVars.SUBSCRIPTION);
+        else
+            return localStorage.getItem(StorageVars.SUBSCRIPTION);
     }
 }
 TbAuthService.decorators = [
@@ -499,7 +528,7 @@ class TbLoginComponent {
         this.loading = false;
         this.logoB64 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABGCAYAAABL0p+yAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA/5pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQyIDc5LjE2MDkyNCwgMjAxNy8wNy8xMy0wMTowNjozOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ1dWlkOjVEMjA4OTI0OTNCRkRCMTE5MTRBODU5MEQzMTUwOEM4IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjMzMEYwRkQyNkVENzExRTg4M0IyRkIyNERDQkQ3RDRDIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjMzMEYwRkQxNkVENzExRTg4M0IyRkIyNERDQkQ3RDRDIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpiMzUyODM2NC1kOWQwLTYxNDEtYjIwNi03MGJlYTZiMTY4MmUiIHN0UmVmOmRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBo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';
         // abilita la scelta della subscription
-        this.loginSubscriptions = [{ description: '', subscriptionkey: '' }];
+        this.loginSubscriptions = [{ description: '', subscriptionKey: '' }];
         this.loginRequest = new LoginRequest();
         this.loginRequest.appId = env.auth.appid;
         this.subscriptionSelection = env.auth.subs ? env.auth.subs : false;
@@ -511,7 +540,6 @@ class TbLoginComponent {
     ngOnInit() {
         this.loadAccountName();
     }
-    // ---------------------------------------------------------------------------------------------
     /**
      * @param {?} event
      * @return {?}
@@ -525,19 +553,16 @@ class TbLoginComponent {
         const capsOn = event.getModifierState && event.getModifierState('CapsLock');
         this.capsLockOn = capsOn;
     }
-    // -------------------------------------------------------------------------------------
     /**
      * @return {?}
      */
     disabledButton() {
         return !this.loginRequest.accountName || this.loading;
     }
-    // -------------------------------------------------------------------------------------
     /**
      * @return {?}
      */
     accountNameBlur() { }
-    // ---------------------------------------------------------------------------------------------
     /**
      * @return {?}
      */
@@ -569,14 +594,12 @@ class TbLoginComponent {
             }
         });
     }
-    // -------------------------------------------------------------------------------------
     /**
      * @return {?}
      */
     loadAccountName() {
         this.loginRequest.accountName = localStorage.getItem(StorageVars.ACCOUNT_NAME);
     }
-    // -------------------------------------------------------------------------------------
     /**
      * @return {?}
      */
@@ -601,13 +624,13 @@ class TbLoginComponent {
                 this.loginSubscriptions = temp;
             if (this.loginSubscriptions.length === 0) {
                 this.loginRequest.subscriptionKey = null;
-                localStorage.removeItem('_subscription');
-                localStorage.removeItem('_company');
+                localStorage.removeItem('_subscription'); // TODO fix naming
+                localStorage.removeItem('_company'); // TODO fix naming
                 this.authService.errorMessage = 'No Subscriptions associated to this user';
             }
             if (this.loginSubscriptions.length > 0) {
                 if (!this.loginRequest.subscriptionKey) {
-                    this.loginRequest.subscriptionKey = this.loginSubscriptions[0]['subscriptionKey'];
+                    this.loginRequest.subscriptionKey = this.loginSubscriptions[0].subscriptionKey;
                 }
                 else {
                     if (this.loginSubscriptions
@@ -615,17 +638,16 @@ class TbLoginComponent {
                      * @param {?} e
                      * @return {?}
                      */
-                    function (e) {
-                        return e.subscriptionkey;
+                    e => {
+                        return e.subscriptionKey;
                     }))
                         .indexOf(this.loginRequest.subscriptionKey) === -1) {
-                        this.loginRequest.subscriptionKey = this.loginSubscriptions[0]['subscriptionKey'];
+                        this.loginRequest.subscriptionKey = this.loginSubscriptions[0].subscriptionKey;
                     }
                 }
             }
         });
     }
-    // ---------------------------------------------------------------------------------------------
     /**
      * @private
      * @param {?} user
@@ -634,10 +656,10 @@ class TbLoginComponent {
     requestAndSortSubscriptions(user) {
         return __awaiter(this, void 0, void 0, function* () {
             /** @type {?} */
-            let temp = [];
+            const temp = [];
             /** @type {?} */
             const result = yield this.authService.getCompaniesForUser(user).toPromise();
-            // console.log('result', result);
+            //console.log('result', result);
             result.sort(this.compareCompanies).forEach((/**
              * @param {?} c
              * @return {?}
@@ -648,7 +670,6 @@ class TbLoginComponent {
             return temp;
         });
     }
-    // ---------------------------------------------------------------------------------------------
     /**
      * @param {?} c1
      * @param {?} c2

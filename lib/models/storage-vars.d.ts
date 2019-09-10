@@ -4,4 +4,5 @@ export declare class StorageVars {
     static UI_CULTURE: string;
     static ACCOUNT_NAME: string;
     static ACCOUNT_ROLES: string;
+    static SUBSCRIPTION: string;
 }

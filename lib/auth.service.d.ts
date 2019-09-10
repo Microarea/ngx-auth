@@ -17,6 +17,7 @@ export declare class TbAuthService {
      * caricata da un file di configurazione caricato dinamicamente (assets/environment.json)
      */
     getBaseUrl(): string;
+    getAuthorizationHeader(): string;
     login(loginRequest: LoginRequest): Promise<LoginResponse>;
     isValidToken(authtoken?: any): Promise<any>;
     getCompaniesForUser(user: string): import("rxjs").Observable<any>;
@@ -31,4 +32,5 @@ export declare class TbAuthService {
     private storageData;
     getToken(): string;
     getAccountName(): string;
+    getSubscription(): string;
 }
