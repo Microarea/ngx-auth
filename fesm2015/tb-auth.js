@@ -1,5 +1,5 @@
 import { HttpClient, HttpBackend } from '@angular/common/http';
-import { of } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import { __awaiter } from 'tslib';
 import { Injectable, Inject, Component, NgModule, defineInjectable, inject } from '@angular/core';
@@ -121,6 +121,7 @@ class TbAuthService {
         this.http = http;
         this.handler = handler;
         this.router = router;
+        this.loggedOut$ = new Subject();
         this.loginUrl = this.env.auth.url;
         this.redirectUrl = this.env.auth.redirectUrl ? this.env.auth.redirectUrl : '/';
     }
@@ -266,6 +267,7 @@ class TbAuthService {
         (logoffResponse) => {
             if (logoffResponse.Result) {
                 this.clearStorage();
+                this.loggedOut$.next();
             }
             return logoffResponse;
         })))
@@ -712,7 +714,7 @@ class TbLogoffComponent {
         this.authService = authService;
         this.router = router;
         /** @type {?} */
-        const authtoken = localStorage.getItem(StorageVars.JWT);
+        const authtoken = authService.getToken();
         if (authtoken)
             authService.logoff();
         router.navigate(['/login']);

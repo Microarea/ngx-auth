@@ -226,6 +226,7 @@
             this.http = http;
             this.handler = handler;
             this.router = router;
+            this.loggedOut$ = new rxjs.Subject();
             this.loginUrl = this.env.auth.url;
             this.redirectUrl = this.env.auth.redirectUrl ? this.env.auth.redirectUrl : '/';
         }
@@ -434,6 +435,7 @@
              */function (logoffResponse) {
                     if (logoffResponse.Result) {
                         _this.clearStorage();
+                        _this.loggedOut$.next();
                     }
                     return logoffResponse;
                 })))
@@ -956,7 +958,7 @@
             this.authService = authService;
             this.router = router;
             /** @type {?} */
-            var authtoken = localStorage.getItem(StorageVars.JWT);
+            var authtoken = authService.getToken();
             if (authtoken)
                 authService.logoff();
             router.navigate(['/login']);

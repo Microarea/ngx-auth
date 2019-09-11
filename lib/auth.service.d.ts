@@ -1,5 +1,6 @@
 import { HttpClient, HttpBackend } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 import { LoginRequest } from './models/login-request';
 import { LoginResponse } from './models/login-response';
 import { LogoffResponse } from './models/logoff-response';
@@ -8,6 +9,7 @@ export declare class TbAuthService {
     private http;
     private handler;
     router: Router;
+    loggedOut$: Subject<{}>;
     loginUrl: string;
     errorMessage: string;
     redirectUrl: string;
