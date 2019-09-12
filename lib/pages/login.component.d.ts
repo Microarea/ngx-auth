@@ -11,10 +11,11 @@ export declare class TbLoginComponent implements OnInit {
     loginRequest: LoginRequest;
     redirectUrl: string;
     logoB64: string;
+    private cachedCompanies;
     subscriptionSelection: boolean;
     loginSubscriptions: Array<{
         description: string;
-        subscriptionKey: string;
+        subscriptionkey: string;
     }>;
     constructor(authService: TbAuthService, router: Router, env: any);
     ngOnInit(): void;
@@ -22,8 +23,8 @@ export declare class TbLoginComponent implements OnInit {
     disabledButton(): boolean;
     accountNameBlur(): void;
     login(): Promise<void>;
-    loadAccountName(): void;
-    saveAccountName(): void;
+    loadLoginData(): void;
+    private saveLoginData;
     getCompaniesForUser(user: string): Promise<void>;
     private requestAndSortSubscriptions;
     compareCompanies(c1: any, c2: any): 1 | 0 | -1;
