@@ -76,6 +76,7 @@
         StorageVars.ACCOUNT_NAME = 'M4_account_name';
         StorageVars.ACCOUNT_ROLES = 'M4_account_roles';
         StorageVars.SUBSCRIPTION = 'M4_subscription';
+        StorageVars.SUBSCRIPTION_DESC = 'M4_subscription_desc';
         return StorageVars;
     }());
 
@@ -522,10 +523,9 @@
          * @return {?}
          */
             function () {
-                if (this.env.auth.session)
-                    return sessionStorage.getItem(StorageVars.SUBSCRIPTION);
-                else
-                    return localStorage.getItem(StorageVars.SUBSCRIPTION);
+                return localStorage.getItem(StorageVars.SUBSCRIPTION);
+                // if (this.env.auth.session) return sessionStorage.getItem(StorageVars.SUBSCRIPTION);
+                // else return localStorage.getItem(StorageVars.SUBSCRIPTION);
             };
         TbAuthService.decorators = [
             { type: i0.Injectable, args: [{

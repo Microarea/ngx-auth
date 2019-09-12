@@ -2,7 +2,7 @@ import { HttpClient, HttpBackend } from '@angular/common/http';
 import { of, Subject } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import { __awaiter, __generator } from 'tslib';
-import { Injectable, Inject, Component, NgModule, defineInjectable, inject } from '@angular/core';
+import { Injectable, Inject, NgModule, Component, defineInjectable, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -82,6 +82,7 @@ var StorageVars = /** @class */ (function () {
     StorageVars.ACCOUNT_NAME = 'M4_account_name';
     StorageVars.ACCOUNT_ROLES = 'M4_account_roles';
     StorageVars.SUBSCRIPTION = 'M4_subscription';
+    StorageVars.SUBSCRIPTION_DESC = 'M4_subscription_desc';
     return StorageVars;
 }());
 
@@ -426,10 +427,9 @@ var TbAuthService = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        if (this.env.auth.session)
-            return sessionStorage.getItem(StorageVars.SUBSCRIPTION);
-        else
-            return localStorage.getItem(StorageVars.SUBSCRIPTION);
+        return localStorage.getItem(StorageVars.SUBSCRIPTION);
+        // if (this.env.auth.session) return sessionStorage.getItem(StorageVars.SUBSCRIPTION);
+        // else return localStorage.getItem(StorageVars.SUBSCRIPTION);
     };
     TbAuthService.decorators = [
         { type: Injectable, args: [{

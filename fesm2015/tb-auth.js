@@ -73,6 +73,7 @@ StorageVars.UI_CULTURE = 'M4_ui_culture';
 StorageVars.ACCOUNT_NAME = 'M4_account_name';
 StorageVars.ACCOUNT_ROLES = 'M4_account_roles';
 StorageVars.SUBSCRIPTION = 'M4_subscription';
+StorageVars.SUBSCRIPTION_DESC = 'M4_subscription_desc';
 
 /**
  * @fileoverview added by tsickle
@@ -337,10 +338,9 @@ class TbAuthService {
      * @return {?}
      */
     getSubscription() {
-        if (this.env.auth.session)
-            return sessionStorage.getItem(StorageVars.SUBSCRIPTION);
-        else
-            return localStorage.getItem(StorageVars.SUBSCRIPTION);
+        return localStorage.getItem(StorageVars.SUBSCRIPTION);
+        // if (this.env.auth.session) return sessionStorage.getItem(StorageVars.SUBSCRIPTION);
+        // else return localStorage.getItem(StorageVars.SUBSCRIPTION);
     }
 }
 TbAuthService.decorators = [
