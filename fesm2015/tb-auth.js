@@ -2,7 +2,7 @@ import { HttpClient, HttpBackend } from '@angular/common/http';
 import { of, Subject } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import { __awaiter } from 'tslib';
-import { Injectable, Inject, Injector, NgModule, Component, defineInjectable, inject, INJECTOR } from '@angular/core';
+import { Injectable, Inject, Injector, Component, NgModule, defineInjectable, inject, INJECTOR } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -555,7 +555,7 @@ class TbLoginComponent {
      */
     keyUpFunction(event) {
         if (event.keyCode === 13) {
-            if (this.loginRequest.accountName && this.loginSubscriptions.length > 0)
+            if (this.loginRequest.accountName && ((this.subscriptionSelection && this.loginSubscriptions.length > 0) || !this.subscriptionSelection))
                 this.login();
         }
         /** @type {?} */
@@ -566,7 +566,7 @@ class TbLoginComponent {
      * @return {?}
      */
     disabledButton() {
-        return !this.loginRequest.accountName || this.loginSubscriptions.length === 0 || this.loading;
+        return !this.loginRequest.accountName || (this.subscriptionSelection && this.loginSubscriptions.length === 0) || this.loading;
     }
     /**
      * @return {?}

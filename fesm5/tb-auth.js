@@ -652,7 +652,7 @@ var TbLoginComponent = /** @class */ (function () {
      */
     function (event) {
         if (event.keyCode === 13) {
-            if (this.loginRequest.accountName && this.loginSubscriptions.length > 0)
+            if (this.loginRequest.accountName && ((this.subscriptionSelection && this.loginSubscriptions.length > 0) || !this.subscriptionSelection))
                 this.login();
         }
         /** @type {?} */
@@ -666,7 +666,7 @@ var TbLoginComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        return !this.loginRequest.accountName || this.loginSubscriptions.length === 0 || this.loading;
+        return !this.loginRequest.accountName || (this.subscriptionSelection && this.loginSubscriptions.length === 0) || this.loading;
     };
     /**
      * @return {?}
