@@ -2,11 +2,10 @@
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-export class LoginResponse {
-    constructor() {
-        this.Result = false;
-    }
-}
+/**
+ * @record
+ */
+export function LoginResponse() { }
 if (false) {
     /** @type {?} */
     LoginResponse.prototype.Result;
@@ -25,4 +24,4 @@ if (false) {
     /** @type {?} */
     LoginResponse.prototype.Roles;
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibG9naW4tcmVzcG9uc2UuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AdGIvYXV0aC8iLCJzb3VyY2VzIjpbImxpYi9tb2RlbHMvbG9naW4tcmVzcG9uc2UudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE1BQU0sT0FBTyxhQUFhO0lBQTFCO1FBQ0ksV0FBTSxHQUFHLEtBQUssQ0FBQztJQVFuQixDQUFDO0NBQUE7OztJQVJHLCtCQUFlOztJQUNmLGdDQUFnQjs7SUFDaEIsbUNBQW1COztJQUNuQixpQ0FBaUI7O0lBQ2pCLHVDQUF1Qjs7SUFDdkIseUNBQXlCOztJQUN6QixpQ0FBaUI7O0lBQ2pCLDhCQUFZIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGNsYXNzIExvZ2luUmVzcG9uc2Uge1xyXG4gICAgUmVzdWx0ID0gZmFsc2U7XHJcbiAgICBNZXNzYWdlOiBzdHJpbmc7XHJcbiAgICBSZXN1bHRDb2RlOiBudW1iZXI7XHJcbiAgICBKd3RUb2tlbjogc3RyaW5nO1xyXG4gICAgRXhwaXJhdGlvbkRhdGU6IHN0cmluZztcclxuICAgIFJlZ2lvbmFsU2V0dGluZ3M6IHN0cmluZztcclxuICAgIExhbmd1YWdlOiBzdHJpbmc7XHJcbiAgICBSb2xlczpzdHJpbmdcclxufVxyXG4iXX0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibG9naW4tcmVzcG9uc2UuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AdGIvYXV0aC8iLCJzb3VyY2VzIjpbImxpYi9tb2RlbHMvbG9naW4tcmVzcG9uc2UudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7OztBQUFBLG1DQVNDOzs7SUFSRywrQkFBZ0I7O0lBQ2hCLGdDQUFnQjs7SUFDaEIsbUNBQW1COztJQUNuQixpQ0FBaUI7O0lBQ2pCLHVDQUF1Qjs7SUFDdkIseUNBQXlCOztJQUN6QixpQ0FBaUI7O0lBQ2pCLDhCQUFjIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGludGVyZmFjZSBMb2dpblJlc3BvbnNlIHtcclxuICAgIFJlc3VsdDogYm9vbGVhbjtcclxuICAgIE1lc3NhZ2U6IHN0cmluZztcclxuICAgIFJlc3VsdENvZGU6IG51bWJlcjtcclxuICAgIEp3dFRva2VuOiBzdHJpbmc7XHJcbiAgICBFeHBpcmF0aW9uRGF0ZTogc3RyaW5nO1xyXG4gICAgUmVnaW9uYWxTZXR0aW5nczogc3RyaW5nO1xyXG4gICAgTGFuZ3VhZ2U6IHN0cmluZztcclxuICAgIFJvbGVzOiBzdHJpbmc7XHJcbn1cclxuIl19

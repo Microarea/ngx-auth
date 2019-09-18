@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { LoginRequest } from './models/login-request';
 import { LoginResponse } from './models/login-response';
 import { LogoffResponse } from './models/logoff-response';
+import { TbAuthEnvironment } from './models/auth-environment';
 export declare class TbAuthService {
     private env;
     private http;
@@ -12,10 +13,10 @@ export declare class TbAuthService {
     private injector;
     loggedOut$: Subject<{}>;
     loginUrl: string;
-    errorMessage: string;
     redirectUrl: string;
+    errorMessage: string;
     readonly router: Router;
-    constructor(env: any, http: HttpClient, handler: HttpBackend, injector: Injector);
+    constructor(env: TbAuthEnvironment, http: HttpClient, handler: HttpBackend, injector: Injector);
     /**
      * Ritorna la base url del backend,
      * caricata da un file di configurazione caricato dinamicamente (assets/environment.json)
@@ -23,7 +24,7 @@ export declare class TbAuthService {
     getBaseUrl(): string;
     getAuthorizationHeader(): string;
     login(loginRequest: LoginRequest): Promise<LoginResponse>;
-    isValidToken(authtoken?: any): Promise<any>;
+    isValidToken(authtoken?: string): Promise<any>;
     getCompaniesForUser(user: string): import("rxjs").Observable<any>;
     getIsValidTokenUrl(): string;
     getLoginUrl(): string;
@@ -34,7 +35,7 @@ export declare class TbAuthService {
     logoff(): Promise<LogoffResponse>;
     clearStorage(): void;
     private storageData;
-    getToken(): string;
-    getAccountName(): string;
-    getSubscription(): string;
+    getToken(): string | null;
+    getAccountName(): string | null;
+    getSubscription(): string | null;
 }
