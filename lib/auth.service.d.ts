@@ -1,5 +1,5 @@
 import { Injector } from '@angular/core';
-import { HttpClient, HttpBackend } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { LoginRequest } from './models/login-request';
@@ -9,14 +9,13 @@ import { TbAuthEnvironment } from './models/auth-environment';
 export declare class TbAuthService {
     private env;
     private http;
-    private handler;
     private injector;
-    loggedOut$: Subject<{}>;
+    loggedOut$: Subject<unknown>;
     loginUrl: string;
     redirectUrl: string;
     errorMessage: string;
     readonly router: Router;
-    constructor(env: TbAuthEnvironment, http: HttpClient, handler: HttpBackend, injector: Injector);
+    constructor(env: TbAuthEnvironment, http: HttpClient, injector: Injector);
     /**
      * Ritorna la base url del backend,
      * caricata da un file di configurazione caricato dinamicamente (assets/environment.json)
