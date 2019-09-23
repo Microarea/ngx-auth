@@ -19,7 +19,6 @@ export declare class TbLoginComponent implements OnInit {
     }>;
     logoUrl: string;
     logoB64: string;
-    cloudlogoB64: string;
     constructor(authService: TbAuthService, router: Router, env: TbAuthEnvironment);
     ngOnInit(): void;
     keyUpFunction(event: KeyboardEvent): void;

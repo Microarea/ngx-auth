@@ -1,7 +1,7 @@
 export declare class LoginRequest {
+    token: string;
+    appId: string;
     accountName: string;
     password: string;
-    appId: string;
-    token: string;
     subscriptionKey: string;
 }

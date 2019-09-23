@@ -1,4 +1,4 @@
-export declare class LoginResponse {
+export interface LoginResponse {
     Result: boolean;
     Message: string;
     ResultCode: number;
