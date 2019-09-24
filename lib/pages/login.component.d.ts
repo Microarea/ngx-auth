@@ -3,10 +3,11 @@ import { Router } from '@angular/router';
 import { TbAuthService } from '../auth.service';
 import { LoginRequest } from '../models/login-request';
 import { TbAuthEnvironment } from '../models/auth-environment';
-import { Subscription } from '../models/subscription.model';
+import { AuthConnectionState } from '../models/auth-connection-state';
 export declare class TbLoginComponent implements OnInit {
     authService: TbAuthService;
     router: Router;
+    private env;
     private cachedCompanies;
     capsLockOn: boolean;
     loading: boolean;
@@ -18,6 +19,8 @@ export declare class TbLoginComponent implements OnInit {
         subscriptionkey: string;
     }>;
     logoUrl: string;
+    isConnected: boolean;
+    connectionService: AuthConnectionState;
     logoB64: string;
     constructor(authService: TbAuthService, router: Router, env: TbAuthEnvironment);
     ngOnInit(): void;
@@ -29,5 +32,5 @@ export declare class TbLoginComponent implements OnInit {
     private saveLoginData;
     getCompaniesForUser(user: string): Promise<void>;
     private requestAndSortSubscriptions;
-    compareCompanies(c1: Subscription, c2: Subscription): 1 | 0 | -1;
+    private compareCompanies;
 }
