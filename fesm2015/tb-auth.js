@@ -992,8 +992,9 @@ class TbLoginComponent {
      * @return {?}
      */
     disabledButton() {
-        return (!this.isConnected ||
-            !this.loginRequest.accountName ||
+        return (
+        /* !this.isConnected ||*/
+        !this.loginRequest.accountName ||
             !this.loginRequest.password ||
             (this.subscriptionSelection && this.loginSubscriptions.length === 0) ||
             this.loading);
