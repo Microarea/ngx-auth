@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TbAuthService } from '../auth.service';
 import { LoginRequest } from '../models/login-request';
 import { TbAuthEnvironment } from '../models/auth-environment';
+import { AuthConnectionState } from '../models/auth-connection-state';
 export declare class TbLoginComponent implements OnInit {
     authService: TbAuthService;
     router: Router;
@@ -18,7 +19,8 @@ export declare class TbLoginComponent implements OnInit {
         subscriptionkey: string;
     }>;
     logoUrl: string;
-    logoB64: string;
+    isConnected: boolean;
+    connectionService: AuthConnectionState;
     constructor(authService: TbAuthService, router: Router, env: TbAuthEnvironment);
     ngOnInit(): void;
     keyUpFunction(event: KeyboardEvent): void;

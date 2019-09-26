@@ -1,10 +1,10 @@
 export interface TbAuthEnvironment {
     auth: {
         url: string;
-        subs: boolean;
-        appid: string;
+        subscriptionSelection: boolean;
+        appId: string;
         redirectUrl: string;
-        session: boolean;
-        customLogo: string;
+        sessionStorage: boolean;
+        logo: string;
     };
 }
