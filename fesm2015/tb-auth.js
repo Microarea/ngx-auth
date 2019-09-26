@@ -284,7 +284,7 @@ class TbAuthService {
          */
         () => this.env.auth.logo);
         this.env = defaults({}, env, TbAuthService.DEFAULT_ENV);
-        console.log('this.env', this.env);
+        // console.log('this.env', this.env);
         this.serviceOptions = new AuthConnectionOptions(this.getBaseUrl());
         this.checkNetworkState();
         this.checkBackendState();
@@ -1026,7 +1026,7 @@ class TbLoginComponent {
             if (result && result.Result) {
                 this.authService.errorMessage = '';
                 this.authService.stopCheckingConnection();
-                this.router.navigate([this.redirectUrl]);
+                this.router.navigate([this.authService.getRedirectUrl()]);
             }
             else {
                 this.loading = false;
