@@ -379,7 +379,7 @@
             /**
              * Controls the Internet connectivity heartbeat system. Default value is 'true'.
              */
-            this.enableHeartbeat = true;
+            this.enableHeartbeat = false;
             /**
              * Url used for checking Internet connectivity, heartbeat system periodically makes "HEAD" requests to this URL to determine Internet
              * connection status. Default value is "//internethealthtest.org".
@@ -949,6 +949,30 @@
                 return sessionStorage.getItem(StorageVars.SUBSCRIPTION_DESCRIPTION);
             else
                 return localStorage.getItem(StorageVars.SUBSCRIPTION_DESCRIPTION);
+        };
+        /**
+         * @return {?}
+         */
+        TbAuthService.prototype.getCulture = /**
+         * @return {?}
+         */
+        function () {
+            if (this.env.auth.sessionStorage)
+                return sessionStorage.getItem(StorageVars.CULTURE);
+            else
+                return localStorage.getItem(StorageVars.CULTURE);
+        };
+        /**
+         * @return {?}
+         */
+        TbAuthService.prototype.getUICulture = /**
+         * @return {?}
+         */
+        function () {
+            if (this.env.auth.sessionStorage)
+                return sessionStorage.getItem(StorageVars.UI_CULTURE);
+            else
+                return localStorage.getItem(StorageVars.UI_CULTURE);
         };
         /**
          * @return {?}

@@ -56,6 +56,8 @@ export declare class TbAuthService implements OnDestroy {
     getAccountName(): string | null;
     getSubscription(): string | null;
     getSubscriptionDescription(): string | null;
+    getCulture(): string | null;
+    getUICulture(): string | null;
     getAuthServiceUrl: () => string;
     getRedirectUrl: () => string;
     hasSubscriptionSelection: () => boolean;
