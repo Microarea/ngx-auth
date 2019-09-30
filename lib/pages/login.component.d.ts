@@ -2,12 +2,10 @@ import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TbAuthService } from '../auth.service';
 import { LoginRequest } from '../models/login-request';
-import { TbAuthEnvironment } from '../models/auth-environment';
 import { AuthConnectionState } from '../models/auth-connection-state';
 export declare class TbLoginComponent implements OnInit {
     authService: TbAuthService;
     router: Router;
-    private env;
     private cachedCompanies;
     capsLockOn: boolean;
     loading: boolean;
@@ -21,8 +19,9 @@ export declare class TbLoginComponent implements OnInit {
     logoUrl: string;
     isConnected: boolean;
     connectionService: AuthConnectionState;
-    constructor(authService: TbAuthService, router: Router, env: TbAuthEnvironment);
+    constructor(authService: TbAuthService, router: Router);
     ngOnInit(): void;
+    checkConnection(): Promise<void>;
     keyUpFunction(event: KeyboardEvent): void;
     disabledButton(): boolean;
     accountNameBlur(): void;

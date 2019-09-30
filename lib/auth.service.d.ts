@@ -1,37 +1,24 @@
-import { Injector, OnDestroy } from '@angular/core';
+import { Injector } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 import { LoginRequest } from './models/login-request';
 import { LoginResponse } from './models/login-response';
 import { LogoffResponse } from './models/logoff-response';
+import { OperationResult } from './models/operation-result';
 import { TbAuthEnvironment } from './models/auth-environment';
-import { AuthConnectionState } from './models/auth-connection-state';
-export declare class TbAuthService implements OnDestroy {
+export declare class TbAuthService {
     private http;
     private injector;
     private static DEFAULT_ENV;
     private env;
     private stateChangeEventEmitter;
     private currentConnectionState;
-    private offlineSubscription;
-    private onlineSubscription;
-    private httpSubscription;
-    private serviceOptions;
     loggedOut$: Subject<unknown>;
     errorMessage: string;
     readonly router: Router;
     constructor(env: TbAuthEnvironment, http: HttpClient, injector: Injector);
-    private checkBackendState;
-    private checkNetworkState;
-    private emitEvent;
-    /**
-     * Monitor Network & Internet connection status by subscribing to this observer.
-     * If you set "reportcurrentConnectionState" to "false" then
-     * function will not report current status of the connections when initially subscribed.
-     * @param reportcurrentConnectionState Report current state when initial subscription. Default is "true"
-     */
-    monitorConnectionStatus(reportcurrentConnectionState?: boolean): Observable<AuthConnectionState>;
+    checkConnection(): Promise<boolean>;
     /**
      * Ritorna la base url del backend,
      * caricata da un file di configurazione caricato dinamicamente (assets/environment.json)
@@ -39,8 +26,8 @@ export declare class TbAuthService implements OnDestroy {
     getBaseUrl(): string;
     getAuthorizationHeader(): string;
     login(loginRequest: LoginRequest): Promise<LoginResponse>;
-    isValidToken(authtoken?: string): Promise<any>;
-    getCompaniesForUser(user: string): Observable<any>;
+    isValidToken(authtoken?: string): Promise<OperationResult>;
+    getCompaniesForUser(user: string): import("rxjs").Observable<any>;
     getIsValidTokenUrl(): string;
     getLoginUrl(): string;
     getLogoutUrl(): string;
@@ -64,6 +51,4 @@ export declare class TbAuthService implements OnDestroy {
     getAppId: () => string;
     isSessionStorage: () => boolean;
     getCustomLogo: () => string;
-    stopCheckingConnection(): void;
-    ngOnDestroy(): void;
 }
