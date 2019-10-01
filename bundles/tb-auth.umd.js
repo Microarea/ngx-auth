@@ -396,11 +396,6 @@
             var _this = this;
             this.http = http;
             this.injector = injector;
-            this.stateChangeEventEmitter = new core.EventEmitter();
-            this.currentConnectionState = {
-                hasBackendAccess: false,
-                hasNetworkConnection: window.navigator.onLine
-            };
             this.loggedOut$ = new rxjs.Subject();
             this.errorMessage = '';
             this.getAuthServiceUrl = (/**
@@ -427,8 +422,8 @@
              * @return {?}
              */
             function () { return _this.env.auth.logo; });
-            this.env = lodash.defaults({}, env, TbAuthService.DEFAULT_ENV);
-            // console.log('this.env', this.env);
+            this.env = lodash.defaultsDeep(env, TbAuthService.DEFAULT_ENV, env);
+            console.log('TbAuthEnvironment', this.env);
         }
         Object.defineProperty(TbAuthService.prototype, "router", {
             get: /**
@@ -856,7 +851,7 @@
         };
         TbAuthService.DEFAULT_ENV = {
             auth: {
-                url: 'asdf',
+                url: 'https://gwam.mago.cloud/gwam_login/api/',
                 subscriptionSelection: false,
                 appId: 'M4',
                 redirectUrl: '/',
@@ -891,16 +886,6 @@
          * @private
          */
         TbAuthService.prototype.env;
-        /**
-         * @type {?}
-         * @private
-         */
-        TbAuthService.prototype.stateChangeEventEmitter;
-        /**
-         * @type {?}
-         * @private
-         */
-        TbAuthService.prototype.currentConnectionState;
         /** @type {?} */
         TbAuthService.prototype.loggedOut$;
         /** @type {?} */
@@ -1447,8 +1432,6 @@
         TbLoginComponent.prototype.logoUrl;
         /** @type {?} */
         TbLoginComponent.prototype.isConnected;
-        /** @type {?} */
-        TbLoginComponent.prototype.connectionService;
         /** @type {?} */
         TbLoginComponent.prototype.authService;
         /** @type {?} */

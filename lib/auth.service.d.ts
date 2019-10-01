@@ -12,8 +12,6 @@ export declare class TbAuthService {
     private injector;
     private static DEFAULT_ENV;
     private env;
-    private stateChangeEventEmitter;
-    private currentConnectionState;
     loggedOut$: Subject<unknown>;
     errorMessage: string;
     readonly router: Router;

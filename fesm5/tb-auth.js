@@ -1,8 +1,8 @@
 import { __awaiter, __generator } from 'tslib';
-import { EventEmitter, Injectable, Inject, Injector, ɵɵdefineInjectable, ɵɵinject, INJECTOR, Component, NgModule } from '@angular/core';
+import { Injectable, Inject, Injector, ɵɵdefineInjectable, ɵɵinject, INJECTOR, Component, NgModule } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
-import { defaults } from 'lodash';
+import { defaultsDeep } from 'lodash';
 import { Subject, of } from 'rxjs';
 import { timeout, map, tap, catchError } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
@@ -206,11 +206,6 @@ var TbAuthService = /** @class */ (function () {
         var _this = this;
         this.http = http;
         this.injector = injector;
-        this.stateChangeEventEmitter = new EventEmitter();
-        this.currentConnectionState = {
-            hasBackendAccess: false,
-            hasNetworkConnection: window.navigator.onLine
-        };
         this.loggedOut$ = new Subject();
         this.errorMessage = '';
         this.getAuthServiceUrl = (/**
@@ -237,8 +232,8 @@ var TbAuthService = /** @class */ (function () {
          * @return {?}
          */
         function () { return _this.env.auth.logo; });
-        this.env = defaults({}, env, TbAuthService.DEFAULT_ENV);
-        // console.log('this.env', this.env);
+        this.env = defaultsDeep(env, TbAuthService.DEFAULT_ENV, env);
+        console.log('TbAuthEnvironment', this.env);
     }
     Object.defineProperty(TbAuthService.prototype, "router", {
         get: /**
@@ -666,7 +661,7 @@ var TbAuthService = /** @class */ (function () {
     };
     TbAuthService.DEFAULT_ENV = {
         auth: {
-            url: 'asdf',
+            url: 'https://gwam.mago.cloud/gwam_login/api/',
             subscriptionSelection: false,
             appId: 'M4',
             redirectUrl: '/',
@@ -701,16 +696,6 @@ if (false) {
      * @private
      */
     TbAuthService.prototype.env;
-    /**
-     * @type {?}
-     * @private
-     */
-    TbAuthService.prototype.stateChangeEventEmitter;
-    /**
-     * @type {?}
-     * @private
-     */
-    TbAuthService.prototype.currentConnectionState;
     /** @type {?} */
     TbAuthService.prototype.loggedOut$;
     /** @type {?} */
@@ -1257,8 +1242,6 @@ if (false) {
     TbLoginComponent.prototype.logoUrl;
     /** @type {?} */
     TbLoginComponent.prototype.isConnected;
-    /** @type {?} */
-    TbLoginComponent.prototype.connectionService;
     /** @type {?} */
     TbLoginComponent.prototype.authService;
     /** @type {?} */

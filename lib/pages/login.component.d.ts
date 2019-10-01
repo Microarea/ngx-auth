@@ -2,7 +2,6 @@ import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TbAuthService } from '../auth.service';
 import { LoginRequest } from '../models/login-request';
-import { AuthConnectionState } from '../models/auth-connection-state';
 export declare class TbLoginComponent implements OnInit {
     authService: TbAuthService;
     router: Router;
@@ -18,7 +17,6 @@ export declare class TbLoginComponent implements OnInit {
     }>;
     logoUrl: string;
     isConnected: boolean;
-    connectionService: AuthConnectionState;
     constructor(authService: TbAuthService, router: Router);
     ngOnInit(): void;
     checkConnection(): Promise<void>;
