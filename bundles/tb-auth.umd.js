@@ -1509,6 +1509,7 @@
     exports.IsValidTokenRequest = IsValidTokenRequest;
     exports.LoginRequest = LoginRequest;
     exports.LogoffRequest = LogoffRequest;
+    exports.OperationResult = OperationResult;
     exports.StorageVars = StorageVars;
     exports.TbAuthGuard = TbAuthGuard;
     exports.TbAuthInterceptor = TbAuthInterceptor;
