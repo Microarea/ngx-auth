@@ -201,6 +201,13 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @type {?} */
+var authServiceInstance;
+/** @type {?} */
+var authService = (/**
+ * @return {?}
+ */
+function () { return authServiceInstance; });
 var TbAuthService = /** @class */ (function () {
     function TbAuthService(env, http, injector) {
         var _this = this;
@@ -232,6 +239,7 @@ var TbAuthService = /** @class */ (function () {
          * @return {?}
          */
         function () { return _this.env.auth.logo; });
+        authServiceInstance = this;
         this.env = defaultsDeep(env, TbAuthService.DEFAULT_ENV, env);
         console.log('TbAuthEnvironment', this.env);
     }
@@ -1326,5 +1334,5 @@ var TbAuthModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { IsValidTokenRequest, LoginRequest, LogoffRequest, OperationResult, StorageVars, TbAuthGuard, TbAuthInterceptor, TbAuthModule, TbAuthService, TbLoginComponent, TbLogoffComponent };
+export { IsValidTokenRequest, LoginRequest, LogoffRequest, OperationResult, StorageVars, TbAuthGuard, TbAuthInterceptor, TbAuthModule, TbAuthService, TbLoginComponent, TbLogoffComponent, authService };
 //# sourceMappingURL=tb-auth.js.map

@@ -391,6 +391,13 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /** @type {?} */
+    var authServiceInstance;
+    /** @type {?} */
+    var authService = (/**
+     * @return {?}
+     */
+    function () { return authServiceInstance; });
     var TbAuthService = /** @class */ (function () {
         function TbAuthService(env, http, injector) {
             var _this = this;
@@ -422,6 +429,7 @@
              * @return {?}
              */
             function () { return _this.env.auth.logo; });
+            authServiceInstance = this;
             this.env = lodash.defaultsDeep(env, TbAuthService.DEFAULT_ENV, env);
             console.log('TbAuthEnvironment', this.env);
         }
@@ -1517,6 +1525,7 @@
     exports.TbAuthService = TbAuthService;
     exports.TbLoginComponent = TbLoginComponent;
     exports.TbLogoffComponent = TbLogoffComponent;
+    exports.authService = authService;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

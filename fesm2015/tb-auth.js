@@ -199,6 +199,13 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @type {?} */
+let authServiceInstance;
+/** @type {?} */
+const authService = (/**
+ * @return {?}
+ */
+() => authServiceInstance);
 class TbAuthService {
     /**
      * @param {?} env
@@ -234,6 +241,7 @@ class TbAuthService {
          * @return {?}
          */
         () => this.env.auth.logo);
+        authServiceInstance = this;
         this.env = defaultsDeep(env, TbAuthService.DEFAULT_ENV, env);
         console.log('TbAuthEnvironment', this.env);
     }
@@ -1137,5 +1145,5 @@ TbAuthModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { IsValidTokenRequest, LoginRequest, LogoffRequest, OperationResult, StorageVars, TbAuthGuard, TbAuthInterceptor, TbAuthModule, TbAuthService, TbLoginComponent, TbLogoffComponent };
+export { IsValidTokenRequest, LoginRequest, LogoffRequest, OperationResult, StorageVars, TbAuthGuard, TbAuthInterceptor, TbAuthModule, TbAuthService, TbLoginComponent, TbLogoffComponent, authService };
 //# sourceMappingURL=tb-auth.js.map

@@ -7,6 +7,7 @@ import { LoginResponse } from './models/login-response';
 import { LogoffResponse } from './models/logoff-response';
 import { OperationResult } from './models/operation-result';
 import { TbAuthEnvironment } from './models/auth-environment';
+export declare const authService: () => TbAuthService;
 export declare class TbAuthService {
     private http;
     private injector;
