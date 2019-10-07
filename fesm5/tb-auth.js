@@ -938,7 +938,7 @@ var TbLoginComponent = /** @class */ (function () {
     /**
      * @return {?}
      */
-    TbLoginComponent.prototype.ngOnInit = /**
+    TbLoginComponent.prototype.ngAfterViewInit = /**
      * @return {?}
      */
     function () {

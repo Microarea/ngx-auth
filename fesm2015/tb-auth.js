@@ -828,7 +828,7 @@ class TbLoginComponent {
     /**
      * @return {?}
      */
-    ngOnInit() {
+    ngAfterViewInit() {
         this.loadLoginData();
     }
     /**
