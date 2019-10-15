@@ -215,6 +215,18 @@ var TbAuthService = /** @class */ (function () {
         this.injector = injector;
         this.loggedOut$ = new Subject();
         this.errorMessage = '';
+        /**
+         * Ritorna la base url del backend,
+         * caricata da un file di configurazione caricato dinamicamente (assets/environment.json)
+         */
+        this.getBaseUrl = (/**
+         * @return {?}
+         */
+        function () { return _this.env.auth.url; });
+        this.getLoginPageUrl = (/**
+         * @return {?}
+         */
+        function () { return _this.getBaseUrl() + _this.env.auth.loginPageUrl; });
         this.getAuthServiceUrl = (/**
          * @return {?}
          */
@@ -280,23 +292,6 @@ var TbAuthService = /** @class */ (function () {
                 }
             });
         });
-    };
-    /**
-     * Ritorna la base url del backend,
-     * caricata da un file di configurazione caricato dinamicamente (assets/environment.json)
-     */
-    /**
-     * Ritorna la base url del backend,
-     * caricata da un file di configurazione caricato dinamicamente (assets/environment.json)
-     * @return {?}
-     */
-    TbAuthService.prototype.getBaseUrl = /**
-     * Ritorna la base url del backend,
-     * caricata da un file di configurazione caricato dinamicamente (assets/environment.json)
-     * @return {?}
-     */
-    function () {
-        return this.env.auth.url;
     };
     /*
       {
@@ -673,6 +668,7 @@ var TbAuthService = /** @class */ (function () {
             subscriptionSelection: false,
             appId: 'M4',
             redirectUrl: '/',
+            loginPageUrl: 'login',
             sessionStorage: false,
             logo: 
             // tslint:disable-next-line: max-line-length
@@ -708,6 +704,14 @@ if (false) {
     TbAuthService.prototype.loggedOut$;
     /** @type {?} */
     TbAuthService.prototype.errorMessage;
+    /**
+     * Ritorna la base url del backend,
+     * caricata da un file di configurazione caricato dinamicamente (assets/environment.json)
+     * @type {?}
+     */
+    TbAuthService.prototype.getBaseUrl;
+    /** @type {?} */
+    TbAuthService.prototype.getLoginPageUrl;
     /** @type {?} */
     TbAuthService.prototype.getAuthServiceUrl;
     /** @type {?} */
@@ -1295,10 +1299,7 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var routes = [
-    { path: 'login', component: TbLoginComponent, canActivate: [TbAuthGuard] },
-    { path: 'logoff', component: TbLogoffComponent, canActivate: [TbAuthGuard], pathMatch: 'full' }
-];
+var routes = [{ path: 'logoff', component: TbLogoffComponent, canActivate: [TbAuthGuard], pathMatch: 'full' }];
 var TbAuthModule = /** @class */ (function () {
     function TbAuthModule() {
     }

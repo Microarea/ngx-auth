@@ -4,6 +4,7 @@ export interface TbAuthEnvironment {
         subscriptionSelection: boolean;
         appId: string;
         redirectUrl: string;
+        loginPageUrl: string;
         sessionStorage: boolean;
         logo: string;
     };

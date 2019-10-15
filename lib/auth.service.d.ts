@@ -22,7 +22,8 @@ export declare class TbAuthService {
      * Ritorna la base url del backend,
      * caricata da un file di configurazione caricato dinamicamente (assets/environment.json)
      */
-    getBaseUrl(): string;
+    getBaseUrl: () => string;
+    getLoginPageUrl: () => string;
     getAuthorizationHeader(): string;
     login(loginRequest: LoginRequest): Promise<LoginResponse>;
     isValidToken(authtoken?: string): Promise<OperationResult>;

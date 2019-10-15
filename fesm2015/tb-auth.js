@@ -217,6 +217,18 @@ class TbAuthService {
         this.injector = injector;
         this.loggedOut$ = new Subject();
         this.errorMessage = '';
+        /**
+         * Ritorna la base url del backend,
+         * caricata da un file di configurazione caricato dinamicamente (assets/environment.json)
+         */
+        this.getBaseUrl = (/**
+         * @return {?}
+         */
+        () => this.env.auth.url);
+        this.getLoginPageUrl = (/**
+         * @return {?}
+         */
+        () => this.getBaseUrl() + this.env.auth.loginPageUrl);
         this.getAuthServiceUrl = (/**
          * @return {?}
          */
@@ -270,14 +282,6 @@ class TbAuthService {
              */
             __ => false));
         });
-    }
-    /**
-     * Ritorna la base url del backend,
-     * caricata da un file di configurazione caricato dinamicamente (assets/environment.json)
-     * @return {?}
-     */
-    getBaseUrl() {
-        return this.env.auth.url;
     }
     /*
           {
@@ -563,6 +567,7 @@ TbAuthService.DEFAULT_ENV = {
         subscriptionSelection: false,
         appId: 'M4',
         redirectUrl: '/',
+        loginPageUrl: 'login',
         sessionStorage: false,
         logo: 
         // tslint:disable-next-line: max-line-length
@@ -596,6 +601,14 @@ if (false) {
     TbAuthService.prototype.loggedOut$;
     /** @type {?} */
     TbAuthService.prototype.errorMessage;
+    /**
+     * Ritorna la base url del backend,
+     * caricata da un file di configurazione caricato dinamicamente (assets/environment.json)
+     * @type {?}
+     */
+    TbAuthService.prototype.getBaseUrl;
+    /** @type {?} */
+    TbAuthService.prototype.getLoginPageUrl;
     /** @type {?} */
     TbAuthService.prototype.getAuthServiceUrl;
     /** @type {?} */
@@ -1112,10 +1125,7 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const routes = [
-    { path: 'login', component: TbLoginComponent, canActivate: [TbAuthGuard] },
-    { path: 'logoff', component: TbLogoffComponent, canActivate: [TbAuthGuard], pathMatch: 'full' }
-];
+const routes = [{ path: 'logoff', component: TbLogoffComponent, canActivate: [TbAuthGuard], pathMatch: 'full' }];
 class TbAuthModule {
     /**
      * @return {?}
