@@ -228,7 +228,7 @@ class TbAuthService {
         this.getLoginPageUrl = (/**
          * @return {?}
          */
-        () => this.getBaseUrl() + this.env.auth.loginPageUrl);
+        () => this.env.auth.loginPageUrl);
         this.getAuthServiceUrl = (/**
          * @return {?}
          */
@@ -711,7 +711,7 @@ class TbAuthGuard {
                 /** @type {?} */
                 const res = (/** @type {?} */ ((yield this.authService.isValidToken(authtoken))));
                 if (res.Result) {
-                    if (state.url.includes('/login'))
+                    if (state.url.includes(this.authService.getLoginPageUrl()))
                         this.router.navigate([this.authService.getRedirectUrl()]);
                     return true;
                 }
@@ -721,8 +721,8 @@ class TbAuthGuard {
             }
             else {
                 // non sono loggato quindi vado alla login
-                if (!state.url.includes('/login'))
-                    this.router.navigate(['login']);
+                if (!state.url.includes(this.authService.getLoginPageUrl()))
+                    this.router.navigate([this.authService.getLoginPageUrl()]);
                 return true;
             }
         });
@@ -1099,7 +1099,7 @@ class TbLogoffComponent {
         const authtoken = authService.getToken();
         if (authtoken)
             authService.logoff();
-        router.navigate(['/login']);
+        router.navigate([authService.getLoginPageUrl()]);
     }
 }
 TbLogoffComponent.decorators = [

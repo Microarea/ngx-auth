@@ -416,7 +416,7 @@
             this.getLoginPageUrl = (/**
              * @return {?}
              */
-            function () { return _this.getBaseUrl() + _this.env.auth.loginPageUrl; });
+            function () { return _this.env.auth.loginPageUrl; });
             this.getAuthServiceUrl = (/**
              * @return {?}
              */
@@ -1000,7 +1000,7 @@
                         case 4:
                             res = (/** @type {?} */ ((_a.sent())));
                             if (res.Result) {
-                                if (state.url.includes('/login'))
+                                if (state.url.includes(this.authService.getLoginPageUrl()))
                                     this.router.navigate([this.authService.getRedirectUrl()]);
                                 return [2 /*return*/, true];
                             }
@@ -1010,8 +1010,8 @@
                             return [3 /*break*/, 6];
                         case 5:
                             // non sono loggato quindi vado alla login
-                            if (!state.url.includes('/login'))
-                                this.router.navigate(['login']);
+                            if (!state.url.includes(this.authService.getLoginPageUrl()))
+                                this.router.navigate([this.authService.getLoginPageUrl()]);
                             return [2 /*return*/, true];
                         case 6: return [2 /*return*/];
                     }
@@ -1462,7 +1462,7 @@
             var authtoken = authService.getToken();
             if (authtoken)
                 authService.logoff();
-            router.navigate(['/login']);
+            router.navigate([authService.getLoginPageUrl()]);
         }
         TbLogoffComponent.decorators = [
             { type: core.Component, args: [{
