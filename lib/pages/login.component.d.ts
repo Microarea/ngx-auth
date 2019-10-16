@@ -1,8 +1,8 @@
-import { AfterViewInit } from '@angular/core';
+import { AfterContentInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TbAuthService } from '../auth.service';
 import { LoginRequest } from '../models/login-request';
-export declare class TbLoginComponent implements AfterViewInit {
+export declare class TbLoginComponent implements AfterContentInit {
     authService: TbAuthService;
     router: Router;
     private cachedCompanies;
@@ -18,11 +18,10 @@ export declare class TbLoginComponent implements AfterViewInit {
     logoUrl: string;
     isConnected: boolean;
     constructor(authService: TbAuthService, router: Router);
-    ngAfterViewInit(): void;
+    ngAfterContentInit(): void;
     checkConnection(): Promise<void>;
     keyUpFunction(event: KeyboardEvent): void;
     disabledButton(): boolean;
-    accountNameBlur(): void;
     login(): Promise<void>;
     loadLoginData(): void;
     private saveLoginData;

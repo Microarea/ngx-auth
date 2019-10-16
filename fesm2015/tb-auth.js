@@ -20,6 +20,9 @@ class LoginRequest {
         this.token = ''; // se presente, sto facendo una autologin
         // se presente, sto facendo una autologin
         this.appId = 'M4'; // identificativo dell'applicazione che sta effettuando la login (da tabellare)
+        // identificativo dell'applicazione che sta effettuando la login (da tabellare)
+        this.accountName = '';
+        this.password = '';
     }
 }
 if (false) {
@@ -828,12 +831,12 @@ class TbLoginComponent {
         this.cachedCompanies = [];
         this.capsLockOn = false;
         this.loading = false;
+        this.loginRequest = new LoginRequest();
         // abilita la scelta della subscription
         this.loginSubscriptions = [];
         this.isConnected = true;
         this.checkConnection();
-        this.loginRequest = new LoginRequest();
-        this.loginRequest.appId = authService.getAppId();
+        this.loginRequest.appId = this.authService.getAppId();
         this.subscriptionSelection = authService.hasSubscriptionSelection();
         this.redirectUrl = authService.getRedirectUrl();
         this.logoUrl = authService.getCustomLogo();
@@ -841,7 +844,7 @@ class TbLoginComponent {
     /**
      * @return {?}
      */
-    ngAfterViewInit() {
+    ngAfterContentInit() {
         this.loadLoginData();
     }
     /**
@@ -882,10 +885,6 @@ class TbLoginComponent {
             (this.subscriptionSelection && this.loginSubscriptions.length === 0) ||
             this.loading);
     }
-    /**
-     * @return {?}
-     */
-    accountNameBlur() { }
     /**
      * @return {?}
      */
