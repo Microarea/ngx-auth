@@ -317,7 +317,14 @@ class TbAuthService {
          */
         (loginResponse) => {
             if (!loginResponse.Result) {
+                if (loginResponse.ResultCode === 19) {
+                    // mi sposto su pagina per cambio password e nuovo tentativo di login
+                }
+                if (loginResponse.ResultCode === 4) {
+                    // mi sposto su pagina per attivare l'account che non ha ancora effettuato la procedura?
+                }
                 this.clearStorage();
+                console.log('AuthService: Clearing storage due to Login failure');
                 loginResponse.Message = loginResponse.Message ? loginResponse.Message : 'Login error...';
                 this.errorMessage = loginResponse.Message;
                 return loginResponse;
@@ -349,6 +356,7 @@ class TbAuthService {
                 // console.log('isValidToken - response', jObj);
                 if (!jObj.Result) {
                     jObj.Message = jObj.Message ? jObj.Message : 'isValidToken error...';
+                    console.log('AuthService: Clearing storage due to Token Validation failure');
                     this.clearStorage();
                     this.errorMessage = jObj.Message;
                 }
@@ -432,6 +440,7 @@ class TbAuthService {
          */
         (logoffResponse) => {
             if (logoffResponse.Result) {
+                console.log('AuthService: Clearing storage due to Logoff');
                 this.clearStorage();
                 this.loggedOut$.next();
             }

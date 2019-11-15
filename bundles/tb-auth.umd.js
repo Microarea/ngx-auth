@@ -539,7 +539,14 @@
              */
             function (loginResponse) {
                 if (!loginResponse.Result) {
+                    if (loginResponse.ResultCode === 19) {
+                        // mi sposto su pagina per cambio password e nuovo tentativo di login
+                    }
+                    if (loginResponse.ResultCode === 4) {
+                        // mi sposto su pagina per attivare l'account che non ha ancora effettuato la procedura?
+                    }
                     _this.clearStorage();
+                    console.log('AuthService: Clearing storage due to Login failure');
                     loginResponse.Message = loginResponse.Message ? loginResponse.Message : 'Login error...';
                     _this.errorMessage = loginResponse.Message;
                     return loginResponse;
@@ -578,6 +585,7 @@
                             // console.log('isValidToken - response', jObj);
                             if (!jObj.Result) {
                                 jObj.Message = jObj.Message ? jObj.Message : 'isValidToken error...';
+                                console.log('AuthService: Clearing storage due to Token Validation failure');
                                 _this.clearStorage();
                                 _this.errorMessage = jObj.Message;
                             }
@@ -688,6 +696,7 @@
              */
             function (logoffResponse) {
                 if (logoffResponse.Result) {
+                    console.log('AuthService: Clearing storage due to Logoff');
                     _this.clearStorage();
                     _this.loggedOut$.next();
                 }
