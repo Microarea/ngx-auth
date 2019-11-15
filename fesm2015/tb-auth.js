@@ -368,8 +368,9 @@ class TbAuthService {
                 console.error(`Error Code: ${error.status}\nMessage: ${error.message}`);
                 /** @type {?} */
                 const res = new OperationResult();
-                res.Message = 'Authentication services down...';
                 res.Code = 666;
+                if (!this.router.routerState.snapshot.url.includes(this.getLoginPageUrl()))
+                    this.router.navigate([this.getLoginPageUrl()]);
                 return of(res);
             })))
                 .toPromise();
@@ -677,6 +678,10 @@ class TbAuthGuard {
                 if (!state.url.includes('/login')) {
                     this.router.navigate(['login']);
                 }
+                return true;
+            }
+            if (state.url.includes(this.authService.getLoginPageUrl())) {
+                this.authService.clearStorage();
                 return true;
             }
             /**
@@ -1103,11 +1108,18 @@ class TbLogoffComponent {
     constructor(authService, router) {
         this.authService = authService;
         this.router = router;
-        /** @type {?} */
-        const authtoken = authService.getToken();
-        if (authtoken)
-            authService.logoff();
-        router.navigate([authService.getLoginPageUrl()]);
+        this.LogOff();
+    }
+    /**
+     * @return {?}
+     */
+    LogOff() {
+        return __awaiter(this, void 0, void 0, /** @this {!TbLogoffComponent} */ function* () {
+            /** @type {?} */
+            const logoff = yield this.authService.logoff();
+            if (logoff.Result)
+                this.router.navigateByUrl('/login');
+        });
     }
 }
 TbLogoffComponent.decorators = [

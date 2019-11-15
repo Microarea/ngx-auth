@@ -597,8 +597,9 @@
                             console.error("Error Code: " + error.status + "\nMessage: " + error.message);
                             /** @type {?} */
                             var res = new OperationResult();
-                            res.Message = 'Authentication services down...';
                             res.Code = 666;
+                            if (!_this.router.routerState.snapshot.url.includes(_this.getLoginPageUrl()))
+                                _this.router.navigate([_this.getLoginPageUrl()]);
                             return rxjs.of(res);
                         })))
                             .toPromise()];
@@ -975,6 +976,10 @@
                                 if (!state.url.includes('/login')) {
                                     this.router.navigate(['login']);
                                 }
+                                return [2 /*return*/, true];
+                            }
+                            if (state.url.includes(this.authService.getLoginPageUrl())) {
+                                this.authService.clearStorage();
                                 return [2 /*return*/, true];
                             }
                             jwt = next.queryParams.hasOwnProperty('jwt') ? next.queryParams.jwt : null;
@@ -1463,12 +1468,29 @@
         function TbLogoffComponent(authService, router) {
             this.authService = authService;
             this.router = router;
-            /** @type {?} */
-            var authtoken = authService.getToken();
-            if (authtoken)
-                authService.logoff();
-            router.navigate([authService.getLoginPageUrl()]);
+            this.LogOff();
         }
+        /**
+         * @return {?}
+         */
+        TbLogoffComponent.prototype.LogOff = /**
+         * @return {?}
+         */
+        function () {
+            return __awaiter(this, void 0, void 0, function () {
+                var logoff;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, this.authService.logoff()];
+                        case 1:
+                            logoff = _a.sent();
+                            if (logoff.Result)
+                                this.router.navigateByUrl('/login');
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        };
         TbLogoffComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'tb-logoff',
