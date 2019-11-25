@@ -1137,7 +1137,7 @@ var TbLoginComponent = /** @class */ (function () {
                             return [2 /*return*/];
                         }
                         this.loginSubscriptions = [];
-                        this.loginRequest.subscriptionKey = '';
+                        //this.loginRequest.subscriptionKey = '';
                         this.authService.errorMessage = '';
                         return [4 /*yield*/, this.requestAndSortSubscriptions(user)];
                     case 1:

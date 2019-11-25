@@ -985,7 +985,7 @@ class TbLoginComponent {
                 return;
             }
             this.loginSubscriptions = [];
-            this.loginRequest.subscriptionKey = '';
+            //this.loginRequest.subscriptionKey = '';
             this.authService.errorMessage = '';
             /** @type {?} */
             const temp = yield this.requestAndSortSubscriptions(user);
