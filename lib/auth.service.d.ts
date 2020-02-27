@@ -23,17 +23,22 @@ export declare class TbAuthService {
      * caricata da un file di configurazione caricato dinamicamente (assets/environment.json)
      */
     getBaseUrl: () => string;
+    getSnapshotServiceUrl: () => string;
     getLoginPageUrl: () => string;
     getAuthorizationHeader(): string;
     login(loginRequest: LoginRequest): Promise<LoginResponse>;
     isValidToken(authtoken?: string): Promise<OperationResult>;
+    getRedirectUrlForSubscription(accountName: string, subscriptionKey: string): void;
     getCompaniesForUser(user: string): import("rxjs").Observable<any>;
+    getInstancesMapForUser(user: string): import("rxjs").Observable<any>;
+    getSnapshot(instanceKey: string, subscriptionKey: string): import("rxjs").Observable<any>;
     getIsValidTokenUrl(): string;
     getLoginUrl(): string;
     getLogoutUrl(): string;
     getChangePasswordUrl(): string;
     getResetPasswordUrl(): string;
     getSubsKeysForAccountUrl(): string;
+    getInstancesMapForAccountUrl(): string;
     logoff(): Promise<LogoffResponse>;
     clearStorage(): void;
     storageSubscriptionData(subscriptionKey: string, subscriptionDescription: string): void;
@@ -51,4 +56,5 @@ export declare class TbAuthService {
     getAppId: () => string;
     isSessionStorage: () => boolean;
     getCustomLogo: () => string;
+    isRedirectExternal: () => boolean;
 }

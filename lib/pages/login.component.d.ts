@@ -5,6 +5,7 @@ import { LoginRequest } from '../models/login-request';
 export declare class TbLoginComponent implements AfterContentInit {
     authService: TbAuthService;
     router: Router;
+    private doc?;
     private cachedCompanies;
     capsLockOn: boolean;
     loading: boolean;
@@ -17,7 +18,8 @@ export declare class TbLoginComponent implements AfterContentInit {
     }>;
     logoUrl: string;
     isConnected: boolean;
-    constructor(authService: TbAuthService, router: Router);
+    document?: Document;
+    constructor(authService: TbAuthService, router: Router, doc?: any);
     ngAfterContentInit(): void;
     checkConnection(): Promise<void>;
     keyUpFunction(event: KeyboardEvent): void;
