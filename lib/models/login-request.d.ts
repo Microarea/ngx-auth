@@ -5,3 +5,10 @@ export declare class LoginRequest {
     password: string;
     subscriptionKey: string;
 }
+export declare class ChangePasswordInfo {
+    AccountName: string;
+    Password: string;
+    NewPassword: string;
+    IgnoreOldPassword: boolean;
+    JWTToken: string;
+}

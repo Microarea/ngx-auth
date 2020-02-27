@@ -1,5 +1,6 @@
 /**
  * @fileoverview added by tsickle
+ * Generated from: lib/models/login-request.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var LoginRequest = /** @class */ (function () {
@@ -26,4 +27,27 @@ if (false) {
     /** @type {?} */
     LoginRequest.prototype.subscriptionKey;
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibG9naW4tcmVxdWVzdC5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0B0Yi9hdXRoLyIsInNvdXJjZXMiOlsibGliL21vZGVscy9sb2dpbi1yZXF1ZXN0LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQTtJQUFBO1FBQ0ksVUFBSyxHQUFHLEVBQUUsQ0FBQyxDQUFDLHlDQUF5Qzs7UUFDckQsVUFBSyxHQUFHLElBQUksQ0FBQyxDQUFDLCtFQUErRTs7UUFDN0YsZ0JBQVcsR0FBRyxFQUFFLENBQUM7UUFDakIsYUFBUSxHQUFHLEVBQUUsQ0FBQztJQUVsQixDQUFDO0lBQUQsbUJBQUM7QUFBRCxDQUFDLEFBTkQsSUFNQzs7OztJQUxHLDZCQUFXOztJQUNYLDZCQUFhOztJQUNiLG1DQUFpQjs7SUFDakIsZ0NBQWM7O0lBQ2QsdUNBQXlCIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGNsYXNzIExvZ2luUmVxdWVzdCB7XHJcbiAgICB0b2tlbiA9ICcnOyAvLyBzZSBwcmVzZW50ZSwgc3RvIGZhY2VuZG8gdW5hIGF1dG9sb2dpblxyXG4gICAgYXBwSWQgPSAnTTQnOyAvLyBpZGVudGlmaWNhdGl2byBkZWxsJ2FwcGxpY2F6aW9uZSBjaGUgc3RhIGVmZmV0dHVhbmRvIGxhIGxvZ2luIChkYSB0YWJlbGxhcmUpXHJcbiAgICBhY2NvdW50TmFtZSA9ICcnO1xyXG4gICAgcGFzc3dvcmQgPSAnJztcclxuICAgIHN1YnNjcmlwdGlvbktleSE6IHN0cmluZzsgLy8gbG9naW4gc3UgdW5hIHNwZWNpZmljYSBTdWJzY3JpcHRpb25cclxufVxyXG4iXX0=
+var ChangePasswordInfo = /** @class */ (function () {
+    function ChangePasswordInfo() {
+        this.AccountName = '';
+        this.Password = '';
+        this.NewPassword = '';
+        this.IgnoreOldPassword = false;
+        this.JWTToken = '';
+    }
+    return ChangePasswordInfo;
+}());
+export { ChangePasswordInfo };
+if (false) {
+    /** @type {?} */
+    ChangePasswordInfo.prototype.AccountName;
+    /** @type {?} */
+    ChangePasswordInfo.prototype.Password;
+    /** @type {?} */
+    ChangePasswordInfo.prototype.NewPassword;
+    /** @type {?} */
+    ChangePasswordInfo.prototype.IgnoreOldPassword;
+    /** @type {?} */
+    ChangePasswordInfo.prototype.JWTToken;
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibG9naW4tcmVxdWVzdC5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0B0Yi9hdXRoLyIsInNvdXJjZXMiOlsibGliL21vZGVscy9sb2dpbi1yZXF1ZXN0LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUE7SUFBQTtRQUNFLFVBQUssR0FBRyxFQUFFLENBQUMsQ0FBQyx5Q0FBeUM7O1FBQ3JELFVBQUssR0FBRyxJQUFJLENBQUMsQ0FBQywrRUFBK0U7O1FBQzdGLGdCQUFXLEdBQUcsRUFBRSxDQUFDO1FBQ2pCLGFBQVEsR0FBRyxFQUFFLENBQUM7SUFFaEIsQ0FBQztJQUFELG1CQUFDO0FBQUQsQ0FBQyxBQU5ELElBTUM7Ozs7SUFMQyw2QkFBVzs7SUFDWCw2QkFBYTs7SUFDYixtQ0FBaUI7O0lBQ2pCLGdDQUFjOztJQUNkLHVDQUF5Qjs7QUFHM0I7SUFBQTtRQUNFLGdCQUFXLEdBQUcsRUFBRSxDQUFDO1FBQ2pCLGFBQVEsR0FBRyxFQUFFLENBQUM7UUFDZCxnQkFBVyxHQUFHLEVBQUUsQ0FBQztRQUNqQixzQkFBaUIsR0FBRyxLQUFLLENBQUM7UUFDMUIsYUFBUSxHQUFHLEVBQUUsQ0FBQztJQUNoQixDQUFDO0lBQUQseUJBQUM7QUFBRCxDQUFDLEFBTkQsSUFNQzs7OztJQUxDLHlDQUFpQjs7SUFDakIsc0NBQWM7O0lBQ2QseUNBQWlCOztJQUNqQiwrQ0FBMEI7O0lBQzFCLHNDQUFjIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGNsYXNzIExvZ2luUmVxdWVzdCB7XHJcbiAgdG9rZW4gPSAnJzsgLy8gc2UgcHJlc2VudGUsIHN0byBmYWNlbmRvIHVuYSBhdXRvbG9naW5cclxuICBhcHBJZCA9ICdNNCc7IC8vIGlkZW50aWZpY2F0aXZvIGRlbGwnYXBwbGljYXppb25lIGNoZSBzdGEgZWZmZXR0dWFuZG8gbGEgbG9naW4gKGRhIHRhYmVsbGFyZSlcclxuICBhY2NvdW50TmFtZSA9ICcnO1xyXG4gIHBhc3N3b3JkID0gJyc7XHJcbiAgc3Vic2NyaXB0aW9uS2V5ITogc3RyaW5nOyAvLyBsb2dpbiBzdSB1bmEgc3BlY2lmaWNhIFN1YnNjcmlwdGlvblxyXG59XHJcblxyXG5leHBvcnQgY2xhc3MgQ2hhbmdlUGFzc3dvcmRJbmZvIHtcclxuICBBY2NvdW50TmFtZSA9ICcnO1xyXG4gIFBhc3N3b3JkID0gJyc7XHJcbiAgTmV3UGFzc3dvcmQgPSAnJztcclxuICBJZ25vcmVPbGRQYXNzd29yZCA9IGZhbHNlO1xyXG4gIEpXVFRva2VuID0gJyc7XHJcbn1cclxuIl19
