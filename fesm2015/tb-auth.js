@@ -1382,7 +1382,7 @@ class TbLoginComponent {
         this.createAccountUrl = authService.getCreateAccountUrl();
         this.changePasswordUrl = authService.getChangePasswordUrl();
         this.logoUrl = authService.getCustomLogo();
-        this.buttonText = this.validate ? 'Login' : 'Next';
+        this.buttonText = (this.validate || !this.subscriptionSelection) ? 'Login' : 'Next';
     }
     //---------------------------------------------------------------------------
     /**
@@ -1467,7 +1467,7 @@ class TbLoginComponent {
             this.authService.errorMessage = '';
             this.saveLoginData();
             this.loading = true;
-            if (!this.validate) {
+            if (!this.validate && this.subscriptionSelection) {
                 this.loginRequest.appId = 'MCloudPreLogin';
                 this.loginRequest.subscriptionKey = '';
                 /** @type {?} */
