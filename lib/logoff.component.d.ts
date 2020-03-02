@@ -4,4 +4,5 @@ export declare class TbLogoffComponent {
     authService: TbAuthService;
     router: Router;
     constructor(authService: TbAuthService, router: Router);
+    LogOff(): Promise<void>;
 }

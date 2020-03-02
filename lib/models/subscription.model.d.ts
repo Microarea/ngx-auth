@@ -1,7 +1,4 @@
-import { Instance } from './instance.model';
-export declare class Subscription {
-    SubscriptionKey: string;
-    Description: string;
-    Instance: Instance;
-    constructor();
+export interface Subscription {
+    subscriptionkey: string;
+    description: string;
 }

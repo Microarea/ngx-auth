@@ -1,0 +1,14 @@
+/**
+ * @fileoverview added by tsickle
+ * Generated from: lib/models/auth-environment.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+export function TbAuthEnvironment() { }
+if (false) {
+    /** @type {?} */
+    TbAuthEnvironment.prototype.auth;
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXV0aC1lbnZpcm9ubWVudC5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0B0Yi9hdXRoLyIsInNvdXJjZXMiOlsibGliL21vZGVscy9hdXRoLWVudmlyb25tZW50LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBRUEsdUNBZUM7OztJQWRDLGlDQWFFIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgU3RyaW5nQ2hhaW4gfSBmcm9tICdsb2Rhc2gnO1xuXG5leHBvcnQgaW50ZXJmYWNlIFRiQXV0aEVudmlyb25tZW50IHtcbiAgYXV0aDoge1xuICAgIHVybDogc3RyaW5nO1xuICAgIHN1YnNjcmlwdGlvblNlbGVjdGlvbjogYm9vbGVhbjtcbiAgICBzaG93U2lnblVwOiBib29sZWFuO1xuICAgIGFwcElkOiBzdHJpbmc7XG4gICAgaXNSZWRpcmVjdEV4dGVybmFsOiBib29sZWFuO1xuICAgIHNuYXBzaG90U2VydmljZVVybDogc3RyaW5nO1xuICAgIHJlZGlyZWN0VXJsOiBzdHJpbmc7XG4gICAgY3JlYXRlQWNjb3VudFVybDogc3RyaW5nO1xuICAgIGNoYW5nZVBhc3N3b3JkVXJsOiBzdHJpbmc7XG4gICAgbG9naW5QYWdlVXJsOiBzdHJpbmc7XG4gICAgc2Vzc2lvblN0b3JhZ2U6IGJvb2xlYW47XG4gICAgbG9nbzogc3RyaW5nO1xuICB9O1xufVxuIl19

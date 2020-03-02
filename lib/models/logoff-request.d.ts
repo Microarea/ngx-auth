@@ -1,3 +1,4 @@
 export declare class LogoffRequest {
-    token: string;
+    token: string | null;
+    constructor(token: string | null);
 }

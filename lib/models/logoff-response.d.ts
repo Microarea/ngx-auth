@@ -1,6 +1,6 @@
-export declare class LogoffResponse {
-    Result: false;
-    Message: '';
-    Content: {};
+export interface LogoffResponse {
+    Result: boolean;
+    Message: string;
+    Content: any;
     Code: 0;
 }
