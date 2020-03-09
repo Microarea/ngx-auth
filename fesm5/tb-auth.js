@@ -770,7 +770,7 @@ var TbAuthService = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        return this.getBaseUrl() + 'resetpassword/';
+        return this.getChangePasswordUrl() + 'resetpassword/';
     };
     /**
      * @return {?}
@@ -832,25 +832,31 @@ var TbAuthService = /** @class */ (function () {
      */
     function (accname) {
         return __awaiter(this, void 0, void 0, function () {
+            var headers;
             var _this = this;
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.http.get(this.getResetPasswordUrl() + accname)
+                headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+                // tslint:disable-next-line: align
+                return [2 /*return*/, this.http.post(this.getResetPasswordUrl() + accname, { headers: headers })
                         .pipe(map((/**
                      * @param {?} res
                      * @return {?}
                      */
                     function (res) {
-                        if (!res || !res.Result)
-                            return [];
-                        return res.Content && res.Content.subscriptions ? res.Content.subscriptions : [];
+                        if (!res) {
+                            res = new OperationResult();
+                            res.Code = 663;
+                        }
+                        return res;
                     })), catchError((/**
                      * @param {?} error
                      * @return {?}
                      */
                     function (error) {
-                        console.error("Error Code: " + error.status + "\nMessage: " + error.message);
+                        console.error("Error Code: " + error.status + ".\nMessage: " + error.message);
                         /** @type {?} */
                         var res = new OperationResult();
+                        res.Message = "Error Code: " + error.status + ".\nMessage: " + error.message;
                         res.Code = 661;
                         if (!_this.router.routerState.snapshot.url.includes(_this.getLoginPageUrl()))
                             _this.router.navigate([_this.getLoginPageUrl()]);
@@ -922,6 +928,8 @@ var TbAuthService = /** @class */ (function () {
              * @return {?}
              */
             function (res) {
+                if (!res || res === [] || res.length === 0)
+                    throw 'snapshot is empty';
                 // we have now the snapshot
                 /** @type {?} */
                 var services = (/** @type {?} */ (res['Services']));
@@ -1398,8 +1406,9 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var TbAuthInterceptor = /** @class */ (function () {
-    function TbAuthInterceptor(authService) {
+    function TbAuthInterceptor(env, authService) {
         this.authService = authService;
+        this.env = env;
     }
     /**
      * @param {?} request
@@ -1423,7 +1432,7 @@ var TbAuthInterceptor = /** @class */ (function () {
         /** @type {?} */
         var jwt = this.authService.getToken();
         if (jwt)
-            token = JSON.stringify({ type: 'jwt', appId: '', securityValue: jwt });
+            token = JSON.stringify({ type: 'jwt', appId: this.env.auth.appId, securityValue: jwt });
         //  }
         request = request.clone({
             setHeaders: {
@@ -1440,11 +1449,17 @@ var TbAuthInterceptor = /** @class */ (function () {
     ];
     /** @nocollapse */
     TbAuthInterceptor.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: Inject, args: ['env',] }] },
         { type: TbAuthService }
     ]; };
     return TbAuthInterceptor;
 }());
 if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    TbAuthInterceptor.prototype.env;
     /**
      * @type {?}
      * @private
@@ -1714,15 +1729,6 @@ var TbLoginComponent = /** @class */ (function () {
                             this.getCompaniesForUser(this.loginRequest.accountName);
                             this.authService.errorMessage = '';
                             this.authService.okMessage = '';
-                            if (!this.subscriptionSelection) {
-                                if (this.authService.isRedirectExternal()) {
-                                    console.log('go external');
-                                    this.authService.getRedirectUrlForSubscription(this.loginRequest.accountName, this.loginRequest.subscriptionKey);
-                                    return [2 /*return*/];
-                                }
-                                console.log('go internal');
-                                this.router.navigate([this.authService.getRedirectUrl()]);
-                            }
                         }
                         else {
                             this.loading = false;
@@ -1747,6 +1753,12 @@ var TbLoginComponent = /** @class */ (function () {
                         if (result && result.Result) {
                             this.authService.okMessage = '';
                             this.authService.errorMessage = '';
+                            if (this.authService.isRedirectExternal()) {
+                                console.log('go external');
+                                this.authService.getRedirectUrlForSubscription(this.loginRequest.accountName, this.loginRequest.subscriptionKey);
+                                return [2 /*return*/];
+                            }
+                            console.log('go internal');
                             this.router.navigate([this.authService.getRedirectUrl()]);
                         }
                         else {
@@ -1958,6 +1970,8 @@ var TbLoginComponent = /** @class */ (function () {
             var dialogRef, c;
             var _this = this;
             return __generator(this, function (_a) {
+                this.authService.errorMessage = '';
+                this.authService.okMessage = '';
                 dialogRef = this.dialog.open(ForgotPasswordComponent, {
                     data: {
                         Title: 'Forgot Password',
@@ -1994,8 +2008,12 @@ var TbLoginComponent = /** @class */ (function () {
                                 // todo controlla come vengono mostrati errori
                                 if (result && result.Result) {
                                     this.authService.errorMessage = '';
-                                    this.authService.okMessage = '';
+                                    this.authService.okMessage = 'Your password has been reset, check your email.';
                                     this.router.navigate([this.authService.getRedirectUrl()]);
+                                }
+                                if (result && !result.Result) {
+                                    this.authService.errorMessage = result.Message + ' (Code: ' + result.Code + ').';
+                                    this.authService.okMessage = '';
                                 }
                                 return [2 /*return*/];
                         }
