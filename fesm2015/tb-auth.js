@@ -681,7 +681,7 @@ class TbAuthService {
      * @return {?}
      */
     getResetPasswordUrl() {
-        return this.getBaseUrl() + 'resetpassword/';
+        return this.getChangePasswordUrl() + 'resetpassword/';
     }
     /**
      * @return {?}
@@ -730,23 +730,29 @@ class TbAuthService {
      */
     resetpassword(accname) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.http.get(this.getResetPasswordUrl() + accname)
+            /** @type {?} */
+            const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+            // tslint:disable-next-line: align
+            return this.http.post(this.getResetPasswordUrl() + accname, { headers })
                 .pipe(map((/**
              * @param {?} res
              * @return {?}
              */
             (res) => {
-                if (!res || !res.Result)
-                    return [];
-                return res.Content && res.Content.subscriptions ? res.Content.subscriptions : [];
+                if (!res) {
+                    res = new OperationResult();
+                    res.Code = 663;
+                }
+                return res;
             })), catchError((/**
              * @param {?} error
              * @return {?}
              */
             (error) => {
-                console.error(`Error Code: ${error.status}\nMessage: ${error.message}`);
+                console.error(`Error Code: ${error.status}.\nMessage: ${error.message}`);
                 /** @type {?} */
                 const res = new OperationResult();
+                res.Message = `Error Code: ${error.status}.\nMessage: ${error.message}`;
                 res.Code = 661;
                 if (!this.router.routerState.snapshot.url.includes(this.getLoginPageUrl()))
                     this.router.navigate([this.getLoginPageUrl()]);
@@ -807,6 +813,8 @@ class TbAuthService {
              * @return {?}
              */
             res => {
+                if (!res || res === [] || res.length === 0)
+                    throw 'snapshot is empty';
                 // we have now the snapshot
                 /** @type {?} */
                 const services = (/** @type {?} */ (res['Services']));
@@ -1170,6 +1178,7 @@ class TbAuthGuard {
                 if (loginResponse.Result) {
                     this.authService.errorMessage = '';
                     this.router.navigate([this.authService.getRedirectUrl()]);
+                    return true;
                 }
             }
             /**
@@ -1236,10 +1245,12 @@ if (false) {
  */
 class TbAuthInterceptor {
     /**
+     * @param {?} env
      * @param {?} authService
      */
-    constructor(authService) {
+    constructor(env, authService) {
         this.authService = authService;
+        this.env = env;
     }
     /**
      * @param {?} request
@@ -1258,7 +1269,7 @@ class TbAuthInterceptor {
         /** @type {?} */
         const jwt = this.authService.getToken();
         if (jwt)
-            token = JSON.stringify({ type: 'jwt', appId: '', securityValue: jwt });
+            token = JSON.stringify({ type: 'jwt', appId: this.env.auth.appId, securityValue: jwt });
         //  }
         request = request.clone({
             setHeaders: {
@@ -1276,9 +1287,15 @@ TbAuthInterceptor.decorators = [
 ];
 /** @nocollapse */
 TbAuthInterceptor.ctorParameters = () => [
+    { type: undefined, decorators: [{ type: Inject, args: ['env',] }] },
     { type: TbAuthService }
 ];
 if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    TbAuthInterceptor.prototype.env;
     /**
      * @type {?}
      * @private
@@ -1490,15 +1507,6 @@ class TbLoginComponent {
                     this.getCompaniesForUser(this.loginRequest.accountName);
                     this.authService.errorMessage = '';
                     this.authService.okMessage = '';
-                    if (!this.subscriptionSelection) {
-                        if (this.authService.isRedirectExternal()) {
-                            console.log('go external');
-                            this.authService.getRedirectUrlForSubscription(this.loginRequest.accountName, this.loginRequest.subscriptionKey);
-                            return;
-                        }
-                        console.log('go internal');
-                        this.router.navigate([this.authService.getRedirectUrl()]);
-                    }
                 }
                 else {
                     this.loading = false;
@@ -1522,6 +1530,12 @@ class TbLoginComponent {
                 if (result && result.Result) {
                     this.authService.okMessage = '';
                     this.authService.errorMessage = '';
+                    if (this.authService.isRedirectExternal()) {
+                        console.log('go external');
+                        this.authService.getRedirectUrlForSubscription(this.loginRequest.accountName, this.loginRequest.subscriptionKey);
+                        return;
+                    }
+                    console.log('go internal');
                     this.router.navigate([this.authService.getRedirectUrl()]);
                 }
                 else {
@@ -1669,6 +1683,8 @@ class TbLoginComponent {
      */
     forgotpassword() {
         return __awaiter(this, void 0, void 0, function* () {
+            this.authService.errorMessage = '';
+            this.authService.okMessage = '';
             /** @type {?} */
             const dialogRef = this.dialog.open(ForgotPasswordComponent, {
                 data: {
@@ -1702,8 +1718,12 @@ class TbLoginComponent {
                 // todo controlla come vengono mostrati errori
                 if (result && result.Result) {
                     this.authService.errorMessage = '';
-                    this.authService.okMessage = '';
+                    this.authService.okMessage = 'Your password has been reset, check your email.';
                     this.router.navigate([this.authService.getRedirectUrl()]);
+                }
+                if (result && !result.Result) {
+                    this.authService.errorMessage = result.Message + ' (Code: ' + result.Code + ').';
+                    this.authService.okMessage = '';
                 }
             })));
         });
