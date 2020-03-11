@@ -1178,6 +1178,7 @@ class TbAuthGuard {
                 if (loginResponse.Result) {
                     this.authService.errorMessage = '';
                     this.router.navigate([this.authService.getRedirectUrl()]);
+                    return true;
                 }
             }
             /**

@@ -1497,6 +1497,7 @@
                             if (loginResponse.Result) {
                                 this.authService.errorMessage = '';
                                 this.router.navigate([this.authService.getRedirectUrl()]);
+                                return [2 /*return*/, true];
                             }
                             _a.label = 3;
                         case 3:
