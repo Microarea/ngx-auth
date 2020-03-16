@@ -1,7 +1,7 @@
-import { AfterContentInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { TbAuthService } from '../auth.service';
 import { LoginRequest } from '../models/login-request';
+import { AfterContentInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 export declare class TbLoginComponent implements AfterContentInit {
     authService: TbAuthService;
