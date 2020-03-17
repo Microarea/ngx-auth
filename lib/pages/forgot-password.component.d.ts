@@ -9,5 +9,6 @@ export declare class ForgotPasswordComponent implements OnInit {
     inputValue: string;
     constructor(mdDialogRef: MatDialogRef<ForgotPasswordComponent>, data: any);
     ngOnInit(): void;
+    cancel(): void;
     confirm(): void;
 }
