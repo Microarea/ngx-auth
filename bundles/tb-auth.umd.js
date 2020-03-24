@@ -282,6 +282,8 @@
         LoginResponse.prototype.AccountName;
         /** @type {?} */
         LoginResponse.prototype.SubscriptionKey;
+        /** @type {?} */
+        LoginResponse.prototype.SubscriptionDesc;
     }
 
     /**
@@ -1254,6 +1256,8 @@
                     sessionStorage.setItem(StorageVars.ACCOUNT_NAME, JSON.stringify(loginResponse.AccountName));
                 if (loginResponse.SubscriptionKey)
                     sessionStorage.setItem(StorageVars.SUBSCRIPTION, JSON.stringify(loginResponse.SubscriptionKey));
+                if (loginResponse.SubscriptionDesc)
+                    sessionStorage.setItem(StorageVars.ACCOUNT_NAME, JSON.stringify(loginResponse.SubscriptionDesc));
             }
             else {
                 localStorage.setItem(StorageVars.JWT, loginResponse.JwtToken);
@@ -1264,6 +1268,8 @@
                     localStorage.setItem(StorageVars.ACCOUNT_NAME, JSON.stringify(loginResponse.AccountName));
                 if (loginResponse.SubscriptionKey)
                     localStorage.setItem(StorageVars.SUBSCRIPTION, JSON.stringify(loginResponse.SubscriptionKey));
+                if (loginResponse.SubscriptionDesc)
+                    localStorage.setItem(StorageVars.ACCOUNT_NAME, JSON.stringify(loginResponse.SubscriptionDesc));
             }
         };
         /**

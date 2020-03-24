@@ -9,4 +9,5 @@ export interface LoginResponse {
     Roles: string;
     AccountName: string;
     SubscriptionKey: string;
+    SubscriptionDesc: string;
 }

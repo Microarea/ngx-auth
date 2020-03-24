@@ -94,6 +94,8 @@ if (false) {
     LoginResponse.prototype.AccountName;
     /** @type {?} */
     LoginResponse.prototype.SubscriptionKey;
+    /** @type {?} */
+    LoginResponse.prototype.SubscriptionDesc;
 }
 
 /**
@@ -1066,6 +1068,8 @@ var TbAuthService = /** @class */ (function () {
                 sessionStorage.setItem(StorageVars.ACCOUNT_NAME, JSON.stringify(loginResponse.AccountName));
             if (loginResponse.SubscriptionKey)
                 sessionStorage.setItem(StorageVars.SUBSCRIPTION, JSON.stringify(loginResponse.SubscriptionKey));
+            if (loginResponse.SubscriptionDesc)
+                sessionStorage.setItem(StorageVars.ACCOUNT_NAME, JSON.stringify(loginResponse.SubscriptionDesc));
         }
         else {
             localStorage.setItem(StorageVars.JWT, loginResponse.JwtToken);
@@ -1076,6 +1080,8 @@ var TbAuthService = /** @class */ (function () {
                 localStorage.setItem(StorageVars.ACCOUNT_NAME, JSON.stringify(loginResponse.AccountName));
             if (loginResponse.SubscriptionKey)
                 localStorage.setItem(StorageVars.SUBSCRIPTION, JSON.stringify(loginResponse.SubscriptionKey));
+            if (loginResponse.SubscriptionDesc)
+                localStorage.setItem(StorageVars.ACCOUNT_NAME, JSON.stringify(loginResponse.SubscriptionDesc));
         }
     };
     /**
