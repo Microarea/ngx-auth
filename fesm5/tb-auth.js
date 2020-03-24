@@ -90,6 +90,10 @@ if (false) {
     LoginResponse.prototype.Language;
     /** @type {?} */
     LoginResponse.prototype.Roles;
+    /** @type {?} */
+    LoginResponse.prototype.AccountName;
+    /** @type {?} */
+    LoginResponse.prototype.SubscriptionKey;
 }
 
 /**
@@ -540,7 +544,7 @@ var TbAuthService = /** @class */ (function () {
                 }
                 else {
                     _this.clearStorage();
-                    console.log('AuthService: Clearing storage due to Login failure');
+                    console.log('AuthService: Clearing storage due to Login failure, result code ', loginResponse.ResultCode);
                 }
                 loginResponse.Message = loginResponse.Message ? loginResponse.Message : 'Login error...';
                 _this.errorMessage = loginResponse.Message;
@@ -1058,12 +1062,20 @@ var TbAuthService = /** @class */ (function () {
             sessionStorage.setItem(StorageVars.CULTURE, respCulture);
             sessionStorage.setItem(StorageVars.UI_CULTURE, respUiCulture);
             sessionStorage.setItem(StorageVars.ACCOUNT_ROLES, JSON.stringify(loginResponse.Roles));
+            if (loginResponse.AccountName)
+                sessionStorage.setItem(StorageVars.ACCOUNT_NAME, JSON.stringify(loginResponse.AccountName));
+            if (loginResponse.SubscriptionKey)
+                sessionStorage.setItem(StorageVars.SUBSCRIPTION, JSON.stringify(loginResponse.SubscriptionKey));
         }
         else {
             localStorage.setItem(StorageVars.JWT, loginResponse.JwtToken);
             localStorage.setItem(StorageVars.CULTURE, respCulture);
             localStorage.setItem(StorageVars.UI_CULTURE, respUiCulture);
             localStorage.setItem(StorageVars.ACCOUNT_ROLES, JSON.stringify(loginResponse.Roles));
+            if (loginResponse.AccountName)
+                localStorage.setItem(StorageVars.ACCOUNT_NAME, JSON.stringify(loginResponse.AccountName));
+            if (loginResponse.SubscriptionKey)
+                localStorage.setItem(StorageVars.SUBSCRIPTION, JSON.stringify(loginResponse.SubscriptionKey));
         }
     };
     /**

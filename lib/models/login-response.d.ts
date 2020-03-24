@@ -7,4 +7,6 @@ export interface LoginResponse {
     RegionalSettings: string;
     Language: string;
     Roles: string;
+    AccountName: string;
+    SubscriptionKey: string;
 }
