@@ -922,11 +922,11 @@ class TbAuthService {
             sessionStorage.setItem(StorageVars.UI_CULTURE, respUiCulture);
             sessionStorage.setItem(StorageVars.ACCOUNT_ROLES, JSON.stringify(loginResponse.Roles));
             if (loginResponse.AccountName)
-                sessionStorage.setItem(StorageVars.ACCOUNT_NAME, JSON.stringify(loginResponse.AccountName));
+                sessionStorage.setItem(StorageVars.ACCOUNT_NAME, loginResponse.AccountName);
             if (loginResponse.SubscriptionKey)
-                sessionStorage.setItem(StorageVars.SUBSCRIPTION, JSON.stringify(loginResponse.SubscriptionKey));
+                sessionStorage.setItem(StorageVars.SUBSCRIPTION, loginResponse.SubscriptionKey);
             if (loginResponse.SubscriptionDesc)
-                sessionStorage.setItem(StorageVars.ACCOUNT_NAME, JSON.stringify(loginResponse.SubscriptionDesc));
+                sessionStorage.setItem(StorageVars.ACCOUNT_NAME, loginResponse.SubscriptionDesc);
         }
         else {
             localStorage.setItem(StorageVars.JWT, loginResponse.JwtToken);
@@ -934,11 +934,11 @@ class TbAuthService {
             localStorage.setItem(StorageVars.UI_CULTURE, respUiCulture);
             localStorage.setItem(StorageVars.ACCOUNT_ROLES, JSON.stringify(loginResponse.Roles));
             if (loginResponse.AccountName)
-                localStorage.setItem(StorageVars.ACCOUNT_NAME, JSON.stringify(loginResponse.AccountName));
+                localStorage.setItem(StorageVars.ACCOUNT_NAME, loginResponse.AccountName);
             if (loginResponse.SubscriptionKey)
-                localStorage.setItem(StorageVars.SUBSCRIPTION, JSON.stringify(loginResponse.SubscriptionKey));
+                localStorage.setItem(StorageVars.SUBSCRIPTION, loginResponse.SubscriptionKey);
             if (loginResponse.SubscriptionDesc)
-                localStorage.setItem(StorageVars.ACCOUNT_NAME, JSON.stringify(loginResponse.SubscriptionDesc));
+                localStorage.setItem(StorageVars.ACCOUNT_NAME, loginResponse.SubscriptionDesc);
         }
     }
     /**
