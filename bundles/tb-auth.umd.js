@@ -635,12 +635,12 @@
             });
         };
         /*
-          {
-            type: JWT,
-            appid: M4,
-            securityValue: jwtEncoded
-          }
-        */
+        {
+          type: JWT,
+          appid: M4,
+          securityValue: jwtEncoded
+        }
+      */
         /*
             {
               type: JWT,
@@ -812,7 +812,7 @@
                                     if (result && result.Result) {
                                         this.errorMessage = '';
                                         this.okMessage = 'Password changed succesfully!';
-                                        //la login la fa  a mano altrimenti mi perdo 
+                                        //la login la fa  a mano altrimenti mi perdo
                                     }
                                     else {
                                         //errore già indicato
@@ -978,7 +978,8 @@
                     bodyString = JSON.stringify(cpi);
                     headers = new http.HttpHeaders({ 'Content-Type': 'application/json' });
                     // tslint:disable-next-line: align
-                    return [2 /*return*/, this.http.post(this.getChangePasswordApiUrl(), bodyString, { headers: headers })
+                    return [2 /*return*/, this.http
+                            .post(this.getChangePasswordApiUrl(), bodyString, { headers: headers })
                             .pipe(operators.map((/**
                          * @param {?} res
                          * @return {?}
@@ -999,7 +1000,8 @@
                             var res = new OperationResult();
                             res.Code = 662;
                             return rxjs.of(res);
-                        }))).toPromise()];
+                        })))
+                            .toPromise()];
                 });
             });
         };
@@ -1018,7 +1020,8 @@
                 return __generator(this, function (_a) {
                     headers = new http.HttpHeaders({ 'Content-Type': 'application/json' });
                     // tslint:disable-next-line: align
-                    return [2 /*return*/, this.http.post(this.getResetPasswordUrl() + accname, { headers: headers })
+                    return [2 /*return*/, this.http
+                            .post(this.getResetPasswordUrl() + accname, { headers: headers })
                             .pipe(operators.map((/**
                          * @param {?} res
                          * @return {?}
@@ -1042,7 +1045,8 @@
                             if (!_this.router.routerState.snapshot.url.includes(_this.getLoginPageUrl()))
                                 _this.router.navigate([_this.getLoginPageUrl()]);
                             return rxjs.of(res);
-                        }))).toPromise()];
+                        })))
+                            .toPromise()];
                 });
             });
         };
@@ -1262,7 +1266,7 @@
                 if (loginResponse.SubscriptionKey)
                     sessionStorage.setItem(StorageVars.SUBSCRIPTION, loginResponse.SubscriptionKey);
                 if (loginResponse.SubscriptionDesc)
-                    sessionStorage.setItem(StorageVars.ACCOUNT_NAME, loginResponse.SubscriptionDesc);
+                    sessionStorage.setItem(StorageVars.SUBSCRIPTION_DESCRIPTION, loginResponse.SubscriptionDesc);
             }
             else {
                 localStorage.setItem(StorageVars.JWT, loginResponse.JwtToken);
@@ -1274,7 +1278,7 @@
                 if (loginResponse.SubscriptionKey)
                     localStorage.setItem(StorageVars.SUBSCRIPTION, loginResponse.SubscriptionKey);
                 if (loginResponse.SubscriptionDesc)
-                    localStorage.setItem(StorageVars.ACCOUNT_NAME, loginResponse.SubscriptionDesc);
+                    localStorage.setItem(StorageVars.SUBSCRIPTION_DESCRIPTION, loginResponse.SubscriptionDesc);
             }
         };
         /**

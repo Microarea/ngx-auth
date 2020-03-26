@@ -567,7 +567,7 @@ class TbAuthService {
                 if (result && result.Result) {
                     this.errorMessage = '';
                     this.okMessage = 'Password changed succesfully!';
-                    //la login la fa  a mano altrimenti mi perdo 
+                    //la login la fa  a mano altrimenti mi perdo
                 }
                 else {
                     //errore già indicato
@@ -690,7 +690,8 @@ class TbAuthService {
             /** @type {?} */
             const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
             // tslint:disable-next-line: align
-            return this.http.post(this.getChangePasswordApiUrl(), bodyString, { headers })
+            return this.http
+                .post(this.getChangePasswordApiUrl(), bodyString, { headers })
                 .pipe(map((/**
              * @param {?} res
              * @return {?}
@@ -711,7 +712,8 @@ class TbAuthService {
                 const res = new OperationResult();
                 res.Code = 662;
                 return of(res);
-            }))).toPromise();
+            })))
+                .toPromise();
         });
     }
     /**
@@ -723,7 +725,8 @@ class TbAuthService {
             /** @type {?} */
             const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
             // tslint:disable-next-line: align
-            return this.http.post(this.getResetPasswordUrl() + accname, { headers })
+            return this.http
+                .post(this.getResetPasswordUrl() + accname, { headers })
                 .pipe(map((/**
              * @param {?} res
              * @return {?}
@@ -747,7 +750,8 @@ class TbAuthService {
                 if (!this.router.routerState.snapshot.url.includes(this.getLoginPageUrl()))
                     this.router.navigate([this.getLoginPageUrl()]);
                 return of(res);
-            }))).toPromise();
+            })))
+                .toPromise();
         });
     }
     /**
@@ -931,7 +935,7 @@ class TbAuthService {
             if (loginResponse.SubscriptionKey)
                 sessionStorage.setItem(StorageVars.SUBSCRIPTION, loginResponse.SubscriptionKey);
             if (loginResponse.SubscriptionDesc)
-                sessionStorage.setItem(StorageVars.ACCOUNT_NAME, loginResponse.SubscriptionDesc);
+                sessionStorage.setItem(StorageVars.SUBSCRIPTION_DESCRIPTION, loginResponse.SubscriptionDesc);
         }
         else {
             localStorage.setItem(StorageVars.JWT, loginResponse.JwtToken);
@@ -943,7 +947,7 @@ class TbAuthService {
             if (loginResponse.SubscriptionKey)
                 localStorage.setItem(StorageVars.SUBSCRIPTION, loginResponse.SubscriptionKey);
             if (loginResponse.SubscriptionDesc)
-                localStorage.setItem(StorageVars.ACCOUNT_NAME, loginResponse.SubscriptionDesc);
+                localStorage.setItem(StorageVars.SUBSCRIPTION_DESCRIPTION, loginResponse.SubscriptionDesc);
         }
     }
     /**
