@@ -944,6 +944,7 @@ var TbAuthService = /** @class */ (function () {
                 /** @type {?} */
                 var baseRedirectUrl = redirectUrl + "?jwt=" + _this.getToken() + "&subKey=" + subscriptionKey;
                 console.log("Designated final redirect is " + baseRedirectUrl);
+                localStorage.setItem('lastLoggedRedirect', baseRedirectUrl);
                 document.location.href = 'http://' + baseRedirectUrl;
             }), (/**
              * @param {?} err
