@@ -1,23 +1,23 @@
 {
   "name": "@tb/auth",
-  "version": "2.0.9",
+  "version": "2.1.0",
   "peerDependencies": {
-    "@angular/common": "^9.1.0",
-    "@angular/core": "^9.1.0",
-    "@angular/router": "~9.1.0",
-    "@progress/kendo-angular-buttons": "^5.3.0",
-    "@progress/kendo-angular-dropdowns": "^4.2.6",
-    "@progress/kendo-angular-inputs": "^6.5.0",
-    "@progress/kendo-angular-intl": "^2.0.1",
-    "@progress/kendo-angular-l10n": "^2.0.1",
-    "@progress/kendo-theme-default": "^4.15.0",
+    "@angular/common": "^7.2.0",
+    "@angular/core": "^7.2.0",
+    "@angular/router": "~7.2.0",
+    "@progress/kendo-angular-buttons": "^5.0.0",
+    "@progress/kendo-angular-dropdowns": "^4.2.0",
+    "@progress/kendo-angular-inputs": "^6.3.0",
+    "@progress/kendo-angular-intl": "^2.0.0",
+    "@progress/kendo-angular-l10n": "^2.0.0",
+    "@progress/kendo-theme-default": "^4.6.0",
     "@progress/kendo-drawing": "^1.6.0",
-    "bootstrap": "^4.4.1",
+    "bootstrap": "^4.3.1",
     "moment": "^2.24.0",
     "lodash": "^4.17.15",
-    "rxjs": "~6.5.4",
-    "scss-bundle": "^3.1.1",
-    "tslib": "^1.10.0"
+    "rxjs": "~6.4.0",
+    "rxjs-compat": "^6.5.1",
+    "scss-bundle": "^2.5.1"
   },
   "main": "bundles/tb-auth.umd.js",
   "module": "fesm5/tb-auth.js",
@@ -27,8 +27,9 @@
   "fesm5": "fesm5/tb-auth.js",
   "fesm2015": "fesm2015/tb-auth.js",
   "typings": "tb-auth.d.ts",
+  "metadata": "tb-auth.metadata.json",
   "sideEffects": false,
-  "scripts": {
-    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy. This is not allowed.\\nPlease delete and rebuild the package, without compiling with Ivy, before attempting to publish.\\n')\" && exit 1"
+  "dependencies": {
+    "tslib": "^1.9.0"
   }
 }
