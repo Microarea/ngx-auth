@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common/http'), require('@angular/router'), require('lodash'), require('rxjs'), require('rxjs/operators'), require('@angular/material/dialog'), require('@angular/common'), require('@angular/forms'), require('@progress/kendo-angular-inputs'), require('@progress/kendo-angular-buttons'), require('@progress/kendo-angular-dropdowns'), require('@angular/material')) :
-    typeof define === 'function' && define.amd ? define('@tb/auth', ['exports', '@angular/core', '@angular/common/http', '@angular/router', 'lodash', 'rxjs', 'rxjs/operators', '@angular/material/dialog', '@angular/common', '@angular/forms', '@progress/kendo-angular-inputs', '@progress/kendo-angular-buttons', '@progress/kendo-angular-dropdowns', '@angular/material'], factory) :
-    (global = global || self, factory((global.tb = global.tb || {}, global.tb.auth = {}), global.ng.core, global.ng.common.http, global.ng.router, global.lodash, global.rxjs, global.rxjs.operators, global.ng.material.dialog, global.ng.common, global.ng.forms, global.kendoAngularInputs, global.kendoAngularButtons, global.kendoAngularDropdowns, global.ng.material));
-}(this, (function (exports, core, http, router, lodash, rxjs, operators, dialog, common, forms, kendoAngularInputs, kendoAngularButtons, kendoAngularDropdowns, material) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common/http'), require('@angular/router'), require('lodash'), require('rxjs'), require('rxjs/operators'), require('@angular/material/dialog'), require('@angular/common'), require('@angular/forms'), require('@progress/kendo-angular-inputs'), require('@progress/kendo-angular-buttons'), require('@progress/kendo-angular-dropdowns'), require('@angular/material/form-field'), require('@angular/material/input')) :
+    typeof define === 'function' && define.amd ? define('@tb/auth', ['exports', '@angular/core', '@angular/common/http', '@angular/router', 'lodash', 'rxjs', 'rxjs/operators', '@angular/material/dialog', '@angular/common', '@angular/forms', '@progress/kendo-angular-inputs', '@progress/kendo-angular-buttons', '@progress/kendo-angular-dropdowns', '@angular/material/form-field', '@angular/material/input'], factory) :
+    (global = global || self, factory((global.tb = global.tb || {}, global.tb.auth = {}), global.ng.core, global.ng.common.http, global.ng.router, global.lodash, global.rxjs, global.rxjs.operators, global.ng.material.dialog, global.ng.common, global.ng.forms, global.kendoAngularInputs, global.kendoAngularButtons, global.kendoAngularDropdowns, global.ng.material['form-field'], global.ng.material.input));
+}(this, (function (exports, core, http, router, lodash, rxjs, operators, dialog, common, forms, kendoAngularInputs, kendoAngularButtons, kendoAngularDropdowns, formField, input) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -2367,12 +2367,12 @@
             { type: core.NgModule, args: [{
                         imports: [
                             dialog.MatDialogModule,
-                            material.MatFormFieldModule, material.MatInputModule, material.MatFormFieldModule,
+                            formField.MatFormFieldModule, input.MatInputModule, formField.MatFormFieldModule,
                         ],
                         exports: [
                             dialog.MatDialogModule,
-                            material.MatFormFieldModule
-                            //MatDividerModule,
+                            formField.MatFormFieldModule
+                            // MatDividerModule,
                             // MatAutocompleteModule,
                             // MatButtonModule,
                             // MatButtonToggleModule,
@@ -2439,13 +2439,14 @@
             { type: core.NgModule, args: [{
                         declarations: [TbLoginComponent, TbLogoffComponent, ForgotPasswordComponent, ChangePasswordDialogComponent],
                         entryComponents: [ForgotPasswordComponent, ChangePasswordDialogComponent],
-                        imports: [common.CommonModule, forms.FormsModule, kendoAngularInputs.InputsModule, kendoAngularButtons.ButtonsModule, kendoAngularDropdowns.DropDownsModule, router.RouterModule.forRoot(routes), AppMaterialModule, dialog.MatDialogModule, material.MatInputModule, material.MatFormFieldModule],
+                        imports: [common.CommonModule, forms.FormsModule, kendoAngularInputs.InputsModule, kendoAngularButtons.ButtonsModule, kendoAngularDropdowns.DropDownsModule, router.RouterModule.forRoot(routes), AppMaterialModule, dialog.MatDialogModule, input.MatInputModule, formField.MatFormFieldModule],
                         exports: [TbLoginComponent, TbLogoffComponent, router.RouterModule, AppMaterialModule]
                     },] }
         ];
         return TbAuthModule;
     }());
 
+    exports.AppMaterialModule = AppMaterialModule;
     exports.ChangePasswordInfo = ChangePasswordInfo;
     exports.IsValidTokenRequest = IsValidTokenRequest;
     exports.LoginRequest = LoginRequest;
@@ -2461,7 +2462,6 @@
     exports.authService = authService;
     exports.ɵa = ForgotPasswordComponent;
     exports.ɵb = ChangePasswordDialogComponent;
-    exports.ɵc = AppMaterialModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

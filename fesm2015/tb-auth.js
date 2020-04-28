@@ -11,7 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 /**
  * @fileoverview added by tsickle
@@ -1872,7 +1873,7 @@ AppMaterialModule.decorators = [
                 exports: [
                     MatDialogModule,
                     MatFormFieldModule
-                    //MatDividerModule,
+                    // MatDividerModule,
                     // MatAutocompleteModule,
                     // MatButtonModule,
                     // MatButtonToggleModule,
@@ -1950,5 +1951,5 @@ TbAuthModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ChangePasswordInfo, IsValidTokenRequest, LoginRequest, LogoffRequest, OperationResult, StorageVars, TbAuthGuard, TbAuthInterceptor, TbAuthModule, TbAuthService, TbLoginComponent, TbLogoffComponent, authService, ForgotPasswordComponent as ɵa, ChangePasswordDialogComponent as ɵb, AppMaterialModule as ɵc };
+export { AppMaterialModule, ChangePasswordInfo, IsValidTokenRequest, LoginRequest, LogoffRequest, OperationResult, StorageVars, TbAuthGuard, TbAuthInterceptor, TbAuthModule, TbAuthService, TbLoginComponent, TbLogoffComponent, authService, ForgotPasswordComponent as ɵa, ChangePasswordDialogComponent as ɵb };
 //# sourceMappingURL=tb-auth.js.map
