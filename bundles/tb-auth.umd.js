@@ -1498,9 +1498,7 @@
                 var _this = this;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0:
-                            // console.log('ActivatedRouteSnapshot', next, state.url);
-                            return [4 /*yield*/, this.authService.checkConnection()];
+                        case 0: return [4 /*yield*/, this.authService.checkConnection()];
                         case 1:
                             connection = _a.sent();
                             if (!connection) {
@@ -1539,7 +1537,8 @@
                             }
                             if (loginResponse.Result) {
                                 this.authService.errorMessage = '';
-                                this.router.navigate([this.authService.getRedirectUrl()]);
+                                this.router.navigate([state.url], { queryParams: { jwt: null, subKey: null }, queryParamsHandling: 'merge' });
+                                //this.router.navigate([this.authService.getRedirectUrl()]);
                                 return [2 /*return*/, true];
                             }
                             _a.label = 3;
@@ -1572,7 +1571,7 @@
         };
         TbAuthGuard.decorators = [
             { type: core.Injectable, args: [{
-                        providedIn: 'root'
+                        providedIn: 'root',
                     },] }
         ];
         /** @nocollapse */
