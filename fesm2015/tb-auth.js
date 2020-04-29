@@ -1165,6 +1165,8 @@ class TbAuthGuard {
             const subKey = next.queryParams.hasOwnProperty('subKey') ? next.queryParams.subKey : null;
             /** @type {?} */
             const ns = next.queryParams.hasOwnProperty('ns') ? next.queryParams.ns : null;
+            /** @type {?} */
+            const args = next.queryParams.hasOwnProperty('args') ? next.queryParams.args : null;
             if (jwt && subKey) {
                 /** @type {?} */
                 const loginRequest = new LoginRequest();
@@ -1193,7 +1195,7 @@ class TbAuthGuard {
                     const url = ns ? 'document' : this.authService.getRedirectUrl();
                     this.router.navigate([url], {
                         replaceUrl: true,
-                        queryParams: { jwt: null, subKey: null, ns: ns },
+                        queryParams: { jwt: null, subKey: null, ns: ns, args: args },
                         queryParamsHandling: 'merge',
                     });
                     //this.router.navigate([this.authService.getRedirectUrl()]);

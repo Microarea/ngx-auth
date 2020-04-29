@@ -1307,7 +1307,7 @@ var TbAuthGuard = /** @class */ (function () {
      */
     function (next, state) {
         return __awaiter(this, void 0, void 0, function () {
-            var connection, jwt, subKey, ns, loginRequest, loginResponse, url, authtoken, res;
+            var connection, jwt, subKey, ns, args, loginRequest, loginResponse, url, authtoken, res;
             var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -1329,6 +1329,7 @@ var TbAuthGuard = /** @class */ (function () {
                         jwt = next.queryParams.hasOwnProperty('jwt') ? next.queryParams.jwt : null;
                         subKey = next.queryParams.hasOwnProperty('subKey') ? next.queryParams.subKey : null;
                         ns = next.queryParams.hasOwnProperty('ns') ? next.queryParams.ns : null;
+                        args = next.queryParams.hasOwnProperty('args') ? next.queryParams.args : null;
                         if (!(jwt && subKey)) return [3 /*break*/, 3];
                         loginRequest = new LoginRequest();
                         loginRequest.token = jwt;
@@ -1356,7 +1357,7 @@ var TbAuthGuard = /** @class */ (function () {
                             url = ns ? 'document' : this.authService.getRedirectUrl();
                             this.router.navigate([url], {
                                 replaceUrl: true,
-                                queryParams: { jwt: null, subKey: null, ns: ns },
+                                queryParams: { jwt: null, subKey: null, ns: ns, args: args },
                                 queryParamsHandling: 'merge',
                             });
                             //this.router.navigate([this.authService.getRedirectUrl()]);
