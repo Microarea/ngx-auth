@@ -1163,6 +1163,8 @@ class TbAuthGuard {
             const jwt = next.queryParams.hasOwnProperty('jwt') ? next.queryParams.jwt : null;
             /** @type {?} */
             const subKey = next.queryParams.hasOwnProperty('subKey') ? next.queryParams.subKey : null;
+            /** @type {?} */
+            const ns = next.queryParams.hasOwnProperty('ns') ? next.queryParams.ns : null;
             if (jwt && subKey) {
                 /** @type {?} */
                 const loginRequest = new LoginRequest();
@@ -1185,7 +1187,15 @@ class TbAuthGuard {
                 }
                 if (loginResponse.Result) {
                     this.authService.errorMessage = '';
-                    this.router.navigate([state.url], { queryParams: { jwt: null, subKey: null }, queryParamsHandling: 'merge' });
+                    //questa parte è da refactorizzare,  per apertura documenti da infinity urgentissima
+                    //in futuro ci sarà l'url originale della richiesta
+                    /** @type {?} */
+                    const url = ns ? 'document' : this.authService.getRedirectUrl();
+                    this.router.navigate([url], {
+                        replaceUrl: true,
+                        queryParams: { jwt: null, subKey: null, ns: ns },
+                        queryParamsHandling: 'merge',
+                    });
                     //this.router.navigate([this.authService.getRedirectUrl()]);
                     return true;
                 }
