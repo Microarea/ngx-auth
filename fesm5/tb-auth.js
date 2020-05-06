@@ -77,9 +77,9 @@ function ChangePasswordDialogComponent_div_9_Template(rf, ctx) { if (rf & 1) {
     ɵɵtext(2);
     ɵɵelementEnd();
 } if (rf & 2) {
-    var ctx_r25 = ɵɵnextContext();
+    var ctx_r322 = ɵɵnextContext();
     ɵɵadvance(2);
-    ɵɵtextInterpolate1("", ctx_r25.error, " ");
+    ɵɵtextInterpolate1("", ctx_r322.error, " ");
 } }
 var ChangePasswordDialogComponent = /** @class */ (function () {
     function ChangePasswordDialogComponent(mdDialogRef, data) {
@@ -666,7 +666,7 @@ var TbAuthGuard = /** @class */ (function () {
     }
     TbAuthGuard.prototype.canActivate = function (next, state) {
         return __awaiter(this, void 0, void 0, function () {
-            var connection, jwt, subKey, loginRequest, loginResponse, authtoken, res;
+            var connection, jwt, subKey, ns, args, loginRequest, loginResponse, url, authtoken, res;
             var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -687,6 +687,8 @@ var TbAuthGuard = /** @class */ (function () {
                         }
                         jwt = next.queryParams.hasOwnProperty('jwt') ? next.queryParams.jwt : null;
                         subKey = next.queryParams.hasOwnProperty('subKey') ? next.queryParams.subKey : null;
+                        ns = next.queryParams.hasOwnProperty('ns') ? next.queryParams.ns : null;
+                        args = next.queryParams.hasOwnProperty('args') ? next.queryParams.args : null;
                         if (!(jwt && subKey)) return [3 /*break*/, 3];
                         loginRequest = new LoginRequest();
                         loginRequest.token = jwt;
@@ -705,7 +707,13 @@ var TbAuthGuard = /** @class */ (function () {
                         }
                         if (loginResponse.Result) {
                             this.authService.errorMessage = '';
-                            this.router.navigate([this.authService.getRedirectUrl()]);
+                            url = ns ? 'document' : this.authService.getRedirectUrl();
+                            this.router.navigate([url], {
+                                replaceUrl: true,
+                                queryParams: { jwt: null, subKey: null, ns: ns, args: args },
+                                queryParamsHandling: 'merge',
+                            });
+                            //this.router.navigate([this.authService.getRedirectUrl()]);
                             return [2 /*return*/, true];
                         }
                         _a.label = 3;
@@ -742,7 +750,7 @@ var TbAuthGuard = /** @class */ (function () {
 /*@__PURE__*/ (function () { ɵsetClassMetadata(TbAuthGuard, [{
         type: Injectable,
         args: [{
-                providedIn: 'root'
+                providedIn: 'root',
             }]
     }], function () { return [{ type: TbAuthService }, { type: Router }, { type: undefined, decorators: [{
                 type: Inject,
@@ -853,50 +861,50 @@ var ForgotPasswordComponent = /** @class */ (function () {
             }] }]; }, null); })();
 
 function TbLoginComponent_div_8_Template(rf, ctx) { if (rf & 1) {
-    var _r37 = ɵɵgetCurrentView();
+    var _r334 = ɵɵgetCurrentView();
     ɵɵelementStart(0, "div", 18);
     ɵɵelementStart(1, "kendo-textbox-container", 19);
     ɵɵelementStart(2, "input", 20);
-    ɵɵlistener("ngModelChange", function TbLoginComponent_div_8_Template_input_ngModelChange_2_listener($event) { ɵɵrestoreView(_r37); var ctx_r36 = ɵɵnextContext(); return ctx_r36.loginRequest.accountName = $event; })("keyup", function TbLoginComponent_div_8_Template_input_keyup_2_listener($event) { ɵɵrestoreView(_r37); var ctx_r38 = ɵɵnextContext(); return ctx_r38.keyUpFunction($event); });
+    ɵɵlistener("ngModelChange", function TbLoginComponent_div_8_Template_input_ngModelChange_2_listener($event) { ɵɵrestoreView(_r334); var ctx_r333 = ɵɵnextContext(); return ctx_r333.loginRequest.accountName = $event; })("keyup", function TbLoginComponent_div_8_Template_input_keyup_2_listener($event) { ɵɵrestoreView(_r334); var ctx_r335 = ɵɵnextContext(); return ctx_r335.keyUpFunction($event); });
     ɵɵelementEnd();
     ɵɵelementEnd();
     ɵɵelementEnd();
 } if (rf & 2) {
-    var ctx_r26 = ɵɵnextContext();
+    var ctx_r323 = ɵɵnextContext();
     ɵɵadvance(2);
-    ɵɵproperty("ngModel", ctx_r26.loginRequest.accountName);
+    ɵɵproperty("ngModel", ctx_r323.loginRequest.accountName);
 } }
 function TbLoginComponent_div_9_Template(rf, ctx) { if (rf & 1) {
-    var _r40 = ɵɵgetCurrentView();
+    var _r337 = ɵɵgetCurrentView();
     ɵɵelementStart(0, "div", 18);
     ɵɵelementStart(1, "kendo-textbox-container", 21);
     ɵɵelementStart(2, "input", 22);
-    ɵɵlistener("ngModelChange", function TbLoginComponent_div_9_Template_input_ngModelChange_2_listener($event) { ɵɵrestoreView(_r40); var ctx_r39 = ɵɵnextContext(); return ctx_r39.loginRequest.password = $event; })("keyup", function TbLoginComponent_div_9_Template_input_keyup_2_listener($event) { ɵɵrestoreView(_r40); var ctx_r41 = ɵɵnextContext(); return ctx_r41.keyUpFunction($event); });
+    ɵɵlistener("ngModelChange", function TbLoginComponent_div_9_Template_input_ngModelChange_2_listener($event) { ɵɵrestoreView(_r337); var ctx_r336 = ɵɵnextContext(); return ctx_r336.loginRequest.password = $event; })("keyup", function TbLoginComponent_div_9_Template_input_keyup_2_listener($event) { ɵɵrestoreView(_r337); var ctx_r338 = ɵɵnextContext(); return ctx_r338.keyUpFunction($event); });
     ɵɵelementEnd();
     ɵɵelementEnd();
     ɵɵelementStart(3, "p", 23);
-    ɵɵlistener("click", function TbLoginComponent_div_9_Template_p_click_3_listener() { ɵɵrestoreView(_r40); var ctx_r42 = ɵɵnextContext(); return ctx_r42.forgotpassword(); });
+    ɵɵlistener("click", function TbLoginComponent_div_9_Template_p_click_3_listener() { ɵɵrestoreView(_r337); var ctx_r339 = ɵɵnextContext(); return ctx_r339.forgotpassword(); });
     ɵɵtext(4, "Forgot password?");
     ɵɵelementEnd();
     ɵɵelementEnd();
 } if (rf & 2) {
-    var ctx_r27 = ɵɵnextContext();
+    var ctx_r324 = ɵɵnextContext();
     ɵɵadvance(2);
-    ɵɵproperty("ngModel", ctx_r27.loginRequest.password);
+    ɵɵproperty("ngModel", ctx_r324.loginRequest.password);
 } }
 function TbLoginComponent_div_10_Template(rf, ctx) { if (rf & 1) {
-    var _r44 = ɵɵgetCurrentView();
+    var _r341 = ɵɵgetCurrentView();
     ɵɵelementStart(0, "div", 24);
     ɵɵelementStart(1, "kendo-textbox-container", 25);
     ɵɵelementStart(2, "kendo-dropdownlist", 26);
-    ɵɵlistener("ngModelChange", function TbLoginComponent_div_10_Template_kendo_dropdownlist_ngModelChange_2_listener($event) { ɵɵrestoreView(_r44); var ctx_r43 = ɵɵnextContext(); return ctx_r43.loginRequest.subscriptionKey = $event; });
+    ɵɵlistener("ngModelChange", function TbLoginComponent_div_10_Template_kendo_dropdownlist_ngModelChange_2_listener($event) { ɵɵrestoreView(_r341); var ctx_r340 = ɵɵnextContext(); return ctx_r340.loginRequest.subscriptionKey = $event; });
     ɵɵelementEnd();
     ɵɵelementEnd();
     ɵɵelementEnd();
 } if (rf & 2) {
-    var ctx_r28 = ɵɵnextContext();
+    var ctx_r325 = ɵɵnextContext();
     ɵɵadvance(2);
-    ɵɵproperty("disabled", (ctx_r28.loginSubscriptions == null ? null : ctx_r28.loginSubscriptions.length) <= 1)("data", ctx_r28.loginSubscriptions)("ngModel", ctx_r28.loginRequest.subscriptionKey);
+    ɵɵproperty("disabled", (ctx_r325.loginSubscriptions == null ? null : ctx_r325.loginSubscriptions.length) <= 1)("data", ctx_r325.loginSubscriptions)("ngModel", ctx_r325.loginRequest.subscriptionKey);
 } }
 function TbLoginComponent_div_12_Template(rf, ctx) { if (rf & 1) {
     ɵɵelementStart(0, "div", 27);
@@ -910,9 +918,9 @@ function TbLoginComponent_div_13_Template(rf, ctx) { if (rf & 1) {
     ɵɵtext(2);
     ɵɵelementEnd();
 } if (rf & 2) {
-    var ctx_r30 = ɵɵnextContext();
+    var ctx_r327 = ɵɵnextContext();
     ɵɵadvance(2);
-    ɵɵtextInterpolate1("", ctx_r30.authService.errorMessage, " ");
+    ɵɵtextInterpolate1("", ctx_r327.authService.errorMessage, " ");
 } }
 function TbLoginComponent_div_14_Template(rf, ctx) { if (rf & 1) {
     ɵɵelementStart(0, "div", 30);
@@ -920,15 +928,15 @@ function TbLoginComponent_div_14_Template(rf, ctx) { if (rf & 1) {
     ɵɵtext(2);
     ɵɵelementEnd();
 } if (rf & 2) {
-    var ctx_r31 = ɵɵnextContext();
+    var ctx_r328 = ɵɵnextContext();
     ɵɵadvance(2);
-    ɵɵtextInterpolate1("", ctx_r31.authService.okMessage, " ");
+    ɵɵtextInterpolate1("", ctx_r328.authService.okMessage, " ");
 } }
 function TbLoginComponent_div_16_Template(rf, ctx) { if (rf & 1) {
-    var _r46 = ɵɵgetCurrentView();
+    var _r343 = ɵɵgetCurrentView();
     ɵɵelementStart(0, "div");
     ɵɵelementStart(1, "p", 31);
-    ɵɵlistener("click", function TbLoginComponent_div_16_Template_p_click_1_listener() { ɵɵrestoreView(_r46); var ctx_r45 = ɵɵnextContext(); return ctx_r45.newUser(); });
+    ɵɵlistener("click", function TbLoginComponent_div_16_Template_p_click_1_listener() { ɵɵrestoreView(_r343); var ctx_r342 = ɵɵnextContext(); return ctx_r342.newUser(); });
     ɵɵtext(2, "SignUp here!");
     ɵɵelementEnd();
     ɵɵelementEnd();
@@ -939,15 +947,15 @@ function TbLoginComponent_button_18_span_1_Template(rf, ctx) { if (rf & 1) {
     ɵɵelementEnd();
 } }
 function TbLoginComponent_button_18_Template(rf, ctx) { if (rf & 1) {
-    var _r49 = ɵɵgetCurrentView();
+    var _r346 = ɵɵgetCurrentView();
     ɵɵelementStart(0, "button", 32);
-    ɵɵlistener("click", function TbLoginComponent_button_18_Template_button_click_0_listener() { ɵɵrestoreView(_r49); var ctx_r48 = ɵɵnextContext(); return ctx_r48.back(); });
+    ɵɵlistener("click", function TbLoginComponent_button_18_Template_button_click_0_listener() { ɵɵrestoreView(_r346); var ctx_r345 = ɵɵnextContext(); return ctx_r345.back(); });
     ɵɵtemplate(1, TbLoginComponent_button_18_span_1_Template, 2, 0, "span", 12);
     ɵɵelementEnd();
 } if (rf & 2) {
-    var ctx_r33 = ɵɵnextContext();
+    var ctx_r330 = ɵɵnextContext();
     ɵɵadvance(1);
-    ɵɵproperty("ngIf", !ctx_r33.loading && ctx_r33.validate);
+    ɵɵproperty("ngIf", !ctx_r330.loading && ctx_r330.validate);
 } }
 function TbLoginComponent_span_21_Template(rf, ctx) { if (rf & 1) {
     ɵɵelement(0, "span", 33);
@@ -957,9 +965,9 @@ function TbLoginComponent_span_22_Template(rf, ctx) { if (rf & 1) {
     ɵɵtext(1);
     ɵɵelementEnd();
 } if (rf & 2) {
-    var ctx_r35 = ɵɵnextContext();
+    var ctx_r332 = ɵɵnextContext();
     ɵɵadvance(1);
-    ɵɵtextInterpolate(ctx_r35.buttonText);
+    ɵɵtextInterpolate(ctx_r332.buttonText);
 } }
 var TbLoginComponent = /** @class */ (function () {
     //---------------------------------------------------------------------------
