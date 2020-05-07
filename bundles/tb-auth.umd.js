@@ -281,9 +281,9 @@
         core["ɵɵtext"](2);
         core["ɵɵelementEnd"]();
     } if (rf & 2) {
-        var ctx_r322 = core["ɵɵnextContext"]();
+        var ctx_r25 = core["ɵɵnextContext"]();
         core["ɵɵadvance"](2);
-        core["ɵɵtextInterpolate1"]("", ctx_r322.error, " ");
+        core["ɵɵtextInterpolate1"]("", ctx_r25.error, " ");
     } }
     var ChangePasswordDialogComponent = /** @class */ (function () {
         function ChangePasswordDialogComponent(mdDialogRef, data) {
@@ -1065,50 +1065,50 @@
                 }] }]; }, null); })();
 
     function TbLoginComponent_div_8_Template(rf, ctx) { if (rf & 1) {
-        var _r334 = core["ɵɵgetCurrentView"]();
+        var _r37 = core["ɵɵgetCurrentView"]();
         core["ɵɵelementStart"](0, "div", 18);
         core["ɵɵelementStart"](1, "kendo-textbox-container", 19);
         core["ɵɵelementStart"](2, "input", 20);
-        core["ɵɵlistener"]("ngModelChange", function TbLoginComponent_div_8_Template_input_ngModelChange_2_listener($event) { core["ɵɵrestoreView"](_r334); var ctx_r333 = core["ɵɵnextContext"](); return ctx_r333.loginRequest.accountName = $event; })("keyup", function TbLoginComponent_div_8_Template_input_keyup_2_listener($event) { core["ɵɵrestoreView"](_r334); var ctx_r335 = core["ɵɵnextContext"](); return ctx_r335.keyUpFunction($event); });
+        core["ɵɵlistener"]("ngModelChange", function TbLoginComponent_div_8_Template_input_ngModelChange_2_listener($event) { core["ɵɵrestoreView"](_r37); var ctx_r36 = core["ɵɵnextContext"](); return ctx_r36.loginRequest.accountName = $event; })("keyup", function TbLoginComponent_div_8_Template_input_keyup_2_listener($event) { core["ɵɵrestoreView"](_r37); var ctx_r38 = core["ɵɵnextContext"](); return ctx_r38.keyUpFunction($event); });
         core["ɵɵelementEnd"]();
         core["ɵɵelementEnd"]();
         core["ɵɵelementEnd"]();
     } if (rf & 2) {
-        var ctx_r323 = core["ɵɵnextContext"]();
+        var ctx_r26 = core["ɵɵnextContext"]();
         core["ɵɵadvance"](2);
-        core["ɵɵproperty"]("ngModel", ctx_r323.loginRequest.accountName);
+        core["ɵɵproperty"]("ngModel", ctx_r26.loginRequest.accountName);
     } }
     function TbLoginComponent_div_9_Template(rf, ctx) { if (rf & 1) {
-        var _r337 = core["ɵɵgetCurrentView"]();
+        var _r40 = core["ɵɵgetCurrentView"]();
         core["ɵɵelementStart"](0, "div", 18);
         core["ɵɵelementStart"](1, "kendo-textbox-container", 21);
         core["ɵɵelementStart"](2, "input", 22);
-        core["ɵɵlistener"]("ngModelChange", function TbLoginComponent_div_9_Template_input_ngModelChange_2_listener($event) { core["ɵɵrestoreView"](_r337); var ctx_r336 = core["ɵɵnextContext"](); return ctx_r336.loginRequest.password = $event; })("keyup", function TbLoginComponent_div_9_Template_input_keyup_2_listener($event) { core["ɵɵrestoreView"](_r337); var ctx_r338 = core["ɵɵnextContext"](); return ctx_r338.keyUpFunction($event); });
+        core["ɵɵlistener"]("ngModelChange", function TbLoginComponent_div_9_Template_input_ngModelChange_2_listener($event) { core["ɵɵrestoreView"](_r40); var ctx_r39 = core["ɵɵnextContext"](); return ctx_r39.loginRequest.password = $event; })("keyup", function TbLoginComponent_div_9_Template_input_keyup_2_listener($event) { core["ɵɵrestoreView"](_r40); var ctx_r41 = core["ɵɵnextContext"](); return ctx_r41.keyUpFunction($event); });
         core["ɵɵelementEnd"]();
         core["ɵɵelementEnd"]();
         core["ɵɵelementStart"](3, "p", 23);
-        core["ɵɵlistener"]("click", function TbLoginComponent_div_9_Template_p_click_3_listener() { core["ɵɵrestoreView"](_r337); var ctx_r339 = core["ɵɵnextContext"](); return ctx_r339.forgotpassword(); });
+        core["ɵɵlistener"]("click", function TbLoginComponent_div_9_Template_p_click_3_listener() { core["ɵɵrestoreView"](_r40); var ctx_r42 = core["ɵɵnextContext"](); return ctx_r42.forgotpassword(); });
         core["ɵɵtext"](4, "Forgot password?");
         core["ɵɵelementEnd"]();
         core["ɵɵelementEnd"]();
     } if (rf & 2) {
-        var ctx_r324 = core["ɵɵnextContext"]();
+        var ctx_r27 = core["ɵɵnextContext"]();
         core["ɵɵadvance"](2);
-        core["ɵɵproperty"]("ngModel", ctx_r324.loginRequest.password);
+        core["ɵɵproperty"]("ngModel", ctx_r27.loginRequest.password);
     } }
     function TbLoginComponent_div_10_Template(rf, ctx) { if (rf & 1) {
-        var _r341 = core["ɵɵgetCurrentView"]();
+        var _r44 = core["ɵɵgetCurrentView"]();
         core["ɵɵelementStart"](0, "div", 24);
         core["ɵɵelementStart"](1, "kendo-textbox-container", 25);
         core["ɵɵelementStart"](2, "kendo-dropdownlist", 26);
-        core["ɵɵlistener"]("ngModelChange", function TbLoginComponent_div_10_Template_kendo_dropdownlist_ngModelChange_2_listener($event) { core["ɵɵrestoreView"](_r341); var ctx_r340 = core["ɵɵnextContext"](); return ctx_r340.loginRequest.subscriptionKey = $event; });
+        core["ɵɵlistener"]("ngModelChange", function TbLoginComponent_div_10_Template_kendo_dropdownlist_ngModelChange_2_listener($event) { core["ɵɵrestoreView"](_r44); var ctx_r43 = core["ɵɵnextContext"](); return ctx_r43.loginRequest.subscriptionKey = $event; });
         core["ɵɵelementEnd"]();
         core["ɵɵelementEnd"]();
         core["ɵɵelementEnd"]();
     } if (rf & 2) {
-        var ctx_r325 = core["ɵɵnextContext"]();
+        var ctx_r28 = core["ɵɵnextContext"]();
         core["ɵɵadvance"](2);
-        core["ɵɵproperty"]("disabled", (ctx_r325.loginSubscriptions == null ? null : ctx_r325.loginSubscriptions.length) <= 1)("data", ctx_r325.loginSubscriptions)("ngModel", ctx_r325.loginRequest.subscriptionKey);
+        core["ɵɵproperty"]("disabled", (ctx_r28.loginSubscriptions == null ? null : ctx_r28.loginSubscriptions.length) <= 1)("data", ctx_r28.loginSubscriptions)("ngModel", ctx_r28.loginRequest.subscriptionKey);
     } }
     function TbLoginComponent_div_12_Template(rf, ctx) { if (rf & 1) {
         core["ɵɵelementStart"](0, "div", 27);
@@ -1122,9 +1122,9 @@
         core["ɵɵtext"](2);
         core["ɵɵelementEnd"]();
     } if (rf & 2) {
-        var ctx_r327 = core["ɵɵnextContext"]();
+        var ctx_r30 = core["ɵɵnextContext"]();
         core["ɵɵadvance"](2);
-        core["ɵɵtextInterpolate1"]("", ctx_r327.authService.errorMessage, " ");
+        core["ɵɵtextInterpolate1"]("", ctx_r30.authService.errorMessage, " ");
     } }
     function TbLoginComponent_div_14_Template(rf, ctx) { if (rf & 1) {
         core["ɵɵelementStart"](0, "div", 30);
@@ -1132,15 +1132,15 @@
         core["ɵɵtext"](2);
         core["ɵɵelementEnd"]();
     } if (rf & 2) {
-        var ctx_r328 = core["ɵɵnextContext"]();
+        var ctx_r31 = core["ɵɵnextContext"]();
         core["ɵɵadvance"](2);
-        core["ɵɵtextInterpolate1"]("", ctx_r328.authService.okMessage, " ");
+        core["ɵɵtextInterpolate1"]("", ctx_r31.authService.okMessage, " ");
     } }
     function TbLoginComponent_div_16_Template(rf, ctx) { if (rf & 1) {
-        var _r343 = core["ɵɵgetCurrentView"]();
+        var _r46 = core["ɵɵgetCurrentView"]();
         core["ɵɵelementStart"](0, "div");
         core["ɵɵelementStart"](1, "p", 31);
-        core["ɵɵlistener"]("click", function TbLoginComponent_div_16_Template_p_click_1_listener() { core["ɵɵrestoreView"](_r343); var ctx_r342 = core["ɵɵnextContext"](); return ctx_r342.newUser(); });
+        core["ɵɵlistener"]("click", function TbLoginComponent_div_16_Template_p_click_1_listener() { core["ɵɵrestoreView"](_r46); var ctx_r45 = core["ɵɵnextContext"](); return ctx_r45.newUser(); });
         core["ɵɵtext"](2, "SignUp here!");
         core["ɵɵelementEnd"]();
         core["ɵɵelementEnd"]();
@@ -1151,15 +1151,15 @@
         core["ɵɵelementEnd"]();
     } }
     function TbLoginComponent_button_18_Template(rf, ctx) { if (rf & 1) {
-        var _r346 = core["ɵɵgetCurrentView"]();
+        var _r49 = core["ɵɵgetCurrentView"]();
         core["ɵɵelementStart"](0, "button", 32);
-        core["ɵɵlistener"]("click", function TbLoginComponent_button_18_Template_button_click_0_listener() { core["ɵɵrestoreView"](_r346); var ctx_r345 = core["ɵɵnextContext"](); return ctx_r345.back(); });
+        core["ɵɵlistener"]("click", function TbLoginComponent_button_18_Template_button_click_0_listener() { core["ɵɵrestoreView"](_r49); var ctx_r48 = core["ɵɵnextContext"](); return ctx_r48.back(); });
         core["ɵɵtemplate"](1, TbLoginComponent_button_18_span_1_Template, 2, 0, "span", 12);
         core["ɵɵelementEnd"]();
     } if (rf & 2) {
-        var ctx_r330 = core["ɵɵnextContext"]();
+        var ctx_r33 = core["ɵɵnextContext"]();
         core["ɵɵadvance"](1);
-        core["ɵɵproperty"]("ngIf", !ctx_r330.loading && ctx_r330.validate);
+        core["ɵɵproperty"]("ngIf", !ctx_r33.loading && ctx_r33.validate);
     } }
     function TbLoginComponent_span_21_Template(rf, ctx) { if (rf & 1) {
         core["ɵɵelement"](0, "span", 33);
@@ -1169,9 +1169,9 @@
         core["ɵɵtext"](1);
         core["ɵɵelementEnd"]();
     } if (rf & 2) {
-        var ctx_r332 = core["ɵɵnextContext"]();
+        var ctx_r35 = core["ɵɵnextContext"]();
         core["ɵɵadvance"](1);
-        core["ɵɵtextInterpolate"](ctx_r332.buttonText);
+        core["ɵɵtextInterpolate"](ctx_r35.buttonText);
     } }
     var TbLoginComponent = /** @class */ (function () {
         //---------------------------------------------------------------------------
@@ -1501,7 +1501,7 @@
             });
         };
         /** @nocollapse */ TbLoginComponent.ɵfac = function TbLoginComponent_Factory(t) { return new (t || TbLoginComponent)(core["ɵɵdirectiveInject"](TbAuthService), core["ɵɵdirectiveInject"](router.Router), core["ɵɵdirectiveInject"](dialog.MatDialog), core["ɵɵdirectiveInject"](common.DOCUMENT)); };
-        /** @nocollapse */ TbLoginComponent.ɵcmp = core["ɵɵdefineComponent"]({ type: TbLoginComponent, selectors: [["tb-login"]], decls: 25, vars: 12, consts: [[1, "login-container"], [1, "login"], [1, "login-header"], [3, "src"], [1, "login-form"], ["class", "tb-form-control", 4, "ngIf"], ["class", "form-control", 4, "ngIf"], [1, "login-infos"], ["class", "caps-lock", 4, "ngIf"], ["class", "login-error", 4, "ngIf"], ["class", "login-info", 4, "ngIf"], [1, "login-footer"], [4, "ngIf"], [1, "login-button-container"], ["kendoButton", "", "class", " login-button ", 3, "click", 4, "ngIf"], ["kendoButton", "", 1, "login-button", 3, "disabled", "click"], ["class", "k-icon k-i-loading ", 4, "ngIf"], [1, "copyright", "copyright-abs"], [1, "tb-form-control"], ["floatingLabel", "Account Name"], ["kendoTextBox", "", "autofocus", "", "name", "accountName", "autocomplete", "off", 3, "ngModel", "ngModelChange", "keyup"], ["floatingLabel", "Password"], ["kendoTextBox", "", "name", "password", "type", "password", "autocomplete", "new-password", 3, "ngModel", "ngModelChange", "keyup"], [1, "forgotpwd", 3, "click"], [1, "form-control"], ["floatingLabel", "Subscription"], ["name", "subscription", "textField", "description", "valueField", "subscriptionkey", "valuePrimitive", "true", 3, "disabled", "data", "ngModel", "ngModelChange"], [1, "caps-lock"], [1, "k-icon", "k-i-warning"], [1, "login-error"], [1, "login-info"], [1, "signup", 3, "click"], ["kendoButton", "", 1, "login-button", 3, "click"], [1, "k-icon", "k-i-loading"]], template: function TbLoginComponent_Template(rf, ctx) { if (rf & 1) {
+        /** @nocollapse */ TbLoginComponent.ɵcmp = core["ɵɵdefineComponent"]({ type: TbLoginComponent, selectors: [["tb-login"]], decls: 25, vars: 12, consts: [[1, "login-container"], [1, "login"], [1, "login-header"], [3, "src"], [1, "login-form"], ["class", "tb-form-control", 4, "ngIf"], ["class", "form-control", 4, "ngIf"], [1, "login-infos"], ["class", "caps-lock", 4, "ngIf"], ["class", "login-error", 4, "ngIf"], ["class", "login-info", 4, "ngIf"], [1, "login-footer"], [4, "ngIf"], [1, "login-button-container"], ["kendoButton", "", "class", " login-button ", 3, "click", 4, "ngIf"], ["kendoButton", "", 1, "login-button", 3, "disabled", "click"], ["class", "k-icon k-i-loading ", 4, "ngIf"], [1, "copyright", "copyright-abs"], [1, "tb-form-control"], ["floatingLabel", "Account Name"], ["kendoTextBox", "", "autofocus", "", "name", "accountName", "autocomplete", "on", 3, "ngModel", "ngModelChange", "keyup"], ["floatingLabel", "Password"], ["kendoTextBox", "", "name", "password", "type", "password", "autocomplete", "current-password", 3, "ngModel", "ngModelChange", "keyup"], [1, "forgotpwd", 3, "click"], [1, "form-control"], ["floatingLabel", "Subscription"], ["name", "subscription", "textField", "description", "valueField", "subscriptionkey", "valuePrimitive", "true", 3, "disabled", "data", "ngModel", "ngModelChange"], [1, "caps-lock"], [1, "k-icon", "k-i-warning"], [1, "login-error"], [1, "login-info"], [1, "signup", 3, "click"], ["kendoButton", "", 1, "login-button", 3, "click"], [1, "k-icon", "k-i-loading"]], template: function TbLoginComponent_Template(rf, ctx) { if (rf & 1) {
                 core["ɵɵelementStart"](0, "div", 0);
                 core["ɵɵelementStart"](1, "div", 1);
                 core["ɵɵelementStart"](2, "div", 2);
