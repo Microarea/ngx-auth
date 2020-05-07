@@ -1,12 +1,5 @@
 /**
- * @fileoverview added by tsickle
- * Generated from: tb-auth.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
  * Generated bundle index. Do not edit.
  */
-export { LoginRequest, ChangePasswordInfo, LogoffRequest, StorageVars, IsValidTokenRequest, OperationResult, authService, TbAuthService, TbAuthGuard, TbAuthInterceptor, TbLoginComponent, TbLogoffComponent, TbAuthModule, AppMaterialModule } from './public-api';
-export { ChangePasswordDialogComponent as ɵb } from './lib/pages/change-password-dialog/change-password-dialog.component';
-export { ForgotPasswordComponent as ɵa } from './lib/pages/forgot-password.component';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGItYXV0aC5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0B0Yi9hdXRoLyIsInNvdXJjZXMiOlsidGItYXV0aC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUlBLHFQQUFjLGNBQWMsQ0FBQztBQUU3QixPQUFPLEVBQUMsNkJBQTZCLElBQUksRUFBRSxFQUFDLE1BQU0scUVBQXFFLENBQUM7QUFDeEgsT0FBTyxFQUFDLHVCQUF1QixJQUFJLEVBQUUsRUFBQyxNQUFNLHVDQUF1QyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBHZW5lcmF0ZWQgYnVuZGxlIGluZGV4LiBEbyBub3QgZWRpdC5cbiAqL1xuXG5leHBvcnQgKiBmcm9tICcuL3B1YmxpYy1hcGknO1xuXG5leHBvcnQge0NoYW5nZVBhc3N3b3JkRGlhbG9nQ29tcG9uZW50IGFzIMm1Yn0gZnJvbSAnLi9saWIvcGFnZXMvY2hhbmdlLXBhc3N3b3JkLWRpYWxvZy9jaGFuZ2UtcGFzc3dvcmQtZGlhbG9nLmNvbXBvbmVudCc7XG5leHBvcnQge0ZvcmdvdFBhc3N3b3JkQ29tcG9uZW50IGFzIMm1YX0gZnJvbSAnLi9saWIvcGFnZXMvZm9yZ290LXBhc3N3b3JkLmNvbXBvbmVudCc7Il19
+export * from './public-api';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGItYXV0aC5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0B0Yi9hdXRoLyIsInNvdXJjZXMiOlsidGItYXV0aC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7R0FFRztBQUVILGNBQWMsY0FBYyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBHZW5lcmF0ZWQgYnVuZGxlIGluZGV4LiBEbyBub3QgZWRpdC5cbiAqL1xuXG5leHBvcnQgKiBmcm9tICcuL3B1YmxpYy1hcGknO1xuIl19
