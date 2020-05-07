@@ -1139,6 +1139,8 @@ class TbAuthGuard {
      */
     canActivate(next, state) {
         return __awaiter(this, void 0, void 0, function* () {
+            // console.log('ActivatedRouteSnapshot', next, state.url);
+            // console.log('ActivatedRouteSnapshot', next, state.url);
             /** @type {?} */
             const connection = yield this.authService.checkConnection();
             if (!connection) {
@@ -1173,7 +1175,7 @@ class TbAuthGuard {
                  * @param {?} err
                  * @return {?}
                  */
-                (err) => {
+                err => {
                     this.authService.errorMessage = err.error && err.error.Message;
                     this.router.navigate(['login']);
                     return;
@@ -1184,8 +1186,7 @@ class TbAuthGuard {
                 }
                 if (loginResponse.Result) {
                     this.authService.errorMessage = '';
-                    this.router.navigate([state.url], { queryParams: { jwt: null, subKey: null }, queryParamsHandling: 'merge' });
-                    //this.router.navigate([this.authService.getRedirectUrl()]);
+                    this.router.navigate([this.authService.getRedirectUrl()]);
                     return true;
                 }
             }
@@ -1219,7 +1220,7 @@ class TbAuthGuard {
 }
 TbAuthGuard.decorators = [
     { type: Injectable, args: [{
-                providedIn: 'root',
+                providedIn: 'root'
             },] }
 ];
 /** @nocollapse */
