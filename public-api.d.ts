@@ -13,4 +13,3 @@ export * from './lib/auth.interceptor';
 export * from './lib/pages/login.component';
 export * from './lib/logoff.component';
 export * from './lib/auth.module';
-export * from './lib/app-material.module';
