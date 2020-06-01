@@ -7,7 +7,7 @@ import { LoginResponse } from './models/login-response';
 import { LogoffResponse } from './models/logoff-response';
 import { OperationResult } from './models/operation-result';
 import { TbAuthEnvironment } from './models/auth-environment';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 export declare const authService: () => TbAuthService;
 export declare class TbAuthService {
     private http;
