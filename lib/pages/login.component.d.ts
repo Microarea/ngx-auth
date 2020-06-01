@@ -15,6 +15,7 @@ export declare class TbLoginComponent implements AfterContentInit {
     loginRequest: LoginRequest;
     redirectUrl: string;
     buttonText: string;
+    currentYear: string;
     createAccountUrl: string;
     changePasswordUrl: string;
     subscriptionSelection: boolean;
