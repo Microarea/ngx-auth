@@ -24,7 +24,7 @@ export declare class TbLoginComponent implements AfterContentInit {
         description: string;
         subscriptionkey: string;
     }>;
-    logoUrl: string;
+    logoURL: string;
     isConnected: boolean;
     document?: Document;
     constructor(authService: TbAuthService, router: Router, dialog: MatDialog, doc?: any);

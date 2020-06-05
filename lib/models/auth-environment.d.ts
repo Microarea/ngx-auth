@@ -11,6 +11,6 @@ export interface TbAuthEnvironment {
         changePasswordUrl: string;
         loginPageUrl: string;
         sessionStorage: boolean;
-        logo: string;
+        logoURL: string;
     };
 }
