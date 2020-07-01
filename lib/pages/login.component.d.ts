@@ -27,6 +27,15 @@ export declare class TbLoginComponent implements AfterContentInit {
     logoURL: string;
     isConnected: boolean;
     document?: Document;
+    chooseSubscription: string;
+    goodJob: string;
+    subscription: string;
+    buttonBack: string;
+    accountName: string;
+    welcome: string;
+    enterCredentials: string;
+    forgetPassword: string;
+    blocMaiusc: string;
     constructor(authService: TbAuthService, router: Router, dialog: MatDialog, doc?: any);
     ngAfterContentInit(): void;
     checkConnection(): Promise<void>;
@@ -40,5 +49,6 @@ export declare class TbLoginComponent implements AfterContentInit {
     getCompaniesForUser(user: string): Promise<void>;
     private requestAndSortSubscriptions;
     private compareCompanies;
-    forgotpassword(): Promise<void>;
+    goToForgotPassword(): void;
+    forgotpassword(Title: string, Message: string, PlaceHolder: string): Promise<void>;
 }
