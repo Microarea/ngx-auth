@@ -11,7 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 /**
  * @fileoverview added by tsickle
@@ -1139,8 +1140,6 @@ class TbAuthGuard {
      */
     canActivate(next, state) {
         return __awaiter(this, void 0, void 0, function* () {
-            // console.log('ActivatedRouteSnapshot', next, state.url);
-            // console.log('ActivatedRouteSnapshot', next, state.url);
             /** @type {?} */
             const connection = yield this.authService.checkConnection();
             if (!connection) {
@@ -1164,6 +1163,10 @@ class TbAuthGuard {
             const jwt = next.queryParams.hasOwnProperty('jwt') ? next.queryParams.jwt : null;
             /** @type {?} */
             const subKey = next.queryParams.hasOwnProperty('subKey') ? next.queryParams.subKey : null;
+            /** @type {?} */
+            const ns = next.queryParams.hasOwnProperty('ns') ? next.queryParams.ns : null;
+            /** @type {?} */
+            const args = next.queryParams.hasOwnProperty('args') ? next.queryParams.args : null;
             if (jwt && subKey) {
                 /** @type {?} */
                 const loginRequest = new LoginRequest();
@@ -1175,7 +1178,7 @@ class TbAuthGuard {
                  * @param {?} err
                  * @return {?}
                  */
-                err => {
+                (err) => {
                     this.authService.errorMessage = err.error && err.error.Message;
                     this.router.navigate(['login']);
                     return;
@@ -1186,7 +1189,16 @@ class TbAuthGuard {
                 }
                 if (loginResponse.Result) {
                     this.authService.errorMessage = '';
-                    this.router.navigate([this.authService.getRedirectUrl()]);
+                    //questa parte è da refactorizzare,  per apertura documenti da infinity urgentissima
+                    //in futuro ci sarà l'url originale della richiesta
+                    /** @type {?} */
+                    const url = ns ? 'document' : this.authService.getRedirectUrl();
+                    this.router.navigate([url], {
+                        replaceUrl: true,
+                        queryParams: { jwt: null, subKey: null, ns: ns, args: args },
+                        queryParamsHandling: 'merge',
+                    });
+                    //this.router.navigate([this.authService.getRedirectUrl()]);
                     return true;
                 }
             }
@@ -1220,7 +1232,7 @@ class TbAuthGuard {
 }
 TbAuthGuard.decorators = [
     { type: Injectable, args: [{
-                providedIn: 'root'
+                providedIn: 'root',
             },] }
 ];
 /** @nocollapse */
@@ -1998,7 +2010,7 @@ AppMaterialModule.decorators = [
                 exports: [
                     MatDialogModule,
                     MatFormFieldModule
-                    //MatDividerModule,
+                    // MatDividerModule,
                     // MatAutocompleteModule,
                     // MatButtonModule,
                     // MatButtonToggleModule,
@@ -2076,5 +2088,5 @@ TbAuthModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ChangePasswordInfo, IsValidTokenRequest, LoginRequest, LogoffRequest, OperationResult, StorageVars, TbAuthGuard, TbAuthInterceptor, TbAuthModule, TbAuthService, TbLoginComponent, TbLogoffComponent, authService, ForgotPasswordComponent as ɵa, ChangePasswordDialogComponent as ɵb, AppMaterialModule as ɵc };
+export { AppMaterialModule, ChangePasswordInfo, IsValidTokenRequest, LoginRequest, LogoffRequest, OperationResult, StorageVars, TbAuthGuard, TbAuthInterceptor, TbAuthModule, TbAuthService, TbLoginComponent, TbLogoffComponent, authService, ForgotPasswordComponent as ɵa, ChangePasswordDialogComponent as ɵb };
 //# sourceMappingURL=tb-auth.js.map
