@@ -11,8 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule, MatInputModule } from '@angular/material';
 
 /**
  * @fileoverview added by tsickle
@@ -936,7 +935,7 @@ var TbAuthService = /** @class */ (function () {
                  * @param {?} i
                  * @return {?}
                  */
-                function (i) { return i.ServiceType === 'M4FRONTEND'; })).map((/**
+                function (i) { return i.ServiceType === 'M4FRONTEND' || i.ServiceType === 'APP_FRONTEND'; })).map((/**
                  * @param {?} f
                  * @return {?}
                  */
@@ -1307,11 +1306,13 @@ var TbAuthGuard = /** @class */ (function () {
      */
     function (next, state) {
         return __awaiter(this, void 0, void 0, function () {
-            var connection, jwt, subKey, ns, args, loginRequest, loginResponse, url, authtoken, res;
+            var connection, jwt, subKey, loginRequest, loginResponse, authtoken, res;
             var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.authService.checkConnection()];
+                    case 0:
+                        // console.log('ActivatedRouteSnapshot', next, state.url);
+                        return [4 /*yield*/, this.authService.checkConnection()];
                     case 1:
                         connection = _a.sent();
                         if (!connection) {
@@ -1328,8 +1329,6 @@ var TbAuthGuard = /** @class */ (function () {
                         }
                         jwt = next.queryParams.hasOwnProperty('jwt') ? next.queryParams.jwt : null;
                         subKey = next.queryParams.hasOwnProperty('subKey') ? next.queryParams.subKey : null;
-                        ns = next.queryParams.hasOwnProperty('ns') ? next.queryParams.ns : null;
-                        args = next.queryParams.hasOwnProperty('args') ? next.queryParams.args : null;
                         if (!(jwt && subKey)) return [3 /*break*/, 3];
                         loginRequest = new LoginRequest();
                         loginRequest.token = jwt;
@@ -1352,15 +1351,7 @@ var TbAuthGuard = /** @class */ (function () {
                         }
                         if (loginResponse.Result) {
                             this.authService.errorMessage = '';
-                            //questa parte è da refactorizzare,  per apertura documenti da infinity urgentissima
-                            //in futuro ci sarà l'url originale della richiesta
-                            url = ns ? 'document' : this.authService.getRedirectUrl();
-                            this.router.navigate([url], {
-                                replaceUrl: true,
-                                queryParams: { jwt: null, subKey: null, ns: ns, args: args },
-                                queryParamsHandling: 'merge',
-                            });
-                            //this.router.navigate([this.authService.getRedirectUrl()]);
+                            this.router.navigate([this.authService.getRedirectUrl()]);
                             return [2 /*return*/, true];
                         }
                         _a.label = 3;
@@ -1393,7 +1384,7 @@ var TbAuthGuard = /** @class */ (function () {
     };
     TbAuthGuard.decorators = [
         { type: Injectable, args: [{
-                    providedIn: 'root',
+                    providedIn: 'root'
                 },] }
     ];
     /** @nocollapse */
@@ -2330,7 +2321,7 @@ var AppMaterialModule = /** @class */ (function () {
                     exports: [
                         MatDialogModule,
                         MatFormFieldModule
-                        // MatDividerModule,
+                        //MatDividerModule,
                         // MatAutocompleteModule,
                         // MatButtonModule,
                         // MatButtonToggleModule,
@@ -2416,5 +2407,5 @@ var TbAuthModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { AppMaterialModule, ChangePasswordInfo, IsValidTokenRequest, LoginRequest, LogoffRequest, OperationResult, StorageVars, TbAuthGuard, TbAuthInterceptor, TbAuthModule, TbAuthService, TbLoginComponent, TbLogoffComponent, authService, ForgotPasswordComponent as ɵa, ChangePasswordDialogComponent as ɵb };
+export { ChangePasswordInfo, IsValidTokenRequest, LoginRequest, LogoffRequest, OperationResult, StorageVars, TbAuthGuard, TbAuthInterceptor, TbAuthModule, TbAuthService, TbLoginComponent, TbLogoffComponent, authService, ForgotPasswordComponent as ɵa, ChangePasswordDialogComponent as ɵb, AppMaterialModule as ɵc };
 //# sourceMappingURL=tb-auth.js.map
