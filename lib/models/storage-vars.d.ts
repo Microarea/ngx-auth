@@ -6,4 +6,5 @@ export declare class StorageVars {
     static ACCOUNT_ROLES: string;
     static SUBSCRIPTION: string;
     static SUBSCRIPTION_DESCRIPTION: string;
+    static USER_GATEWAY_AUTOREDIRECT: string;
 }
