@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common/http'), require('@angular/router'), require('lodash'), require('rxjs'), require('rxjs/operators'), require('@angular/material/dialog'), require('@angular/common'), require('@angular/forms'), require('@progress/kendo-angular-inputs'), require('@progress/kendo-angular-buttons'), require('@progress/kendo-angular-dropdowns'), require('@angular/material')) :
-    typeof define === 'function' && define.amd ? define('@tb/auth', ['exports', '@angular/core', '@angular/common/http', '@angular/router', 'lodash', 'rxjs', 'rxjs/operators', '@angular/material/dialog', '@angular/common', '@angular/forms', '@progress/kendo-angular-inputs', '@progress/kendo-angular-buttons', '@progress/kendo-angular-dropdowns', '@angular/material'], factory) :
-    (global = global || self, factory((global.tb = global.tb || {}, global.tb.auth = {}), global.ng.core, global.ng.common.http, global.ng.router, global.lodash, global.rxjs, global.rxjs.operators, global.ng.material.dialog, global.ng.common, global.ng.forms, global.kendoAngularInputs, global.kendoAngularButtons, global.kendoAngularDropdowns, global.ng.material));
-}(this, (function (exports, core, http, router, lodash, rxjs, operators, dialog, common, forms, kendoAngularInputs, kendoAngularButtons, kendoAngularDropdowns, material) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common/http'), require('@angular/router'), require('lodash'), require('rxjs'), require('rxjs/operators'), require('@angular/material/dialog'), require('@angular/common'), require('@angular/forms'), require('@progress/kendo-angular-inputs'), require('@progress/kendo-angular-buttons'), require('@progress/kendo-angular-dropdowns'), require('@angular/material/form-field'), require('@angular/material/input')) :
+    typeof define === 'function' && define.amd ? define('@tb/auth', ['exports', '@angular/core', '@angular/common/http', '@angular/router', 'lodash', 'rxjs', 'rxjs/operators', '@angular/material/dialog', '@angular/common', '@angular/forms', '@progress/kendo-angular-inputs', '@progress/kendo-angular-buttons', '@progress/kendo-angular-dropdowns', '@angular/material/form-field', '@angular/material/input'], factory) :
+    (global = global || self, factory((global.tb = global.tb || {}, global.tb.auth = {}), global.ng.core, global.ng.common.http, global.ng.router, global.lodash, global.rxjs, global.rxjs.operators, global.ng.material.dialog, global.ng.common, global.ng.forms, global.kendoAngularInputs, global.kendoAngularButtons, global.kendoAngularDropdowns, global.ng.material['form-field'], global.ng.material.input));
+}(this, (function (exports, core, http, router, lodash, rxjs, operators, dialog, common, forms, kendoAngularInputs, kendoAngularButtons, kendoAngularDropdowns, formField, input) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -638,12 +638,12 @@
             });
         };
         /*
-      {
-        type: JWT,
-        appid: M4,
-        securityValue: jwtEncoded
-      }
-    */
+        {
+          type: JWT,
+          appid: M4,
+          securityValue: jwtEncoded
+        }
+      */
         /*
           {
             type: JWT,
@@ -668,7 +668,7 @@
             return JSON.stringify({
                 Type: 'JWT',
                 AppId: 'M4',
-                SecurityValue: this.getToken(),
+                SecurityValue: this.getToken()
             });
         };
         /**
@@ -774,8 +774,8 @@
                             Message: 'Please choose a new password: ',
                             PlaceHolder: 'Password',
                             PlaceHolder2: 'Confirm Password',
-                            NewPwd: '',
-                        },
+                            NewPwd: ''
+                        }
                     });
                     dialogRef.afterClosed().subscribe((/**
                      * @param {?} data
@@ -1075,7 +1075,6 @@
                     _this.clearStorage();
                     _this.loggedOut$.next();
                 }
-                console.log('AuthService: logOffResponse is' + logoffResponse.Result);
                 return logoffResponse;
             })))
                 .toPromise();
@@ -1123,13 +1122,11 @@
                     /** @type {?} */
                     var services = (/** @type {?} */ (res['Services']));
                     /** @type {?} */
-                    var redirectUrl = services
-                        .filter((/**
+                    var redirectUrl = services.filter((/**
                      * @param {?} i
                      * @return {?}
                      */
-                    function (i) { return i.ServiceType === 'M4FRONTEND' || i.ServiceType === 'APP_FRONTEND'; }))
-                        .map((/**
+                    function (i) { return i.ServiceType === 'M4FRONTEND' || i.ServiceType === 'APP_FRONTEND'; })).map((/**
                      * @param {?} f
                      * @return {?}
                      */
@@ -1394,12 +1391,14 @@
                 loginPageUrl: 'login',
                 sessionStorage: false,
                 snapshotServiceUrl: '',
-                logoURL: 'https://magocloud-store-pdf.s3.eu-west-1.amazonaws.com/login-logo.png',
-            },
+                logoURL: 'https://magocloud-store-pdf.s3.eu-west-1.amazonaws.com/login-logo.png'
+                // tslint:disable-next-line: max-line-length
+                //'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATgAAAA2CAYAAABTAoWuAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyVpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQ4IDc5LjE2NDAzNiwgMjAxOS8wOC8xMy0wMTowNjo1NyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIxLjAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RTc0OEJEMDcwNDlBMTFFQTlDNzVDNDRGNkMzQ0EwRDUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RTc0OEJEMDgwNDlBMTFFQTlDNzVDNDRGNkMzQ0EwRDUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFNzQ4QkQwNTA0OUExMUVBOUM3NUM0NEY2QzNDQTBENSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFNzQ4QkQwNjA0OUExMUVBOUM3NUM0NEY2QzNDQTBENSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pl3e4DwAABUASURBVHja7F0J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'
+            }
         };
         TbAuthService.decorators = [
             { type: core.Injectable, args: [{
-                        providedIn: 'root',
+                        providedIn: 'root'
                     },] }
         ];
         /** @nocollapse */
@@ -1499,13 +1498,11 @@
          */
         function (next, state) {
             return __awaiter(this, void 0, void 0, function () {
-                var connection, jwt, subKey, loginRequest, loginResponse, authtoken, res;
+                var connection, jwt, subKey, ns, args, loginRequest, loginResponse, url, authtoken, res;
                 var _this = this;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0:
-                            // console.log('ActivatedRouteSnapshot', next, state.url);
-                            return [4 /*yield*/, this.authService.checkConnection()];
+                        case 0: return [4 /*yield*/, this.authService.checkConnection()];
                         case 1:
                             connection = _a.sent();
                             if (!connection) {
@@ -1522,6 +1519,8 @@
                             }
                             jwt = next.queryParams.hasOwnProperty('jwt') ? next.queryParams.jwt : null;
                             subKey = next.queryParams.hasOwnProperty('subKey') ? next.queryParams.subKey : null;
+                            ns = next.queryParams.hasOwnProperty('ns') ? next.queryParams.ns : null;
+                            args = next.queryParams.hasOwnProperty('args') ? next.queryParams.args : null;
                             if (!(jwt && subKey)) return [3 /*break*/, 3];
                             loginRequest = new LoginRequest();
                             loginRequest.token = jwt;
@@ -1544,7 +1543,15 @@
                             }
                             if (loginResponse.Result) {
                                 this.authService.errorMessage = '';
-                                this.router.navigate([this.authService.getRedirectUrl()]);
+                                //questa parte è da refactorizzare,  per apertura documenti da infinity urgentissima
+                                //in futuro ci sarà l'url originale della richiesta
+                                url = ns ? 'document' : this.authService.getRedirectUrl();
+                                this.router.navigate([url], {
+                                    replaceUrl: true,
+                                    queryParams: { jwt: null, subKey: null, ns: ns, args: args },
+                                    queryParamsHandling: 'merge',
+                                });
+                                //this.router.navigate([this.authService.getRedirectUrl()]);
                                 return [2 /*return*/, true];
                             }
                             _a.label = 3;
@@ -1577,7 +1584,7 @@
         };
         TbAuthGuard.decorators = [
             { type: core.Injectable, args: [{
-                        providedIn: 'root'
+                        providedIn: 'root',
                     },] }
         ];
         /** @nocollapse */
@@ -2509,12 +2516,12 @@
             { type: core.NgModule, args: [{
                         imports: [
                             dialog.MatDialogModule,
-                            material.MatFormFieldModule, material.MatInputModule, material.MatFormFieldModule,
+                            formField.MatFormFieldModule, input.MatInputModule, formField.MatFormFieldModule,
                         ],
                         exports: [
                             dialog.MatDialogModule,
-                            material.MatFormFieldModule
-                            //MatDividerModule,
+                            formField.MatFormFieldModule
+                            // MatDividerModule,
                             // MatAutocompleteModule,
                             // MatButtonModule,
                             // MatButtonToggleModule,
@@ -2581,13 +2588,14 @@
             { type: core.NgModule, args: [{
                         declarations: [TbLoginComponent, TbLogoffComponent, ForgotPasswordComponent, ChangePasswordDialogComponent],
                         entryComponents: [ForgotPasswordComponent, ChangePasswordDialogComponent],
-                        imports: [common.CommonModule, forms.FormsModule, kendoAngularInputs.InputsModule, kendoAngularButtons.ButtonsModule, kendoAngularDropdowns.DropDownsModule, router.RouterModule.forRoot(routes), AppMaterialModule, dialog.MatDialogModule, material.MatInputModule, material.MatFormFieldModule],
+                        imports: [common.CommonModule, forms.FormsModule, kendoAngularInputs.InputsModule, kendoAngularButtons.ButtonsModule, kendoAngularDropdowns.DropDownsModule, router.RouterModule.forRoot(routes), AppMaterialModule, dialog.MatDialogModule, input.MatInputModule, formField.MatFormFieldModule],
                         exports: [TbLoginComponent, TbLogoffComponent, router.RouterModule, AppMaterialModule]
                     },] }
         ];
         return TbAuthModule;
     }());
 
+    exports.AppMaterialModule = AppMaterialModule;
     exports.ChangePasswordInfo = ChangePasswordInfo;
     exports.IsValidTokenRequest = IsValidTokenRequest;
     exports.LoginRequest = LoginRequest;
@@ -2603,7 +2611,6 @@
     exports.authService = authService;
     exports.ɵa = ForgotPasswordComponent;
     exports.ɵb = ChangePasswordDialogComponent;
-    exports.ɵc = AppMaterialModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
