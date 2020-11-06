@@ -2,9 +2,9 @@
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.
 
-## Publishing
+## Development process
 
-This repo cannot be changed by coding. It contains the output of building the ngx-auth-src, to which application can  point to through their package.json.
+This repo cannot be changed by coding. It contains the output of the ngx-auth-src. This files are a runtime artifact that can be used by applications through their package.json.
 For development purposes, use the ngx-auth-src, do your changes and then follow the ngx-auth-src instructions to build a new version of this output.
 
 ## Running unit tests
