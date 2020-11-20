@@ -2,10 +2,19 @@
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.
 
-## Development process
+## Code scaffolding
 
-This repo cannot be changed by coding. It contains the output of the ngx-auth-src. This files are a runtime artifact that can be used by applications through their package.json.
-For development purposes, use the ngx-auth-src, do your changes and then follow the ngx-auth-src instructions to build a new version of this output.
+Run `ng generate component component-name --project auth` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project auth`.
+
+> Note: Don't forget to add `--project auth` or else it will be added to the default project in your `angular.json` file.
+
+## Build
+
+Run `ng build auth` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Publishing
+
+After building your library with `ng build auth`, go to the dist folder `cd dist/auth` and run `npm publish`.
 
 ## Running unit tests
 
