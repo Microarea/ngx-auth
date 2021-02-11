@@ -1,6 +1,5 @@
 /**
  * Generated bundle index. Do not edit.
  */
+/// <amd-module name="@tb/auth" />
 export * from './public-api';
-export { ChangePasswordDialogComponent as ɵb } from './lib/pages/change-password-dialog/change-password-dialog.component';
-export { ForgotPasswordComponent as ɵa } from './lib/pages/forgot-password.component';
