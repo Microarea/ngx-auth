@@ -51,6 +51,7 @@ export declare class TbAuthService {
     getInstancesMapForAccountUrl(): string;
     clearStorage(): void;
     storageSubscriptionData(subscriptionKey: string, subscriptionDescription: string): void;
+    storageQueryParams(subscriptionKey: string, instanceKey: string): void;
     private storageData;
     saveCulture(culture: string, uiCulture: string): void;
     getToken(): string | null;
@@ -59,6 +60,8 @@ export declare class TbAuthService {
     getSubscriptionDescription(): string | null;
     getCulture(): string | null;
     getUICulture(): string | null;
+    getInstanceKey(): string | null;
+    setInstanceKey(instanceKey: string): void;
     getAuthServiceUrl: () => string;
     getRedirectUrl: () => string;
     getCreateAccountUrl: () => string;

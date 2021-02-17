@@ -48,6 +48,7 @@ StorageVars.ACCOUNT_ROLES = 'M4_account_roles';
 StorageVars.SUBSCRIPTION = 'M4_subscription';
 StorageVars.SUBSCRIPTION_DESCRIPTION = 'M4_subscription_desc';
 StorageVars.USER_GATEWAY_AUTOREDIRECT = 'lastLoggedRedirect';
+StorageVars.INSTANCEKEY = 'M4_InstanceKey';
 
 class IsValidTokenRequest {
     constructor(token = '') {
@@ -445,7 +446,7 @@ class TbAuthService {
                 const services = res['Services'];
                 let redirectUrl = services.filter(i => i.ServiceType === 'M4FRONTEND' || i.ServiceType === 'APP_FRONTEND').map(f => f.Url)[0];
                 console.log(`Designated redirect is ${redirectUrl}`);
-                const baseRedirectUrl = `${redirectUrl}?jwt=${this.getToken()}&subKey=${subscriptionKey}`;
+                const baseRedirectUrl = `${redirectUrl}?jwt=${this.getToken()}&subKey=${subscriptionKey}&instanceKey=${currentInstanceKey}`;
                 console.log(`Designated final redirect is ${baseRedirectUrl}`);
                 localStorage.setItem('lastLoggedRedirect', baseRedirectUrl);
                 document.location.href = 'http://' + baseRedirectUrl;
@@ -497,6 +498,15 @@ class TbAuthService {
             localStorage.setItem(StorageVars.SUBSCRIPTION, subscriptionKey);
             localStorage.setItem(StorageVars.SUBSCRIPTION_DESCRIPTION, subscriptionDescription);
         }
+    }
+    storageQueryParams(subscriptionKey, instanceKey) {
+        if (this.env.auth.sessionStorage) {
+            sessionStorage.setItem(StorageVars.SUBSCRIPTION, subscriptionKey);
+        }
+        else {
+            localStorage.setItem(StorageVars.SUBSCRIPTION, subscriptionKey);
+        }
+        this.setInstanceKey(instanceKey);
     }
     storageData(loginResponse) {
         const respCulture = loginResponse.RegionalSettings === undefined || loginResponse.RegionalSettings.length === 0
@@ -576,6 +586,18 @@ class TbAuthService {
         else
             return localStorage.getItem(StorageVars.UI_CULTURE);
     }
+    getInstanceKey() {
+        if (this.env.auth.sessionStorage)
+            return sessionStorage.getItem(StorageVars.INSTANCEKEY);
+        else
+            return localStorage.getItem(StorageVars.INSTANCEKEY);
+    }
+    setInstanceKey(instanceKey) {
+        if (this.env.auth.sessionStorage)
+            sessionStorage.setItem(StorageVars.INSTANCEKEY, instanceKey);
+        else
+            localStorage.getItem(StorageVars.INSTANCEKEY);
+    }
 }
 TbAuthService.DEFAULT_ENV = {
     auth: {
@@ -635,9 +657,13 @@ class TbAuthGuard {
              */
             const jwt = next.queryParams.hasOwnProperty('jwt') ? next.queryParams.jwt : null;
             const subKey = next.queryParams.hasOwnProperty('subKey') ? next.queryParams.subKey : null;
+            const instanceKey = next.queryParams.hasOwnProperty('instanceKey') ? next.queryParams.instanceKey : null;
             const ns = next.queryParams.hasOwnProperty('ns') ? next.queryParams.ns : null;
             const args = next.queryParams.hasOwnProperty('args') ? next.queryParams.args : null;
-            if (jwt && subKey) {
+            //store nel local/sessions storage delle info necessarie allo snapshot 
+            //in questo caso la libreria sta "vivendo" dentro mago, riceve la redirect dello user gateway e popola queste info 
+            this.authService.storageQueryParams(subKey, instanceKey);
+            if (jwt && subKey && instanceKey) {
                 const loginRequest = new LoginRequest();
                 loginRequest.token = jwt;
                 loginRequest.subscriptionKey = subKey;

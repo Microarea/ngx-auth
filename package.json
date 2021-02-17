@@ -1,6 +1,6 @@
 {
   "name": "@tb/auth",
-  "version": "v2.2.0+2",
+  "version": "v2.2.0+4",
   "peerDependencies": {
     "@angular/common": "^9.1.0",
     "@angular/core": "^9.1.0",
