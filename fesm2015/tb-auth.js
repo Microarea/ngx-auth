@@ -662,7 +662,8 @@ class TbAuthGuard {
             const args = next.queryParams.hasOwnProperty('args') ? next.queryParams.args : null;
             //store nel local/sessions storage delle info necessarie allo snapshot 
             //in questo caso la libreria sta "vivendo" dentro mago, riceve la redirect dello user gateway e popola queste info 
-            this.authService.storageQueryParams(subKey, instanceKey);
+            if (subKey && instanceKey)
+                this.authService.storageQueryParams(subKey, instanceKey);
             if (jwt && subKey && instanceKey) {
                 const loginRequest = new LoginRequest();
                 loginRequest.token = jwt;
