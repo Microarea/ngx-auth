@@ -1596,8 +1596,9 @@ var TbLogoffComponent = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.authService.logoff()];
                     case 1:
                         logoff = _a.sent();
-                        if (logoff.Result)
-                            this.router.navigateByUrl('/login');
+                        if (logoff.Result) {
+                            document.location.href = this.authService.getRedirectUrl();
+                        }
                         return [2 /*return*/];
                 }
             });
@@ -1611,7 +1612,7 @@ var TbLogoffComponent = /** @class */ (function () {
         type: Component,
         args: [{
                 selector: 'tb-logoff',
-                template: ''
+                template: '',
             }]
     }], function () { return [{ type: TbAuthService }, { type: Router }]; }, null); })();
 
