@@ -7,5 +7,4 @@ export declare class StorageVars {
     static SUBSCRIPTION: string;
     static SUBSCRIPTION_DESCRIPTION: string;
     static USER_GATEWAY_AUTOREDIRECT: string;
-    static INSTANCEKEY: string;
 }

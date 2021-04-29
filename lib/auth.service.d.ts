@@ -8,7 +8,6 @@ import { LogoffResponse } from './models/logoff-response';
 import { OperationResult } from './models/operation-result';
 import { TbAuthEnvironment } from './models/auth-environment';
 import { MatDialog } from '@angular/material/dialog';
-import * as i0 from "@angular/core";
 export declare const authService: () => TbAuthService;
 export declare class TbAuthService {
     private http;
@@ -19,7 +18,7 @@ export declare class TbAuthService {
     loggedOut$: Subject<unknown>;
     errorMessage: string;
     okMessage: string;
-    get router(): Router;
+    readonly router: Router;
     constructor(env: TbAuthEnvironment, http: HttpClient, injector: Injector, dialog: MatDialog);
     checkConnection(): Promise<boolean>;
     /**
@@ -51,7 +50,6 @@ export declare class TbAuthService {
     getInstancesMapForAccountUrl(): string;
     clearStorage(): void;
     storageSubscriptionData(subscriptionKey: string, subscriptionDescription: string): void;
-    storageQueryParams(subscriptionKey: string, instanceKey: string): void;
     private storageData;
     saveCulture(culture: string, uiCulture: string): void;
     getToken(): string | null;
@@ -60,8 +58,6 @@ export declare class TbAuthService {
     getSubscriptionDescription(): string | null;
     getCulture(): string | null;
     getUICulture(): string | null;
-    getInstanceKey(): string | null;
-    setInstanceKey(instanceKey: string): void;
     getAuthServiceUrl: () => string;
     getRedirectUrl: () => string;
     getCreateAccountUrl: () => string;
@@ -72,6 +68,4 @@ export declare class TbAuthService {
     isSessionStorage: () => boolean;
     getLogoURL: () => string;
     isRedirectExternal: () => boolean;
-    static ɵfac: i0.ɵɵFactoryDef<TbAuthService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<TbAuthService>;
 }
