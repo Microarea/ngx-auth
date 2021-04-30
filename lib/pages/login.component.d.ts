@@ -3,6 +3,7 @@ import { LoginRequest } from '../models/login-request';
 import { AfterContentInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import * as i0 from "@angular/core";
 export declare class TbLoginComponent implements AfterContentInit {
     authService: TbAuthService;
     router: Router;
@@ -36,11 +37,13 @@ export declare class TbLoginComponent implements AfterContentInit {
     enterCredentials: string;
     forgetPassword: string;
     blocMaiusc: string;
+    idleTimeoutMessage: string;
     constructor(authService: TbAuthService, router: Router, dialog: MatDialog, doc?: any);
     ngAfterContentInit(): void;
     checkConnection(): Promise<void>;
     keyUpFunction(event: KeyboardEvent): void;
     disabledButton(): boolean;
+    get isExpiredSession(): boolean;
     newUser(): void;
     back(): Promise<void>;
     login(): Promise<void>;
@@ -51,4 +54,6 @@ export declare class TbLoginComponent implements AfterContentInit {
     private compareCompanies;
     goToForgotPassword(): void;
     forgotpassword(Title: string, Message: string, PlaceHolder: string): Promise<void>;
+    static ɵfac: i0.ɵɵFactoryDef<TbLoginComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<TbLoginComponent, "tb-login", never, {}, {}, never, never>;
 }

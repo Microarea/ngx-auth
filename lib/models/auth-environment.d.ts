@@ -7,6 +7,7 @@ export interface TbAuthEnvironment {
         isRedirectExternal: boolean;
         snapshotServiceUrl: string;
         redirectUrl: string;
+        userGatewayUrl: string;
         createAccountUrl: string;
         changePasswordUrl: string;
         loginPageUrl: string;
