@@ -484,6 +484,16 @@ var TbAuthService = /** @class */ (function () {
         }))
             .toPromise();
     };
+    TbAuthService.prototype.navigateUserGateway = function () {
+        console.log('entering navigateUserGateway..');
+        var userGatewayUrl = this.getUserGatewayUrl();
+        // if usergateway url exists, then redirect to it
+        if (userGatewayUrl !== '') {
+            console.log("Found getUserGatewayUrl " + userGatewayUrl);
+            document.location.href = userGatewayUrl;
+            return;
+        }
+    };
     TbAuthService.prototype.getRedirectUrlForSubscription = function (accountName, subscriptionKey) {
         var _this = this;
         this.getInstancesMapForUser(accountName).subscribe(function (res) {
@@ -1602,11 +1612,7 @@ var TbLogoffComponent = /** @class */ (function () {
                         logoff = _a.sent();
                         if (logoff.Result) {
                             // if usergateway url exists, then redirect to it
-                            if (this.authService.getUserGatewayUrl() !== '') {
-                                console.log("Found getUserGatewayUrl " + this.authService.getUserGatewayUrl());
-                                document.location.href = this.authService.getUserGatewayUrl();
-                                return [2 /*return*/];
-                            }
+                            this.authService.navigateUserGateway();
                             // otherwise, go to local login
                             console.log("Empty getUserGatewayUrl, local redirection.");
                             this.router.navigateByUrl('/login');

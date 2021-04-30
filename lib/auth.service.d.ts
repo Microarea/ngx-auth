@@ -45,6 +45,7 @@ export declare class TbAuthService {
     changePassword(cpi: ChangePasswordInfo): Promise<OperationResult>;
     resetpassword(accname: string): Promise<OperationResult>;
     logoff(): Promise<LogoffResponse>;
+    navigateUserGateway(): void;
     getRedirectUrlForSubscription(accountName: string, subscriptionKey: string): void;
     getInstancesMapForUser(user: string): import("rxjs").Observable<any>;
     getSnapshot(instanceKey: string, subscriptionKey: string): import("rxjs").Observable<any>;
