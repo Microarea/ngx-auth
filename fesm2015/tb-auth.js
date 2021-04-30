@@ -1472,14 +1472,17 @@ class TbLogoffComponent {
     }
     LogOff() {
         return __awaiter(this, void 0, void 0, function* () {
+            console.log('entering LogOff..');
             const logoff = yield this.authService.logoff();
             if (logoff.Result) {
                 // if usergateway url exists, then redirect to it
                 if (this.authService.getUserGatewayUrl() !== '') {
+                    console.log(`Found getUserGatewayUrl ${this.authService.getUserGatewayUrl()}`);
                     document.location.href = this.authService.getUserGatewayUrl();
                     return;
                 }
                 // otherwise, go to local login
+                console.log(`Empty getUserGatewayUrl, local redirection.`);
                 this.router.navigateByUrl('/login');
             }
         });

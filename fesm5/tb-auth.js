@@ -1595,16 +1595,20 @@ var TbLogoffComponent = /** @class */ (function () {
             var logoff;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.authService.logoff()];
+                    case 0:
+                        console.log('entering LogOff..');
+                        return [4 /*yield*/, this.authService.logoff()];
                     case 1:
                         logoff = _a.sent();
                         if (logoff.Result) {
                             // if usergateway url exists, then redirect to it
                             if (this.authService.getUserGatewayUrl() !== '') {
+                                console.log("Found getUserGatewayUrl " + this.authService.getUserGatewayUrl());
                                 document.location.href = this.authService.getUserGatewayUrl();
                                 return [2 /*return*/];
                             }
                             // otherwise, go to local login
+                            console.log("Empty getUserGatewayUrl, local redirection.");
                             this.router.navigateByUrl('/login');
                         }
                         return [2 /*return*/];
