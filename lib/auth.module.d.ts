@@ -14,8 +14,9 @@ import * as i11 from "./app-material.module";
 import * as i12 from "@angular/material/dialog";
 import * as i13 from "@angular/material/input";
 import * as i14 from "@angular/material/form-field";
+import * as i15 from "@tb/icons";
 export declare class TbAuthModule {
     static forRoot(): i0.ModuleWithProviders<TbAuthModule>;
-    static ɵmod: i0.ɵɵNgModuleDefWithMeta<TbAuthModule, [typeof i1.TbLoginComponent, typeof i2.TbLogoffComponent, typeof i3.ForgotPasswordComponent, typeof i4.ChangePasswordDialogComponent], [typeof i5.CommonModule, typeof i6.FormsModule, typeof i7.InputsModule, typeof i8.ButtonsModule, typeof i9.DropDownsModule, typeof i10.RouterModule, typeof i11.AppMaterialModule, typeof i12.MatDialogModule, typeof i13.MatInputModule, typeof i14.MatFormFieldModule], [typeof i1.TbLoginComponent, typeof i2.TbLogoffComponent, typeof i10.RouterModule, typeof i11.AppMaterialModule]>;
+    static ɵmod: i0.ɵɵNgModuleDefWithMeta<TbAuthModule, [typeof i1.TbLoginComponent, typeof i2.TbLogoffComponent, typeof i3.ForgotPasswordComponent, typeof i4.ChangePasswordDialogComponent], [typeof i5.CommonModule, typeof i6.FormsModule, typeof i7.InputsModule, typeof i8.ButtonsModule, typeof i9.DropDownsModule, typeof i10.RouterModule, typeof i11.AppMaterialModule, typeof i12.MatDialogModule, typeof i13.MatInputModule, typeof i14.MatFormFieldModule, typeof i15.TbIconsModule], [typeof i1.TbLoginComponent, typeof i2.TbLogoffComponent, typeof i10.RouterModule, typeof i11.AppMaterialModule]>;
     static ɵinj: i0.ɵɵInjectorDef<TbAuthModule>;
 }

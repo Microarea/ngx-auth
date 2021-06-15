@@ -38,6 +38,7 @@ export declare class TbLoginComponent implements AfterContentInit {
     forgetPassword: string;
     blocMaiusc: string;
     idleTimeoutMessage: string;
+    dropDownIsClicked: boolean;
     constructor(authService: TbAuthService, router: Router, dialog: MatDialog, doc?: any);
     ngAfterContentInit(): void;
     checkConnection(): Promise<void>;
@@ -54,6 +55,7 @@ export declare class TbLoginComponent implements AfterContentInit {
     private compareCompanies;
     goToForgotPassword(): void;
     forgotpassword(Title: string, Message: string, PlaceHolder: string): Promise<void>;
+    isDropDownClicked(): void;
     static ɵfac: i0.ɵɵFactoryDef<TbLoginComponent, never>;
     static ɵcmp: i0.ɵɵComponentDefWithMeta<TbLoginComponent, "tb-login", never, {}, {}, never, never>;
 }
