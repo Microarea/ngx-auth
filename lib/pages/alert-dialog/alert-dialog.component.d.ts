@@ -8,6 +8,7 @@ export declare class AlertDialogComponent implements OnInit {
     title: string;
     message: string;
     dontshow: string;
+    subkey: string;
     imagePath: string;
     imageAlt: string;
     dontshowanymore: boolean;
@@ -15,6 +16,7 @@ export declare class AlertDialogComponent implements OnInit {
         Message: string;
         Title: string;
         DontShow: string;
+        SubKey: string;
         ImagePath: string;
         ImageAlt: string;
     }, mdDialogRef: MatDialogRef<AlertDialogComponent>);

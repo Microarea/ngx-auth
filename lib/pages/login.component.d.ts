@@ -40,7 +40,6 @@ export declare class TbLoginComponent implements AfterContentInit {
     dontshow: string;
     blocMaiusc: string;
     idleTimeoutMessage: string;
-    upgradeWarning: string;
     upgradeWarningTitle: string;
     dropDownIsClicked: boolean;
     constructor(authService: TbAuthService, router: Router, dialog: MatDialog, doc?: any);

@@ -32,7 +32,7 @@ export declare class TbAuthService {
     getAuthorizationHeader(): string;
     prelogin(loginRequest: LoginRequest): Promise<LoginResponse>;
     login(loginRequest: LoginRequest): Promise<LoginResponse>;
-    openAlertDialog(info: string, title: string, dontshow: string): Promise<void>;
+    openAlertDialog(info: string, title: string, dontshow: string, accountName: string, subscriptionKey: string): Promise<void>;
     openChangePasswordDialog(loginRequest: LoginRequest): Promise<void>;
     isValidToken(authtoken?: string): Promise<OperationResult>;
     getCompaniesForUser(user: string): import("rxjs").Observable<any>;
@@ -53,6 +53,7 @@ export declare class TbAuthService {
     getSnapshot(instanceKey: string, subscriptionKey: string): import("rxjs").Observable<any>;
     getInstancesMapForAccountUrl(): string;
     getCalendarUrl(): string;
+    getUpdateMessage(): string;
     clearStorage(): void;
     storageSubscriptionData(subscriptionKey: string, subscriptionDescription: string): void;
     storageQueryParams(subscriptionKey: string, instanceKey: string): void;
@@ -78,6 +79,8 @@ export declare class TbAuthService {
     isSessionStorage: () => boolean;
     getLogoURL: () => string;
     isRedirectExternal: () => boolean;
+    getUpdateMessageIt: () => string;
+    getUpdateMessageEn: () => string;
     static ɵfac: i0.ɵɵFactoryDef<TbAuthService, never>;
     static ɵprov: i0.ɵɵInjectableDef<TbAuthService>;
 }
