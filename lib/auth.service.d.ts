@@ -32,6 +32,7 @@ export declare class TbAuthService {
     getAuthorizationHeader(): string;
     prelogin(loginRequest: LoginRequest): Promise<LoginResponse>;
     login(loginRequest: LoginRequest): Promise<LoginResponse>;
+    getLockedUserMessage(messageFromLogin: string): string;
     openAlertDialog(info: string, title: string, dontshow: string, accountName: string, subscriptionKey: string): Promise<void>;
     openChangePasswordDialog(loginRequest: LoginRequest): Promise<void>;
     isValidToken(authtoken?: string): Promise<OperationResult>;
