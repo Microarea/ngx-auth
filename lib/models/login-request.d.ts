@@ -12,6 +12,11 @@ export declare class ChangePasswordInfo {
     IgnoreOldPassword: boolean;
     JWTToken: string;
 }
+export declare class OTPInfo {
+    AccountName: string;
+    Password: string;
+    Code: string;
+}
 export interface CUCalendarJob {
     jobid: number;
     calendarid: number;

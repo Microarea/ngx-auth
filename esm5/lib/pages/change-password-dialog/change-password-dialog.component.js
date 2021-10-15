@@ -12,9 +12,9 @@ function ChangePasswordDialogComponent_div_9_Template(rf, ctx) { if (rf & 1) {
     i0.ɵɵtext(2);
     i0.ɵɵelementEnd();
 } if (rf & 2) {
-    var ctx_r34 = i0.ɵɵnextContext();
+    var ctx_r36 = i0.ɵɵnextContext();
     i0.ɵɵadvance(2);
-    i0.ɵɵtextInterpolate1("", ctx_r34.error, " ");
+    i0.ɵɵtextInterpolate1("", ctx_r36.error, " ");
 } }
 var ChangePasswordDialogComponent = /** @class */ (function () {
     function ChangePasswordDialogComponent(mdDialogRef, data) {

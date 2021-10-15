@@ -1,6 +1,6 @@
 import { TbAuthService } from '../auth.service';
 import { LoginRequest } from '../models/login-request';
-import { AfterContentInit } from '@angular/core';
+import { AfterContentInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import * as i0 from "@angular/core";
@@ -8,6 +8,7 @@ export declare class TbLoginComponent implements AfterContentInit {
     authService: TbAuthService;
     router: Router;
     private dialog;
+    private renderer;
     private doc?;
     private cachedCompanies;
     capsLockOn: boolean;
@@ -25,13 +26,16 @@ export declare class TbLoginComponent implements AfterContentInit {
         description: string;
         subscriptionkey: string;
         status: number;
+        instancekey: string;
     }>;
     logoURL: string;
+    instancekey: string;
     isConnected: boolean;
     document?: Document;
     chooseSubscription: string;
     goodJob: string;
     subscription: string;
+    instance: string;
     buttonBack: string;
     accountName: string;
     welcome: string;
@@ -42,9 +46,13 @@ export declare class TbLoginComponent implements AfterContentInit {
     idleTimeoutMessage: string;
     upgradeWarningTitle: string;
     dropDownIsClicked: boolean;
-    constructor(authService: TbAuthService, router: Router, dialog: MatDialog, doc?: any);
+    comboBoxIsClicked: boolean;
+    iconIsClicked: boolean;
+    dropdown: any;
+    constructor(authService: TbAuthService, router: Router, dialog: MatDialog, renderer: Renderer2, doc?: any);
     ngAfterContentInit(): void;
     checkConnection(): Promise<void>;
+    onSubChange(newValue: any): void;
     keyUpFunction(event: KeyboardEvent): void;
     disabledButton(): boolean;
     get isExpiredSession(): boolean;
@@ -61,7 +69,7 @@ export declare class TbLoginComponent implements AfterContentInit {
     goToForgotPassword(): void;
     forgotpassword(Title: string, Message: string, PlaceHolder: string): Promise<void>;
     isDropDownClicked(): void;
-    toggle(dropdrown: any): void;
+    toggle(dropdown: any): void;
     static ɵfac: i0.ɵɵFactoryDef<TbLoginComponent, never>;
     static ɵcmp: i0.ɵɵComponentDefWithMeta<TbLoginComponent, "tb-login", never, {}, {}, never, never>;
 }

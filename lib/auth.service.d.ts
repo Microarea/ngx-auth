@@ -35,6 +35,7 @@ export declare class TbAuthService {
     getLockedUserMessage(messageFromLogin: string): string;
     openAlertDialog(info: string, title: string, dontshow: string, accountName: string, subscriptionKey: string): Promise<void>;
     openChangePasswordDialog(loginRequest: LoginRequest): Promise<void>;
+    openOTPDialog(loginRequest: LoginRequest): Promise<void>;
     isValidToken(authtoken?: string): Promise<OperationResult>;
     getCompaniesForUser(user: string): import("rxjs").Observable<any>;
     getIsValidTokenUrl(): string;

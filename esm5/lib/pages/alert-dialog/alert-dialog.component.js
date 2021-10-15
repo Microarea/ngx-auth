@@ -9,8 +9,8 @@ import * as i5 from "@progress/kendo-angular-buttons";
 function AlertDialogComponent_img_2_Template(rf, ctx) { if (rf & 1) {
     i0.ɵɵelement(0, "img", 10);
 } if (rf & 2) {
-    var ctx_r35 = i0.ɵɵnextContext();
-    i0.ɵɵpropertyInterpolate("src", ctx_r35.imagePath, i0.ɵɵsanitizeUrl);
+    var ctx_r37 = i0.ɵɵnextContext();
+    i0.ɵɵpropertyInterpolate("src", ctx_r37.imagePath, i0.ɵɵsanitizeUrl);
 } }
 var AlertDialogComponent = /** @class */ (function () {
     function AlertDialogComponent(data, mdDialogRef) {
