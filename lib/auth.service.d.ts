@@ -33,7 +33,7 @@ export declare class TbAuthService {
     prelogin(loginRequest: LoginRequest): Promise<LoginResponse>;
     login(loginRequest: LoginRequest): Promise<LoginResponse>;
     getLockedUserMessage(messageFromLogin: string): string;
-    openAlertDialog(info: string, title: string, dontshow: string, accountName: string, subscriptionKey: string): Promise<void>;
+    openUpdateAlertDialog(info: string, title: string, dontshow: string, accountName: string, subscriptionKey: string): Promise<void>;
     openChangePasswordDialog(loginRequest: LoginRequest): Promise<void>;
     openOTPDialog(loginRequest: LoginRequest): Promise<void>;
     isValidToken(authtoken?: string): Promise<OperationResult>;
@@ -43,9 +43,11 @@ export declare class TbAuthService {
     getPreLoginUrl(): string;
     getLogoutUrl(): string;
     getChangePasswordApiUrl(): string;
+    resendOTPUrl(): string;
     getResetPasswordUrl(): string;
     getSubsKeysForAccountUrl(): string;
     changePassword(cpi: ChangePasswordInfo): Promise<OperationResult>;
+    resendOTP(accname: string): Promise<OperationResult>;
     resetpassword(accname: string): Promise<OperationResult>;
     logoff(): Promise<LogoffResponse>;
     navigateUserGateway(): void;

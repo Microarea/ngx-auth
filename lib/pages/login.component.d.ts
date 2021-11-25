@@ -29,6 +29,7 @@ export declare class TbLoginComponent implements AfterContentInit {
         instancekey: string;
     }>;
     logoURL: string;
+    hide: boolean;
     instancekey: string;
     isConnected: boolean;
     document?: Document;
@@ -59,7 +60,10 @@ export declare class TbLoginComponent implements AfterContentInit {
     newUser(): void;
     back(): Promise<void>;
     login(): Promise<void>;
+    convertUTCDateToLocalDate(date: Date): Date;
     FormatDateString: (date: Date) => string;
+    FormatStartDateString: (date: Date) => string;
+    FormatEndDateString: (date: Date) => string;
     NumberPad: (value: number, padding: number) => string;
     loadLoginData(): void;
     private saveLoginData;
