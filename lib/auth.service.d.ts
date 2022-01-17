@@ -1,4 +1,4 @@
-import { Injector } from '@angular/core';
+import { Injector, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -19,6 +19,8 @@ export declare class TbAuthService {
     loggedOut$: Subject<unknown>;
     errorMessage: string;
     okMessage: string;
+    callLoginAfterOTPRequest: boolean;
+    reLoginAfterOTP: EventEmitter<any>;
     get router(): Router;
     constructor(env: TbAuthEnvironment, http: HttpClient, injector: Injector, dialog: MatDialog);
     checkConnection(): Promise<boolean>;
