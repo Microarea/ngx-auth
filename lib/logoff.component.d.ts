@@ -6,6 +6,6 @@ export declare class TbLogoffComponent {
     router: Router;
     constructor(authService: TbAuthService, router: Router);
     LogOff(): Promise<void>;
-    static ɵfac: i0.ɵɵFactoryDef<TbLogoffComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDefWithMeta<TbLogoffComponent, "tb-logoff", never, {}, {}, never, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<TbLogoffComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TbLogoffComponent, "tb-logoff", never, {}, {}, never, never>;
 }
