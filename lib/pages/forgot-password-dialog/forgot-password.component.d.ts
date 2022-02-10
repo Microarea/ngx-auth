@@ -13,6 +13,6 @@ export declare class ForgotPasswordComponent implements OnInit {
     ngOnInit(): void;
     cancel(): void;
     confirm(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ForgotPasswordComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ForgotPasswordComponent, "forgot-password-dialog", never, {}, {}, never, never>;
+    static ɵfac: i0.ɵɵFactoryDef<ForgotPasswordComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<ForgotPasswordComponent, "forgot-password-dialog", never, {}, {}, never, never>;
 }

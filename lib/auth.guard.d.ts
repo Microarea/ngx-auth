@@ -8,6 +8,6 @@ export declare class TbAuthGuard implements CanActivate {
     private env;
     constructor(authService: TbAuthService, router: Router, env: TbAuthEnvironment);
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean>;
-    static ɵfac: i0.ɵɵFactoryDeclaration<TbAuthGuard, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<TbAuthGuard>;
+    static ɵfac: i0.ɵɵFactoryDef<TbAuthGuard, never>;
+    static ɵprov: i0.ɵɵInjectableDef<TbAuthGuard>;
 }

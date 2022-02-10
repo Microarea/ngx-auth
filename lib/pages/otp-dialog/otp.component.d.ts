@@ -17,6 +17,6 @@ export declare class OtpComponent implements OnInit {
     cancel(): void;
     resendOTP(): Promise<void>;
     closeDialog(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<OtpComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<OtpComponent, "otp-dialog", never, {}, {}, never, never>;
+    static ɵfac: i0.ɵɵFactoryDef<OtpComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<OtpComponent, "otp-dialog", never, {}, {}, never, never>;
 }
