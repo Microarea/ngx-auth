@@ -15,6 +15,6 @@ export declare class ChangePasswordDialogComponent implements OnInit {
     ngOnInit(): void;
     cancel(): void;
     confirm(): void;
-    static ɵfac: i0.ɵɵFactoryDef<ChangePasswordDialogComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDefWithMeta<ChangePasswordDialogComponent, "app-change-password-dialog", never, {}, {}, never, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ChangePasswordDialogComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ChangePasswordDialogComponent, "app-change-password-dialog", never, {}, {}, never, never>;
 }

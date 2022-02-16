@@ -87,6 +87,6 @@ export declare class TbAuthService {
     isRedirectExternal: () => boolean;
     getUpdateMessageIt: () => string;
     getUpdateMessageEn: () => string;
-    static ɵfac: i0.ɵɵFactoryDef<TbAuthService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<TbAuthService>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<TbAuthService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<TbAuthService>;
 }
