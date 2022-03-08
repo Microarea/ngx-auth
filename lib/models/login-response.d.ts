@@ -10,4 +10,5 @@ export interface LoginResponse {
     AccountName: string;
     SubscriptionKey: string;
     SubscriptionDesc: string;
+    AskingProcess: string;
 }

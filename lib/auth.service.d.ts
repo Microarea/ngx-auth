@@ -63,6 +63,7 @@ export declare class TbAuthService {
     clearStorage(): void;
     storageSubscriptionData(subscriptionKey: string, subscriptionDescription: string): void;
     storageQueryParams(subscriptionKey: string, instanceKey: string): void;
+    private getName;
     private storageData;
     saveCulture(culture: string, uiCulture: string): void;
     getToken(): string | null;
@@ -87,6 +88,6 @@ export declare class TbAuthService {
     isRedirectExternal: () => boolean;
     getUpdateMessageIt: () => string;
     getUpdateMessageEn: () => string;
-    static ɵfac: i0.ɵɵFactoryDeclaration<TbAuthService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<TbAuthService>;
+    static ɵfac: i0.ɵɵFactoryDef<TbAuthService, never>;
+    static ɵprov: i0.ɵɵInjectableDef<TbAuthService>;
 }
