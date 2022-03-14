@@ -8,6 +8,6 @@ export declare class TbAuthInterceptor implements HttpInterceptor {
     private env;
     constructor(env: TbAuthEnvironment, authService: TbAuthService);
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>;
-    static ɵfac: i0.ɵɵFactoryDef<TbAuthInterceptor, never>;
-    static ɵprov: i0.ɵɵInjectableDef<TbAuthInterceptor>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<TbAuthInterceptor, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<TbAuthInterceptor>;
 }
