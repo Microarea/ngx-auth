@@ -11,6 +11,8 @@ export declare class OtpComponent implements OnInit {
     inputValue: string;
     buttonCancel: string;
     resendOTPpLabel: string;
+    alternative: boolean;
+    alternativelbl: string;
     resendRequested: EventEmitter<any>;
     constructor(mdDialogRef: MatDialogRef<OtpComponent>, data: any);
     ngOnInit(): void;
