@@ -35,6 +35,7 @@ export declare class TbAuthService {
     prelogin(loginRequest: LoginRequest): Promise<LoginResponse>;
     login(loginRequest: LoginRequest): Promise<LoginResponse>;
     getLockedUserMessage(messageFromLogin: string): string;
+    get2FARequiredMessage(description: string): string;
     openUpdateAlertDialog(info: string, title: string, dontshow: string, accountName: string, subscriptionKey: string): Promise<void>;
     openChangePasswordDialog(loginRequest: LoginRequest): Promise<void>;
     getSymbolsToPromise(): Promise<OperationResult>;
