@@ -86,6 +86,7 @@ export declare class TbAuthService {
     hasSubscriptionSelection: () => boolean;
     showSignUp: () => boolean;
     getAppId: () => string;
+    getPreLoginAppId: () => string;
     isSessionStorage: () => boolean;
     getLogoURL: () => string;
     isRedirectExternal: () => boolean;
