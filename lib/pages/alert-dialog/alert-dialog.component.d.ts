@@ -23,6 +23,6 @@ export declare class AlertDialogComponent implements OnInit {
     ngOnInit(): void;
     showOptions(event: MatCheckboxChange): void;
     closeDialog(): void;
-    static ɵfac: i0.ɵɵFactoryDef<AlertDialogComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDefWithMeta<AlertDialogComponent, "app-alert-dialog", never, {}, {}, never, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<AlertDialogComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<AlertDialogComponent, "app-alert-dialog", never, {}, {}, never, never>;
 }
