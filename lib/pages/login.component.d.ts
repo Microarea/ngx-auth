@@ -17,8 +17,6 @@ export declare class TbLoginComponent implements AfterContentInit {
     loginRequest: LoginRequest;
     redirectUrl: string;
     buttonText: string;
-    nextText: string;
-    loginText: string;
     currentYear: string;
     createAccountUrl: string;
     changePasswordUrl: string;
@@ -41,7 +39,6 @@ export declare class TbLoginComponent implements AfterContentInit {
     instance: string;
     buttonBack: string;
     accountName: string;
-    enterAccounName: string;
     welcome: string;
     enterCredentials: string;
     forgetPassword: string;
@@ -53,8 +50,6 @@ export declare class TbLoginComponent implements AfterContentInit {
     comboBoxIsClicked: boolean;
     iconIsClicked: boolean;
     dropdown: any;
-    currentBrowserLanguage: string;
-    languageIT: boolean;
     constructor(authService: TbAuthService, router: Router, dialog: MatDialog, renderer: Renderer2, doc?: any);
     ngAfterContentInit(): void;
     checkConnection(): Promise<void>;
@@ -79,6 +74,6 @@ export declare class TbLoginComponent implements AfterContentInit {
     forgotpassword(Title: string, Message: string, PlaceHolder: string): Promise<void>;
     isDropDownClicked(): void;
     toggle(dropdown: any): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<TbLoginComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TbLoginComponent, "tb-login", never, {}, {}, never, never>;
+    static ɵfac: i0.ɵɵFactoryDef<TbLoginComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<TbLoginComponent, "tb-login", never, {}, {}, never, never>;
 }

@@ -35,11 +35,14 @@ export declare class TbAuthService {
     prelogin(loginRequest: LoginRequest): Promise<LoginResponse>;
     login(loginRequest: LoginRequest): Promise<LoginResponse>;
     getLockedUserMessage(messageFromLogin: string): string;
+    get2FARequiredMessage(description: string): string;
     openUpdateAlertDialog(info: string, title: string, dontshow: string, accountName: string, subscriptionKey: string): Promise<void>;
     openChangePasswordDialog(loginRequest: LoginRequest): Promise<void>;
+    getSymbolsToPromise(): Promise<OperationResult>;
     openOTPDialog(loginRequest: LoginRequest): Promise<void>;
     isValidToken(authtoken?: string): Promise<OperationResult>;
     getCompaniesForUser(user: string): import("rxjs").Observable<any>;
+    getSymbolsUrl(): string;
     getIsValidTokenUrl(): string;
     getLoginUrl(): string;
     getPreLoginUrl(): string;
@@ -49,7 +52,7 @@ export declare class TbAuthService {
     getResetPasswordUrl(): string;
     getSubsKeysForAccountUrl(): string;
     changePassword(cpi: ChangePasswordInfo): Promise<OperationResult>;
-    resendOTP(accname: string): Promise<OperationResult>;
+    resendOTP(accname: string, alternative: boolean): Promise<OperationResult>;
     resetpassword(accname: string): Promise<OperationResult>;
     logoff(): Promise<LogoffResponse>;
     navigateUserGateway(): void;
@@ -59,7 +62,7 @@ export declare class TbAuthService {
     getSnapshot(instanceKey: string, subscriptionKey: string): import("rxjs").Observable<any>;
     getInstancesMapForAccountUrl(): string;
     getCalendarUrl(): string;
-    getUpdateMessage(it: boolean): string;
+    getUpdateMessage(): string;
     clearStorage(): void;
     storageSubscriptionData(subscriptionKey: string, subscriptionDescription: string): void;
     storageQueryParams(subscriptionKey: string, instanceKey: string): void;
@@ -83,11 +86,12 @@ export declare class TbAuthService {
     hasSubscriptionSelection: () => boolean;
     showSignUp: () => boolean;
     getAppId: () => string;
+    getPreLoginAppId: () => string;
     isSessionStorage: () => boolean;
     getLogoURL: () => string;
     isRedirectExternal: () => boolean;
     getUpdateMessageIt: () => string;
     getUpdateMessageEn: () => string;
-    static ɵfac: i0.ɵɵFactoryDeclaration<TbAuthService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<TbAuthService>;
+    static ɵfac: i0.ɵɵFactoryDef<TbAuthService, never>;
+    static ɵprov: i0.ɵɵInjectableDef<TbAuthService>;
 }
