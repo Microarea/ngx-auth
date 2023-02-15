@@ -2,7 +2,6 @@ export interface TbAuthEnvironment {
     auth: {
         url: string;
         iupurl: string;
-        preLoginAppId: string;
         subscriptionSelection: boolean;
         showSignUp: boolean;
         appId: string;
