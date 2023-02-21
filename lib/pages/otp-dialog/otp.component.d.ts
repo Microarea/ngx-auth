@@ -11,12 +11,14 @@ export declare class OtpComponent implements OnInit {
     inputValue: string;
     buttonCancel: string;
     resendOTPpLabel: string;
+    alternative: boolean;
+    alternativelbl: string;
     resendRequested: EventEmitter<any>;
     constructor(mdDialogRef: MatDialogRef<OtpComponent>, data: any);
     ngOnInit(): void;
     cancel(): void;
     resendOTP(): Promise<void>;
     closeDialog(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<OtpComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<OtpComponent, "otp-dialog", never, {}, {}, never, never>;
+    static ɵfac: i0.ɵɵFactoryDef<OtpComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<OtpComponent, "otp-dialog", never, {}, {}, never, never>;
 }
