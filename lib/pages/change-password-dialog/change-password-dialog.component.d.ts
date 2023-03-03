@@ -7,14 +7,17 @@ export declare class ChangePasswordDialogComponent implements OnInit {
     title: string;
     error: string;
     message: string;
-    placeHolder: string;
-    placeHolder2: string;
+    placeHolder_1: string;
+    placeHolder_2: string;
     newpwd: string;
     newpwd2: string;
+    buttonCancel: string;
+    changeButton: string;
+    showError: boolean;
     constructor(mdDialogRef: MatDialogRef<ChangePasswordDialogComponent>, data: any);
     ngOnInit(): void;
     cancel(): void;
     confirm(): void;
-    static ɵfac: i0.ɵɵFactoryDef<ChangePasswordDialogComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDefWithMeta<ChangePasswordDialogComponent, "app-change-password-dialog", never, {}, {}, never, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ChangePasswordDialogComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ChangePasswordDialogComponent, "app-change-password-dialog", never, {}, {}, never, never>;
 }
