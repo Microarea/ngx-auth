@@ -8,12 +8,14 @@ import { LogoffResponse } from './models/logoff-response';
 import { OperationResult } from './models/operation-result';
 import { TbAuthEnvironment } from './models/auth-environment';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import * as i0 from "@angular/core";
 export declare const authService: () => TbAuthService;
 export declare class TbAuthService {
     private http;
     private injector;
     private dialog;
+    private snackBar;
     private static DEFAULT_ENV;
     private env;
     loggedOut$: Subject<unknown>;
@@ -22,7 +24,7 @@ export declare class TbAuthService {
     callLoginAfterOTPRequest: boolean;
     reLoginAfterOTP: EventEmitter<any>;
     get router(): Router;
-    constructor(env: TbAuthEnvironment, http: HttpClient, injector: Injector, dialog: MatDialog);
+    constructor(env: TbAuthEnvironment, http: HttpClient, injector: Injector, dialog: MatDialog, snackBar: MatSnackBar);
     checkConnection(): Promise<boolean>;
     /**
      * Ritorna la base url del backend,
@@ -67,6 +69,7 @@ export declare class TbAuthService {
     private getName;
     private storageData;
     saveCulture(culture: string, uiCulture: string): void;
+    openSnackBar(message: string, action: string): void;
     getToken(): string | null;
     getAccountName(): string | null;
     getSubscription(): string | null;
