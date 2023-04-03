@@ -40,7 +40,6 @@ export declare class TbAuthService {
     get2FARequiredMessage(description: string): string;
     openUpdateAlertDialog(info: string, title: string, dontshow: string, accountName: string, subscriptionKey: string): Promise<void>;
     openChangePasswordDialog(loginRequest: LoginRequest): Promise<void>;
-    openOTPDialog(loginRequest: LoginRequest): Promise<void>;
     isValidToken(authtoken?: string): Promise<OperationResult>;
     getCompaniesForUser(user: string): import("rxjs").Observable<any>;
     getIsValidTokenUrl(): string;

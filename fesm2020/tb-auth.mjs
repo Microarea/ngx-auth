@@ -17,13 +17,13 @@ import * as i4 from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import * as i5 from '@angular/common';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import * as i5$1 from '@angular/material/checkbox';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import * as i3$1 from '@angular/material/snack-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DateTime } from 'luxon';
 import * as i8 from '@progress/kendo-angular-dropdowns';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import * as i9 from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -281,99 +281,6 @@ class AlertDialogComponent {
                 args: [MAT_DIALOG_DATA]
             }] }, { type: i1.MatDialogRef }]; }, null); })();
 
-class OtpComponent {
-    constructor(mdDialogRef, data) {
-        this.mdDialogRef = mdDialogRef;
-        this.data = data;
-        this.resendRequested = new EventEmitter();
-        this.title = data.Title;
-        this.accname = data.AccountName;
-        this.message = data.Message;
-        this.placeHolder = data.PlaceHolder;
-        this.inputValue = data.TextValue;
-        const currentBrowserLanguage = navigator.language.toLocaleLowerCase();
-        if (currentBrowserLanguage.startsWith('it')) {
-            this.buttonCancel = 'Annulla';
-            this.resendOTPpLabel = 'Inviami un nuovo codice';
-            this.alternativelbl = 'Usa metodo alternativo';
-        }
-        else {
-            this.buttonCancel = 'Cancel';
-            this.resendOTPpLabel = 'Send me a new code';
-            this.alternativelbl = 'Use alternative way';
-        }
-        this.alternative = false;
-    }
-    ngOnInit() { }
-    cancel() {
-        this.data = undefined;
-        this.mdDialogRef.close(this.data);
-    }
-    async resendOTP() {
-        this.resendRequested.emit(this.alternative);
-    }
-    closeDialog() {
-        this.data.TextValue = this.inputValue;
-        this.mdDialogRef.close(this.data);
-    }
-}
-/** @nocollapse */ /** @nocollapse */ OtpComponent.ɵfac = function OtpComponent_Factory(t) { return new (t || OtpComponent)(i0.ɵɵdirectiveInject(i1.MatDialogRef), i0.ɵɵdirectiveInject(MAT_DIALOG_DATA)); };
-/** @nocollapse */ /** @nocollapse */ OtpComponent.ɵcmp = /** @pureOrBreakMyCode */ i0.ɵɵdefineComponent({ type: OtpComponent, selectors: [["otp-dialog"]], decls: 25, vars: 8, consts: [[1, "app-dialog"], [1, "title"], [1, "description", 2, "width", "350px"], [1, "border-bottom", 3, "text"], ["kendoTextBox", "", "name", "accountName", "type", "password", 1, "normal-state", 3, "ngModel", "ngModelChange"], [2, "display", "flex", "flex-direction", "row-reverse", "justify-content", "space-between", "padding", "0 1px", "margin-top", "30px"], [1, "login-footer"], ["kendoButton", "", 1, "buttons", "back-button", 3, "click"], [1, "login-footer", 2, "display", "flex", "justify-content", "flex-end"], ["kendoButton", "", 1, "buttons", "ok-button", 3, "click"], [2, "display", "flex", "margin-top", "40px", "justify-content", "flex-end"], [1, "link", 3, "click"], [2, "display", "flex", "margin-top", "20px", "justify-content", "flex-end"], [1, "link"], ["name", "alternative", 3, "ngModel", "ngModelChange"], ["translate", ""]], template: function OtpComponent_Template(rf, ctx) { if (rf & 1) {
-        i0.ɵɵelementStart(0, "div", 0)(1, "h1", 1);
-        i0.ɵɵtext(2);
-        i0.ɵɵelementEnd();
-        i0.ɵɵelementStart(3, "p", 2);
-        i0.ɵɵtext(4);
-        i0.ɵɵelementEnd();
-        i0.ɵɵelementStart(5, "kendo-floatinglabel", 3)(6, "input", 4);
-        i0.ɵɵlistener("ngModelChange", function OtpComponent_Template_input_ngModelChange_6_listener($event) { return ctx.inputValue = $event; });
-        i0.ɵɵelementEnd()();
-        i0.ɵɵelementStart(7, "div", 5)(8, "div", 6)(9, "button", 7);
-        i0.ɵɵlistener("click", function OtpComponent_Template_button_click_9_listener() { return ctx.cancel(); });
-        i0.ɵɵelementStart(10, "span");
-        i0.ɵɵtext(11);
-        i0.ɵɵelementEnd()()();
-        i0.ɵɵelementStart(12, "div", 8)(13, "button", 9);
-        i0.ɵɵlistener("click", function OtpComponent_Template_button_click_13_listener() { return ctx.closeDialog(); });
-        i0.ɵɵelementStart(14, "span");
-        i0.ɵɵtext(15, " OK ");
-        i0.ɵɵelementEnd()()()();
-        i0.ɵɵelementStart(16, "div", 10)(17, "p", 11);
-        i0.ɵɵlistener("click", function OtpComponent_Template_p_click_17_listener() { return ctx.resendOTP(); });
-        i0.ɵɵelementStart(18, "u");
-        i0.ɵɵtext(19);
-        i0.ɵɵelementEnd()()();
-        i0.ɵɵelementStart(20, "div", 12)(21, "p", 13)(22, "mat-checkbox", 14);
-        i0.ɵɵlistener("ngModelChange", function OtpComponent_Template_mat_checkbox_ngModelChange_22_listener($event) { return ctx.alternative = $event; });
-        i0.ɵɵelementStart(23, "span", 15);
-        i0.ɵɵtext(24);
-        i0.ɵɵelementEnd()()()()();
-    } if (rf & 2) {
-        i0.ɵɵadvance(2);
-        i0.ɵɵtextInterpolate(ctx.title);
-        i0.ɵɵadvance(2);
-        i0.ɵɵtextInterpolate(ctx.message);
-        i0.ɵɵadvance(1);
-        i0.ɵɵproperty("text", ctx.placeHolder);
-        i0.ɵɵadvance(1);
-        i0.ɵɵproperty("ngModel", ctx.inputValue);
-        i0.ɵɵadvance(5);
-        i0.ɵɵtextInterpolate(ctx.buttonCancel);
-        i0.ɵɵadvance(8);
-        i0.ɵɵtextInterpolate(ctx.resendOTPpLabel);
-        i0.ɵɵadvance(3);
-        i0.ɵɵproperty("ngModel", ctx.alternative);
-        i0.ɵɵadvance(2);
-        i0.ɵɵtextInterpolate(ctx.alternativelbl);
-    } }, directives: [i2.FloatingLabelComponent, i3.TextBoxDirective, i4.DefaultValueAccessor, i4.NgControlStatus, i4.NgModel, i5$1.MatCheckbox], styles: [".mt20[_ngcontent-%COMP%]{margin-top:20px}  .mat-checkbox{font-family:Open Sans,sans-serif;font-size:16px;font-weight:300}  .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element{opacity:.03!important;background-color:#005890!important}  .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent[_ngcontent-%COMP%]   .mat-checkbox-background[_ngcontent-%COMP%]{background-color:#005890}"] });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(OtpComponent, [{
-        type: Component,
-        args: [{ selector: 'otp-dialog', template: "<div class=\"app-dialog\">\r\n    <h1 class=\"title\">{{ title }}</h1>\r\n    <p class=\"description\" style=\"width: 350px\">{{ message }}</p>\r\n\r\n    <kendo-floatinglabel [text]=\"placeHolder\" class=\"border-bottom\">\r\n        <input kendoTextBox [(ngModel)]=\"inputValue\" name=\"accountName\" type=\"password\" class=\"normal-state\" />\r\n    </kendo-floatinglabel>\r\n\r\n    <div style=\"display: flex; flex-direction: row-reverse; justify-content: space-between; padding: 0 1px; margin-top: 30px\">\r\n        <div class=\"login-footer\">\r\n            <button kendoButton class=\"buttons back-button\" (click)=\"cancel()\">\r\n                <span>{{ buttonCancel }}</span>\r\n            </button>\r\n        </div>\r\n\r\n        <div class=\"login-footer\" style=\"display: flex; justify-content: flex-end\">\r\n            <button kendoButton (click)=\"closeDialog()\" class=\"buttons ok-button\">\r\n                <span> OK </span>\r\n            </button>\r\n        </div>\r\n    </div>\r\n\r\n    <div style=\"display: flex; margin-top: 40px; justify-content: flex-end\">\r\n        <p class=\"link\" (click)=\"resendOTP()\">\r\n            <u>{{ resendOTPpLabel }}</u>\r\n        </p>\r\n    </div>\r\n\r\n    <div style=\"display: flex; margin-top: 20px; justify-content: flex-end\">\r\n      <p class=\"link\">\r\n        <mat-checkbox [(ngModel)]=\"alternative\" name=\"alternative\">\r\n          <span translate>{{ alternativelbl }}</span>\r\n        </mat-checkbox>\r\n      </p>\r\n    </div>\r\n</div>\r\n", styles: [".mt20{margin-top:20px}::ng-deep .mat-checkbox{font-family:Open Sans,sans-serif;font-size:16px;font-weight:300}::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element{opacity:.03!important;background-color:#005890!important}::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background{background-color:#005890}\n"] }]
-    }], function () { return [{ type: i1.MatDialogRef }, { type: undefined, decorators: [{
-                type: Inject,
-                args: [MAT_DIALOG_DATA]
-            }] }]; }, null); })();
-
 let authServiceInstance;
 const authService = () => authServiceInstance;
 // ---------------------------------------------------------------------------
@@ -468,7 +375,6 @@ class TbAuthService {
                 }
                 else if (loginResponse.ResultCode === 143) {
                     console.log('AuthService: otp code needed');
-                    this.openOTPDialog(loginRequest);
                 }
                 if (loginResponse.ResultCode === 143) {
                     this.errorMessage = ''; // non mostro errore rosso che sembra grave
@@ -509,7 +415,6 @@ class TbAuthService {
                 else if (loginResponse.ResultCode === 143) {
                     // mi sposto su pagina per richiesta otp
                     console.log('AuthService: otp code Needed');
-                    this.openOTPDialog(loginRequest);
                     redologin = true;
                     // todo cose tipo mostrare una maschera che accetti il codice e lo rimandi indietro per il check
                 }
@@ -686,50 +591,6 @@ class TbAuthService {
             }
         });
     }
-    // ---------------------------------------------------------------------------
-    async openOTPDialog(loginRequest) {
-        this.errorMessage = '';
-        var langIT = navigator.language.startsWith('it');
-        var mes = langIT ?
-            `Prego inserire il codice OTP ricevuto via mail o SMS a seconda della modalità impostata.` :
-            `Please insert the OTP code. Depending on the mode set, the OTP is sent either by e-mail or by SMS.`;
-        let title = langIT ?
-            "Autenticazione a due fattori" : "Two-Factor Authentication";
-        let code = langIT ?
-            "Codice" : "Code";
-        const dialogRef = this.dialog.open(OtpComponent, {
-            data: {
-                Title: title,
-                AccountName: loginRequest.accountName,
-                Message: mes,
-                PlaceHolder: code,
-                TextValue: '',
-            },
-            disableClose: true
-        });
-        const sub = dialogRef.componentInstance.resendRequested.subscribe((alternative) => {
-            this.resendOTP(loginRequest.accountName, alternative);
-        });
-        dialogRef.afterClosed().subscribe(async (data) => {
-            if (data === undefined)
-                return;
-            if (data.TextValue === undefined || data.TextValue === '') {
-                alert('Write a valid Code');
-                return;
-            }
-            this.errorMessage = '';
-            /*const cpi: OTPInfo = new OTPInfo();
-            cpi.AccountName = loginRequest.accountName;
-            cpi.Code = data.Code;
-            cpi.Password = loginRequest.password;*/
-            loginRequest.password = data.TextValue;
-            this.callLoginAfterOTPRequest = true;
-            //non devo richiamare prelogin ma solo fare emit
-            //console.log('reLoginAfterOTP emitted');
-            this.reLoginAfterOTP.emit();
-            //this.prelogin(loginRequest);
-        });
-    }
     async isValidToken(authtoken = '') {
         if (!authtoken) {
             const opres = new OperationResult();
@@ -780,7 +641,7 @@ class TbAuthService {
         return this.getChangePasswordUrl() + 'changepassword/';
     }
     resendOTPUrl() {
-        return this.getChangePasswordUrl() + 'resendotp/';
+        return this.getBaseUrl() + 'resendotp/';
     }
     getResetPasswordUrl() {
         return this.getChangePasswordUrl() + 'resetpassword/';
@@ -1366,9 +1227,9 @@ function TbLoginComponent_div_5_p_3_Template(rf, ctx) { if (rf & 1) {
     i0.ɵɵtext(1);
     i0.ɵɵelementEnd();
 } if (rf & 2) {
-    const ctx_r13 = i0.ɵɵnextContext(2);
+    const ctx_r16 = i0.ɵɵnextContext(2);
     i0.ɵɵadvance(1);
-    i0.ɵɵtextInterpolate(ctx_r13.idleTimeoutMessage);
+    i0.ɵɵtextInterpolate(ctx_r16.idleTimeoutMessage);
 } }
 function TbLoginComponent_div_5_Template(rf, ctx) { if (rf & 1) {
     i0.ɵɵelementStart(0, "div")(1, "h1", 22);
@@ -1399,176 +1260,236 @@ function TbLoginComponent_div_6_Template(rf, ctx) { if (rf & 1) {
     i0.ɵɵadvance(2);
     i0.ɵɵtextInterpolate(ctx_r1.chooseSubscription);
     i0.ɵɵadvance(2);
-    i0.ɵɵtextInterpolate2("", ctx_r1.accountName, ": ", ctx_r1.loginRequest.accountName, " ");
+    i0.ɵɵtextInterpolate2("", ctx_r1.accountName, ": ", ctx_r1.loginRequest.accountName, "");
 } }
-function TbLoginComponent_kendo_floatinglabel_9_Template(rf, ctx) { if (rf & 1) {
-    const _r15 = i0.ɵɵgetCurrentView();
-    i0.ɵɵelementStart(0, "kendo-floatinglabel", 26)(1, "input", 27);
-    i0.ɵɵlistener("ngModelChange", function TbLoginComponent_kendo_floatinglabel_9_Template_input_ngModelChange_1_listener($event) { i0.ɵɵrestoreView(_r15); const ctx_r14 = i0.ɵɵnextContext(); return ctx_r14.loginRequest.accountName = $event; })("keyup", function TbLoginComponent_kendo_floatinglabel_9_Template_input_keyup_1_listener($event) { i0.ɵɵrestoreView(_r15); const ctx_r16 = i0.ɵɵnextContext(); return ctx_r16.keyUpFunction($event); });
+function TbLoginComponent_div_7_Template(rf, ctx) { if (rf & 1) {
+    i0.ɵɵelementStart(0, "div")(1, "h1", 22);
+    i0.ɵɵtext(2);
+    i0.ɵɵelementEnd();
+    i0.ɵɵelementStart(3, "p", 24);
+    i0.ɵɵtext(4);
     i0.ɵɵelementEnd()();
 } if (rf & 2) {
     const ctx_r2 = i0.ɵɵnextContext();
-    i0.ɵɵproperty("text", ctx_r2.accountName)("ngClass", ctx_r2.authService.errorMessage ? "border-bottom-error" : "border-bottom");
-    i0.ɵɵadvance(1);
-    i0.ɵɵproperty("ngModel", ctx_r2.loginRequest.accountName)("ngClass", ctx_r2.authService.errorMessage ? "error-status" : "normal-state");
+    i0.ɵɵadvance(2);
+    i0.ɵɵtextInterpolate(ctx_r2.otpTitle);
+    i0.ɵɵadvance(2);
+    i0.ɵɵtextInterpolate(ctx_r2.otpMessage);
 } }
-function TbLoginComponent_kendo_floatinglabel_10_span_2_Template(rf, ctx) { if (rf & 1) {
-    const _r20 = i0.ɵɵgetCurrentView();
+function TbLoginComponent_kendo_floatinglabel_10_Template(rf, ctx) { if (rf & 1) {
+    const _r18 = i0.ɵɵgetCurrentView();
+    i0.ɵɵelementStart(0, "kendo-floatinglabel", 26)(1, "input", 27);
+    i0.ɵɵlistener("ngModelChange", function TbLoginComponent_kendo_floatinglabel_10_Template_input_ngModelChange_1_listener($event) { i0.ɵɵrestoreView(_r18); const ctx_r17 = i0.ɵɵnextContext(); return ctx_r17.loginRequest.accountName = $event; })("keyup", function TbLoginComponent_kendo_floatinglabel_10_Template_input_keyup_1_listener($event) { i0.ɵɵrestoreView(_r18); const ctx_r19 = i0.ɵɵnextContext(); return ctx_r19.keyUpFunction($event); });
+    i0.ɵɵelementEnd()();
+} if (rf & 2) {
+    const ctx_r3 = i0.ɵɵnextContext();
+    i0.ɵɵproperty("text", ctx_r3.accountName)("ngClass", ctx_r3.authService.errorMessage ? "border-bottom-error" : "border-bottom");
+    i0.ɵɵadvance(1);
+    i0.ɵɵproperty("ngModel", ctx_r3.loginRequest.accountName)("ngClass", ctx_r3.authService.errorMessage ? "error-status" : "normal-state");
+} }
+function TbLoginComponent_kendo_floatinglabel_11_span_2_Template(rf, ctx) { if (rf & 1) {
+    const _r23 = i0.ɵɵgetCurrentView();
     i0.ɵɵelementStart(0, "span", 31);
-    i0.ɵɵlistener("click", function TbLoginComponent_kendo_floatinglabel_10_span_2_Template_span_click_0_listener() { i0.ɵɵrestoreView(_r20); const ctx_r19 = i0.ɵɵnextContext(2); return ctx_r19.hide = !ctx_r19.hide; });
+    i0.ɵɵlistener("click", function TbLoginComponent_kendo_floatinglabel_11_span_2_Template_span_click_0_listener() { i0.ɵɵrestoreView(_r23); const ctx_r22 = i0.ɵɵnextContext(2); return ctx_r22.hide = !ctx_r22.hide; });
     i0.ɵɵtext(1, " visibility ");
     i0.ɵɵelementEnd();
 } }
-function TbLoginComponent_kendo_floatinglabel_10_span_3_Template(rf, ctx) { if (rf & 1) {
-    const _r22 = i0.ɵɵgetCurrentView();
+function TbLoginComponent_kendo_floatinglabel_11_span_3_Template(rf, ctx) { if (rf & 1) {
+    const _r25 = i0.ɵɵgetCurrentView();
     i0.ɵɵelementStart(0, "span", 31);
-    i0.ɵɵlistener("click", function TbLoginComponent_kendo_floatinglabel_10_span_3_Template_span_click_0_listener() { i0.ɵɵrestoreView(_r22); const ctx_r21 = i0.ɵɵnextContext(2); return ctx_r21.hide = !ctx_r21.hide; });
+    i0.ɵɵlistener("click", function TbLoginComponent_kendo_floatinglabel_11_span_3_Template_span_click_0_listener() { i0.ɵɵrestoreView(_r25); const ctx_r24 = i0.ɵɵnextContext(2); return ctx_r24.hide = !ctx_r24.hide; });
     i0.ɵɵtext(1, " visibility_off ");
     i0.ɵɵelementEnd();
 } }
-function TbLoginComponent_kendo_floatinglabel_10_Template(rf, ctx) { if (rf & 1) {
-    const _r24 = i0.ɵɵgetCurrentView();
+function TbLoginComponent_kendo_floatinglabel_11_Template(rf, ctx) { if (rf & 1) {
+    const _r27 = i0.ɵɵgetCurrentView();
     i0.ɵɵelementStart(0, "kendo-floatinglabel", 28)(1, "input", 29);
-    i0.ɵɵlistener("ngModelChange", function TbLoginComponent_kendo_floatinglabel_10_Template_input_ngModelChange_1_listener($event) { i0.ɵɵrestoreView(_r24); const ctx_r23 = i0.ɵɵnextContext(); return ctx_r23.loginRequest.password = $event; })("keyup", function TbLoginComponent_kendo_floatinglabel_10_Template_input_keyup_1_listener($event) { i0.ɵɵrestoreView(_r24); const ctx_r25 = i0.ɵɵnextContext(); return ctx_r25.keyUpFunction($event); });
+    i0.ɵɵlistener("ngModelChange", function TbLoginComponent_kendo_floatinglabel_11_Template_input_ngModelChange_1_listener($event) { i0.ɵɵrestoreView(_r27); const ctx_r26 = i0.ɵɵnextContext(); return ctx_r26.loginRequest.password = $event; })("keyup", function TbLoginComponent_kendo_floatinglabel_11_Template_input_keyup_1_listener($event) { i0.ɵɵrestoreView(_r27); const ctx_r28 = i0.ɵɵnextContext(); return ctx_r28.keyUpFunction($event); });
     i0.ɵɵelementEnd();
-    i0.ɵɵtemplate(2, TbLoginComponent_kendo_floatinglabel_10_span_2_Template, 2, 0, "span", 30);
-    i0.ɵɵtemplate(3, TbLoginComponent_kendo_floatinglabel_10_span_3_Template, 2, 0, "span", 30);
+    i0.ɵɵtemplate(2, TbLoginComponent_kendo_floatinglabel_11_span_2_Template, 2, 0, "span", 30);
+    i0.ɵɵtemplate(3, TbLoginComponent_kendo_floatinglabel_11_span_3_Template, 2, 0, "span", 30);
     i0.ɵɵelementEnd();
 } if (rf & 2) {
-    const ctx_r3 = i0.ɵɵnextContext();
-    i0.ɵɵproperty("ngClass", ctx_r3.authService.errorMessage ? "border-bottom-error" : "border-bottom");
+    const ctx_r4 = i0.ɵɵnextContext();
+    i0.ɵɵproperty("ngClass", ctx_r4.authService.errorMessage ? "border-bottom-error" : "border-bottom");
     i0.ɵɵadvance(1);
-    i0.ɵɵproperty("ngModel", ctx_r3.loginRequest.password)("type", ctx_r3.hide ? "password" : "text")("ngClass", ctx_r3.authService.errorMessage ? "error-status" : "normal-state");
+    i0.ɵɵproperty("ngModel", ctx_r4.loginRequest.password)("type", ctx_r4.hide ? "password" : "text")("ngClass", ctx_r4.authService.errorMessage ? "error-status" : "normal-state");
     i0.ɵɵadvance(1);
-    i0.ɵɵproperty("ngIf", ctx_r3.hide === true);
+    i0.ɵɵproperty("ngIf", ctx_r4.hide === true);
     i0.ɵɵadvance(1);
-    i0.ɵɵproperty("ngIf", ctx_r3.hide === false);
+    i0.ɵɵproperty("ngIf", ctx_r4.hide === false);
 } }
-function TbLoginComponent_div_11_span_4_Template(rf, ctx) { if (rf & 1) {
-    const _r31 = i0.ɵɵgetCurrentView();
+function TbLoginComponent_div_12_span_4_Template(rf, ctx) { if (rf & 1) {
+    const _r34 = i0.ɵɵgetCurrentView();
     i0.ɵɵelementStart(0, "span", 37);
-    i0.ɵɵlistener("click", function TbLoginComponent_div_11_span_4_Template_span_click_0_listener() { i0.ɵɵrestoreView(_r31); i0.ɵɵnextContext(); const _r26 = i0.ɵɵreference(3); const ctx_r30 = i0.ɵɵnextContext(); return ctx_r30.toggle(_r26); });
+    i0.ɵɵlistener("click", function TbLoginComponent_div_12_span_4_Template_span_click_0_listener() { i0.ɵɵrestoreView(_r34); i0.ɵɵnextContext(); const _r29 = i0.ɵɵreference(3); const ctx_r33 = i0.ɵɵnextContext(); return ctx_r33.toggle(_r29); });
     i0.ɵɵtext(1, " arrow_circle_up ");
     i0.ɵɵelementEnd();
 } }
-function TbLoginComponent_div_11_span_5_Template(rf, ctx) { if (rf & 1) {
-    const _r33 = i0.ɵɵgetCurrentView();
+function TbLoginComponent_div_12_span_5_Template(rf, ctx) { if (rf & 1) {
+    const _r36 = i0.ɵɵgetCurrentView();
     i0.ɵɵelementStart(0, "span", 37);
-    i0.ɵɵlistener("click", function TbLoginComponent_div_11_span_5_Template_span_click_0_listener() { i0.ɵɵrestoreView(_r33); i0.ɵɵnextContext(); const _r26 = i0.ɵɵreference(3); const ctx_r32 = i0.ɵɵnextContext(); return ctx_r32.toggle(_r26); });
+    i0.ɵɵlistener("click", function TbLoginComponent_div_12_span_5_Template_span_click_0_listener() { i0.ɵɵrestoreView(_r36); i0.ɵɵnextContext(); const _r29 = i0.ɵɵreference(3); const ctx_r35 = i0.ɵɵnextContext(); return ctx_r35.toggle(_r29); });
     i0.ɵɵtext(1, " arrow_circle_down ");
     i0.ɵɵelementEnd();
 } }
-function TbLoginComponent_div_11_p_7_Template(rf, ctx) { if (rf & 1) {
+function TbLoginComponent_div_12_p_7_Template(rf, ctx) { if (rf & 1) {
     i0.ɵɵelementStart(0, "p", 38);
     i0.ɵɵtext(1);
     i0.ɵɵelementEnd();
 } if (rf & 2) {
-    const ctx_r29 = i0.ɵɵnextContext(2);
+    const ctx_r32 = i0.ɵɵnextContext(2);
     i0.ɵɵadvance(1);
-    i0.ɵɵtextInterpolate2(" Subscription key: ", ctx_r29.loginRequest.subscriptionKey, " ", ctx_r29.instancekey, "");
+    i0.ɵɵtextInterpolate2(" Subscription key: ", ctx_r32.loginRequest.subscriptionKey, " ", ctx_r32.instancekey, " ");
 } }
-function TbLoginComponent_div_11_Template(rf, ctx) { if (rf & 1) {
-    const _r35 = i0.ɵɵgetCurrentView();
+const _c1 = function (a0, a1) { return [a0, a1]; };
+function TbLoginComponent_div_12_Template(rf, ctx) { if (rf & 1) {
+    const _r38 = i0.ɵɵgetCurrentView();
     i0.ɵɵelementStart(0, "div", 32)(1, "kendo-floatinglabel", 26)(2, "kendo-dropdownlist", 33, 34);
-    i0.ɵɵlistener("ngModelChange", function TbLoginComponent_div_11_Template_kendo_dropdownlist_ngModelChange_2_listener($event) { i0.ɵɵrestoreView(_r35); const ctx_r34 = i0.ɵɵnextContext(); return ctx_r34.loginRequest.subscriptionKey = $event; })("ngModelChange", function TbLoginComponent_div_11_Template_kendo_dropdownlist_ngModelChange_2_listener($event) { i0.ɵɵrestoreView(_r35); const ctx_r36 = i0.ɵɵnextContext(); return ctx_r36.onSubChange($event); })("click", function TbLoginComponent_div_11_Template_kendo_dropdownlist_click_2_listener() { i0.ɵɵrestoreView(_r35); const ctx_r37 = i0.ɵɵnextContext(); return ctx_r37.isDropDownClicked(); });
+    i0.ɵɵlistener("ngModelChange", function TbLoginComponent_div_12_Template_kendo_dropdownlist_ngModelChange_2_listener($event) { i0.ɵɵrestoreView(_r38); const ctx_r37 = i0.ɵɵnextContext(); return ctx_r37.loginRequest.subscriptionKey = $event; })("ngModelChange", function TbLoginComponent_div_12_Template_kendo_dropdownlist_ngModelChange_2_listener($event) { i0.ɵɵrestoreView(_r38); const ctx_r39 = i0.ɵɵnextContext(); return ctx_r39.onSubChange($event); })("click", function TbLoginComponent_div_12_Template_kendo_dropdownlist_click_2_listener() { i0.ɵɵrestoreView(_r38); const ctx_r40 = i0.ɵɵnextContext(); return ctx_r40.isDropDownClicked(); });
     i0.ɵɵelementEnd();
-    i0.ɵɵtemplate(4, TbLoginComponent_div_11_span_4_Template, 2, 0, "span", 35);
-    i0.ɵɵtemplate(5, TbLoginComponent_div_11_span_5_Template, 2, 0, "span", 35);
+    i0.ɵɵtemplate(4, TbLoginComponent_div_12_span_4_Template, 2, 0, "span", 35);
+    i0.ɵɵtemplate(5, TbLoginComponent_div_12_span_5_Template, 2, 0, "span", 35);
     i0.ɵɵelementEnd();
     i0.ɵɵelementStart(6, "div");
-    i0.ɵɵtemplate(7, TbLoginComponent_div_11_p_7_Template, 2, 2, "p", 36);
-    i0.ɵɵelementEnd()();
-} if (rf & 2) {
-    const ctx_r4 = i0.ɵɵnextContext();
-    i0.ɵɵadvance(1);
-    i0.ɵɵpropertyInterpolate("text", ctx_r4.subscription);
-    i0.ɵɵproperty("ngClass", ctx_r4.authService.errorMessage ? "border-bottom-error" : "border-bottom");
-    i0.ɵɵadvance(1);
-    i0.ɵɵproperty("disabled", (ctx_r4.loginSubscriptions == null ? null : ctx_r4.loginSubscriptions.length) <= 1)("data", ctx_r4.loginSubscriptions)("ngModel", ctx_r4.loginRequest.subscriptionKey);
-    i0.ɵɵadvance(2);
-    i0.ɵɵproperty("ngIf", ctx_r4.dropDownIsClicked);
-    i0.ɵɵadvance(1);
-    i0.ɵɵproperty("ngIf", !ctx_r4.dropDownIsClicked);
-    i0.ɵɵadvance(2);
-    i0.ɵɵproperty("ngIf", ctx_r4.loginSubscriptions.length > 3);
-} }
-function TbLoginComponent_div_13_Template(rf, ctx) { if (rf & 1) {
-    i0.ɵɵelementStart(0, "div", 39)(1, "p", 40);
-    i0.ɵɵtext(2);
+    i0.ɵɵtemplate(7, TbLoginComponent_div_12_p_7_Template, 2, 2, "p", 36);
     i0.ɵɵelementEnd()();
 } if (rf & 2) {
     const ctx_r5 = i0.ɵɵnextContext();
+    i0.ɵɵadvance(1);
+    i0.ɵɵpropertyInterpolate("text", ctx_r5.subscription);
+    i0.ɵɵproperty("ngClass", i0.ɵɵpureFunction2(8, _c1, ctx_r5.authService.errorMessage ? "border-bottom-error" : "", ctx_r5.dropDownIsClicked ? "" : "border-bottom"));
+    i0.ɵɵadvance(1);
+    i0.ɵɵproperty("disabled", (ctx_r5.loginSubscriptions == null ? null : ctx_r5.loginSubscriptions.length) <= 1)("data", ctx_r5.loginSubscriptions)("ngModel", ctx_r5.loginRequest.subscriptionKey);
     i0.ɵɵadvance(2);
-    i0.ɵɵtextInterpolate1(" ", ctx_r5.blocMaiusc, "");
+    i0.ɵɵproperty("ngIf", ctx_r5.dropDownIsClicked);
+    i0.ɵɵadvance(1);
+    i0.ɵɵproperty("ngIf", !ctx_r5.dropDownIsClicked);
+    i0.ɵɵadvance(2);
+    i0.ɵɵproperty("ngIf", ctx_r5.loginSubscriptions.length > 3);
 } }
-function TbLoginComponent_div_14_Template(rf, ctx) { if (rf & 1) {
-    i0.ɵɵelementStart(0, "div", 41)(1, "p", 40);
-    i0.ɵɵtext(2);
-    i0.ɵɵelementEnd()();
+function TbLoginComponent_kendo_floatinglabel_13_span_2_Template(rf, ctx) { if (rf & 1) {
+    const _r44 = i0.ɵɵgetCurrentView();
+    i0.ɵɵelementStart(0, "span", 31);
+    i0.ɵɵlistener("click", function TbLoginComponent_kendo_floatinglabel_13_span_2_Template_span_click_0_listener() { i0.ɵɵrestoreView(_r44); const ctx_r43 = i0.ɵɵnextContext(2); return ctx_r43.hideOtp = !ctx_r43.hideOtp; });
+    i0.ɵɵtext(1, " visibility ");
+    i0.ɵɵelementEnd();
+} }
+function TbLoginComponent_kendo_floatinglabel_13_span_3_Template(rf, ctx) { if (rf & 1) {
+    const _r46 = i0.ɵɵgetCurrentView();
+    i0.ɵɵelementStart(0, "span", 31);
+    i0.ɵɵlistener("click", function TbLoginComponent_kendo_floatinglabel_13_span_3_Template_span_click_0_listener() { i0.ɵɵrestoreView(_r46); const ctx_r45 = i0.ɵɵnextContext(2); return ctx_r45.hideOtp = !ctx_r45.hideOtp; });
+    i0.ɵɵtext(1, " visibility_off ");
+    i0.ɵɵelementEnd();
+} }
+function TbLoginComponent_kendo_floatinglabel_13_Template(rf, ctx) { if (rf & 1) {
+    const _r48 = i0.ɵɵgetCurrentView();
+    i0.ɵɵelementStart(0, "kendo-floatinglabel", 26)(1, "input", 39);
+    i0.ɵɵlistener("ngModelChange", function TbLoginComponent_kendo_floatinglabel_13_Template_input_ngModelChange_1_listener($event) { i0.ɵɵrestoreView(_r48); const ctx_r47 = i0.ɵɵnextContext(); return ctx_r47.inputValue = $event; })("keyup", function TbLoginComponent_kendo_floatinglabel_13_Template_input_keyup_1_listener($event) { i0.ɵɵrestoreView(_r48); const ctx_r49 = i0.ɵɵnextContext(); return ctx_r49.keyUpFunction($event); });
+    i0.ɵɵelementEnd();
+    i0.ɵɵtemplate(2, TbLoginComponent_kendo_floatinglabel_13_span_2_Template, 2, 0, "span", 30);
+    i0.ɵɵtemplate(3, TbLoginComponent_kendo_floatinglabel_13_span_3_Template, 2, 0, "span", 30);
+    i0.ɵɵelementEnd();
 } if (rf & 2) {
     const ctx_r6 = i0.ɵɵnextContext();
-    i0.ɵɵadvance(2);
-    i0.ɵɵtextInterpolate1(" ", ctx_r6.authService.errorMessage, " ");
+    i0.ɵɵproperty("text", ctx_r6.code)("ngClass", ctx_r6.authService.errorMessage ? "border-bottom-error" : "border-bottom");
+    i0.ɵɵadvance(1);
+    i0.ɵɵproperty("ngModel", ctx_r6.inputValue)("type", ctx_r6.hideOtp ? "password" : "text");
+    i0.ɵɵadvance(1);
+    i0.ɵɵproperty("ngIf", ctx_r6.hideOtp === true);
+    i0.ɵɵadvance(1);
+    i0.ɵɵproperty("ngIf", ctx_r6.hideOtp === false);
 } }
 function TbLoginComponent_div_15_Template(rf, ctx) { if (rf & 1) {
-    i0.ɵɵelementStart(0, "div", 42)(1, "p", 40);
+    i0.ɵɵelementStart(0, "div", 40)(1, "p", 41);
     i0.ɵɵtext(2);
     i0.ɵɵelementEnd()();
 } if (rf & 2) {
     const ctx_r7 = i0.ɵɵnextContext();
     i0.ɵɵadvance(2);
-    i0.ɵɵtextInterpolate(ctx_r7.authService.okMessage);
+    i0.ɵɵtextInterpolate(ctx_r7.blocMaiusc);
 } }
-function TbLoginComponent_span_19_Template(rf, ctx) { if (rf & 1) {
-    i0.ɵɵelement(0, "span", 43);
+function TbLoginComponent_div_16_Template(rf, ctx) { if (rf & 1) {
+    i0.ɵɵelementStart(0, "div", 42)(1, "p", 41);
+    i0.ɵɵtext(2);
+    i0.ɵɵelementEnd()();
+} if (rf & 2) {
+    const ctx_r8 = i0.ɵɵnextContext();
+    i0.ɵɵadvance(2);
+    i0.ɵɵtextInterpolate(ctx_r8.authService.errorMessage);
 } }
-function TbLoginComponent_span_20_Template(rf, ctx) { if (rf & 1) {
-    i0.ɵɵelementStart(0, "span");
-    i0.ɵɵtext(1);
-    i0.ɵɵelementEnd();
+function TbLoginComponent_div_17_Template(rf, ctx) { if (rf & 1) {
+    i0.ɵɵelementStart(0, "div", 43)(1, "p", 41);
+    i0.ɵɵtext(2);
+    i0.ɵɵelementEnd()();
 } if (rf & 2) {
     const ctx_r9 = i0.ɵɵnextContext();
-    i0.ɵɵadvance(1);
-    i0.ɵɵtextInterpolate(ctx_r9.buttonText);
+    i0.ɵɵadvance(2);
+    i0.ɵɵtextInterpolate(ctx_r9.authService.okMessage);
 } }
-function TbLoginComponent_button_22_span_1_Template(rf, ctx) { if (rf & 1) {
+function TbLoginComponent_div_18_Template(rf, ctx) { if (rf & 1) {
+    const _r51 = i0.ɵɵgetCurrentView();
+    i0.ɵɵelementStart(0, "div")(1, "div", 44)(2, "p", 45);
+    i0.ɵɵlistener("click", function TbLoginComponent_div_18_Template_p_click_2_listener() { i0.ɵɵrestoreView(_r51); const ctx_r50 = i0.ɵɵnextContext(); return ctx_r50.authService.resendOTP(ctx_r50.loginRequest.accountName, ctx_r50.alternative); });
+    i0.ɵɵelementStart(3, "u");
+    i0.ɵɵtext(4);
+    i0.ɵɵelementEnd()()();
+    i0.ɵɵelementStart(5, "div", 46)(6, "p", 47)(7, "mat-checkbox", 48);
+    i0.ɵɵlistener("ngModelChange", function TbLoginComponent_div_18_Template_mat_checkbox_ngModelChange_7_listener($event) { i0.ɵɵrestoreView(_r51); const ctx_r52 = i0.ɵɵnextContext(); return ctx_r52.alternative = $event; });
+    i0.ɵɵelementStart(8, "span", 49);
+    i0.ɵɵtext(9);
+    i0.ɵɵelementEnd()()()()();
+} if (rf & 2) {
+    const ctx_r10 = i0.ɵɵnextContext();
+    i0.ɵɵadvance(4);
+    i0.ɵɵtextInterpolate(ctx_r10.resendOTPpLabel);
+    i0.ɵɵadvance(3);
+    i0.ɵɵproperty("ngModel", ctx_r10.alternative);
+    i0.ɵɵadvance(2);
+    i0.ɵɵtextInterpolate(ctx_r10.alternativelbl);
+} }
+function TbLoginComponent_span_22_Template(rf, ctx) { if (rf & 1) {
+    i0.ɵɵelement(0, "span", 50);
+} }
+function TbLoginComponent_span_23_Template(rf, ctx) { if (rf & 1) {
     i0.ɵɵelementStart(0, "span");
     i0.ɵɵtext(1);
     i0.ɵɵelementEnd();
 } if (rf & 2) {
-    const ctx_r38 = i0.ɵɵnextContext(2);
+    const ctx_r12 = i0.ɵɵnextContext();
     i0.ɵɵadvance(1);
-    i0.ɵɵtextInterpolate1(" ", ctx_r38.buttonBack, "");
-} }
-function TbLoginComponent_button_22_Template(rf, ctx) { if (rf & 1) {
-    const _r40 = i0.ɵɵgetCurrentView();
-    i0.ɵɵelementStart(0, "button", 44);
-    i0.ɵɵlistener("click", function TbLoginComponent_button_22_Template_button_click_0_listener() { i0.ɵɵrestoreView(_r40); const ctx_r39 = i0.ɵɵnextContext(); return ctx_r39.back(); });
-    i0.ɵɵtemplate(1, TbLoginComponent_button_22_span_1_Template, 2, 1, "span", 4);
-    i0.ɵɵelementEnd();
-} if (rf & 2) {
-    const ctx_r10 = i0.ɵɵnextContext();
-    i0.ɵɵadvance(1);
-    i0.ɵɵproperty("ngIf", !ctx_r10.loading && ctx_r10.validate);
+    i0.ɵɵtextInterpolate(ctx_r12.buttonText);
 } }
 function TbLoginComponent_div_24_Template(rf, ctx) { if (rf & 1) {
-    const _r42 = i0.ɵɵgetCurrentView();
-    i0.ɵɵelementStart(0, "div")(1, "p", 45);
-    i0.ɵɵlistener("click", function TbLoginComponent_div_24_Template_p_click_1_listener() { i0.ɵɵrestoreView(_r42); const ctx_r41 = i0.ɵɵnextContext(); return ctx_r41.newUser(); });
+    const _r54 = i0.ɵɵgetCurrentView();
+    i0.ɵɵelementStart(0, "div", 18)(1, "button", 51);
+    i0.ɵɵlistener("click", function TbLoginComponent_div_24_Template_button_click_1_listener() { i0.ɵɵrestoreView(_r54); const ctx_r53 = i0.ɵɵnextContext(); return ctx_r53.back(); });
+    i0.ɵɵelementStart(2, "span");
+    i0.ɵɵtext(3);
+    i0.ɵɵelementEnd()()();
+} if (rf & 2) {
+    const ctx_r13 = i0.ɵɵnextContext();
+    i0.ɵɵadvance(3);
+    i0.ɵɵtextInterpolate1(" ", ctx_r13.buttonBack, "");
+} }
+function TbLoginComponent_div_26_Template(rf, ctx) { if (rf & 1) {
+    const _r56 = i0.ɵɵgetCurrentView();
+    i0.ɵɵelementStart(0, "div")(1, "p", 52);
+    i0.ɵɵlistener("click", function TbLoginComponent_div_26_Template_p_click_1_listener() { i0.ɵɵrestoreView(_r56); const ctx_r55 = i0.ɵɵnextContext(); return ctx_r55.newUser(); });
     i0.ɵɵtext(2, "SignUp here!");
     i0.ɵɵelementEnd()();
 } }
-function TbLoginComponent_div_25_Template(rf, ctx) { if (rf & 1) {
-    const _r44 = i0.ɵɵgetCurrentView();
-    i0.ɵɵelementStart(0, "div", 46)(1, "p", 47);
-    i0.ɵɵlistener("click", function TbLoginComponent_div_25_Template_p_click_1_listener() { i0.ɵɵrestoreView(_r44); const ctx_r43 = i0.ɵɵnextContext(); return ctx_r43.goToForgotPassword(); });
+function TbLoginComponent_div_27_Template(rf, ctx) { if (rf & 1) {
+    const _r58 = i0.ɵɵgetCurrentView();
+    i0.ɵɵelementStart(0, "div", 46)(1, "p", 53);
+    i0.ɵɵlistener("click", function TbLoginComponent_div_27_Template_p_click_1_listener() { i0.ɵɵrestoreView(_r58); const ctx_r57 = i0.ɵɵnextContext(); return ctx_r57.goToForgotPassword(); });
     i0.ɵɵelementStart(2, "u");
     i0.ɵɵtext(3);
     i0.ɵɵelementEnd()()();
 } if (rf & 2) {
-    const ctx_r12 = i0.ɵɵnextContext();
+    const ctx_r15 = i0.ɵɵnextContext();
     i0.ɵɵadvance(3);
-    i0.ɵɵtextInterpolate(ctx_r12.forgetPassword);
+    i0.ɵɵtextInterpolate(ctx_r15.forgetPassword);
 } }
 // ---------------------------------------------------------------------------
 class TbLoginComponent {
@@ -1582,14 +1503,18 @@ class TbLoginComponent {
         this.cachedCompanies = [];
         this.capsLockOn = false;
         this.validate = false;
+        this.otp = false;
         this.loading = false;
         this.loginRequest = new LoginRequest();
         this.loginSubscriptions = [];
         this.hide = true;
+        this.hideOtp = true;
         this.isConnected = true;
+        this.inputValue = '';
         this.dropDownIsClicked = false;
         this.comboBoxIsClicked = false;
         this.iconIsClicked = false;
+        this.alternative = false;
         this.currentBrowserLanguage = navigator.language.toLocaleLowerCase();
         this.languageIT = this.currentBrowserLanguage.startsWith('it');
         // ---------------------------------------------------------------------------
@@ -1638,12 +1563,12 @@ class TbLoginComponent {
         this.logoURL = authService.getLogoURL();
         this.instancekey = '';
         if (this.languageIT) {
-            this.nextText = "avanti";
-            this.loginText = "accedi";
+            this.nextText = 'avanti';
+            this.loginText = 'accedi';
         }
         else {
-            this.nextText = "next";
-            this.loginText = "login";
+            this.nextText = 'next';
+            this.loginText = 'login';
         }
         this.buttonText = this.validate || !this.subscriptionSelection ? this.loginText : this.nextText;
         this.currentYear = new Date().getFullYear().toString();
@@ -1654,14 +1579,19 @@ class TbLoginComponent {
             this.instance = 'Istanza';
             this.buttonBack = '< INDIETRO';
             this.accountName = 'Nome utente';
-            this.enterAccounName = "Inserisci il tuo nome utente e ti invieremo una nuova password";
+            this.enterAccounName = 'Inserisci il tuo nome utente e ti invieremo una nuova password';
             this.welcome = 'Benvenuto su MagoCloud';
-            this.enterCredentials = 'Inserisci nome utente e password per l\'autenticazione.';
+            this.enterCredentials = "Inserisci nome utente e password per l'autenticazione.";
             this.dontshow = 'Non mostrare più questo messaggio';
             this.forgetPassword = 'Hai dimenticato la password ?';
             this.blocMaiusc = 'Blocco maiuscole attivo';
             this.idleTimeoutMessage = 'La tua sessione è terminata per inattività, puoi riprendere da qui.';
             this.upgradeWarningTitle = 'Aggiornamento  in vista';
+            this.otpMessage = 'Prego inserire il codice OTP ricevuto via mail o SMS a seconda della modalità impostata.';
+            this.otpTitle = 'Autenticazione a due fattori';
+            this.resendOTPpLabel = 'Inviami un nuovo codice';
+            this.alternativelbl = 'Usa metodo alternativo';
+            this.code = 'Codice';
         }
         else {
             this.chooseSubscription = 'Choose your subscription';
@@ -1670,7 +1600,7 @@ class TbLoginComponent {
             this.instance = 'Instance';
             this.buttonBack = '< BACK';
             this.accountName = 'Account name';
-            this.enterAccounName = "Enter your account name and we will send you a new password";
+            this.enterAccounName = 'Enter your account name and we will send you a new password';
             this.welcome = 'Welcome to MagoCloud';
             this.enterCredentials = 'Enter account name and password for authentication.';
             this.dontshow = 'Do not show me this message again';
@@ -1678,6 +1608,11 @@ class TbLoginComponent {
             this.blocMaiusc = 'Caps lock on';
             this.idleTimeoutMessage = 'Your session has expired due to inactivity, you can resume from here.';
             this.upgradeWarningTitle = 'Update planned';
+            this.otpMessage = 'Please insert the OTP code. Depending on the mode set, the OTP is sent either by e-mail or by SMS.';
+            this.otpTitle = 'Two-Factor Authentication';
+            this.resendOTPpLabel = 'Send me a new code';
+            this.alternativelbl = 'Use alternative way';
+            this.code = 'Code';
         }
         authService.reLoginAfterOTP.subscribe(() => {
             //'login subscribed');
@@ -1713,10 +1648,9 @@ class TbLoginComponent {
             let error = this.authService.errorMessage;
             if (error.length === 0)
                 error = this.authService.getBaseUrl();
-            this.authService.errorMessage = (this.languageIT) ?
-                'Servizio temporaneamente non raggiungibile. Dettagli: ' + error
-                :
-                    'Service temporarily not available. Details: ' + error;
+            this.authService.errorMessage = this.languageIT
+                ? 'Servizio temporaneamente non raggiungibile. Dettagli: ' + error
+                : 'Service temporarily not available. Details: ' + error;
         }
         else {
             this.authService.errorMessage = '';
@@ -1744,12 +1678,14 @@ class TbLoginComponent {
         return ((hasAutofill() &&
             (!this.isConnected ||
                 (this.subscriptionSelection && this.loginSubscriptions.length === 0 && this.validate) ||
+                (this.otp && this.inputValue.length !== 6) ||
                 this.loading)) ||
             (!hasAutofill() &&
                 (!this.isConnected ||
                     !this.loginRequest.accountName ||
                     !this.loginRequest.password ||
                     (this.subscriptionSelection && this.loginSubscriptions.length === 0 && this.validate) ||
+                    (this.otp && this.inputValue.length !== 6) ||
                     this.loading)));
     }
     get isExpiredSession() {
@@ -1772,6 +1708,8 @@ class TbLoginComponent {
         this.loginSubscriptions = [];
         this.authService.okMessage = '';
         this.authService.errorMessage = '';
+        this.otp = false;
+        this.inputValue = '';
     }
     // ---------------------------------------------------------------------------
     async login() {
@@ -1781,6 +1719,9 @@ class TbLoginComponent {
         this.saveLoginData();
         this.loading = true;
         sessionStorage.removeItem('expiredSession');
+        if (this.otp) {
+            this.loginRequest.password = this.inputValue;
+        }
         if (!this.validate && this.subscriptionSelection) {
             this.loginRequest.appId = 'MCloudPreLogin';
             this.loginRequest.subscriptionKey = '';
@@ -1794,11 +1735,18 @@ class TbLoginComponent {
             this.buttonText = this.validate ? this.loginText : this.nextText;
             // todo controlla come vengono mostrati errori sia login sia checkdb
             if (result1 && result1.Result) {
+                this.otp = false;
                 this.validate = true;
                 this.buttonText = this.validate ? this.loginText : this.nextText;
                 this.getCompaniesForUser(this.loginRequest.accountName);
                 this.authService.errorMessage = '';
                 this.authService.okMessage = '';
+            }
+            else if (!this.otp && result1 && result1.ResultCode === 143) {
+                this.otp = true;
+            }
+            else if (this.otp && result1 && !result1.Result && result1.ResultCode === 143) {
+                this.authService.errorMessage = this.languageIT ? 'Codice non valido' : 'Invalid code';
             }
             else {
                 this.loading = false;
@@ -2045,75 +1993,84 @@ class TbLoginComponent {
     } if (rf & 2) {
         let _t;
         i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.dropdown = _t.first);
-    } }, decls: 29, vars: 16, consts: [[1, "login-container"], [1, "login", 2, "z-index", "1"], [1, "login-header"], ["mat-card-image", "", 2, "width", "60%", 3, "src"], [4, "ngIf"], [1, "login-form"], [3, "text", "ngClass", 4, "ngIf"], ["text", "Password", 3, "ngClass", 4, "ngIf"], ["class", "form-control", 4, "ngIf"], [1, "login-infos"], ["class", "caps-lock panel flex-center margin-bottom-5", 4, "ngIf"], ["class", "login-error panel flex-center margin-bottom-5", 4, "ngIf"], ["class", "login-info panel flex-center", 4, "ngIf"], [2, "display", "flex", "flex-direction", "row-reverse", "justify-content", "space-between", "padding", "0 1px", ";margin-top", "60px"], [1, "login-footer", 2, "display", "flex", "justify-content", "flex-end"], ["kendoButton", "", 1, "buttons", "login-button", 3, "disabled", "click"], ["class", "k-icon k-i-loading", 4, "ngIf"], [1, "login-footer"], ["kendoButton", "", "class", "buttons back-button", 3, "click", 4, "ngIf"], ["style", "display: flex; margin-top: 10px; justify-content: flex-end", 4, "ngIf"], [2, "position", "absolute", "bottom", "0", "width", "100%", "z-index", "0"], [1, "copyright", "copyright-abs"], [1, "margin-h1", "title"], ["class", "login-expired-subtitle description", 4, "ngIf"], [1, "login-subtitle", "description"], [1, "login-expired-subtitle", "description"], [3, "text", "ngClass"], ["kendoTextBox", "", "name", "accountName", "type", "text", 3, "ngModel", "ngClass", "ngModelChange", "keyup"], ["text", "Password", 3, "ngClass"], ["kendoTextBox", "", "name", "password", "autocomplete", "current-password", 3, "ngModel", "type", "ngClass", "ngModelChange", "keyup"], ["class", "material-icons icon", 3, "click", 4, "ngIf"], [1, "material-icons", "icon", 3, "click"], [1, "form-control"], ["name", "subscription", "textField", "description", "valueField", "subscriptionkey", "valuePrimitive", "true", 1, "kendo-dropdown", 3, "disabled", "data", "ngModel", "ngModelChange", "click"], ["dropdown", ""], ["class", "material-symbols-rounded icon", 3, "click", 4, "ngIf"], ["class", "instancekey", 4, "ngIf"], [1, "material-symbols-rounded", "icon", 3, "click"], [1, "instancekey"], [1, "caps-lock", "panel", "flex-center", "margin-bottom-5"], [1, "no-margin"], [1, "login-error", "panel", "flex-center", "margin-bottom-5"], [1, "login-info", "panel", "flex-center"], [1, "k-icon", "k-i-loading"], ["kendoButton", "", 1, "buttons", "back-button", 3, "click"], [1, "signup", 3, "click"], [2, "display", "flex", "margin-top", "10px", "justify-content", "flex-end"], [1, "forgotpwd", 3, "click"]], template: function TbLoginComponent_Template(rf, ctx) { if (rf & 1) {
+    } }, decls: 31, vars: 19, consts: [[1, "login-container"], [1, "login", 2, "z-index", "1"], [1, "login-header"], ["mat-card-image", "", 2, "width", "60%", 3, "src"], [4, "ngIf"], [1, "login-form"], [3, "text", "ngClass", 4, "ngIf"], ["text", "Password", 3, "ngClass", 4, "ngIf"], ["class", "form-control", 4, "ngIf"], [1, "login-infos"], ["class", "caps-lock panel flex-center margin-bottom-5", 4, "ngIf"], ["class", "login-error panel flex-center margin-bottom-5", 4, "ngIf"], ["class", "login-info panel flex-center", 4, "ngIf"], [2, "display", "flex", "flex-direction", "row-reverse", "justify-content", "space-between", "padding", "0 1px", "margin-top", "60px"], [1, "login-footer", 2, "display", "flex", "justify-content", "flex-end"], ["kendoButton", "", 1, "buttons", "login-button", 3, "disabled", "click"], ["class", "k-icon k-i-loading", 4, "ngIf"], ["class", "login-footer", 4, "ngIf"], [1, "login-footer"], ["style", "display: flex; margin-top: 10px; justify-content: flex-end", 4, "ngIf"], [2, "position", "absolute", "bottom", "0", "width", "100%", "z-index", "0"], [1, "copyright", "copyright-abs"], [1, "margin-h1", "title"], ["class", "login-expired-subtitle description", 4, "ngIf"], [1, "login-subtitle", "description"], [1, "login-expired-subtitle", "description"], [3, "text", "ngClass"], ["kendoTextBox", "", "name", "accountName", "type", "text", 3, "ngModel", "ngClass", "ngModelChange", "keyup"], ["text", "Password", 3, "ngClass"], ["kendoTextBox", "", "name", "password", "autocomplete", "current-password", 3, "ngModel", "type", "ngClass", "ngModelChange", "keyup"], ["class", "material-icons icon", 3, "click", 4, "ngIf"], [1, "material-icons", "icon", 3, "click"], [1, "form-control"], ["name", "subscription", "textField", "description", "valueField", "subscriptionkey", "valuePrimitive", "true", 1, "kendo-dropdown", 3, "disabled", "data", "ngModel", "ngModelChange", "click"], ["dropdown", ""], ["class", "material-symbols-rounded icon", 3, "click", 4, "ngIf"], ["class", "instancekey", 4, "ngIf"], [1, "material-symbols-rounded", "icon", 3, "click"], [1, "instancekey"], ["kendoTextBox", "", "name", "accountNameOtp", "type", "password", 1, "normal-state", 3, "ngModel", "type", "ngModelChange", "keyup"], [1, "caps-lock", "panel", "flex-center", "margin-bottom-5"], [1, "no-margin"], [1, "login-error", "panel", "flex-center", "margin-bottom-5"], [1, "login-info", "panel", "flex-center"], [2, "display", "flex", "justify-content", "flex-end"], [1, "link", 3, "click"], [2, "display", "flex", "margin-top", "10px", "justify-content", "flex-end"], [1, "link"], ["name", "alternative", 3, "ngModel", "ngModelChange"], ["translate", ""], [1, "k-icon", "k-i-loading"], ["kendoButton", "", 1, "buttons", "back-button", 3, "click"], [1, "signup", 3, "click"], [1, "forgotpwd", 3, "click"]], template: function TbLoginComponent_Template(rf, ctx) { if (rf & 1) {
         i0.ɵɵelementStart(0, "div", 0)(1, "div", 1)(2, "div", 2)(3, "div");
         i0.ɵɵelement(4, "img", 3);
         i0.ɵɵelementEnd();
         i0.ɵɵtemplate(5, TbLoginComponent_div_5_Template, 6, 3, "div", 4);
         i0.ɵɵtemplate(6, TbLoginComponent_div_6_Template, 5, 3, "div", 4);
+        i0.ɵɵtemplate(7, TbLoginComponent_div_7_Template, 5, 2, "div", 4);
         i0.ɵɵelementEnd();
-        i0.ɵɵelementStart(7, "form")(8, "div", 5);
-        i0.ɵɵtemplate(9, TbLoginComponent_kendo_floatinglabel_9_Template, 2, 4, "kendo-floatinglabel", 6);
-        i0.ɵɵtemplate(10, TbLoginComponent_kendo_floatinglabel_10_Template, 4, 6, "kendo-floatinglabel", 7);
-        i0.ɵɵtemplate(11, TbLoginComponent_div_11_Template, 8, 8, "div", 8);
-        i0.ɵɵelementStart(12, "div", 9);
-        i0.ɵɵtemplate(13, TbLoginComponent_div_13_Template, 3, 1, "div", 10);
-        i0.ɵɵtemplate(14, TbLoginComponent_div_14_Template, 3, 1, "div", 11);
-        i0.ɵɵtemplate(15, TbLoginComponent_div_15_Template, 3, 1, "div", 12);
-        i0.ɵɵelementEnd()()();
-        i0.ɵɵelementStart(16, "div", 13)(17, "div", 14)(18, "button", 15);
-        i0.ɵɵlistener("click", function TbLoginComponent_Template_button_click_18_listener() { return ctx.login(); });
-        i0.ɵɵtemplate(19, TbLoginComponent_span_19_Template, 1, 0, "span", 16);
-        i0.ɵɵtemplate(20, TbLoginComponent_span_20_Template, 2, 1, "span", 4);
+        i0.ɵɵelementStart(8, "form")(9, "div", 5);
+        i0.ɵɵtemplate(10, TbLoginComponent_kendo_floatinglabel_10_Template, 2, 4, "kendo-floatinglabel", 6);
+        i0.ɵɵtemplate(11, TbLoginComponent_kendo_floatinglabel_11_Template, 4, 6, "kendo-floatinglabel", 7);
+        i0.ɵɵtemplate(12, TbLoginComponent_div_12_Template, 8, 11, "div", 8);
+        i0.ɵɵtemplate(13, TbLoginComponent_kendo_floatinglabel_13_Template, 4, 6, "kendo-floatinglabel", 6);
+        i0.ɵɵelementStart(14, "div", 9);
+        i0.ɵɵtemplate(15, TbLoginComponent_div_15_Template, 3, 1, "div", 10);
+        i0.ɵɵtemplate(16, TbLoginComponent_div_16_Template, 3, 1, "div", 11);
+        i0.ɵɵtemplate(17, TbLoginComponent_div_17_Template, 3, 1, "div", 12);
+        i0.ɵɵelementEnd();
+        i0.ɵɵtemplate(18, TbLoginComponent_div_18_Template, 10, 3, "div", 4);
         i0.ɵɵelementEnd()();
-        i0.ɵɵelementStart(21, "div", 17);
-        i0.ɵɵtemplate(22, TbLoginComponent_button_22_Template, 2, 1, "button", 18);
+        i0.ɵɵelementStart(19, "div", 13)(20, "div", 14)(21, "button", 15);
+        i0.ɵɵlistener("click", function TbLoginComponent_Template_button_click_21_listener() { return ctx.login(); });
+        i0.ɵɵtemplate(22, TbLoginComponent_span_22_Template, 1, 0, "span", 16);
+        i0.ɵɵtemplate(23, TbLoginComponent_span_23_Template, 2, 1, "span", 4);
         i0.ɵɵelementEnd()();
-        i0.ɵɵelementStart(23, "div", 17);
-        i0.ɵɵtemplate(24, TbLoginComponent_div_24_Template, 3, 0, "div", 4);
+        i0.ɵɵtemplate(24, TbLoginComponent_div_24_Template, 4, 1, "div", 17);
         i0.ɵɵelementEnd();
-        i0.ɵɵtemplate(25, TbLoginComponent_div_25_Template, 4, 1, "div", 19);
+        i0.ɵɵelementStart(25, "div", 18);
+        i0.ɵɵtemplate(26, TbLoginComponent_div_26_Template, 3, 0, "div", 4);
         i0.ɵɵelementEnd();
-        i0.ɵɵelementStart(26, "div", 20)(27, "p", 21);
-        i0.ɵɵtext(28);
+        i0.ɵɵtemplate(27, TbLoginComponent_div_27_Template, 4, 1, "div", 19);
+        i0.ɵɵelementEnd();
+        i0.ɵɵelementStart(28, "div", 20)(29, "p", 21);
+        i0.ɵɵtext(30);
         i0.ɵɵelementEnd()()();
     } if (rf & 2) {
         i0.ɵɵadvance(4);
         i0.ɵɵpropertyInterpolate("src", ctx.logoURL, i0.ɵɵsanitizeUrl);
         i0.ɵɵadvance(1);
-        i0.ɵɵproperty("ngIf", !ctx.validate);
+        i0.ɵɵproperty("ngIf", !ctx.validate && !ctx.otp);
         i0.ɵɵadvance(1);
-        i0.ɵɵproperty("ngIf", ctx.validate);
+        i0.ɵɵproperty("ngIf", ctx.validate && !ctx.otp);
+        i0.ɵɵadvance(1);
+        i0.ɵɵproperty("ngIf", ctx.otp);
         i0.ɵɵadvance(3);
-        i0.ɵɵproperty("ngIf", !ctx.validate);
+        i0.ɵɵproperty("ngIf", !ctx.validate && !ctx.otp);
         i0.ɵɵadvance(1);
-        i0.ɵɵproperty("ngIf", !ctx.validate);
+        i0.ɵɵproperty("ngIf", !ctx.validate && !ctx.otp);
         i0.ɵɵadvance(1);
-        i0.ɵɵproperty("ngIf", ctx.subscriptionSelection && ctx.validate);
+        i0.ɵɵproperty("ngIf", ctx.subscriptionSelection && ctx.validate && !ctx.otp);
+        i0.ɵɵadvance(1);
+        i0.ɵɵproperty("ngIf", ctx.otp);
         i0.ɵɵadvance(2);
         i0.ɵɵproperty("ngIf", ctx.capsLockOn);
         i0.ɵɵadvance(1);
         i0.ɵɵproperty("ngIf", ctx.authService.errorMessage);
         i0.ɵɵadvance(1);
         i0.ɵɵproperty("ngIf", ctx.authService.okMessage);
+        i0.ɵɵadvance(1);
+        i0.ɵɵproperty("ngIf", ctx.otp);
         i0.ɵɵadvance(3);
         i0.ɵɵproperty("disabled", ctx.disabledButton());
         i0.ɵɵadvance(1);
         i0.ɵɵproperty("ngIf", ctx.loading);
         i0.ɵɵadvance(1);
         i0.ɵɵproperty("ngIf", !ctx.loading);
-        i0.ɵɵadvance(2);
-        i0.ɵɵproperty("ngIf", !ctx.loading && ctx.validate);
+        i0.ɵɵadvance(1);
+        i0.ɵɵproperty("ngIf", !ctx.loading && ctx.validate || ctx.otp);
         i0.ɵɵadvance(2);
         i0.ɵɵproperty("ngIf", ctx.showSignUp);
         i0.ɵɵadvance(1);
-        i0.ɵɵproperty("ngIf", !ctx.validate);
+        i0.ɵɵproperty("ngIf", !ctx.validate && !ctx.otp);
         i0.ɵɵadvance(3);
-        i0.ɵɵtextInterpolate1("Login v2.3.1+37 \u00A9 2017 - ", ctx.currentYear, ", Zucchetti s.p.a. ");
-    } }, directives: [i5.NgIf, i4.ɵNgNoValidate, i4.NgControlStatusGroup, i4.NgForm, i2.FloatingLabelComponent, i5.NgClass, i3.TextBoxDirective, i4.DefaultValueAccessor, i4.NgControlStatus, i4.NgModel, i8.DropDownListComponent], styles: ["@import\"https://fonts.googleapis.com/css?family=Open+Sans:400,600,700\";body[_ngcontent-%COMP%], html[_ngcontent-%COMP%]{font-family:Open Sans,sans-serif!important;overflow:hidden;padding:0;margin:0}.k-animation-container-shown[_ngcontent-%COMP%], .k-animation-container[_ngcontent-%COMP%] > .k-popup[_ngcontent-%COMP%]{box-shadow:none;color:#005890;width:370px;max-height:130px}.k-list[_ngcontent-%COMP%]{background:#F4F4F4;color:#005890}.k-list[_ngcontent-%COMP%]   [_ngcontent-%COMP%]::-webkit-scrollbar{background:#bfcdd5}.k-list[_ngcontent-%COMP%]   [_ngcontent-%COMP%]::-webkit-scrollbar:hover{background:#d9d9d9}.k-list[_ngcontent-%COMP%]   [_ngcontent-%COMP%]::-webkit-scrollbar-thumb{background:#6cafd1}.k-list[_ngcontent-%COMP%]   [_ngcontent-%COMP%]::-webkit-scrollbar-thumb:hover{background:#005890}.k-list[_ngcontent-%COMP%]   .k-list-item.k-selected[_ngcontent-%COMP%]{background-color:#edf8fe!important;box-shadow:none;font-weight:600;color:#005890;font-size:13px;line-height:17px;word-break:break-all}.k-list[_ngcontent-%COMP%]   .k-list-item[_ngcontent-%COMP%]:hover{background-color:#e5e5e5!important}.k-list-md[_ngcontent-%COMP%]   .k-list-item[_ngcontent-%COMP%], .k-list-md[_ngcontent-%COMP%]   .k-list-optionlabel[_ngcontent-%COMP%]{padding:4px 8px;font-weight:600;color:#005890;font-size:13px;line-height:17px}.k-list[_ngcontent-%COMP%]   .k-item[_ngcontent-%COMP%]:focus, .k-list[_ngcontent-%COMP%]   .k-item.k-state-focused[_ngcontent-%COMP%], .k-list-optionlabel[_ngcontent-%COMP%]:focus, .k-list-optionlabel.k-state-focused[_ngcontent-%COMP%]{box-shadow:none}.k-dropdown[_ngcontent-%COMP%]   .k-dropdown-wrap[_ngcontent-%COMP%]:hover, .k-dropdowntree[_ngcontent-%COMP%]   .k-dropdown-wrap[_ngcontent-%COMP%]:hover, .k-dropdown[_ngcontent-%COMP%]   .k-dropdown-wrap.k-state-hover[_ngcontent-%COMP%], .k-dropdowntree[_ngcontent-%COMP%]   .k-dropdown-wrap.k-state-hover[_ngcontent-%COMP%]{color:#005890}.k-animation-container[_ngcontent-%COMP%] > .arrow-right[_ngcontent-%COMP%]{box-shadow:none}.k-animation-container-fixed[_ngcontent-%COMP%] > .k-popup[_ngcontent-%COMP%]{margin-right:0;border:none;background:transparent}.title[_ngcontent-%COMP%]{margin-bottom:10px;color:#005890!important;font-weight:800;font-size:24px}.description[_ngcontent-%COMP%]{color:#005890!important;font-size:16px;line-height:20px;font-weight:300;margin-bottom:30px}@media screen and (max-width: 768px){.title[_ngcontent-%COMP%]{font-size:19px}}.link[_ngcontent-%COMP%]{font-size:16px;font-weight:300;margin:0;color:#005890;text-align:right;cursor:pointer}.border-bottom[_ngcontent-%COMP%]{border-bottom:1px solid #0B85CE}.border-bottom-error[_ngcontent-%COMP%]{border-bottom:1px solid #E7481C}.flex-center[_ngcontent-%COMP%]{display:flex;align-items:center}.no-margin[_ngcontent-%COMP%]{margin:0;word-break:break-all}.cdk-overlay-container[_ngcontent-%COMP%]{background:rgba(0,0,0,.32)}.margin-bottom-5[_ngcontent-%COMP%]{margin-bottom:5px}.k-disabled[_ngcontent-%COMP%]{opacity:inherit!important}.normal-state[_ngcontent-%COMP%]{color:#005890!important}.error-status[_ngcontent-%COMP%]{color:#e7481c!important}.kendo-dropdown[_ngcontent-%COMP%]{position:relative;width:346px}.k-checkbox-label[_ngcontent-%COMP%]{font-weight:600;color:#005890;font-size:13px;line-height:17px}.k-checkbox[_ngcontent-%COMP%]:checked, .k-checkbox.k-checked[_ngcontent-%COMP%]{border-color:#005890;background-color:#005890}.k-checkbox[_ngcontent-%COMP%]:checked:focus, .k-checkbox.k-checked.k-focus[_ngcontent-%COMP%]{box-shadow:none}.login-infos[_ngcontent-%COMP%]{margin:20px 0}.login-infos[_ngcontent-%COMP%]   .caps-lock[_ngcontent-%COMP%]{background:#E7481C;display:flex;align-items:center}.login-infos[_ngcontent-%COMP%]   .login-error[_ngcontent-%COMP%]{background:#E7481C}.login-infos[_ngcontent-%COMP%]   .login-info[_ngcontent-%COMP%]{background:#4AB679}.login-infos[_ngcontent-%COMP%]   .panel[_ngcontent-%COMP%]{color:#fff;font-size:16px;font-weight:600;padding:10px;line-height:20px}.login-infos[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]{margin-right:5px}.login-footer[_ngcontent-%COMP%]{float:right;display:flex;flex-direction:row;justify-content:space-between;align-items:flex-end}.login-footer[_ngcontent-%COMP%]   .buttons[_ngcontent-%COMP%]{padding:6px 12px;color:#fff;font-size:14px;border-radius:0;border-color:rgba(0,0,0,0);letter-spacing:3px;text-transform:uppercase}.login-footer[_ngcontent-%COMP%]   button[_ngcontent-%COMP%]:disabled{background:#C0C0C0}.login-footer[_ngcontent-%COMP%]   .login-button[_ngcontent-%COMP%]{background:#E77B2D}.login-footer[_ngcontent-%COMP%]   .login-button[_ngcontent-%COMP%]:hover:enabled{background:#FF9E18}.login-footer[_ngcontent-%COMP%]   .back-button[_ngcontent-%COMP%]{background:#808080}.login-footer[_ngcontent-%COMP%]   .back-button[_ngcontent-%COMP%]:hover:enabled{background:#9F9F9F}.login-footer[_ngcontent-%COMP%]   .ok-button[_ngcontent-%COMP%]{background:#4AB679}.login-footer[_ngcontent-%COMP%]   .ok-button[_ngcontent-%COMP%]:hover:enabled{background:#68B388}.login-footer[_ngcontent-%COMP%]   .error-button[_ngcontent-%COMP%]{background:#D03C13}.login-footer[_ngcontent-%COMP%]   .error-button[_ngcontent-%COMP%]:hover:enabled{background:#E7481C}input[_ngcontent-%COMP%]:-webkit-autofill{-webkit-box-shadow:0 0 0 30px white inset!important;-webkit-text-fill-color:#005890!important}[_ngcontent-%COMP%]:focus{outline:none}  .mat-dialog-container{background:white!important;border-radius:0!important}  .mat-dialog-container .title{margin-bottom:10px;color:#005890!important;font-weight:800;font-size:24px}  .mat-dialog-container .description{color:#005890!important;font-size:16px;line-height:20px;font-weight:300;margin-bottom:30px}  .mat-dialog-container .border-bottom{border-bottom:1px solid #0B85CE}  .mat-dialog-container .login-footer .back-button:hover:enabled{background:#9F9F9F}  .mat-dialog-container .login-footer .back-button{background:#808080}  .mat-dialog-container .login-footer .buttons{padding:6px 12px;color:#fff;font-size:14px;border-radius:0;border-color:rgba(0,0,0,0);letter-spacing:3px;text-transform:uppercase}  .mat-dialog-container .login-footer button:disabled{background:#C0C0C0}  .mat-dialog-container .login-footer .ok-button{background:#4AB679}  .mat-dialog-container .login-footer .ok-button:hover:enabled{background:#68B388}  .k-floating-label-container{width:100%;margin:8px 0}  .k-floating-label-container>.k-label{font-weight:600;color:#005890;font-size:14px;line-height:17px;left:0!important}  .k-floating-label-container .k-textbox,   .k-floating-label-container .k-textbox .k-input,   .k-floating-label-container .k-textarea{border:none;border-radius:0;box-shadow:none;padding:5px 0;height:33px;font-size:13px;line-height:17px;font-weight:600;background-color:#fff!important}  .k-floating-label-container .k-textbox,   .k-floating-label-container .k-textbox .k-input,   .k-floating-label-container .k-textarea:focus{background-color:#fff!important}  .k-floating-label-container .k-textbox::-moz-selection,   .k-floating-label-container .k-input::-moz-selection,   .k-floating-label-container .k-textarea::-moz-selection{color:#fff;background-color:#909090}  .k-floating-label-container .k-textbox::selection,   .k-floating-label-container .k-input::selection,   .k-floating-label-container .k-textarea::selection{color:#fff;background-color:#909090}  .k-floating-label-container .k-picker-md .k-input-inner{background:white!important;height:33px;opacity:1;color:#005890;font-size:13px;padding:0;font-weight:600;line-height:17px}  .k-floating-label-container .k-picker{border-width:0px;border-style:unset}  .k-floating-label-container .k-picker:focus-within{box-shadow:none}  .k-floating-label-container .k-picker:focus{box-shadow:none}  .k-floating-label-container:after{background-color:#8ee2ff;height:1px}  .k-floating-label-container .k-picker .k-input-button{border-color:transparent;display:none}  .k-floating-label-container .k-dropdown{border:none;background:none}  .k-floating-label-container .k-dropdown .k-dropdown-wrap{border:none;border-radius:0;padding:0;box-shadow:none}  .k-floating-label-container .k-dropdown .k-dropdown-wrap>.k-input{background:white!important;height:33px;opacity:1;color:#005890;font-size:16px;padding:0}  .k-floating-label-container .k-dropdown .k-dropdown-wrap.k-state-disabled{opacity:1;color:#fff}  .k-floating-label-container .k-dropdown .k-dropdown-wrap.k-state-disabled .k-select{display:none}  .k-floating-label-container .k-dropdown .k-dropdown-wrap.k-state-disabled{-webkit-filter:none;filter:none;background:#0B85CE}  .k-floating-label-container .k-dropdown .k-dropdown-wrap .k-select{color:#8ee2ff;opacity:1;background:#fff;border-radius:0;border:none}  .k-floating-label-container .k-dropdown .k-dropdown-wrap .k-select .k-icon{color:#005890;display:none}.mat-simple-snackbar-action[_ngcontent-%COMP%]{color:#4ab679}  html,   body{height:100%;margin:0;font-family:Open Sans,sans-serif!important}tb-login[_nghost-%COMP%]{font-family:Open Sans,sans-serif!important;display:block;min-height:100vh;padding:0;margin:0;overflow:auto;height:100%;min-height:100%;width:100%}tb-login[_nghost-%COMP%]   .login-container[_ngcontent-%COMP%]{display:flex;flex:1;min-height:100%;justify-content:center;align-items:center;padding:20px;background-image:url(https://magocloud-store-pdf.s3.eu-west-1.amazonaws.com/login-bg.png);background-size:cover;background-repeat:no-repeat}tb-login[_nghost-%COMP%]   .login-container[_ngcontent-%COMP%]   .login[_ngcontent-%COMP%]{background-color:#e5ebee;box-shadow:0 14px 28px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.22);min-height:450px;flex:1;display:flex;padding:40px;flex-direction:column;justify-content:center;background:white}@media screen and (max-width: 768px){tb-login[_nghost-%COMP%]   .login-container[_ngcontent-%COMP%]   .login[_ngcontent-%COMP%]{padding:20px}}@media screen and (min-width: 576px){tb-login[_nghost-%COMP%]   .login-container[_ngcontent-%COMP%]   .login[_ngcontent-%COMP%]{max-width:450px}}tb-login[_nghost-%COMP%]   .login-container[_ngcontent-%COMP%]   .login[_ngcontent-%COMP%]   .upicon[_ngcontent-%COMP%]{transform:rotate(90deg);padding:1px}tb-login[_nghost-%COMP%]   .login-container[_ngcontent-%COMP%]   .login[_ngcontent-%COMP%]   .downicon[_ngcontent-%COMP%]{transform:rotate(270deg)}tb-login[_nghost-%COMP%]   .login-container[_ngcontent-%COMP%]   .login[_ngcontent-%COMP%]   .login-header[_ngcontent-%COMP%]{display:flex;flex-direction:column}tb-login[_nghost-%COMP%]   .login-container[_ngcontent-%COMP%]   .login[_ngcontent-%COMP%]   .login-form[_ngcontent-%COMP%]{display:flex;flex-direction:column;justify-content:center;margin:0}tb-login[_nghost-%COMP%]   .login-container[_ngcontent-%COMP%]   .login[_ngcontent-%COMP%]   .k-i-loading[_ngcontent-%COMP%]{font-size:20px}tb-login[_nghost-%COMP%]   p.instancekey[_ngcontent-%COMP%]{font-size:9px;font-weight:300;text-indent:1px;color:#005890}tb-login[_nghost-%COMP%]   p.copyright[_ngcontent-%COMP%]{font-size:10px;font-weight:300;margin:0;color:#fff}tb-login[_nghost-%COMP%]   p.copyright-abs[_ngcontent-%COMP%]{position:absolute;bottom:5px;color:#ccc;text-align:center;width:100%}tb-login[_nghost-%COMP%]   p.forgotpwd[_ngcontent-%COMP%]{font-size:16px;font-weight:300;margin:0;color:#005890;text-align:right;cursor:pointer}tb-login[_nghost-%COMP%]   p.signup[_ngcontent-%COMP%]{font-size:13px;font-weight:300;margin:0;color:#fff;text-align:left;cursor:pointer}tb-login[_nghost-%COMP%]   .margin-h1[_ngcontent-%COMP%]{margin-left:-2px;margin-top:20px}tb-login[_nghost-%COMP%]   .margin-p[_ngcontent-%COMP%]{margin-left:-1.5px;margin-top:-10px}tb-login[_nghost-%COMP%]   .login-expired-subtitle[_ngcontent-%COMP%]{margin-top:20px;margin-bottom:20px;margin-left:-1.5px;color:#005890;font-weight:800}tb-login[_nghost-%COMP%]   .login-chooseSubscription[_ngcontent-%COMP%]{margin-top:20px;margin-left:-2px;color:#005890;font-weight:300;font-size:1.5rem}tb-login[_nghost-%COMP%]   .login-sign-in[_ngcontent-%COMP%]{font-family:inherit;font-weight:100;font-size:xx-large;color:#005890}tb-login[_nghost-%COMP%]   .icon[_ngcontent-%COMP%]{position:absolute;bottom:4px;right:0;cursor:pointer;color:#005890;padding-bottom:2px}@media (min-width: 576px){tb-login[_nghost-%COMP%]   .login[_ngcontent-%COMP%]{padding:20px}tb-login[_nghost-%COMP%]   .login[_ngcontent-%COMP%]   .login-form[_ngcontent-%COMP%]     .k-floating-label{margin:10px 0}}@media screen and (max-width: 768px){tb-login[_nghost-%COMP%]   .login-sign-in[_ngcontent-%COMP%]{font-size:x-large}}"] });
+        i0.ɵɵtextInterpolate1("Login v2.3.1+39 \u00A9 2017 - ", ctx.currentYear, ", Zucchetti s.p.a. ");
+    } }, directives: [i5.NgIf, i4.ɵNgNoValidate, i4.NgControlStatusGroup, i4.NgForm, i2.FloatingLabelComponent, i5.NgClass, i3.TextBoxDirective, i4.DefaultValueAccessor, i4.NgControlStatus, i4.NgModel, i8.DropDownListComponent, i9.MatCheckbox], styles: ["@import\"https://fonts.googleapis.com/css?family=Open+Sans:400,600,700\";body[_ngcontent-%COMP%], html[_ngcontent-%COMP%]{font-family:Open Sans,sans-serif!important;overflow:hidden;padding:0;margin:0}.k-animation-container-shown[_ngcontent-%COMP%], .k-animation-container[_ngcontent-%COMP%] > .k-popup[_ngcontent-%COMP%]{box-shadow:none;color:#005890;max-height:130px;width:370px!important}.k-list[_ngcontent-%COMP%]{background:#F4F4F4;color:#005890;max-height:100px;width:370px!important}.k-list[_ngcontent-%COMP%]   [_ngcontent-%COMP%]::-webkit-scrollbar{background:#bfcdd5}.k-list[_ngcontent-%COMP%]   [_ngcontent-%COMP%]::-webkit-scrollbar:hover{background:#d9d9d9}.k-list[_ngcontent-%COMP%]   [_ngcontent-%COMP%]::-webkit-scrollbar-thumb{background:#6cafd1}.k-list[_ngcontent-%COMP%]   [_ngcontent-%COMP%]::-webkit-scrollbar-thumb:hover{background:#005890}.k-list[_ngcontent-%COMP%]   .k-list-item.k-selected[_ngcontent-%COMP%]{background-color:#edf8fe!important;box-shadow:none;font-weight:600;color:#005890;font-size:13px;line-height:17px;word-break:break-all}.k-list[_ngcontent-%COMP%]   .k-list-item[_ngcontent-%COMP%]:hover{background-color:#e5e5e5!important}@media screen and (max-width: 768px){.k-list[_ngcontent-%COMP%], .k-animation-container-shown[_ngcontent-%COMP%], .k-animation-container[_ngcontent-%COMP%] > .k-popup[_ngcontent-%COMP%]{width:410px!important}.kendo-dropdown[_ngcontent-%COMP%]{width:388px!important}.title[_ngcontent-%COMP%]{font-size:19px}}@media screen and (max-width: 490px){.k-list[_ngcontent-%COMP%], .k-animation-container-shown[_ngcontent-%COMP%], .k-animation-container[_ngcontent-%COMP%] > .k-popup[_ngcontent-%COMP%]{width:345.6px!important}.kendo-dropdown[_ngcontent-%COMP%]{width:323px!important}}@media screen and (max-width: 425px){.k-list[_ngcontent-%COMP%], .k-animation-container-shown[_ngcontent-%COMP%], .k-animation-container[_ngcontent-%COMP%] > .k-popup[_ngcontent-%COMP%]{width:295.2px!important}.kendo-dropdown[_ngcontent-%COMP%]{width:273px!important}}@media screen and (max-width: 375px){.k-list[_ngcontent-%COMP%], .k-animation-container-shown[_ngcontent-%COMP%], .k-animation-container[_ngcontent-%COMP%] > .k-popup[_ngcontent-%COMP%]{width:240px!important}.kendo-dropdown[_ngcontent-%COMP%]{width:217px!important}}.k-list-md[_ngcontent-%COMP%]   .k-list-item[_ngcontent-%COMP%], .k-list-md[_ngcontent-%COMP%]   .k-list-optionlabel[_ngcontent-%COMP%]{padding:4px 8px;font-weight:600;color:#005890;font-size:13px;line-height:17px}.k-list[_ngcontent-%COMP%]   .k-item[_ngcontent-%COMP%]:focus, .k-list[_ngcontent-%COMP%]   .k-item.k-state-focused[_ngcontent-%COMP%], .k-list-optionlabel[_ngcontent-%COMP%]:focus, .k-list-optionlabel.k-state-focused[_ngcontent-%COMP%]{box-shadow:none}.k-list-item-text[_ngcontent-%COMP%]{white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}.k-dropdown[_ngcontent-%COMP%]   .k-dropdown-wrap[_ngcontent-%COMP%]:hover, .k-dropdowntree[_ngcontent-%COMP%]   .k-dropdown-wrap[_ngcontent-%COMP%]:hover, .k-dropdown[_ngcontent-%COMP%]   .k-dropdown-wrap.k-state-hover[_ngcontent-%COMP%], .k-dropdowntree[_ngcontent-%COMP%]   .k-dropdown-wrap.k-state-hover[_ngcontent-%COMP%]{color:#005890}.k-animation-container[_ngcontent-%COMP%] > .arrow-right[_ngcontent-%COMP%]{box-shadow:none}.k-animation-container-fixed[_ngcontent-%COMP%] > .k-popup[_ngcontent-%COMP%]{margin-right:0;border:none;background:transparent}.title[_ngcontent-%COMP%]{margin-bottom:10px;color:#005890!important;font-weight:800;font-size:24px}.description[_ngcontent-%COMP%]{color:#005890!important;font-size:16px;line-height:20px;font-weight:300;margin-bottom:30px}.link[_ngcontent-%COMP%]{font-size:16px;font-weight:300;margin:0;color:#005890;text-align:right;cursor:pointer}.border-bottom[_ngcontent-%COMP%]{border-bottom:1px solid #0B85CE}.border-bottom-error[_ngcontent-%COMP%]{border-bottom:1px solid #E7481C}.flex-center[_ngcontent-%COMP%]{display:flex;align-items:center}.no-margin[_ngcontent-%COMP%]{margin:0;word-break:break-all}.cdk-overlay-container[_ngcontent-%COMP%]{background:rgba(0,0,0,.32)}.margin-bottom-5[_ngcontent-%COMP%]{margin-bottom:5px}.k-disabled[_ngcontent-%COMP%]{opacity:inherit!important}.normal-state[_ngcontent-%COMP%]{color:#005890!important}.error-status[_ngcontent-%COMP%]{color:#e7481c!important}.kendo-dropdown[_ngcontent-%COMP%]{position:relative;width:348px}.k-checkbox-label[_ngcontent-%COMP%]{font-weight:600;color:#005890;font-size:13px;line-height:17px}.k-checkbox[_ngcontent-%COMP%]:checked, .k-checkbox.k-checked[_ngcontent-%COMP%]{border-color:#005890;background-color:#005890}.k-checkbox[_ngcontent-%COMP%]:checked:focus, .k-checkbox.k-checked.k-focus[_ngcontent-%COMP%]{box-shadow:none}.login-infos[_ngcontent-%COMP%]{margin:20px 0}.login-infos[_ngcontent-%COMP%]   .caps-lock[_ngcontent-%COMP%]{background:#E7481C;display:flex;align-items:center}.login-infos[_ngcontent-%COMP%]   .login-error[_ngcontent-%COMP%]{background:#E7481C}.login-infos[_ngcontent-%COMP%]   .login-info[_ngcontent-%COMP%]{background:#4AB679}.login-infos[_ngcontent-%COMP%]   .panel[_ngcontent-%COMP%]{color:#fff;font-size:16px;font-weight:600;padding:10px;line-height:20px}.login-infos[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]{margin-right:5px}.login-footer[_ngcontent-%COMP%]{float:right;display:flex;flex-direction:row;justify-content:space-between;align-items:flex-end}.login-footer[_ngcontent-%COMP%]   .buttons[_ngcontent-%COMP%]{padding:6px 12px;color:#fff;font-size:14px;border-radius:0;border-color:rgba(0,0,0,0);letter-spacing:3px;text-transform:uppercase}.login-footer[_ngcontent-%COMP%]   button[_ngcontent-%COMP%]:disabled{background:#C0C0C0}.login-footer[_ngcontent-%COMP%]   .login-button[_ngcontent-%COMP%]{background:#E77B2D}.login-footer[_ngcontent-%COMP%]   .login-button[_ngcontent-%COMP%]:hover:enabled{background:#FF9E18}.login-footer[_ngcontent-%COMP%]   .back-button[_ngcontent-%COMP%]{background:#808080}.login-footer[_ngcontent-%COMP%]   .back-button[_ngcontent-%COMP%]:hover:enabled{background:#9F9F9F}.login-footer[_ngcontent-%COMP%]   .ok-button[_ngcontent-%COMP%]{background:#4AB679}.login-footer[_ngcontent-%COMP%]   .ok-button[_ngcontent-%COMP%]:hover:enabled{background:#68B388}.login-footer[_ngcontent-%COMP%]   .error-button[_ngcontent-%COMP%]{background:#D03C13}.login-footer[_ngcontent-%COMP%]   .error-button[_ngcontent-%COMP%]:hover:enabled{background:#E7481C}input[_ngcontent-%COMP%]:-webkit-autofill{-webkit-box-shadow:0 0 0 30px white inset!important;-webkit-text-fill-color:#005890!important}[_ngcontent-%COMP%]:focus{outline:none}  .mat-dialog-container{background:white!important;border-radius:0!important}  .mat-dialog-container .title{margin-bottom:10px;color:#005890!important;font-weight:800;font-size:24px}  .mat-dialog-container .description{color:#005890!important;font-size:16px;line-height:20px;font-weight:300;margin-bottom:30px}  .mat-dialog-container .border-bottom{border-bottom:1px solid #0B85CE}  .mat-dialog-container .login-footer .back-button:hover:enabled{background:#9F9F9F}  .mat-dialog-container .login-footer .back-button{background:#808080}  .mat-dialog-container .login-footer .buttons{padding:6px 12px;color:#fff;font-size:14px;border-radius:0;border-color:rgba(0,0,0,0);letter-spacing:3px;text-transform:uppercase}  .mat-dialog-container .login-footer button:disabled{background:#C0C0C0}  .mat-dialog-container .login-footer .ok-button{background:#4AB679}  .mat-dialog-container .login-footer .ok-button:hover:enabled{background:#68B388}  .k-floating-label-container{width:100%;margin:8px 0}  .k-floating-label-container>.k-label{font-weight:600;color:#005890;font-size:14px;line-height:17px;left:0!important}  .k-floating-label-container .k-textbox,   .k-floating-label-container .k-textbox .k-input,   .k-floating-label-container .k-textarea{border:none;border-radius:0;box-shadow:none;padding:5px 0;height:33px;font-size:13px;line-height:17px;font-weight:600;background-color:#fff!important}  .k-floating-label-container .k-textbox,   .k-floating-label-container .k-textbox .k-input,   .k-floating-label-container .k-textarea:focus{background-color:#fff!important}  .k-floating-label-container .k-textbox::-moz-selection,   .k-floating-label-container .k-input::-moz-selection,   .k-floating-label-container .k-textarea::-moz-selection{color:#fff;background-color:#909090}  .k-floating-label-container .k-textbox::selection,   .k-floating-label-container .k-input::selection,   .k-floating-label-container .k-textarea::selection{color:#fff;background-color:#909090}  .k-floating-label-container .k-picker-md .k-input-inner{background:white!important;height:33px;opacity:1;color:#005890;font-size:13px;padding:0;font-weight:600;line-height:17px}  .k-floating-label-container .k-picker{border-width:0px;border-style:unset}  .k-floating-label-container .k-picker:focus-within{box-shadow:none}  .k-floating-label-container .k-picker:focus{box-shadow:none}  .k-floating-label-container:after{background-color:#8ee2ff;height:1px}  .k-floating-label-container .k-picker .k-input-button{border-color:transparent;display:none}  .k-floating-label-container .k-dropdown{border:none;background:none}  .k-floating-label-container .k-dropdown .k-dropdown-wrap{border:none;border-radius:0;padding:0;box-shadow:none}  .k-floating-label-container .k-dropdown .k-dropdown-wrap>.k-input{background:white!important;height:33px;opacity:1;color:#005890;font-size:16px;padding:0}  .k-floating-label-container .k-dropdown .k-dropdown-wrap.k-state-disabled{opacity:1;color:#fff}  .k-floating-label-container .k-dropdown .k-dropdown-wrap.k-state-disabled .k-select{display:none}  .k-floating-label-container .k-dropdown .k-dropdown-wrap.k-state-disabled{-webkit-filter:none;filter:none;background:#0B85CE}  .k-floating-label-container .k-dropdown .k-dropdown-wrap .k-select{color:#8ee2ff;opacity:1;background:#fff;border-radius:0;border:none}  .k-floating-label-container .k-dropdown .k-dropdown-wrap .k-select .k-icon{color:#005890;display:none}.mat-simple-snackbar-action[_ngcontent-%COMP%]{color:#4ab679}  html,   body{height:100%;margin:0;font-family:Open Sans,sans-serif!important}tb-login[_nghost-%COMP%]{font-family:Open Sans,sans-serif!important;display:block;min-height:100vh;padding:0;margin:0;overflow:auto;height:100%;min-height:100%;width:100%}tb-login[_nghost-%COMP%]   .login-container[_ngcontent-%COMP%]{display:flex;flex:1;min-height:100%;justify-content:center;align-items:center;padding:20px;background-image:url(https://magocloud-store-pdf.s3.eu-west-1.amazonaws.com/login-bg.png);background-size:cover;background-repeat:no-repeat}tb-login[_nghost-%COMP%]   .login-container[_ngcontent-%COMP%]   .login[_ngcontent-%COMP%]{background-color:#e5ebee;box-shadow:0 14px 28px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.22);min-height:450px;flex:1;display:flex;padding:40px;flex-direction:column;justify-content:center;background:white}@media screen and (max-width: 768px){tb-login[_nghost-%COMP%]   .login-container[_ngcontent-%COMP%]   .login[_ngcontent-%COMP%]{padding:20px}}@media screen and (min-width: 576px){tb-login[_nghost-%COMP%]   .login-container[_ngcontent-%COMP%]   .login[_ngcontent-%COMP%]{max-width:450px}}tb-login[_nghost-%COMP%]   .login-container[_ngcontent-%COMP%]   .login[_ngcontent-%COMP%]   .upicon[_ngcontent-%COMP%]{transform:rotate(90deg);padding:1px}tb-login[_nghost-%COMP%]   .login-container[_ngcontent-%COMP%]   .login[_ngcontent-%COMP%]   .downicon[_ngcontent-%COMP%]{transform:rotate(270deg)}tb-login[_nghost-%COMP%]   .login-container[_ngcontent-%COMP%]   .login[_ngcontent-%COMP%]   .login-header[_ngcontent-%COMP%]{display:flex;flex-direction:column}tb-login[_nghost-%COMP%]   .login-container[_ngcontent-%COMP%]   .login[_ngcontent-%COMP%]   .login-form[_ngcontent-%COMP%]{display:flex;flex-direction:column;justify-content:center;margin:0}tb-login[_nghost-%COMP%]   .login-container[_ngcontent-%COMP%]   .login[_ngcontent-%COMP%]   .k-i-loading[_ngcontent-%COMP%]{font-size:20px}tb-login[_nghost-%COMP%]   p.instancekey[_ngcontent-%COMP%]{font-size:9px;font-weight:300;text-indent:1px;color:#005890}tb-login[_nghost-%COMP%]   p.copyright[_ngcontent-%COMP%]{font-size:10px;font-weight:300;margin:0;color:#fff}tb-login[_nghost-%COMP%]   p.copyright-abs[_ngcontent-%COMP%]{position:absolute;bottom:5px;color:#ccc;text-align:center;width:100%}tb-login[_nghost-%COMP%]   p.forgotpwd[_ngcontent-%COMP%]{font-size:16px;font-weight:300;margin:0;color:#005890;text-align:right;cursor:pointer}tb-login[_nghost-%COMP%]   p.signup[_ngcontent-%COMP%]{font-size:13px;font-weight:300;margin:0;color:#fff;text-align:left;cursor:pointer}tb-login[_nghost-%COMP%]   .margin-h1[_ngcontent-%COMP%]{margin-left:-2px;margin-top:20px}tb-login[_nghost-%COMP%]   .margin-p[_ngcontent-%COMP%]{margin-left:-1.5px;margin-top:-10px}tb-login[_nghost-%COMP%]   .login-expired-subtitle[_ngcontent-%COMP%]{margin-top:20px;margin-bottom:20px;margin-left:-1.5px;color:#005890;font-weight:800}tb-login[_nghost-%COMP%]   .login-chooseSubscription[_ngcontent-%COMP%]{margin-top:20px;margin-left:-2px;color:#005890;font-weight:300;font-size:1.5rem}tb-login[_nghost-%COMP%]   .login-sign-in[_ngcontent-%COMP%]{font-family:inherit;font-weight:100;font-size:xx-large;color:#005890}tb-login[_nghost-%COMP%]   .icon[_ngcontent-%COMP%]{position:absolute;bottom:4px;right:0;cursor:pointer;color:#005890;padding-bottom:2px}@media (min-width: 576px){tb-login[_nghost-%COMP%]   .login[_ngcontent-%COMP%]{padding:20px}tb-login[_nghost-%COMP%]   .login[_ngcontent-%COMP%]   .login-form[_ngcontent-%COMP%]     .k-floating-label{margin:10px 0}}@media screen and (max-width: 768px){tb-login[_nghost-%COMP%]   .login-sign-in[_ngcontent-%COMP%]{font-size:x-large}}tb-login[_nghost-%COMP%]     .mat-checkbox{font-family:Open Sans,sans-serif;font-size:16px;font-weight:300}tb-login[_nghost-%COMP%]     .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element{opacity:.03!important;background-color:#005890!important}tb-login[_nghost-%COMP%]     .mat-checkbox-checked.mat-accent .mat-checkbox-background, tb-login[_nghost-%COMP%]   .mat-checkbox-indeterminate.mat-accent[_ngcontent-%COMP%]   .mat-checkbox-background[_ngcontent-%COMP%]{background-color:#005890}"] });
 (function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(TbLoginComponent, [{
         type: Component,
-        args: [{ selector: 'tb-login', template: "<div class=\"login-container\">\r\n    <div class=\"login\" style=\"z-index: 1\">\r\n        <div class=\"login-header\">\r\n            <div>\r\n                <img mat-card-image style=\"width: 60%\" src=\"{{ logoURL }}\" />\r\n            </div>\r\n            <div *ngIf=\"!validate\">\r\n                <h1 class=\"margin-h1 title\">{{ welcome }}</h1>\r\n                <p *ngIf=\"isExpiredSession\" class=\"login-expired-subtitle description\">{{ idleTimeoutMessage }}</p>\r\n                <p class=\"login-subtitle description\">{{ enterCredentials }}</p>\r\n            </div>\r\n            <div *ngIf=\"validate\">\r\n                <h1 class=\"margin-h1 title\">{{ chooseSubscription }}</h1>\r\n                <p class=\"login-subtitle description\">{{ accountName }}: {{ loginRequest.accountName }} </p>\r\n            </div>\r\n        </div>\r\n\r\n\r\n        <form>\r\n            <div class=\"login-form\">\r\n\r\n                <kendo-floatinglabel [text]=\"accountName\" *ngIf=\"!validate\"\r\n                    [ngClass]=\"authService.errorMessage ? 'border-bottom-error' : 'border-bottom'\">\r\n                    <input kendoTextBox [(ngModel)]=\"loginRequest.accountName\" (keyup)=\"keyUpFunction($event)\"\r\n                        name=\"accountName\" type=\"text\"\r\n                        [ngClass]=\"authService.errorMessage ? 'error-status' : 'normal-state'\" />\r\n                </kendo-floatinglabel>\r\n\r\n                <kendo-floatinglabel text=\"Password\" *ngIf=\"!validate\"\r\n                    [ngClass]=\"authService.errorMessage ? 'border-bottom-error' : 'border-bottom'\">\r\n                    <input kendoTextBox [(ngModel)]=\"loginRequest.password\" (keyup)=\"keyUpFunction($event)\"\r\n                        name=\"password\" [type]=\"hide ? 'password' : 'text'\" autocomplete=\"current-password\"\r\n                        [ngClass]=\"authService.errorMessage ? 'error-status' : 'normal-state'\" />\r\n                    <span (click)=\"hide = !hide\" *ngIf=\"hide === true\" class=\"material-icons icon\">\r\n                        visibility\r\n                    </span>\r\n                    <span (click)=\"hide = !hide\" *ngIf=\"hide === false\" class=\"material-icons icon\">\r\n                        visibility_off\r\n                    </span>\r\n                </kendo-floatinglabel>\r\n\r\n                <div class=\"form-control\" *ngIf=\"subscriptionSelection && validate\">\r\n                    <kendo-floatinglabel text=\"{{ subscription }}\"\r\n                        [ngClass]=\"authService.errorMessage ? 'border-bottom-error' : 'border-bottom'\">\r\n\r\n                        <kendo-dropdownlist #dropdown [disabled]=\"loginSubscriptions?.length <= 1\"\r\n                            [data]=\"loginSubscriptions\" name=\"subscription\" textField=\"description\"\r\n                            valueField=\"subscriptionkey\" valuePrimitive=\"true\"\r\n                            [(ngModel)]=\"loginRequest.subscriptionKey\" class=\"kendo-dropdown\"\r\n                            (ngModelChange)=\"onSubChange($event)\" (click)=\"isDropDownClicked()\">\r\n                        </kendo-dropdownlist>\r\n                        <span (click)=\"toggle(dropdown)\" *ngIf=\"dropDownIsClicked\"\r\n                            class=\"material-symbols-rounded icon\">\r\n                            arrow_circle_up\r\n                        </span>\r\n                        <span (click)=\"toggle(dropdown)\" *ngIf=\"!dropDownIsClicked\"\r\n                            class=\"material-symbols-rounded icon\">\r\n                            arrow_circle_down\r\n                        </span>\r\n                    </kendo-floatinglabel>\r\n                    <div>\r\n                        <p class=\"instancekey\" *ngIf=\"loginSubscriptions.length > 3\"> Subscription key:\r\n                            {{loginRequest.subscriptionKey}} {{instancekey}}</p>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"login-infos\">\r\n                    <div class=\"caps-lock panel flex-center margin-bottom-5\" *ngIf=\"capsLockOn\">\r\n                        <p class=\"no-margin\"> {{ blocMaiusc }}</p>\r\n                    </div>\r\n                    <div class=\"login-error panel flex-center margin-bottom-5\" *ngIf=\"authService.errorMessage\">\r\n                        <p class=\"no-margin\"> {{ authService.errorMessage }} </p>\r\n                    </div>\r\n                    <div class=\"login-info panel flex-center\" *ngIf=\"authService.okMessage\">\r\n                        <p class=\"no-margin\">{{ authService.okMessage }}</p>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </form>\r\n        <div\r\n            style=\"display: flex; flex-direction: row-reverse; justify-content: space-between;padding: 0 1px;;margin-top:60px\">\r\n            <div class=\"login-footer\" style=\"display: flex; justify-content: flex-end\">\r\n                <button kendoButton class=\"buttons login-button\" (click)=\"login()\" [disabled]=\"disabledButton()\">\r\n                    <span class=\"k-icon k-i-loading\" *ngIf=\"loading\"></span>\r\n                    <span *ngIf=\"!loading\">{{ buttonText\r\n                        }}</span>\r\n                </button>\r\n            </div>\r\n            <!-- PROVA PER APERTURA DIALOG DI NOTIFICA AGGIORNAMENTO -->\r\n            <!-- <div class=\"login-footer\">\r\n                <button kendoButton class=\"buttons back-button\" (click)=\"openDialog()\">\r\n                    <span> PROVA</span>\r\n                </button>\r\n            </div> -->\r\n            <!-- PROVA PER APERTURA DIALOG DI NOTIFICA AGGIORNAMENTO -->\r\n            <div class=\"login-footer\">\r\n                <button kendoButton class=\"buttons back-button\" (click)=\"back()\" *ngIf=\"!loading && validate\">\r\n                    <span *ngIf=\"!loading && validate\"> {{ buttonBack }}</span>\r\n                </button>\r\n            </div>\r\n        </div>\r\n        <div class=\"login-footer\">\r\n            <div *ngIf=\"showSignUp\">\r\n                <p class=\"signup\" (click)=\"newUser()\">SignUp here!</p>\r\n            </div>\r\n        </div>\r\n        <div *ngIf=\"!validate\" style=\"display: flex; margin-top: 10px; justify-content: flex-end\">\r\n            <p class=\"forgotpwd\" (click)=\"goToForgotPassword()\">\r\n                <u>{{ forgetPassword }}</u>\r\n            </p>\r\n        </div>\r\n    </div>\r\n    <div style=\"position: absolute; bottom: 0; width: 100%; z-index: 0\">\r\n        <p class=\"copyright copyright-abs\">Login v2.3.1+37 \u00A9 2017 - {{ currentYear }}, Zucchetti s.p.a. </p>\r\n    </div>\r\n</div>\r\n", styles: ["@import\"https://fonts.googleapis.com/css?family=Open+Sans:400,600,700\";body,html{font-family:Open Sans,sans-serif!important;overflow:hidden;padding:0;margin:0}.k-animation-container-shown,.k-animation-container>.k-popup{box-shadow:none;color:#005890;width:370px;max-height:130px}.k-list{background:#F4F4F4;color:#005890}.k-list ::-webkit-scrollbar{background:#bfcdd5}.k-list ::-webkit-scrollbar:hover{background:#d9d9d9}.k-list ::-webkit-scrollbar-thumb{background:#6cafd1}.k-list ::-webkit-scrollbar-thumb:hover{background:#005890}.k-list .k-list-item.k-selected{background-color:#edf8fe!important;box-shadow:none;font-weight:600;color:#005890;font-size:13px;line-height:17px;word-break:break-all}.k-list .k-list-item:hover{background-color:#e5e5e5!important}.k-list-md .k-list-item,.k-list-md .k-list-optionlabel{padding:4px 8px;font-weight:600;color:#005890;font-size:13px;line-height:17px}.k-list .k-item:focus,.k-list .k-item.k-state-focused,.k-list-optionlabel:focus,.k-list-optionlabel.k-state-focused{box-shadow:none}.k-dropdown .k-dropdown-wrap:hover,.k-dropdowntree .k-dropdown-wrap:hover,.k-dropdown .k-dropdown-wrap.k-state-hover,.k-dropdowntree .k-dropdown-wrap.k-state-hover{color:#005890}.k-animation-container>.arrow-right{box-shadow:none}.k-animation-container-fixed>.k-popup{margin-right:0;border:none;background:transparent}.title{margin-bottom:10px;color:#005890!important;font-weight:800;font-size:24px}.description{color:#005890!important;font-size:16px;line-height:20px;font-weight:300;margin-bottom:30px}@media screen and (max-width: 768px){.title{font-size:19px}}.link{font-size:16px;font-weight:300;margin:0;color:#005890;text-align:right;cursor:pointer}.border-bottom{border-bottom:1px solid #0B85CE}.border-bottom-error{border-bottom:1px solid #E7481C}.flex-center{display:flex;align-items:center}.no-margin{margin:0;word-break:break-all}.cdk-overlay-container{background:rgba(0,0,0,.32)}.margin-bottom-5{margin-bottom:5px}.k-disabled{opacity:inherit!important}.normal-state{color:#005890!important}.error-status{color:#e7481c!important}.kendo-dropdown{position:relative;width:346px}.k-checkbox-label{font-weight:600;color:#005890;font-size:13px;line-height:17px}.k-checkbox:checked,.k-checkbox.k-checked{border-color:#005890;background-color:#005890}.k-checkbox:checked:focus,.k-checkbox.k-checked.k-focus{box-shadow:none}.login-infos{margin:20px 0}.login-infos .caps-lock{background:#E7481C;display:flex;align-items:center}.login-infos .login-error{background:#E7481C}.login-infos .login-info{background:#4AB679}.login-infos .panel{color:#fff;font-size:16px;font-weight:600;padding:10px;line-height:20px}.login-infos span{margin-right:5px}.login-footer{float:right;display:flex;flex-direction:row;justify-content:space-between;align-items:flex-end}.login-footer .buttons{padding:6px 12px;color:#fff;font-size:14px;border-radius:0;border-color:rgba(0,0,0,0);letter-spacing:3px;text-transform:uppercase}.login-footer button:disabled{background:#C0C0C0}.login-footer .login-button{background:#E77B2D}.login-footer .login-button:hover:enabled{background:#FF9E18}.login-footer .back-button{background:#808080}.login-footer .back-button:hover:enabled{background:#9F9F9F}.login-footer .ok-button{background:#4AB679}.login-footer .ok-button:hover:enabled{background:#68B388}.login-footer .error-button{background:#D03C13}.login-footer .error-button:hover:enabled{background:#E7481C}input:-webkit-autofill{-webkit-box-shadow:0 0 0 30px white inset!important;-webkit-text-fill-color:#005890!important}:focus{outline:none}::ng-deep .mat-dialog-container{background:white!important;border-radius:0!important}::ng-deep .mat-dialog-container .title{margin-bottom:10px;color:#005890!important;font-weight:800;font-size:24px}::ng-deep .mat-dialog-container .description{color:#005890!important;font-size:16px;line-height:20px;font-weight:300;margin-bottom:30px}::ng-deep .mat-dialog-container .border-bottom{border-bottom:1px solid #0B85CE}::ng-deep .mat-dialog-container .login-footer .back-button:hover:enabled{background:#9F9F9F}::ng-deep .mat-dialog-container .login-footer .back-button{background:#808080}::ng-deep .mat-dialog-container .login-footer .buttons{padding:6px 12px;color:#fff;font-size:14px;border-radius:0;border-color:rgba(0,0,0,0);letter-spacing:3px;text-transform:uppercase}::ng-deep .mat-dialog-container .login-footer button:disabled{background:#C0C0C0}::ng-deep .mat-dialog-container .login-footer .ok-button{background:#4AB679}::ng-deep .mat-dialog-container .login-footer .ok-button:hover:enabled{background:#68B388}::ng-deep .k-floating-label-container{width:100%;margin:8px 0}::ng-deep .k-floating-label-container>.k-label{font-weight:600;color:#005890;font-size:14px;line-height:17px;left:0!important}::ng-deep .k-floating-label-container .k-textbox,::ng-deep .k-floating-label-container .k-textbox .k-input,::ng-deep .k-floating-label-container .k-textarea{border:none;border-radius:0;box-shadow:none;padding:5px 0;height:33px;font-size:13px;line-height:17px;font-weight:600;background-color:#fff!important}::ng-deep .k-floating-label-container .k-textbox,::ng-deep .k-floating-label-container .k-textbox .k-input,::ng-deep .k-floating-label-container .k-textarea:focus{background-color:#fff!important}::ng-deep .k-floating-label-container .k-textbox::-moz-selection,::ng-deep .k-floating-label-container .k-input::-moz-selection,::ng-deep .k-floating-label-container .k-textarea::-moz-selection{color:#fff;background-color:#909090}::ng-deep .k-floating-label-container .k-textbox::selection,::ng-deep .k-floating-label-container .k-input::selection,::ng-deep .k-floating-label-container .k-textarea::selection{color:#fff;background-color:#909090}::ng-deep .k-floating-label-container .k-picker-md .k-input-inner{background:white!important;height:33px;opacity:1;color:#005890;font-size:13px;padding:0;font-weight:600;line-height:17px}::ng-deep .k-floating-label-container .k-picker{border-width:0px;border-style:unset}::ng-deep .k-floating-label-container .k-picker:focus-within{box-shadow:none}::ng-deep .k-floating-label-container .k-picker:focus{box-shadow:none}::ng-deep .k-floating-label-container:after{background-color:#8ee2ff;height:1px}::ng-deep .k-floating-label-container .k-picker .k-input-button{border-color:transparent;display:none}::ng-deep .k-floating-label-container .k-dropdown{border:none;background:none}::ng-deep .k-floating-label-container .k-dropdown .k-dropdown-wrap{border:none;border-radius:0;padding:0;box-shadow:none}::ng-deep .k-floating-label-container .k-dropdown .k-dropdown-wrap>.k-input{background:white!important;height:33px;opacity:1;color:#005890;font-size:16px;padding:0}::ng-deep .k-floating-label-container .k-dropdown .k-dropdown-wrap.k-state-disabled{opacity:1;color:#fff}::ng-deep .k-floating-label-container .k-dropdown .k-dropdown-wrap.k-state-disabled .k-select{display:none}::ng-deep .k-floating-label-container .k-dropdown .k-dropdown-wrap.k-state-disabled{-webkit-filter:none;filter:none;background:#0B85CE}::ng-deep .k-floating-label-container .k-dropdown .k-dropdown-wrap .k-select{color:#8ee2ff;opacity:1;background:#fff;border-radius:0;border:none}::ng-deep .k-floating-label-container .k-dropdown .k-dropdown-wrap .k-select .k-icon{color:#005890;display:none}.mat-simple-snackbar-action{color:#4ab679}::ng-deep html,::ng-deep body{height:100%;margin:0;font-family:Open Sans,sans-serif!important}:host(tb-login){font-family:Open Sans,sans-serif!important;display:block;min-height:100vh;padding:0;margin:0;overflow:auto;height:100%;min-height:100%;width:100%}:host(tb-login) .login-container{display:flex;flex:1;min-height:100%;justify-content:center;align-items:center;padding:20px;background-image:url(https://magocloud-store-pdf.s3.eu-west-1.amazonaws.com/login-bg.png);background-size:cover;background-repeat:no-repeat}:host(tb-login) .login-container .login{background-color:#e5ebee;box-shadow:0 14px 28px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.22);min-height:450px;flex:1;display:flex;padding:40px;flex-direction:column;justify-content:center;background:white}@media screen and (max-width: 768px){:host(tb-login) .login-container .login{padding:20px}}@media screen and (min-width: 576px){:host(tb-login) .login-container .login{max-width:450px}}:host(tb-login) .login-container .login .upicon{transform:rotate(90deg);padding:1px}:host(tb-login) .login-container .login .downicon{transform:rotate(270deg)}:host(tb-login) .login-container .login .login-header{display:flex;flex-direction:column}:host(tb-login) .login-container .login .login-form{display:flex;flex-direction:column;justify-content:center;margin:0}:host(tb-login) .login-container .login .k-i-loading{font-size:20px}:host(tb-login) p.instancekey{font-size:9px;font-weight:300;text-indent:1px;color:#005890}:host(tb-login) p.copyright{font-size:10px;font-weight:300;margin:0;color:#fff}:host(tb-login) p.copyright-abs{position:absolute;bottom:5px;color:#ccc;text-align:center;width:100%}:host(tb-login) p.forgotpwd{font-size:16px;font-weight:300;margin:0;color:#005890;text-align:right;cursor:pointer}:host(tb-login) p.signup{font-size:13px;font-weight:300;margin:0;color:#fff;text-align:left;cursor:pointer}:host(tb-login) .margin-h1{margin-left:-2px;margin-top:20px}:host(tb-login) .margin-p{margin-left:-1.5px;margin-top:-10px}:host(tb-login) .login-expired-subtitle{margin-top:20px;margin-bottom:20px;margin-left:-1.5px;color:#005890;font-weight:800}:host(tb-login) .login-chooseSubscription{margin-top:20px;margin-left:-2px;color:#005890;font-weight:300;font-size:1.5rem}:host(tb-login) .login-sign-in{font-family:inherit;font-weight:100;font-size:xx-large;color:#005890}:host(tb-login) .icon{position:absolute;bottom:4px;right:0;cursor:pointer;color:#005890;padding-bottom:2px}@media (min-width: 576px){:host(tb-login) .login{padding:20px}:host(tb-login) .login .login-form ::ng-deep .k-floating-label{margin:10px 0}}@media screen and (max-width: 768px){:host(tb-login) .login-sign-in{font-size:x-large}}\n"] }]
+        args: [{ selector: 'tb-login', template: "<div class=\"login-container\">\r\n    <div class=\"login\" style=\"z-index: 1\">\r\n        <div class=\"login-header\">\r\n            <div>\r\n                <img mat-card-image style=\"width: 60%\" src=\"{{ logoURL }}\" />\r\n            </div>\r\n            <div *ngIf=\"!validate && !otp\">\r\n                <h1 class=\"margin-h1 title\">{{ welcome }}</h1>\r\n                <p *ngIf=\"isExpiredSession\" class=\"login-expired-subtitle description\">{{ idleTimeoutMessage }}</p>\r\n                <p class=\"login-subtitle description\">{{ enterCredentials }}</p>\r\n            </div>\r\n            <div *ngIf=\"validate && !otp\">\r\n                <h1 class=\"margin-h1 title\">{{ chooseSubscription }}</h1>\r\n                <p class=\"login-subtitle description\">{{ accountName }}: {{ loginRequest.accountName }}</p>\r\n            </div>\r\n            <div *ngIf=\"otp\">\r\n                <h1 class=\"margin-h1 title\">{{ otpTitle }}</h1>\r\n                <p class=\"login-subtitle description\">{{ otpMessage }}</p>\r\n            </div>\r\n        </div>\r\n\r\n        <form>\r\n            <div class=\"login-form\">\r\n                <kendo-floatinglabel\r\n                    [text]=\"accountName\"\r\n                    *ngIf=\"!validate && !otp\"\r\n                    [ngClass]=\"authService.errorMessage ? 'border-bottom-error' : 'border-bottom'\"\r\n                >\r\n                    <input\r\n                        kendoTextBox\r\n                        [(ngModel)]=\"loginRequest.accountName\"\r\n                        (keyup)=\"keyUpFunction($event)\"\r\n                        name=\"accountName\"\r\n                        type=\"text\"\r\n                        [ngClass]=\"authService.errorMessage ? 'error-status' : 'normal-state'\"\r\n                    />\r\n                </kendo-floatinglabel>\r\n\r\n                <kendo-floatinglabel\r\n                    text=\"Password\"\r\n                    *ngIf=\"!validate && !otp\"\r\n                    [ngClass]=\"authService.errorMessage ? 'border-bottom-error' : 'border-bottom'\"\r\n                >\r\n                    <input\r\n                        kendoTextBox\r\n                        [(ngModel)]=\"loginRequest.password\"\r\n                        (keyup)=\"keyUpFunction($event)\"\r\n                        name=\"password\"\r\n                        [type]=\"hide ? 'password' : 'text'\"\r\n                        autocomplete=\"current-password\"\r\n                        [ngClass]=\"authService.errorMessage ? 'error-status' : 'normal-state'\"\r\n                    />\r\n                    <span (click)=\"hide = !hide\" *ngIf=\"hide === true\" class=\"material-icons icon\"> visibility </span>\r\n                    <span (click)=\"hide = !hide\" *ngIf=\"hide === false\" class=\"material-icons icon\"> visibility_off </span>\r\n                </kendo-floatinglabel>\r\n\r\n                <div class=\"form-control\" *ngIf=\"subscriptionSelection && validate && !otp\">\r\n                    <kendo-floatinglabel\r\n                        text=\"{{ subscription }}\"\r\n                        [ngClass]=\"[authService.errorMessage ? 'border-bottom-error' : '', dropDownIsClicked ? '' : 'border-bottom']\"\r\n                    >\r\n                        <kendo-dropdownlist\r\n                            #dropdown\r\n                            [disabled]=\"loginSubscriptions?.length <= 1\"\r\n                            [data]=\"loginSubscriptions\"\r\n                            name=\"subscription\"\r\n                            textField=\"description\"\r\n                            valueField=\"subscriptionkey\"\r\n                            valuePrimitive=\"true\"\r\n                            [(ngModel)]=\"loginRequest.subscriptionKey\"\r\n                            class=\"kendo-dropdown\"\r\n                            (ngModelChange)=\"onSubChange($event)\"\r\n                            (click)=\"isDropDownClicked()\"\r\n                        >\r\n                        </kendo-dropdownlist>\r\n                        <span (click)=\"toggle(dropdown)\" *ngIf=\"dropDownIsClicked\" class=\"material-symbols-rounded icon\">\r\n                            arrow_circle_up\r\n                        </span>\r\n                        <span (click)=\"toggle(dropdown)\" *ngIf=\"!dropDownIsClicked\" class=\"material-symbols-rounded icon\">\r\n                            arrow_circle_down\r\n                        </span>\r\n                    </kendo-floatinglabel>\r\n                    <div>\r\n                        <p class=\"instancekey\" *ngIf=\"loginSubscriptions.length > 3\">\r\n                            Subscription key: {{ loginRequest.subscriptionKey }} {{ instancekey }}\r\n                        </p>\r\n                    </div>\r\n                </div>\r\n\r\n                <kendo-floatinglabel\r\n                    [text]=\"code\"\r\n                    [ngClass]=\"authService.errorMessage ? 'border-bottom-error' : 'border-bottom'\"\r\n                    *ngIf=\"otp\"\r\n                >\r\n                    <input\r\n                        kendoTextBox\r\n                        [(ngModel)]=\"inputValue\"\r\n                        (keyup)=\"keyUpFunction($event)\"\r\n                        name=\"accountNameOtp\"\r\n                        [type]=\"hideOtp ? 'password' : 'text'\"\r\n                        type=\"password\"\r\n                        class=\"normal-state\"\r\n                    />\r\n                    <span (click)=\"hideOtp = !hideOtp\" *ngIf=\"hideOtp === true\" class=\"material-icons icon\"> visibility </span>\r\n                    <span (click)=\"hideOtp = !hideOtp\" *ngIf=\"hideOtp === false\" class=\"material-icons icon\"> visibility_off </span>\r\n                </kendo-floatinglabel>\r\n\r\n                <div class=\"login-infos\">\r\n                    <div class=\"caps-lock panel flex-center margin-bottom-5\" *ngIf=\"capsLockOn\">\r\n                        <p class=\"no-margin\">{{ blocMaiusc }}</p>\r\n                    </div>\r\n                    <div class=\"login-error panel flex-center margin-bottom-5\" *ngIf=\"authService.errorMessage\">\r\n                        <p class=\"no-margin\">{{ authService.errorMessage }}</p>\r\n                    </div>\r\n                    <div class=\"login-info panel flex-center\" *ngIf=\"authService.okMessage\">\r\n                        <p class=\"no-margin\">{{ authService.okMessage }}</p>\r\n                    </div>\r\n                </div>\r\n\r\n                <div *ngIf=\"otp\">\r\n                    <div style=\"display: flex; justify-content: flex-end\">\r\n                        <p class=\"link\" (click)=\"authService.resendOTP(loginRequest.accountName, alternative)\">\r\n                            <u>{{ resendOTPpLabel }}</u>\r\n                        </p>\r\n                    </div>\r\n\r\n                    <div style=\"display: flex; margin-top: 10px; justify-content: flex-end\">\r\n                        <p class=\"link\">\r\n                            <mat-checkbox [(ngModel)]=\"alternative\" name=\"alternative\">\r\n                                <span translate>{{ alternativelbl }}</span>\r\n                            </mat-checkbox>\r\n                        </p>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </form>\r\n        <div style=\"display: flex; flex-direction: row-reverse; justify-content: space-between; padding: 0 1px; margin-top: 60px\">\r\n            <div class=\"login-footer\" style=\"display: flex; justify-content: flex-end\">\r\n                <button kendoButton class=\"buttons login-button\" (click)=\"login()\" [disabled]=\"disabledButton()\">\r\n                    <span class=\"k-icon k-i-loading\" *ngIf=\"loading\"></span>\r\n                    <span *ngIf=\"!loading\">{{ buttonText }}</span>\r\n                </button>\r\n            </div>\r\n            <!-- PROVA PER APERTURA DIALOG DI NOTIFICA AGGIORNAMENTO -->\r\n            <!-- <div class=\"login-footer\">\r\n                <button kendoButton class=\"buttons back-button\" (click)=\"openDialog()\">\r\n                    <span> PROVA</span>\r\n                </button>\r\n            </div> -->\r\n            <!-- PROVA PER APERTURA DIALOG DI NOTIFICA AGGIORNAMENTO -->\r\n            <div class=\"login-footer\" *ngIf=\"(!loading && validate) || otp\">\r\n                <button kendoButton class=\"buttons back-button\" (click)=\"back()\">\r\n                    <span> {{ buttonBack }}</span>\r\n                </button>\r\n            </div>\r\n        </div>\r\n        <div class=\"login-footer\">\r\n            <div *ngIf=\"showSignUp\">\r\n                <p class=\"signup\" (click)=\"newUser()\">SignUp here!</p>\r\n            </div>\r\n        </div>\r\n        <div *ngIf=\"!validate && !otp\" style=\"display: flex; margin-top: 10px; justify-content: flex-end\">\r\n            <p class=\"forgotpwd\" (click)=\"goToForgotPassword()\">\r\n                <u>{{ forgetPassword }}</u>\r\n            </p>\r\n        </div>\r\n    </div>\r\n    <div style=\"position: absolute; bottom: 0; width: 100%; z-index: 0\">\r\n        <p class=\"copyright copyright-abs\">Login v2.3.1+39 \u00A9 2017 - {{ currentYear }}, Zucchetti s.p.a. </p>\r\n    </div>\r\n</div>\r\n", styles: ["@import\"https://fonts.googleapis.com/css?family=Open+Sans:400,600,700\";body,html{font-family:Open Sans,sans-serif!important;overflow:hidden;padding:0;margin:0}.k-animation-container-shown,.k-animation-container>.k-popup{box-shadow:none;color:#005890;max-height:130px;width:370px!important}.k-list{background:#F4F4F4;color:#005890;max-height:100px;width:370px!important}.k-list ::-webkit-scrollbar{background:#bfcdd5}.k-list ::-webkit-scrollbar:hover{background:#d9d9d9}.k-list ::-webkit-scrollbar-thumb{background:#6cafd1}.k-list ::-webkit-scrollbar-thumb:hover{background:#005890}.k-list .k-list-item.k-selected{background-color:#edf8fe!important;box-shadow:none;font-weight:600;color:#005890;font-size:13px;line-height:17px;word-break:break-all}.k-list .k-list-item:hover{background-color:#e5e5e5!important}@media screen and (max-width: 768px){.k-list,.k-animation-container-shown,.k-animation-container>.k-popup{width:410px!important}.kendo-dropdown{width:388px!important}.title{font-size:19px}}@media screen and (max-width: 490px){.k-list,.k-animation-container-shown,.k-animation-container>.k-popup{width:345.6px!important}.kendo-dropdown{width:323px!important}}@media screen and (max-width: 425px){.k-list,.k-animation-container-shown,.k-animation-container>.k-popup{width:295.2px!important}.kendo-dropdown{width:273px!important}}@media screen and (max-width: 375px){.k-list,.k-animation-container-shown,.k-animation-container>.k-popup{width:240px!important}.kendo-dropdown{width:217px!important}}.k-list-md .k-list-item,.k-list-md .k-list-optionlabel{padding:4px 8px;font-weight:600;color:#005890;font-size:13px;line-height:17px}.k-list .k-item:focus,.k-list .k-item.k-state-focused,.k-list-optionlabel:focus,.k-list-optionlabel.k-state-focused{box-shadow:none}.k-list-item-text{white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}.k-dropdown .k-dropdown-wrap:hover,.k-dropdowntree .k-dropdown-wrap:hover,.k-dropdown .k-dropdown-wrap.k-state-hover,.k-dropdowntree .k-dropdown-wrap.k-state-hover{color:#005890}.k-animation-container>.arrow-right{box-shadow:none}.k-animation-container-fixed>.k-popup{margin-right:0;border:none;background:transparent}.title{margin-bottom:10px;color:#005890!important;font-weight:800;font-size:24px}.description{color:#005890!important;font-size:16px;line-height:20px;font-weight:300;margin-bottom:30px}.link{font-size:16px;font-weight:300;margin:0;color:#005890;text-align:right;cursor:pointer}.border-bottom{border-bottom:1px solid #0B85CE}.border-bottom-error{border-bottom:1px solid #E7481C}.flex-center{display:flex;align-items:center}.no-margin{margin:0;word-break:break-all}.cdk-overlay-container{background:rgba(0,0,0,.32)}.margin-bottom-5{margin-bottom:5px}.k-disabled{opacity:inherit!important}.normal-state{color:#005890!important}.error-status{color:#e7481c!important}.kendo-dropdown{position:relative;width:348px}.k-checkbox-label{font-weight:600;color:#005890;font-size:13px;line-height:17px}.k-checkbox:checked,.k-checkbox.k-checked{border-color:#005890;background-color:#005890}.k-checkbox:checked:focus,.k-checkbox.k-checked.k-focus{box-shadow:none}.login-infos{margin:20px 0}.login-infos .caps-lock{background:#E7481C;display:flex;align-items:center}.login-infos .login-error{background:#E7481C}.login-infos .login-info{background:#4AB679}.login-infos .panel{color:#fff;font-size:16px;font-weight:600;padding:10px;line-height:20px}.login-infos span{margin-right:5px}.login-footer{float:right;display:flex;flex-direction:row;justify-content:space-between;align-items:flex-end}.login-footer .buttons{padding:6px 12px;color:#fff;font-size:14px;border-radius:0;border-color:rgba(0,0,0,0);letter-spacing:3px;text-transform:uppercase}.login-footer button:disabled{background:#C0C0C0}.login-footer .login-button{background:#E77B2D}.login-footer .login-button:hover:enabled{background:#FF9E18}.login-footer .back-button{background:#808080}.login-footer .back-button:hover:enabled{background:#9F9F9F}.login-footer .ok-button{background:#4AB679}.login-footer .ok-button:hover:enabled{background:#68B388}.login-footer .error-button{background:#D03C13}.login-footer .error-button:hover:enabled{background:#E7481C}input:-webkit-autofill{-webkit-box-shadow:0 0 0 30px white inset!important;-webkit-text-fill-color:#005890!important}:focus{outline:none}::ng-deep .mat-dialog-container{background:white!important;border-radius:0!important}::ng-deep .mat-dialog-container .title{margin-bottom:10px;color:#005890!important;font-weight:800;font-size:24px}::ng-deep .mat-dialog-container .description{color:#005890!important;font-size:16px;line-height:20px;font-weight:300;margin-bottom:30px}::ng-deep .mat-dialog-container .border-bottom{border-bottom:1px solid #0B85CE}::ng-deep .mat-dialog-container .login-footer .back-button:hover:enabled{background:#9F9F9F}::ng-deep .mat-dialog-container .login-footer .back-button{background:#808080}::ng-deep .mat-dialog-container .login-footer .buttons{padding:6px 12px;color:#fff;font-size:14px;border-radius:0;border-color:rgba(0,0,0,0);letter-spacing:3px;text-transform:uppercase}::ng-deep .mat-dialog-container .login-footer button:disabled{background:#C0C0C0}::ng-deep .mat-dialog-container .login-footer .ok-button{background:#4AB679}::ng-deep .mat-dialog-container .login-footer .ok-button:hover:enabled{background:#68B388}::ng-deep .k-floating-label-container{width:100%;margin:8px 0}::ng-deep .k-floating-label-container>.k-label{font-weight:600;color:#005890;font-size:14px;line-height:17px;left:0!important}::ng-deep .k-floating-label-container .k-textbox,::ng-deep .k-floating-label-container .k-textbox .k-input,::ng-deep .k-floating-label-container .k-textarea{border:none;border-radius:0;box-shadow:none;padding:5px 0;height:33px;font-size:13px;line-height:17px;font-weight:600;background-color:#fff!important}::ng-deep .k-floating-label-container .k-textbox,::ng-deep .k-floating-label-container .k-textbox .k-input,::ng-deep .k-floating-label-container .k-textarea:focus{background-color:#fff!important}::ng-deep .k-floating-label-container .k-textbox::-moz-selection,::ng-deep .k-floating-label-container .k-input::-moz-selection,::ng-deep .k-floating-label-container .k-textarea::-moz-selection{color:#fff;background-color:#909090}::ng-deep .k-floating-label-container .k-textbox::selection,::ng-deep .k-floating-label-container .k-input::selection,::ng-deep .k-floating-label-container .k-textarea::selection{color:#fff;background-color:#909090}::ng-deep .k-floating-label-container .k-picker-md .k-input-inner{background:white!important;height:33px;opacity:1;color:#005890;font-size:13px;padding:0;font-weight:600;line-height:17px}::ng-deep .k-floating-label-container .k-picker{border-width:0px;border-style:unset}::ng-deep .k-floating-label-container .k-picker:focus-within{box-shadow:none}::ng-deep .k-floating-label-container .k-picker:focus{box-shadow:none}::ng-deep .k-floating-label-container:after{background-color:#8ee2ff;height:1px}::ng-deep .k-floating-label-container .k-picker .k-input-button{border-color:transparent;display:none}::ng-deep .k-floating-label-container .k-dropdown{border:none;background:none}::ng-deep .k-floating-label-container .k-dropdown .k-dropdown-wrap{border:none;border-radius:0;padding:0;box-shadow:none}::ng-deep .k-floating-label-container .k-dropdown .k-dropdown-wrap>.k-input{background:white!important;height:33px;opacity:1;color:#005890;font-size:16px;padding:0}::ng-deep .k-floating-label-container .k-dropdown .k-dropdown-wrap.k-state-disabled{opacity:1;color:#fff}::ng-deep .k-floating-label-container .k-dropdown .k-dropdown-wrap.k-state-disabled .k-select{display:none}::ng-deep .k-floating-label-container .k-dropdown .k-dropdown-wrap.k-state-disabled{-webkit-filter:none;filter:none;background:#0B85CE}::ng-deep .k-floating-label-container .k-dropdown .k-dropdown-wrap .k-select{color:#8ee2ff;opacity:1;background:#fff;border-radius:0;border:none}::ng-deep .k-floating-label-container .k-dropdown .k-dropdown-wrap .k-select .k-icon{color:#005890;display:none}.mat-simple-snackbar-action{color:#4ab679}::ng-deep html,::ng-deep body{height:100%;margin:0;font-family:Open Sans,sans-serif!important}:host(tb-login){font-family:Open Sans,sans-serif!important;display:block;min-height:100vh;padding:0;margin:0;overflow:auto;height:100%;min-height:100%;width:100%}:host(tb-login) .login-container{display:flex;flex:1;min-height:100%;justify-content:center;align-items:center;padding:20px;background-image:url(https://magocloud-store-pdf.s3.eu-west-1.amazonaws.com/login-bg.png);background-size:cover;background-repeat:no-repeat}:host(tb-login) .login-container .login{background-color:#e5ebee;box-shadow:0 14px 28px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.22);min-height:450px;flex:1;display:flex;padding:40px;flex-direction:column;justify-content:center;background:white}@media screen and (max-width: 768px){:host(tb-login) .login-container .login{padding:20px}}@media screen and (min-width: 576px){:host(tb-login) .login-container .login{max-width:450px}}:host(tb-login) .login-container .login .upicon{transform:rotate(90deg);padding:1px}:host(tb-login) .login-container .login .downicon{transform:rotate(270deg)}:host(tb-login) .login-container .login .login-header{display:flex;flex-direction:column}:host(tb-login) .login-container .login .login-form{display:flex;flex-direction:column;justify-content:center;margin:0}:host(tb-login) .login-container .login .k-i-loading{font-size:20px}:host(tb-login) p.instancekey{font-size:9px;font-weight:300;text-indent:1px;color:#005890}:host(tb-login) p.copyright{font-size:10px;font-weight:300;margin:0;color:#fff}:host(tb-login) p.copyright-abs{position:absolute;bottom:5px;color:#ccc;text-align:center;width:100%}:host(tb-login) p.forgotpwd{font-size:16px;font-weight:300;margin:0;color:#005890;text-align:right;cursor:pointer}:host(tb-login) p.signup{font-size:13px;font-weight:300;margin:0;color:#fff;text-align:left;cursor:pointer}:host(tb-login) .margin-h1{margin-left:-2px;margin-top:20px}:host(tb-login) .margin-p{margin-left:-1.5px;margin-top:-10px}:host(tb-login) .login-expired-subtitle{margin-top:20px;margin-bottom:20px;margin-left:-1.5px;color:#005890;font-weight:800}:host(tb-login) .login-chooseSubscription{margin-top:20px;margin-left:-2px;color:#005890;font-weight:300;font-size:1.5rem}:host(tb-login) .login-sign-in{font-family:inherit;font-weight:100;font-size:xx-large;color:#005890}:host(tb-login) .icon{position:absolute;bottom:4px;right:0;cursor:pointer;color:#005890;padding-bottom:2px}@media (min-width: 576px){:host(tb-login) .login{padding:20px}:host(tb-login) .login .login-form ::ng-deep .k-floating-label{margin:10px 0}}@media screen and (max-width: 768px){:host(tb-login) .login-sign-in{font-size:x-large}}:host(tb-login) ::ng-deep .mat-checkbox{font-family:Open Sans,sans-serif;font-size:16px;font-weight:300}:host(tb-login) ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element{opacity:.03!important;background-color:#005890!important}:host(tb-login) ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,:host(tb-login) .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background{background-color:#005890}\n"] }]
     }], function () { return [{ type: TbAuthService }, { type: i2$1.Router }, { type: i1.MatDialog }, { type: i0.Renderer2 }, { type: undefined, decorators: [{
                 type: Inject,
                 args: [DOCUMENT]
@@ -2405,14 +2362,12 @@ class TbAuthModule {
                     TbLogoffComponent,
                     ForgotPasswordComponent,
                     ChangePasswordDialogComponent,
-                    AlertDialogComponent,
-                    OtpComponent
+                    AlertDialogComponent
                 ],
                 entryComponents: [
                     ForgotPasswordComponent,
                     ChangePasswordDialogComponent,
-                    AlertDialogComponent,
-                    OtpComponent
+                    AlertDialogComponent
                 ],
                 imports: [
                     CommonModule,
@@ -2436,8 +2391,7 @@ class TbAuthModule {
         TbLogoffComponent,
         ForgotPasswordComponent,
         ChangePasswordDialogComponent,
-        AlertDialogComponent,
-        OtpComponent], imports: [CommonModule,
+        AlertDialogComponent], imports: [CommonModule,
         FormsModule,
         DropDownsModule,
         LabelModule,
