@@ -77,8 +77,7 @@ export declare class TbLoginComponent implements AfterContentInit {
     convertUTCDateToLocalDate(date: Date): Date;
     FormatDateString: (date: Date) => string;
     FormatStartDateString: (date: Date) => string;
-    FormatEndDateString: (date: Date) => string;
-    NumberPad: (value: number, padding: number) => string;
+    FormatEndDateString: (date: Date, durationMins: number) => string;
     loadLoginData(): void;
     private saveLoginData;
     getCompaniesForUser(user: string): Promise<void>;
