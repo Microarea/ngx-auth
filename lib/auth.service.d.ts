@@ -61,7 +61,7 @@ export declare class TbAuthService {
     getSnapshot(instanceKey: string, subscriptionKey: string): import("rxjs").Observable<any>;
     getInstancesMapForAccountUrl(): string;
     getCalendarUrl(): string;
-    getUpdateMessage(it: boolean): string;
+    getUpdateMessage(): string;
     clearStorage(): void;
     storageSubscriptionData(subscriptionKey: string, subscriptionDescription: string): void;
     storageQueryParams(subscriptionKey: string, instanceKey: string): void;
@@ -92,8 +92,14 @@ export declare class TbAuthService {
     isSessionStorage: () => boolean;
     getLogoURL: () => string;
     isRedirectExternal: () => boolean;
-    getUpdateMessageIt: () => string;
-    getUpdateMessageEn: () => string;
+    getUpdateMessage_IT: () => string;
+    getUpdateMessage_EN: () => string;
+    getUpdateMessage_BR: () => string;
+    getUpdateMessage_BG: () => string;
+    getUpdateMessage_RO: () => string;
+    getUpdateMessage_DE: () => string;
+    getUpdateMessage_ES: () => string;
+    getUpdateMessage_PL: () => string;
     static ɵfac: i0.ɵɵFactoryDeclaration<TbAuthService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<TbAuthService>;
 }
