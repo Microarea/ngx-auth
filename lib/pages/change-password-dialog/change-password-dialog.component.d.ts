@@ -1,11 +1,13 @@
 import { OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { TbAuthService } from '../../auth.service';
+import { LoginRequest } from '../../models/login-request';
 import * as i0 from "@angular/core";
 export declare class ChangePasswordDialogComponent implements OnInit {
     mdDialogRef: MatDialogRef<ChangePasswordDialogComponent>;
     private data;
+    authService: TbAuthService;
     title: string;
-    error: string;
     message: string;
     placeHolder_1: string;
     placeHolder_2: string;
@@ -13,11 +15,18 @@ export declare class ChangePasswordDialogComponent implements OnInit {
     newpwd2: string;
     buttonCancel: string;
     changeButton: string;
-    showError: boolean;
-    constructor(mdDialogRef: MatDialogRef<ChangePasswordDialogComponent>, data: any);
+    currentBrowserLanguage: string;
+    blocMaiusc: string;
+    loginRequest: LoginRequest;
+    resetPassword: string;
+    capsLockOn: boolean;
+    hidenewpwd: boolean;
+    hidenewpwd2: boolean;
+    constructor(mdDialogRef: MatDialogRef<ChangePasswordDialogComponent>, data: any, authService: TbAuthService);
     ngOnInit(): void;
     cancel(): void;
-    confirm(): void;
+    confirm(): Promise<void>;
+    keyUpFunction(event: KeyboardEvent): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ChangePasswordDialogComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<ChangePasswordDialogComponent, "app-change-password-dialog", never, {}, {}, never, never>;
 }
