@@ -8,7 +8,18 @@ export declare class ChangePasswordDialogComponent implements OnInit {
     private data;
     authService: TbAuthService;
     title: string;
-    message: string;
+    message_1: string;
+    message_2: string;
+    message_3: string;
+    message_4: string;
+    message_5: string;
+    message_6: string;
+    message_7: string;
+    message_8: string;
+    message_9: string;
+    message_10: string;
+    message_11: string;
+    pswRulesSymbol: string;
     placeHolder_1: string;
     placeHolder_2: string;
     newpwd: string;
@@ -22,6 +33,7 @@ export declare class ChangePasswordDialogComponent implements OnInit {
     capsLockOn: boolean;
     hidenewpwd: boolean;
     hidenewpwd2: boolean;
+    loading: boolean;
     constructor(mdDialogRef: MatDialogRef<ChangePasswordDialogComponent>, data: any, authService: TbAuthService);
     ngOnInit(): void;
     cancel(): void;
