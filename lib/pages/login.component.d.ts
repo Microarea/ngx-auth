@@ -32,6 +32,7 @@ export declare class TbLoginComponent implements AfterContentInit {
         instancekey: string;
     }>;
     logoURL: string;
+    backgroundURL: string;
     hide: boolean;
     hideOtp: boolean;
     instancekey: string;

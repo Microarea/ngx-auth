@@ -15,6 +15,7 @@ export interface TbAuthEnvironment {
         loginPageUrl: string;
         sessionStorage: boolean;
         logoURL: string;
+        backgroundURL: string;
         updatemessage_IT: string;
         updatemessage_EN: string;
         updatemessage_DE: string;

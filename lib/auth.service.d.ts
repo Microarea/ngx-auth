@@ -91,6 +91,7 @@ export declare class TbAuthService {
     getPreLoginAppId: () => string;
     isSessionStorage: () => boolean;
     getLogoURL: () => string;
+    getBackgroundURL: () => string;
     isRedirectExternal: () => boolean;
     getUpdateMessage_IT: () => string;
     getUpdateMessage_EN: () => string;
