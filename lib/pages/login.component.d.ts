@@ -48,10 +48,8 @@ export declare class TbLoginComponent implements AfterContentInit {
     welcome: string;
     enterCredentials: string;
     forgetPassword: string;
-    dontshow: string;
     blocMaiusc: string;
     idleTimeoutMessage: string;
-    upgradeWarningTitle: string;
     otpMessage: string;
     otpTitle: string;
     resendOTPpLabel: string;

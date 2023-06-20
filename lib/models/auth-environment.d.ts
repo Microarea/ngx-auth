@@ -25,4 +25,8 @@ export interface TbAuthEnvironment {
         updatemessage_RO: string;
         updatemessage_PL: string;
     };
+    brand: {
+        applicationName: string;
+        bannerUrl: string;
+    };
 }

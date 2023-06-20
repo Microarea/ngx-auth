@@ -92,6 +92,7 @@ export declare class TbAuthService {
     isSessionStorage: () => boolean;
     getLogoURL: () => string;
     getBackgroundURL: () => string;
+    getBrandName: () => string;
     isRedirectExternal: () => boolean;
     getUpdateMessage_IT: () => string;
     getUpdateMessage_EN: () => string;
