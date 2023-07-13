@@ -38,6 +38,7 @@ export declare class TbLoginComponent implements AfterContentInit {
     instancekey: string;
     isConnected: boolean;
     document?: Document;
+    lib_version: string;
     chooseSubscription: string;
     goodJob: string;
     subscription: string;

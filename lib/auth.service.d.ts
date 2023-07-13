@@ -51,7 +51,7 @@ export declare class TbAuthService {
     getResetPasswordUrl(): string;
     getSubsKeysForAccountUrl(): string;
     changePassword(cpi: ChangePasswordInfo): Promise<OperationResult>;
-    resendOTP(accname: string, alternative: boolean): Promise<OperationResult>;
+    resendOTP(accname: string, processID: string, alternative: boolean): Promise<OperationResult>;
     resetpassword(accname: string): Promise<OperationResult>;
     logoff(): Promise<LogoffResponse>;
     navigateUserGateway(): void;

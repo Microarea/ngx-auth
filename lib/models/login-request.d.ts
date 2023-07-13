@@ -4,6 +4,8 @@ export declare class LoginRequest {
     accountName: string;
     password: string;
     subscriptionKey: string;
+    processID: string;
+    otPassword: string;
 }
 export declare class ChangePasswordInfo {
     AccountName: string;
