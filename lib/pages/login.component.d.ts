@@ -15,6 +15,7 @@ export declare class TbLoginComponent implements AfterContentInit {
     capsLockOn: boolean;
     validate: boolean;
     otp: boolean;
+    OLD: boolean;
     loading: boolean;
     loginRequest: LoginRequest;
     redirectUrl: string;
