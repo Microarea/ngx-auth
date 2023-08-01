@@ -23,6 +23,7 @@ export declare class TbAuthService {
     okMessage: string;
     callLoginAfterOTPRequest: boolean;
     reLoginAfterOTP: EventEmitter<any>;
+    langIt: boolean | undefined;
     get router(): Router;
     constructor(env: TbAuthEnvironment, http: HttpClient, injector: Injector, dialog: MatDialog, snackBar: MatSnackBar);
     checkConnection(): Promise<boolean>;
@@ -53,6 +54,7 @@ export declare class TbAuthService {
     getResetPasswordUrl(): string;
     getSubsKeysForAccountUrl(): string;
     changePassword(cpi: ChangePasswordInfo): Promise<OperationResult>;
+    LangIT(): boolean | undefined;
     OLDresendOTP(accname: string, alternative: boolean): Observable<OperationResult>;
     resendOTP2(accname: string, processID: string, alternative: number): Observable<OperationResult>;
     resetpassword(accname: string): Promise<OperationResult>;

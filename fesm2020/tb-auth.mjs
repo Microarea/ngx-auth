@@ -493,6 +493,7 @@ class TbAuthService {
         this.env = _.defaultsDeep(env, TbAuthService.DEFAULT_ENV, env);
         console.log('TbAuthEnvironment', this.env);
         this.callLoginAfterOTPRequest = false;
+        this.langIt = undefined;
     }
     get router() {
         return this.injector.get(Router);
@@ -539,24 +540,25 @@ class TbAuthService {
                     this.openChangePasswordDialog(loginRequest);
                 }
                 else if (loginResponse.ResultCode === 4) {
-                    console.log('AuthService: Account confirmation Needed');
+                    console.log('AuthService (cod.4): Account confirmation Needed');
                     // mi sposto su pagina per attivare l'account che non ha ancora effettuato la procedura?
                 }
+                else if (loginResponse.ResultCode === 46) { //invalidData
+                    console.log('AuthService (cod.46): ' + loginResponse.Message);
+                    loginResponse.Message = this.LangIT() ? 'Codice non valido.' : 'Invalid code.';
+                    ;
+                }
                 else if (loginResponse.ResultCode === 58) {
-                    console.log('AuthService: Account Locked');
+                    console.log('AuthService (cod.58): Account Locked');
                     loginResponse.Message = this.getLockedUserMessage(loginResponse.Message);
                 }
                 else if (loginResponse.ResultCode === 143) {
                     console.log('AuthService: otp code needed');
                 }
-                if (loginResponse.ResultCode === 143) {
-                    this.errorMessage = ''; // non mostro errore rosso che sembra grave
-                    // this.okMessage = loginResponse.Message;
-                }
-                else {
-                    this.okMessage = '';
+                //  per 143 non mostro errore rosso che sembra grave
+                if (loginResponse.ResultCode !== 143)
                     this.errorMessage = loginResponse.Message;
-                }
+                this.okMessage = '';
                 return loginResponse;
             }
             // non serve qua , viene gia gestito prima
@@ -871,12 +873,16 @@ class TbAuthService {
         }))
             .toPromise();
     }
+    LangIT() {
+        if (this.langIt != null)
+            this.langIt = navigator.language.startsWith('it');
+        return this.langIt;
+    }
     OLDresendOTP(accname, alternative) {
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        var langIT = navigator.language.startsWith('it');
-        let warning = langIT ? 'Attenzione' : 'Warning';
-        let successMessage = langIT ? 'Otp inviato' : 'Otp sent';
-        let errorMessage = langIT ? 'Otp non inviato' : 'Otp not sent';
+        let warning = this.LangIT() ? 'Attenzione' : 'Warning';
+        let successMessage = this.LangIT() ? 'Otp inviato' : 'Otp sent';
+        let errorMessage = this.LangIT() ? 'Otp non inviato' : 'Otp not sent';
         return this.http.post(this.OLDresendOTPUrl() + accname + '/' + alternative, { headers }).pipe(map((res) => {
             if (!res) {
                 res = new OperationResult();
@@ -898,22 +904,21 @@ class TbAuthService {
     }
     resendOTP2(accname, processID, alternative) {
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        var langIT = navigator.language.startsWith('it');
-        let warning = langIT ? 'Attenzione' : 'Warning';
+        let warning = this.LangIT() ? 'Attenzione' : 'Warning';
         let successMessage;
         let errorMessage;
         switch (alternative) {
             case 1:
-                successMessage = langIT ? 'Sms inviato' : 'Sms sent';
-                errorMessage = langIT ? 'Sms non inviato' : 'Sms not sent';
+                successMessage = this.LangIT() ? 'Sms inviato' : 'Sms sent';
+                errorMessage = this.LangIT() ? 'Sms non inviato' : 'Sms not sent';
                 break;
             case 2:
-                successMessage = langIT ? 'E-mail inviata' : 'E-mail sent';
-                errorMessage = langIT ? 'E-mail non inviata' : 'E-mail not sent';
+                successMessage = this.LangIT() ? 'E-mail inviata' : 'E-mail sent';
+                errorMessage = this.LangIT() ? 'E-mail non inviata' : 'E-mail not sent';
                 break;
             default:
-                successMessage = langIT ? 'Otp inviato' : 'Otp sent';
-                errorMessage = langIT ? 'Otp non inviato' : 'Otp not sent';
+                successMessage = this.LangIT() ? 'Otp inviato' : 'Otp sent';
+                errorMessage = this.LangIT() ? 'Otp non inviato' : 'Otp not sent';
         }
         return this.http.post(this.resendOTPUrl() + accname + '/' + processID + '/' + alternative, { headers }).pipe(map((res) => {
             if (!res) {
@@ -1543,7 +1548,7 @@ class Strings {
     }
 }
 
-const LIB_VERSION = " v2.3.1+57 ";
+const LIB_VERSION = " v2.3.1+58 ";
 
 const _c0 = ["dropdown"];
 function TbLoginComponent_div_5_p_3_Template(rf, ctx) { if (rf & 1) {
@@ -2297,7 +2302,7 @@ class TbLoginComponent {
             }
             else if (!this.otp && result1 && result1.ResultCode === 143) {
                 this.otpInfo = result1.ExtraInfo;
-                if (this.otpInfo == undefined) {
+                if (this.otpInfo == null) {
                     this.OLD = true;
                     this.otpInfo = new ExtraInfo();
                 }
