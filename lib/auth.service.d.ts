@@ -59,6 +59,7 @@ export declare class TbAuthService {
     resendOTP2(accname: string, processID: string, alternative: number): Observable<OperationResult>;
     resetpassword(accname: string): Promise<OperationResult>;
     logoff(): Promise<LogoffResponse>;
+    logoffBeacon(): boolean;
     navigateUserGateway(): void;
     getRedirectUrlForSubscription(accountName: string, subscriptionKey: string): void;
     getInstancesMapForUser(user: string): Observable<any>;

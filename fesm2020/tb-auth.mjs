@@ -437,7 +437,7 @@ class AlertDialogComponent {
     } }, directives: [i5.CheckboxControlValueAccessor, i3$1.CheckBoxDirective, i5.NgControlStatus, i5.NgModel, i3.LabelDirective], styles: [""] });
 (function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(AlertDialogComponent, [{
         type: Component,
-        args: [{ selector: 'app-alert-dialog', template: "<div style=\"max-width: 450px\">\r\n    <h1 class=\"title\">{{ title }}</h1>\r\n    <p [innerHTML]=\"message\" class=\"description\" style=\"width: 350px\"></p>\r\n\r\n    <div class=\"wrap\">\r\n        <input type=\"checkbox\" id=\"binding\" data-test=\"loginDontShowAnymoreButton\" [(ngModel)]=\"dontshowanymore\" (change)=\"showOptions($event)\" kendoCheckBox />\r\n        <label class=\"k-checkbox-label\" for=\"binding\"> {{ dontshow }}</label>\r\n    </div>\r\n\r\n    <div style=\"display: flex; flex-direction: row-reverse; justify-content: space-between; padding: 0 1px; margin-top: 30px\">\r\n        <div class=\"login-footer\" style=\"display: flex; justify-content: flex-end\">\r\n            <button kendoButton data-test=\"loginUpdateButton\" class=\"buttons ok-button\" (click)=\"closeDialog()\">\r\n                <span > OK </span>\r\n            </button>\r\n        </div>\r\n    </div>\r\n</div>\r\n", styles: [""] }]
+        args: [{ selector: 'app-alert-dialog', template: "<div style=\"max-width: 450px\">\n    <h1 class=\"title\">{{ title }}</h1>\n    <p [innerHTML]=\"message\" class=\"description\" style=\"width: 350px\"></p>\n\n    <div class=\"wrap\">\n        <input type=\"checkbox\" id=\"binding\" data-test=\"loginDontShowAnymoreButton\" [(ngModel)]=\"dontshowanymore\" (change)=\"showOptions($event)\" kendoCheckBox />\n        <label class=\"k-checkbox-label\" for=\"binding\"> {{ dontshow }}</label>\n    </div>\n\n    <div style=\"display: flex; flex-direction: row-reverse; justify-content: space-between; padding: 0 1px; margin-top: 30px\">\n        <div class=\"login-footer\" style=\"display: flex; justify-content: flex-end\">\n            <button kendoButton data-test=\"loginUpdateButton\" class=\"buttons ok-button\" (click)=\"closeDialog()\">\n                <span > OK </span>\n            </button>\n        </div>\n    </div>\n</div>\n", styles: [""] }]
     }], function () { return [{ type: undefined, decorators: [{
                 type: Inject,
                 args: [MAT_DIALOG_DATA]
@@ -974,6 +974,11 @@ class TbAuthService {
             return logoffResponse;
         }))
             .toPromise();
+    }
+    logoffBeacon() {
+        const logoffRequest = new LogoffRequest(this.getToken());
+        let request = JSON.stringify(logoffRequest);
+        return navigator.sendBeacon(this.getLogoutUrl(), request);
     }
     navigateUserGateway() {
         console.log('entering navigateUserGateway..');
@@ -1548,7 +1553,7 @@ class Strings {
     }
 }
 
-const LIB_VERSION = " v2.3.1+60 ";
+const LIB_VERSION = " v2.3.1+61 ";
 
 const _c0 = ["dropdown"];
 function TbLoginComponent_div_5_p_3_Template(rf, ctx) { if (rf & 1) {
