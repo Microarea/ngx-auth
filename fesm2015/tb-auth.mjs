@@ -1023,10 +1023,21 @@ class TbAuthService {
         }))
             .toPromise();
     }
-    logoffBeacon() {
+    logoffWithFetch() {
         const logoffRequest = new LogoffRequest(this.getToken());
         let request = JSON.stringify(logoffRequest);
-        return navigator.sendBeacon(this.getLogoutUrl(), request);
+        let logout = fetch(this.getLogoutUrl(), {
+            method: 'POST',
+            body: request,
+            keepalive: true,
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": this.getAuthorizationHeader()
+            }
+        });
+        logout.then((res) => {
+            console.log(res);
+        });
     }
     navigateUserGateway() {
         console.log('entering navigateUserGateway..');
@@ -1630,7 +1641,7 @@ class Strings {
     }
 }
 
-const LIB_VERSION = " v2.3.1+61 ";
+const LIB_VERSION = " v2.3.1+62 ";
 
 const _c0 = ["dropdown"];
 function TbLoginComponent_div_5_p_3_Template(rf, ctx) {
