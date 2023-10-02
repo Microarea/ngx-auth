@@ -469,6 +469,7 @@ class TbAuthService {
         this.getAuthServiceUrl = () => this.env.auth.url;
         this.getIupUrl = () => this.env.auth.iupurl;
         this.getRedirectUrl = () => this.env.auth.redirectUrl;
+        this.getRedirectIfNotAuthenticated = () => this.env.auth.redirectIfNotAuthenticated;
         this.getUserGatewayUrl = () => this.env.auth.userGatewayUrl;
         this.getCreateAccountUrl = () => this.env.auth.createAccountUrl;
         this.getChangePasswordUrl = () => this.env.auth.changePasswordUrl;
@@ -1238,6 +1239,7 @@ TbAuthService.DEFAULT_ENV = {
         appId: 'M4',
         preLoginAppId: 'MCloudPreLogin',
         redirectUrl: '/',
+        redirectIfNotAuthenticated: false,
         userGatewayUrl: '',
         isRedirectExternal: true,
         loginPageUrl: 'login',
@@ -1282,6 +1284,22 @@ class TbAuthGuard {
         this.env = env;
     }
     async canActivate(next, state) {
+        /**
+         * Se ricevo jwt e subKey significa che devo fare una "autologin"
+         * Creo un LoginRequest con i valori ricevuti, integro con appid letto da environment ed effettuo una login specifica
+         * In caso positivo vado in homepage "/"
+         */
+        const jwt = next.queryParams.hasOwnProperty('jwt') ? next.queryParams.jwt : null;
+        const subKey = next.queryParams.hasOwnProperty('subKey') ? next.queryParams.subKey : null;
+        const instanceKey = next.queryParams.hasOwnProperty('instanceKey') ? next.queryParams.instanceKey : null;
+        const ns = next.queryParams.hasOwnProperty('ns') ? next.queryParams.ns : null;
+        const args = next.queryParams.hasOwnProperty('args') ? next.queryParams.args : null;
+        //le chiamate non autenticate non sono più accettate in mago, a meno che non si tratti di magoweb o ambiente di sviluppo
+        //viene effettuato direttamente un redirect all'indirizzo specificato (tipicamente lo usergateway)
+        if (!jwt && this.env.auth.redirectIfNotAuthenticated && this.authService.getUserGatewayUrl()) {
+            this.authService.navigateUserGateway();
+            return true;
+        }
         const connection = await this.authService.checkConnection();
         if (!connection) {
             console.log(`CONNECTIONDOWN on: ${this.authService.getBaseUrl()}`);
@@ -1295,16 +1313,6 @@ class TbAuthGuard {
             this.authService.clearStorage();
             return true;
         }
-        /**
-         * Se ricevo jwt e subKey significa che devo fare una "autologin"
-         * Creo un LoginRequest con i valori ricevuti, integro con appid letto da environment ed effettuo una login specifica
-         * In caso positivo vado in homepage "/"
-         */
-        const jwt = next.queryParams.hasOwnProperty('jwt') ? next.queryParams.jwt : null;
-        const subKey = next.queryParams.hasOwnProperty('subKey') ? next.queryParams.subKey : null;
-        const instanceKey = next.queryParams.hasOwnProperty('instanceKey') ? next.queryParams.instanceKey : null;
-        const ns = next.queryParams.hasOwnProperty('ns') ? next.queryParams.ns : null;
-        const args = next.queryParams.hasOwnProperty('args') ? next.queryParams.args : null;
         //store nel local/sessions storage delle info necessarie allo snapshot
         //in questo caso la libreria sta "vivendo" dentro mago, riceve la redirect dello user gateway e popola queste info
         if (subKey && instanceKey)
@@ -1564,7 +1572,7 @@ class Strings {
     }
 }
 
-const LIB_VERSION = " v2.3.1+62 ";
+const LIB_VERSION = " v2.3.1+63 ";
 
 const _c0 = ["dropdown"];
 function TbLoginComponent_div_5_p_3_Template(rf, ctx) { if (rf & 1) {

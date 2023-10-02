@@ -88,6 +88,7 @@ export declare class TbAuthService {
     getAuthServiceUrl: () => string;
     getIupUrl: () => string;
     getRedirectUrl: () => string;
+    getRedirectIfNotAuthenticated: () => boolean;
     getUserGatewayUrl: () => string;
     getCreateAccountUrl: () => string;
     getChangePasswordUrl: () => string;
