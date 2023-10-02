@@ -1352,9 +1352,12 @@ class TbAuthGuard {
             const instanceKey = next.queryParams.hasOwnProperty('instanceKey') ? next.queryParams.instanceKey : null;
             const ns = next.queryParams.hasOwnProperty('ns') ? next.queryParams.ns : null;
             const args = next.queryParams.hasOwnProperty('args') ? next.queryParams.args : null;
-            //le chiamate non autenticate non sono più accettate in mago, a meno che non si tratti di magoweb o ambiente di sviluppo
+            //potrei passare di qua quando ho già un token valido, quindi il meccanismo "no jwt->redirect verso il gateway" non deve partire
+            const tempToken = this.authService.getToken() || '';
+            //mago non deve più far vedere la sua pagina di login, a meno che non si tratti di magoweb o ambiente di sviluppo
             //viene effettuato direttamente un redirect all'indirizzo specificato (tipicamente lo usergateway)
-            if (!jwt && this.env.auth.redirectIfNotAuthenticated && this.authService.getUserGatewayUrl()) {
+            //se non arrivi da un redirect con token o se non sei già autenticato, rimando al gateway
+            if (!jwt && this.env.auth.redirectIfNotAuthenticated && this.authService.getUserGatewayUrl() && !tempToken) {
                 this.authService.navigateUserGateway();
                 return true;
             }
@@ -1649,7 +1652,7 @@ class Strings {
     }
 }
 
-const LIB_VERSION = " v2.3.1+63 ";
+const LIB_VERSION = " v2.3.1+64 ";
 
 const _c0 = ["dropdown"];
 function TbLoginComponent_div_5_p_3_Template(rf, ctx) {
