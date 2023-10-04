@@ -1,6 +1,7 @@
 export interface TbAuthEnvironment {
     auth: {
         url: string;
+        storeUrl: string;
         iupurl: string;
         preLoginAppId: string;
         subscriptionSelection: boolean;
@@ -16,6 +17,7 @@ export interface TbAuthEnvironment {
         loginPageUrl: string;
         sessionStorage: boolean;
         logoURL: string;
+        backgroundURL: string;
         updatemessage_IT: string;
         updatemessage_EN: string;
         updatemessage_DE: string;
@@ -24,5 +26,9 @@ export interface TbAuthEnvironment {
         updatemessage_ES: string;
         updatemessage_RO: string;
         updatemessage_PL: string;
+    };
+    brand: {
+        applicationName: string;
+        bannerUrl: string;
     };
 }

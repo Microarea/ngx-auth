@@ -4,6 +4,8 @@ export declare class LoginRequest {
     accountName: string;
     password: string;
     subscriptionKey: string;
+    processID: string;
+    otPassword: string;
 }
 export declare class ChangePasswordInfo {
     AccountName: string;
@@ -11,11 +13,6 @@ export declare class ChangePasswordInfo {
     NewPassword: string;
     IgnoreOldPassword: boolean;
     JWTToken: string;
-}
-export declare class OTPInfo {
-    AccountName: string;
-    Password: string;
-    Code: string;
 }
 export interface CUCalendarJob {
     jobid: number;

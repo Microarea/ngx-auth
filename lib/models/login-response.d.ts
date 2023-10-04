@@ -4,6 +4,7 @@ export interface LoginResponse {
     ResultCode: number;
     JwtToken: string;
     ExpirationDate: string;
+    ExtraInfo: ExtraInfo;
     RegionalSettings: string;
     Language: string;
     Roles: string;
@@ -11,4 +12,14 @@ export interface LoginResponse {
     SubscriptionKey: string;
     SubscriptionDesc: string;
     AskingProcess: string;
+}
+export declare class ExtraInfo {
+    AccountName: string;
+    Email: string;
+    ExtraInfo: string;
+    MobilePhoneNr: string;
+    MobilePhonePrefix: string;
+    TOTPConfigured: boolean | null;
+    TwoFactorType: number | null;
+    constructor();
 }
