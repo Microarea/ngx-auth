@@ -8,12 +8,14 @@ import { LogoffResponse } from './models/logoff-response';
 import { OperationResult } from './models/operation-result';
 import { TbAuthEnvironment } from './models/auth-environment';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import * as i0 from "@angular/core";
 export declare const authService: () => TbAuthService;
 export declare class TbAuthService {
     private http;
     private injector;
     private dialog;
+    private snackBar;
     private static DEFAULT_ENV;
     private env;
     loggedOut$: Subject<unknown>;
@@ -22,7 +24,7 @@ export declare class TbAuthService {
     callLoginAfterOTPRequest: boolean;
     reLoginAfterOTP: EventEmitter<any>;
     get router(): Router;
-    constructor(env: TbAuthEnvironment, http: HttpClient, injector: Injector, dialog: MatDialog);
+    constructor(env: TbAuthEnvironment, http: HttpClient, injector: Injector, dialog: MatDialog, snackBar: MatSnackBar);
     checkConnection(): Promise<boolean>;
     /**
      * Ritorna la base url del backend,
@@ -38,7 +40,6 @@ export declare class TbAuthService {
     get2FARequiredMessage(description: string): string;
     openUpdateAlertDialog(info: string, title: string, dontshow: string, accountName: string, subscriptionKey: string): Promise<void>;
     openChangePasswordDialog(loginRequest: LoginRequest): Promise<void>;
-    openOTPDialog(loginRequest: LoginRequest): Promise<void>;
     isValidToken(authtoken?: string): Promise<OperationResult>;
     getCompaniesForUser(user: string): import("rxjs").Observable<any>;
     getIsValidTokenUrl(): string;
@@ -50,7 +51,7 @@ export declare class TbAuthService {
     getResetPasswordUrl(): string;
     getSubsKeysForAccountUrl(): string;
     changePassword(cpi: ChangePasswordInfo): Promise<OperationResult>;
-    resendOTP(accname: string): Promise<OperationResult>;
+    resendOTP(accname: string, alternative: boolean): Promise<OperationResult>;
     resetpassword(accname: string): Promise<OperationResult>;
     logoff(): Promise<LogoffResponse>;
     navigateUserGateway(): void;
@@ -60,13 +61,16 @@ export declare class TbAuthService {
     getSnapshot(instanceKey: string, subscriptionKey: string): import("rxjs").Observable<any>;
     getInstancesMapForAccountUrl(): string;
     getCalendarUrl(): string;
-    getUpdateMessage(it: boolean): string;
+    getUpdateMessage(): string;
     clearStorage(): void;
     storageSubscriptionData(subscriptionKey: string, subscriptionDescription: string): void;
     storageQueryParams(subscriptionKey: string, instanceKey: string): void;
     private getName;
     private storageData;
+    getSymbolsToPromise(): Promise<OperationResult>;
+    getSymbolsUrl(): string;
     saveCulture(culture: string, uiCulture: string): void;
+    openSnackBar(message: string, action: string): void;
     getToken(): string | null;
     getAccountName(): string | null;
     getSubscription(): string | null;
@@ -78,18 +82,24 @@ export declare class TbAuthService {
     getAuthServiceUrl: () => string;
     getIupUrl: () => string;
     getRedirectUrl: () => string;
-    getRedirectIfNotAuthenticated: () => boolean;
     getUserGatewayUrl: () => string;
     getCreateAccountUrl: () => string;
     getChangePasswordUrl: () => string;
     hasSubscriptionSelection: () => boolean;
     showSignUp: () => boolean;
     getAppId: () => string;
+    getPreLoginAppId: () => string;
     isSessionStorage: () => boolean;
     getLogoURL: () => string;
     isRedirectExternal: () => boolean;
-    getUpdateMessageIt: () => string;
-    getUpdateMessageEn: () => string;
+    getUpdateMessage_IT: () => string;
+    getUpdateMessage_EN: () => string;
+    getUpdateMessage_BR: () => string;
+    getUpdateMessage_BG: () => string;
+    getUpdateMessage_RO: () => string;
+    getUpdateMessage_DE: () => string;
+    getUpdateMessage_ES: () => string;
+    getUpdateMessage_PL: () => string;
     static ɵfac: i0.ɵɵFactoryDeclaration<TbAuthService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<TbAuthService>;
 }

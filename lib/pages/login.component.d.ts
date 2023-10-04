@@ -13,6 +13,7 @@ export declare class TbLoginComponent implements AfterContentInit {
     private cachedCompanies;
     capsLockOn: boolean;
     validate: boolean;
+    otp: boolean;
     loading: boolean;
     loginRequest: LoginRequest;
     redirectUrl: string;
@@ -32,6 +33,7 @@ export declare class TbLoginComponent implements AfterContentInit {
     }>;
     logoURL: string;
     hide: boolean;
+    hideOtp: boolean;
     instancekey: string;
     isConnected: boolean;
     document?: Document;
@@ -49,9 +51,16 @@ export declare class TbLoginComponent implements AfterContentInit {
     blocMaiusc: string;
     idleTimeoutMessage: string;
     upgradeWarningTitle: string;
+    otpMessage: string;
+    otpTitle: string;
+    resendOTPpLabel: string;
+    alternativelbl: string;
+    code: string;
+    inputValue: string;
     dropDownIsClicked: boolean;
     comboBoxIsClicked: boolean;
     iconIsClicked: boolean;
+    alternative: boolean;
     dropdown: any;
     currentBrowserLanguage: string;
     languageIT: boolean;
@@ -68,8 +77,7 @@ export declare class TbLoginComponent implements AfterContentInit {
     convertUTCDateToLocalDate(date: Date): Date;
     FormatDateString: (date: Date) => string;
     FormatStartDateString: (date: Date) => string;
-    FormatEndDateString: (date: Date) => string;
-    NumberPad: (value: number, padding: number) => string;
+    FormatEndDateString: (date: Date, durationMins: number) => string;
     loadLoginData(): void;
     private saveLoginData;
     getCompaniesForUser(user: string): Promise<void>;
