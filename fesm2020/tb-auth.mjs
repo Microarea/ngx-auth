@@ -1576,7 +1576,7 @@ class Strings {
     }
 }
 
-const LIB_VERSION = " v2.3.1+65 ";
+const LIB_VERSION = " v2.3.0+101 ";
 
 const _c0 = ["dropdown"];
 function TbLoginComponent_div_5_p_3_Template(rf, ctx) { if (rf & 1) {
