@@ -615,7 +615,7 @@ class TbAuthService {
     login(loginRequest) {
         //'login');
         let redologin = false;
-        // console.log('authService.login - loginRequest', loginRequest);
+        console.log('login...');
         const loginresponse = this.http
             .post(this.getLoginUrl(), loginRequest)
             .pipe(map((loginResponse) => {
@@ -680,7 +680,7 @@ class TbAuthService {
         }))
             .toPromise();
         if (redologin) {
-            //console.log('redologin');
+            console.log('redo login...');
             return this.login(loginRequest);
         }
         else
@@ -1383,6 +1383,7 @@ class TbAuthGuard {
                 loginRequest.token = jwt;
                 loginRequest.subscriptionKey = subKey;
                 loginRequest.appId = this.authService.getAppId();
+                console.log('login by token...');
                 const loginResponse = (yield this.authService.login(loginRequest).catch((err) => {
                     this.authService.errorMessage = err.error && err.error.Message;
                     this.router.navigate(['login']);
@@ -1652,7 +1653,7 @@ class Strings {
     }
 }
 
-const LIB_VERSION = " v2.2.0+101 ";
+const LIB_VERSION = " v2.3.0+102 ";
 
 const _c0 = ["dropdown"];
 function TbLoginComponent_div_5_p_3_Template(rf, ctx) {
@@ -2506,7 +2507,7 @@ class TbLoginComponent {
                     this.validate = true;
                     this.buttonText = this.validate ? this.loginText : this.nextText;
                     this.getCompaniesForUser(this.loginRequest.accountName);
-                    console.log('getCompaniesForUser');
+                    console.log("getCompaniesForUser");
                     this.authService.errorMessage = '';
                     this.authService.okMessage = '';
                 }
@@ -2568,7 +2569,7 @@ class TbLoginComponent {
                             }
                         }
                     }
-                    console.log('ready to redirect.');
+                    console.log("ready to redirect.");
                     this.authService.okMessage = '';
                     this.authService.errorMessage = '';
                     if (this.authService.isRedirectExternal()) {
