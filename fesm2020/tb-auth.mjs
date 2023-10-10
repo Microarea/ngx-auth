@@ -577,7 +577,7 @@ class TbAuthService {
     login(loginRequest) {
         //'login');
         let redologin = false;
-        console.log('login...');
+        // console.log('authService.login - loginRequest', loginRequest);
         const loginresponse = this.http
             .post(this.getLoginUrl(), loginRequest)
             .pipe(map((loginResponse) => {
@@ -642,7 +642,7 @@ class TbAuthService {
         }))
             .toPromise();
         if (redologin) {
-            console.log('redo login...');
+            //console.log('redologin');
             return this.login(loginRequest);
         }
         else
@@ -1325,7 +1325,6 @@ class TbAuthGuard {
             loginRequest.token = jwt;
             loginRequest.subscriptionKey = subKey;
             loginRequest.appId = this.authService.getAppId();
-            console.log('login by token...');
             const loginResponse = (await this.authService.login(loginRequest).catch((err) => {
                 this.authService.errorMessage = err.error && err.error.Message;
                 this.router.navigate(['login']);
@@ -1576,7 +1575,7 @@ class Strings {
     }
 }
 
-const LIB_VERSION = " v2.3.0+101 ";
+const LIB_VERSION = " v2.2.0+101 ";
 
 const _c0 = ["dropdown"];
 function TbLoginComponent_div_5_p_3_Template(rf, ctx) { if (rf & 1) {
@@ -2064,37 +2063,25 @@ class TbLoginComponent {
         this.otpInfo = new ExtraInfo();
         // ---------------------------------------------------------------------------
         this.FormatDateString = (date) => {
-            const startDate = this.convertUTCDateToLocalDate(date);
-            return startDate.toLocaleDateString(navigator.language, { year: 'numeric', month: 'long', day: 'numeric' });
-            //return `${startDate.getDate()}-${tempDate.getMonth() + 1}-${tempDate.getFullYear()}`;
+            var scheduledDateTime = new Date(Date.parse(date));
+            return scheduledDateTime.toLocaleDateString(navigator.language, { year: 'numeric', month: 'long', day: 'numeric' });
         };
         // ---------------------------------------------------------------------------
         this.FormatStartDateString = (date) => {
-            const startDate = this.convertUTCDateToLocalDate(date);
+            var scheduledDateTime = new Date(Date.parse(date));
             if (this.languageIT)
-                return startDate.toLocaleString('it-IT', { hour: 'numeric', minute: 'numeric', hour12: false });
+                return scheduledDateTime.toLocaleString('it-IT', { hour: 'numeric', minute: 'numeric', hour12: false });
             else
-                return startDate.toLocaleString(navigator.language, { hour: 'numeric', minute: 'numeric', hour12: true });
-            //const zeroes = new Array(2 + 1).join('0');
-            //var m =    (zeroes + startDate.getMinutes()).slice(-2);
-            // var h =    (zeroes + startDate.getHours()).slice(-2);
-            // return  `${h}:${m}`;
+                return scheduledDateTime.toLocaleString(navigator.language, { hour: 'numeric', minute: 'numeric', hour12: true });
         };
-        //todo,
-        //am / pm? sel 'intervallo scatta al giorno dopo, forse dovrei dire il 4maggio dalle 10pm
-        //(o 22, ma dipende dall impostazione di cultura)  al 4 (o 5)  maggio alle 11 ( o alle 01 am) ) al
         // ---------------------------------------------------------------------------
         this.FormatEndDateString = (date, durationMins) => {
-            const tempDate = this.convertUTCDateToLocalDate(date);
-            var finalDate = new Date(tempDate.getTime() + durationMins * 60000);
+            var scheduledDateTime = new Date(Date.parse(date));
+            var finalDate = new Date(scheduledDateTime.getTime() + durationMins * 60000);
             if (this.languageIT)
                 return finalDate.toLocaleString('it-IT', { hour: 'numeric', minute: 'numeric', hour12: false });
             else
                 return finalDate.toLocaleString(navigator.language, { hour: 'numeric', minute: 'numeric', hour12: true });
-            //const zeroes = new Array(2 + 1).join('0');
-            //var m =    (zeroes + finalDate.getMinutes()).slice(-2);
-            //var h =    (zeroes + finalDate.getHours()).slice(-2);
-            //return  `${h}:${m}`;
         };
         this.renderer.listen('window', 'click', (e) => {
             if (this.comboBoxIsClicked) {
@@ -2291,7 +2278,7 @@ class TbLoginComponent {
     }
     // ---------------------------------------------------------------------------
     async login() {
-        //console.log('login requested');
+        console.log('login requested...');
         this.authService.okMessage = '';
         this.authService.errorMessage = '';
         this.saveLoginData();
@@ -2325,7 +2312,7 @@ class TbLoginComponent {
                 this.validate = true;
                 this.buttonText = this.validate ? this.loginText : this.nextText;
                 this.getCompaniesForUser(this.loginRequest.accountName);
-                console.log("getCompaniesForUser");
+                console.log('getCompaniesForUser');
                 this.authService.errorMessage = '';
                 this.authService.okMessage = '';
             }
@@ -2387,7 +2374,7 @@ class TbLoginComponent {
                         }
                     }
                 }
-                console.log("ready to redirect.");
+                console.log('ready to redirect.');
                 this.authService.okMessage = '';
                 this.authService.errorMessage = '';
                 if (this.authService.isRedirectExternal()) {
@@ -2402,12 +2389,6 @@ class TbLoginComponent {
                 this.loading = false;
             }
         }
-    }
-    // ---------------------------------------------------------------------------
-    convertUTCDateToLocalDate(date) {
-        // devo fare questo rigiro perchè l ora che mi arriva  è intesa come utc e devo mostrarla come locale
-        const dt = new Date(date);
-        return new Date(Date.UTC(dt.getFullYear(), dt.getMonth(), dt.getDate(), dt.getHours(), dt.getMinutes(), dt.getSeconds(), dt.getMilliseconds()));
     }
     // ---------------------------------------------------------------------------
     loadLoginData() {

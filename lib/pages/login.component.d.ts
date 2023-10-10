@@ -84,10 +84,9 @@ export declare class TbLoginComponent implements AfterContentInit {
     newUser(): void;
     back(): Promise<void>;
     login(): Promise<void>;
-    convertUTCDateToLocalDate(date: Date): Date;
-    FormatDateString: (date: Date) => string;
-    FormatStartDateString: (date: Date) => string;
-    FormatEndDateString: (date: Date, durationMins: number) => string;
+    FormatDateString: (date: string) => string;
+    FormatStartDateString: (date: string) => string;
+    FormatEndDateString: (date: string, durationMins: number) => string;
     loadLoginData(): void;
     private saveLoginData;
     getCompaniesForUser(user: string): Promise<void>;

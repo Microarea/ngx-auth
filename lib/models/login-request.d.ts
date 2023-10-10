@@ -22,7 +22,7 @@ export interface CUCalendarJob {
     instancekey: string;
     currentmap: string;
     destinationmap: string;
-    scheduledtime: Date;
+    scheduledtime: string;
     estimatedupgradetime: number;
     realupgradetime: number;
     status: number;
