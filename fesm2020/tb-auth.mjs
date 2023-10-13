@@ -528,10 +528,10 @@ class TbAuthService {
         });
     }
     // ---------------------------------------------------------------------------
-    prelogin(loginRequest) {
+    async prelogin(loginRequest) {
         //console.log('prelogin');
         // console.log('authService.login - loginRequest', loginRequest);
-        return this.http
+        return await this.http
             .post(this.getPreLoginUrl(), loginRequest)
             .pipe(map((loginResponse) => {
             if (!loginResponse.Result) {
@@ -544,10 +544,10 @@ class TbAuthService {
                     console.log('AuthService (cod.4): Account confirmation Needed');
                     // mi sposto su pagina per attivare l'account che non ha ancora effettuato la procedura?
                 }
-                else if (loginResponse.ResultCode === 46) { //invalidData
+                else if (loginResponse.ResultCode === 46) {
+                    //invalidData
                     console.log('AuthService (cod.46): ' + loginResponse.Message);
                     loginResponse.Message = this.LangIT() ? 'Codice non valido.' : 'Invalid code.';
-                    ;
                 }
                 else if (loginResponse.ResultCode === 58) {
                     console.log('AuthService (cod.58): Account Locked');
@@ -574,11 +574,11 @@ class TbAuthService {
             .toPromise();
     }
     // ---------------------------------------------------------------------------
-    login(loginRequest) {
+    async login(loginRequest) {
         //'login');
         let redologin = false;
         console.log('login...');
-        const loginresponse = this.http
+        const loginresponse = await this.http
             .post(this.getLoginUrl(), loginRequest)
             .pipe(map((loginResponse) => {
             if (!loginResponse.Result) {
@@ -610,8 +610,7 @@ class TbAuthService {
                 }
                 else {
                     this.clearStorage();
-                    console.log('AuthService: Clearing storage due to Login failure, result code ', loginResponse.ResultCode);
-                    console.log('LoginRequest by account ' + loginRequest.accountName + ' token:' + loginRequest.token);
+                    console.log('AuthService: Clearing storage due to Login failure for ' + loginRequest.accountName + ', result code ', loginResponse.ResultCode);
                 }
                 loginResponse.Message = loginResponse.Message ? loginResponse.Message : 'Login error...';
                 console.log(loginResponse.Message);
@@ -776,7 +775,7 @@ class TbAuthService {
             opres.Message = 'No authtoken';
             return opres;
         }
-        return this.http
+        return await this.http
             .post(this.getIsValidTokenUrl(), new IsValidTokenRequest(authtoken))
             .pipe(tap((jObj) => {
             // console.log('isValidToken - response', jObj);
@@ -858,7 +857,7 @@ class TbAuthService {
         const bodyString = JSON.stringify(cpi);
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         // tslint:disable-next-line: align
-        return this.http
+        return await this.http
             .post(this.getChangePasswordApiUrl(), bodyString, { headers })
             .pipe(map((res) => {
             if (!res || !res.Result) {
@@ -943,7 +942,7 @@ class TbAuthService {
     async resetpassword(accname) {
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         // tslint:disable-next-line: align
-        return this.http
+        return await this.http
             .post(this.getResetPasswordUrl() + accname, { headers })
             .pipe(map((res) => {
             if (!res) {
@@ -962,9 +961,9 @@ class TbAuthService {
         }))
             .toPromise();
     }
-    logoff() {
+    async logoff() {
         const logoffRequest = new LogoffRequest(this.getToken());
-        return this.http
+        return await this.http
             .post(this.getLogoutUrl(), logoffRequest)
             .pipe(map((logoffResponse) => {
             if (logoffResponse.Result) {
@@ -984,9 +983,9 @@ class TbAuthService {
             body: request,
             keepalive: true,
             headers: {
-                "Content-Type": "application/json",
-                "Authorization": this.getAuthorizationHeader()
-            }
+                'Content-Type': 'application/json',
+                Authorization: this.getAuthorizationHeader(),
+            },
         });
         logout.then((res) => {
             console.log(res);
@@ -1159,7 +1158,7 @@ class TbAuthService {
     // ---------------------------------------------------------------------------
     async getSymbolsToPromise() {
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        return this.http.get(this.getSymbolsUrl(), { headers }).toPromise();
+        return await this.http.get(this.getSymbolsUrl(), { headers }).toPromise();
     }
     // ---------------------------------------------------------------------------
     getSymbolsUrl() {
@@ -1576,7 +1575,7 @@ class Strings {
     }
 }
 
-const LIB_VERSION = " v2.3.0+102 ";
+const LIB_VERSION = " v2.3.0+103 ";
 
 const _c0 = ["dropdown"];
 function TbLoginComponent_div_5_p_3_Template(rf, ctx) { if (rf & 1) {
@@ -2174,6 +2173,7 @@ class TbLoginComponent {
             this.TOTPDescription = 'Open your two-factor authenticator (TOTP) app or browser extension to view your authentication code';
         }
         authService.reLoginAfterOTP.subscribe(() => {
+            console.log('login after otp...');
             //'login subscribed');
             this.login();
         });
@@ -2231,6 +2231,7 @@ class TbLoginComponent {
     keyUpFunction(event) {
         if (event.key === 'Enter') {
             if (!this.disabledButton()) {
+                console.log('login by enter...');
                 this.login();
             }
         }
@@ -2279,7 +2280,7 @@ class TbLoginComponent {
     }
     // ---------------------------------------------------------------------------
     async login() {
-        console.log('login requested...');
+        console.log('login requested...' + this.loginRequest.accountName);
         this.authService.okMessage = '';
         this.authService.errorMessage = '';
         this.saveLoginData();
@@ -2299,7 +2300,7 @@ class TbLoginComponent {
         if (!this.validate && this.subscriptionSelection) {
             this.loginRequest.appId = 'MCloudPreLogin';
             this.loginRequest.subscriptionKey = '';
-            //console.log('calling prelogin ');
+            console.log('calling prelogin... ');
             const result1 = await this.authService.prelogin(this.loginRequest).catch((err1) => {
                 this.loading = false;
                 this.authService.errorMessage = err1.error && err1.error.Message;
@@ -2313,7 +2314,7 @@ class TbLoginComponent {
                 this.validate = true;
                 this.buttonText = this.validate ? this.loginText : this.nextText;
                 this.getCompaniesForUser(this.loginRequest.accountName);
-                console.log("getCompaniesForUser");
+                console.log('collecting subscriptions...');
                 this.authService.errorMessage = '';
                 this.authService.okMessage = '';
             }
@@ -2375,7 +2376,7 @@ class TbLoginComponent {
                         }
                     }
                 }
-                console.log("ready to redirect.");
+                console.log('ready to redirect.');
                 this.authService.okMessage = '';
                 this.authService.errorMessage = '';
                 if (this.authService.isRedirectExternal()) {

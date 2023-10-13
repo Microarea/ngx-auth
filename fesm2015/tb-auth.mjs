@@ -567,124 +567,127 @@ class TbAuthService {
     }
     // ---------------------------------------------------------------------------
     prelogin(loginRequest) {
-        //console.log('prelogin');
-        // console.log('authService.login - loginRequest', loginRequest);
-        return this.http
-            .post(this.getPreLoginUrl(), loginRequest)
-            .pipe(map((loginResponse) => {
-            if (!loginResponse.Result) {
-                if (loginResponse.ResultCode === 19) {
-                    // mi sposto su pagina per cambio password e nuovo tentativo di login
-                    console.log('AuthService: Change Password Needed');
-                    this.openChangePasswordDialog(loginRequest);
+        return __awaiter(this, void 0, void 0, function* () {
+            //console.log('prelogin');
+            // console.log('authService.login - loginRequest', loginRequest);
+            return yield this.http
+                .post(this.getPreLoginUrl(), loginRequest)
+                .pipe(map((loginResponse) => {
+                if (!loginResponse.Result) {
+                    if (loginResponse.ResultCode === 19) {
+                        // mi sposto su pagina per cambio password e nuovo tentativo di login
+                        console.log('AuthService: Change Password Needed');
+                        this.openChangePasswordDialog(loginRequest);
+                    }
+                    else if (loginResponse.ResultCode === 4) {
+                        console.log('AuthService (cod.4): Account confirmation Needed');
+                        // mi sposto su pagina per attivare l'account che non ha ancora effettuato la procedura?
+                    }
+                    else if (loginResponse.ResultCode === 46) {
+                        //invalidData
+                        console.log('AuthService (cod.46): ' + loginResponse.Message);
+                        loginResponse.Message = this.LangIT() ? 'Codice non valido.' : 'Invalid code.';
+                    }
+                    else if (loginResponse.ResultCode === 58) {
+                        console.log('AuthService (cod.58): Account Locked');
+                        loginResponse.Message = this.getLockedUserMessage(loginResponse.Message);
+                    }
+                    else if (loginResponse.ResultCode === 143) {
+                        console.log('AuthService: otp code needed');
+                    }
+                    //  per 143 non mostro errore rosso che sembra grave
+                    if (loginResponse.ResultCode !== 143)
+                        this.errorMessage = loginResponse.Message;
+                    this.okMessage = '';
+                    return loginResponse;
                 }
-                else if (loginResponse.ResultCode === 4) {
-                    console.log('AuthService (cod.4): Account confirmation Needed');
-                    // mi sposto su pagina per attivare l'account che non ha ancora effettuato la procedura?
-                }
-                else if (loginResponse.ResultCode === 46) { //invalidData
-                    console.log('AuthService (cod.46): ' + loginResponse.Message);
-                    loginResponse.Message = this.LangIT() ? 'Codice non valido.' : 'Invalid code.';
-                    ;
-                }
-                else if (loginResponse.ResultCode === 58) {
-                    console.log('AuthService (cod.58): Account Locked');
-                    loginResponse.Message = this.getLockedUserMessage(loginResponse.Message);
-                }
-                else if (loginResponse.ResultCode === 143) {
-                    console.log('AuthService: otp code needed');
-                }
-                //  per 143 non mostro errore rosso che sembra grave
-                if (loginResponse.ResultCode !== 143)
-                    this.errorMessage = loginResponse.Message;
-                this.okMessage = '';
+                // non serve qua , viene gia gestito prima
+                // if (this.callLoginAfterOTPRequest)
+                // {
+                //   this.callLoginAfterOTPRequest = false;
+                //   console.log('relogin emitted');
+                //   this.reLoginAfterOTP.emit();
+                // }
                 return loginResponse;
-            }
-            // non serve qua , viene gia gestito prima
-            // if (this.callLoginAfterOTPRequest)
-            // {
-            //   this.callLoginAfterOTPRequest = false;
-            //   console.log('relogin emitted');
-            //   this.reLoginAfterOTP.emit();
-            // }
-            return loginResponse;
-        }))
-            .toPromise();
+            }))
+                .toPromise();
+        });
     }
     // ---------------------------------------------------------------------------
     login(loginRequest) {
-        //'login');
-        let redologin = false;
-        console.log('login...');
-        const loginresponse = this.http
-            .post(this.getLoginUrl(), loginRequest)
-            .pipe(map((loginResponse) => {
-            if (!loginResponse.Result) {
-                if (loginResponse.ResultCode === 19) {
-                    // mi sposto su pagina per cambio password e nuovo tentativo di login
-                    console.log('AuthService: Change Password Needed');
-                    this.openChangePasswordDialog(loginRequest);
-                    redologin = true;
+        return __awaiter(this, void 0, void 0, function* () {
+            //'login');
+            let redologin = false;
+            console.log('login...');
+            const loginresponse = yield this.http
+                .post(this.getLoginUrl(), loginRequest)
+                .pipe(map((loginResponse) => {
+                if (!loginResponse.Result) {
+                    if (loginResponse.ResultCode === 19) {
+                        // mi sposto su pagina per cambio password e nuovo tentativo di login
+                        console.log('AuthService: Change Password Needed');
+                        this.openChangePasswordDialog(loginRequest);
+                        redologin = true;
+                    }
+                    else if (loginResponse.ResultCode === 143) {
+                        // mi sposto su pagina per richiesta otp
+                        console.log('AuthService: otp code Needed');
+                        redologin = true;
+                        // todo cose tipo mostrare una maschera che accetti il codice e lo rimandi indietro per il check
+                    }
+                    else if (loginResponse.ResultCode === 4) {
+                        console.log('AuthService: Account confirmation Needed');
+                        // mi sposto su pagina per attivare l'account che non ha ancora effettuato la procedura?
+                        // o ammetto che la password sia  il codice? ma in relatà ogni sito lo fa in due step
+                        // col click sull mail
+                    }
+                    else if (loginResponse.ResultCode === 58) {
+                        console.log('AuthService: Account Locked' + loginResponse.Message);
+                        loginResponse.Message = this.getLockedUserMessage(loginResponse.Message);
+                    }
+                    else if (loginResponse.ResultCode === 149) {
+                        console.log('AuthService: Subscription requires 2FA' + loginResponse.Message);
+                        loginResponse.Message = this.get2FARequiredMessage(loginRequest.subscriptionKey);
+                    }
+                    else {
+                        this.clearStorage();
+                        console.log('AuthService: Clearing storage due to Login failure for ' + loginRequest.accountName + ', result code ', loginResponse.ResultCode);
+                    }
+                    loginResponse.Message = loginResponse.Message ? loginResponse.Message : 'Login error...';
+                    console.log(loginResponse.Message);
+                    if (loginResponse.ResultCode === 143) {
+                        this.errorMessage = ''; // non mostro errore rosso che sembra grave
+                        // this.okMessage = loginResponse.Message;
+                    }
+                    else {
+                        this.okMessage = '';
+                        this.errorMessage = loginResponse.Message;
+                    }
+                    return loginResponse;
                 }
-                else if (loginResponse.ResultCode === 143) {
-                    // mi sposto su pagina per richiesta otp
-                    console.log('AuthService: otp code Needed');
-                    redologin = true;
-                    // todo cose tipo mostrare una maschera che accetti il codice e lo rimandi indietro per il check
-                }
-                else if (loginResponse.ResultCode === 4) {
-                    console.log('AuthService: Account confirmation Needed');
-                    // mi sposto su pagina per attivare l'account che non ha ancora effettuato la procedura?
-                    // o ammetto che la password sia  il codice? ma in relatà ogni sito lo fa in due step
-                    // col click sull mail
-                }
-                else if (loginResponse.ResultCode === 58) {
-                    console.log('AuthService: Account Locked' + loginResponse.Message);
-                    loginResponse.Message = this.getLockedUserMessage(loginResponse.Message);
-                }
-                else if (loginResponse.ResultCode === 149) {
-                    console.log('AuthService: Subscription requires 2FA' + loginResponse.Message);
-                    loginResponse.Message = this.get2FARequiredMessage(loginRequest.subscriptionKey);
+                if (this.getName(loginResponse)) {
+                    this.storageData(loginResponse);
+                    return loginResponse;
                 }
                 else {
+                    console.log('AuthService: LogOff due to Account not allowed.');
+                    this.logoff();
                     this.clearStorage();
-                    console.log('AuthService: Clearing storage due to Login failure, result code ', loginResponse.ResultCode);
-                    console.log('LoginRequest by account ' + loginRequest.accountName + ' token:' + loginRequest.token);
+                    loginResponse.Message = 'Account not allowed.';
+                    loginResponse.JwtToken = '';
+                    loginResponse.ResultCode = 999;
+                    loginResponse.Result = false;
+                    return loginResponse;
                 }
-                loginResponse.Message = loginResponse.Message ? loginResponse.Message : 'Login error...';
-                console.log(loginResponse.Message);
-                if (loginResponse.ResultCode === 143) {
-                    this.errorMessage = ''; // non mostro errore rosso che sembra grave
-                    // this.okMessage = loginResponse.Message;
-                }
-                else {
-                    this.okMessage = '';
-                    this.errorMessage = loginResponse.Message;
-                }
-                return loginResponse;
+            }))
+                .toPromise();
+            if (redologin) {
+                console.log('redo login...');
+                return this.login(loginRequest);
             }
-            if (this.getName(loginResponse)) {
-                this.storageData(loginResponse);
-                return loginResponse;
-            }
-            else {
-                console.log('AuthService: LogOff due to Account not allowed.');
-                this.logoff();
-                this.clearStorage();
-                loginResponse.Message = 'Account not allowed.';
-                loginResponse.JwtToken = '';
-                loginResponse.ResultCode = 999;
-                loginResponse.Result = false;
-                return loginResponse;
-            }
-        }))
-            .toPromise();
-        if (redologin) {
-            console.log('redo login...');
-            return this.login(loginRequest);
-        }
-        else
-            return loginresponse;
+            else
+                return loginresponse;
+        });
     }
     // ---------------------------------------------------------------------------
     getLockedUserMessage(messageFromLogin) {
@@ -819,7 +822,7 @@ class TbAuthService {
                 opres.Message = 'No authtoken';
                 return opres;
             }
-            return this.http
+            return yield this.http
                 .post(this.getIsValidTokenUrl(), new IsValidTokenRequest(authtoken))
                 .pipe(tap((jObj) => {
                 // console.log('isValidToken - response', jObj);
@@ -903,7 +906,7 @@ class TbAuthService {
             const bodyString = JSON.stringify(cpi);
             const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
             // tslint:disable-next-line: align
-            return this.http
+            return yield this.http
                 .post(this.getChangePasswordApiUrl(), bodyString, { headers })
                 .pipe(map((res) => {
                 if (!res || !res.Result) {
@@ -990,7 +993,7 @@ class TbAuthService {
         return __awaiter(this, void 0, void 0, function* () {
             const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
             // tslint:disable-next-line: align
-            return this.http
+            return yield this.http
                 .post(this.getResetPasswordUrl() + accname, { headers })
                 .pipe(map((res) => {
                 if (!res) {
@@ -1011,18 +1014,20 @@ class TbAuthService {
         });
     }
     logoff() {
-        const logoffRequest = new LogoffRequest(this.getToken());
-        return this.http
-            .post(this.getLogoutUrl(), logoffRequest)
-            .pipe(map((logoffResponse) => {
-            if (logoffResponse.Result) {
-                console.log('AuthService: Clearing storage due to Logoff');
-                this.clearStorage();
-                this.loggedOut$.next();
-            }
-            return logoffResponse;
-        }))
-            .toPromise();
+        return __awaiter(this, void 0, void 0, function* () {
+            const logoffRequest = new LogoffRequest(this.getToken());
+            return yield this.http
+                .post(this.getLogoutUrl(), logoffRequest)
+                .pipe(map((logoffResponse) => {
+                if (logoffResponse.Result) {
+                    console.log('AuthService: Clearing storage due to Logoff');
+                    this.clearStorage();
+                    this.loggedOut$.next();
+                }
+                return logoffResponse;
+            }))
+                .toPromise();
+        });
     }
     logoffWithFetch() {
         const logoffRequest = new LogoffRequest(this.getToken());
@@ -1032,9 +1037,9 @@ class TbAuthService {
             body: request,
             keepalive: true,
             headers: {
-                "Content-Type": "application/json",
-                "Authorization": this.getAuthorizationHeader()
-            }
+                'Content-Type': 'application/json',
+                Authorization: this.getAuthorizationHeader(),
+            },
         });
         logout.then((res) => {
             console.log(res);
@@ -1211,7 +1216,7 @@ class TbAuthService {
     getSymbolsToPromise() {
         return __awaiter(this, void 0, void 0, function* () {
             const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-            return this.http.get(this.getSymbolsUrl(), { headers }).toPromise();
+            return yield this.http.get(this.getSymbolsUrl(), { headers }).toPromise();
         });
     }
     // ---------------------------------------------------------------------------
@@ -1653,7 +1658,7 @@ class Strings {
     }
 }
 
-const LIB_VERSION = " v2.3.0+102 ";
+const LIB_VERSION = " v2.3.0+103 ";
 
 const _c0 = ["dropdown"];
 function TbLoginComponent_div_5_p_3_Template(rf, ctx) {
@@ -2363,6 +2368,7 @@ class TbLoginComponent {
             this.TOTPDescription = 'Open your two-factor authenticator (TOTP) app or browser extension to view your authentication code';
         }
         authService.reLoginAfterOTP.subscribe(() => {
+            console.log('login after otp...');
             //'login subscribed');
             this.login();
         });
@@ -2422,6 +2428,7 @@ class TbLoginComponent {
     keyUpFunction(event) {
         if (event.key === 'Enter') {
             if (!this.disabledButton()) {
+                console.log('login by enter...');
                 this.login();
             }
         }
@@ -2473,7 +2480,7 @@ class TbLoginComponent {
     // ---------------------------------------------------------------------------
     login() {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log('login requested...');
+            console.log('login requested...' + this.loginRequest.accountName);
             this.authService.okMessage = '';
             this.authService.errorMessage = '';
             this.saveLoginData();
@@ -2493,7 +2500,7 @@ class TbLoginComponent {
             if (!this.validate && this.subscriptionSelection) {
                 this.loginRequest.appId = 'MCloudPreLogin';
                 this.loginRequest.subscriptionKey = '';
-                //console.log('calling prelogin ');
+                console.log('calling prelogin... ');
                 const result1 = yield this.authService.prelogin(this.loginRequest).catch((err1) => {
                     this.loading = false;
                     this.authService.errorMessage = err1.error && err1.error.Message;
@@ -2507,7 +2514,7 @@ class TbLoginComponent {
                     this.validate = true;
                     this.buttonText = this.validate ? this.loginText : this.nextText;
                     this.getCompaniesForUser(this.loginRequest.accountName);
-                    console.log("getCompaniesForUser");
+                    console.log('collecting subscriptions...');
                     this.authService.errorMessage = '';
                     this.authService.okMessage = '';
                 }
@@ -2569,7 +2576,7 @@ class TbLoginComponent {
                             }
                         }
                     }
-                    console.log("ready to redirect.");
+                    console.log('ready to redirect.');
                     this.authService.okMessage = '';
                     this.authService.errorMessage = '';
                     if (this.authService.isRedirectExternal()) {
