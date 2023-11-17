@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { Component, Inject, EventEmitter, Injectable, ViewChild, NgModule } from '@angular/core';
+import { Component, Inject, Injectable, ViewChild, NgModule } from '@angular/core';
 import * as i1$1 from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import * as i2 from '@angular/router';
@@ -68,6 +68,7 @@ class LogoffRequest {
 class StorageVars {
 }
 StorageVars.JWT = 'M4_jwt_token';
+StorageVars.LK = 'M4_lk_token';
 StorageVars.CULTURE = 'M4_culture';
 StorageVars.UI_CULTURE = 'M4_ui_culture';
 StorageVars.ACCOUNT_NAME = 'M4_account_name';
@@ -456,8 +457,6 @@ class TbAuthService {
         this.loggedOut$ = new Subject();
         this.errorMessage = '';
         this.okMessage = '';
-        this.callLoginAfterOTPRequest = false;
-        this.reLoginAfterOTP = new EventEmitter();
         /**
          * Ritorna la base url del backend,
          * caricata da un file di configurazione caricato dinamicamente (assets/environment.json)
@@ -493,7 +492,6 @@ class TbAuthService {
         authServiceInstance = this;
         this.env = _.defaultsDeep(env, TbAuthService.DEFAULT_ENV, env);
         console.log('TbAuthEnvironment', this.env);
-        this.callLoginAfterOTPRequest = false;
         this.langIt = undefined;
     }
     get router() {
@@ -529,8 +527,7 @@ class TbAuthService {
     }
     // ---------------------------------------------------------------------------
     async prelogin(loginRequest) {
-        //console.log('prelogin');
-        // console.log('authService.login - loginRequest', loginRequest);
+        console.log('prelogin...');
         return await this.http
             .post(this.getPreLoginUrl(), loginRequest)
             .pipe(map((loginResponse) => {
@@ -562,13 +559,6 @@ class TbAuthService {
                 this.okMessage = '';
                 return loginResponse;
             }
-            // non serve qua , viene gia gestito prima
-            // if (this.callLoginAfterOTPRequest)
-            // {
-            //   this.callLoginAfterOTPRequest = false;
-            //   console.log('relogin emitted');
-            //   this.reLoginAfterOTP.emit();
-            // }
             return loginResponse;
         }))
             .toPromise();
@@ -1020,9 +1010,12 @@ class TbAuthService {
                     .filter((i) => i.ServiceType === 'M4FRONTEND' || i.ServiceType === 'APP_FRONTEND')
                     .map((f) => f.Url)[0];
                 console.log(`Designated redirect is ${redirectUrl}`);
-                const baseRedirectUrl = `${redirectUrl}?jwt=${this.getToken()}&subKey=${subscriptionKey}&instanceKey=${currentInstanceKey}`;
+                const baseRedirectUrl = `${redirectUrl}?jwt=${this.getLoginKey()}&subKey=${subscriptionKey}&instanceKey=${currentInstanceKey}`;
                 console.log(`Designated final redirect is ${baseRedirectUrl}`);
-                localStorage.setItem('lastLoggedRedirect', baseRedirectUrl);
+                if (this.env.auth.sessionStorage)
+                    sessionStorage.setItem(StorageVars.USER_GATEWAY_AUTOREDIRECT, baseRedirectUrl);
+                else
+                    localStorage.setItem(StorageVars.USER_GATEWAY_AUTOREDIRECT, baseRedirectUrl);
                 document.location.href = baseRedirectUrl;
             }, (err) => {
                 console.log('snapshot cannot be obtained');
@@ -1095,11 +1088,13 @@ class TbAuthService {
         sessionStorage.removeItem(StorageVars.CULTURE);
         sessionStorage.removeItem(StorageVars.UI_CULTURE);
         sessionStorage.removeItem(StorageVars.ACCOUNT_ROLES);
+        sessionStorage.removeItem(StorageVars.LK);
         localStorage.removeItem(StorageVars.JWT);
         localStorage.removeItem(StorageVars.CULTURE);
         localStorage.removeItem(StorageVars.UI_CULTURE);
         localStorage.removeItem(StorageVars.ACCOUNT_ROLES);
         localStorage.removeItem(StorageVars.USER_GATEWAY_AUTOREDIRECT);
+        localStorage.removeItem(StorageVars.LK);
     }
     storageSubscriptionData(subscriptionKey, subscriptionDescription) {
         if (this.env.auth.sessionStorage) {
@@ -1132,6 +1127,7 @@ class TbAuthService {
             : loginResponse.Language;
         if (this.env.auth.sessionStorage) {
             sessionStorage.setItem(StorageVars.JWT, loginResponse.JwtToken);
+            sessionStorage.setItem(StorageVars.LK, loginResponse.LoginKey);
             sessionStorage.setItem(StorageVars.CULTURE, respCulture);
             sessionStorage.setItem(StorageVars.UI_CULTURE, respUiCulture);
             sessionStorage.setItem(StorageVars.ACCOUNT_ROLES, JSON.stringify(loginResponse.Roles));
@@ -1144,6 +1140,7 @@ class TbAuthService {
         }
         else {
             localStorage.setItem(StorageVars.JWT, loginResponse.JwtToken);
+            localStorage.setItem(StorageVars.LK, loginResponse.LoginKey);
             localStorage.setItem(StorageVars.CULTURE, respCulture);
             localStorage.setItem(StorageVars.UI_CULTURE, respUiCulture);
             localStorage.setItem(StorageVars.ACCOUNT_ROLES, JSON.stringify(loginResponse.Roles));
@@ -1182,6 +1179,18 @@ class TbAuthService {
             return sessionStorage.getItem(StorageVars.JWT);
         else
             return localStorage.getItem(StorageVars.JWT);
+    }
+    getLoginKey() {
+        if (this.env.auth.sessionStorage)
+            return sessionStorage.getItem(StorageVars.LK);
+        else
+            return localStorage.getItem(StorageVars.LK);
+    }
+    getRedirect() {
+        if (this.env.auth.sessionStorage)
+            return sessionStorage.getItem(StorageVars.USER_GATEWAY_AUTOREDIRECT);
+        else
+            return localStorage.getItem(StorageVars.USER_GATEWAY_AUTOREDIRECT);
     }
     getAccountName() {
         if (this.env.auth.sessionStorage)
@@ -1575,7 +1584,7 @@ class Strings {
     }
 }
 
-const LIB_VERSION = " v2.3.0+103 ";
+const LIB_VERSION = " v2.4.0+100 ";
 
 const _c0 = ["dropdown"];
 function TbLoginComponent_div_5_p_3_Template(rf, ctx) { if (rf & 1) {
@@ -2172,11 +2181,6 @@ class TbLoginComponent {
             this.manageMethods = 'Manage your login methods';
             this.TOTPDescription = 'Open your two-factor authenticator (TOTP) app or browser extension to view your authentication code';
         }
-        authService.reLoginAfterOTP.subscribe(() => {
-            console.log('login after otp...');
-            //'login subscribed');
-            this.login();
-        });
     }
     // PROVA PER APERTURA DIALOG DI NOTIFICA AGGIORNAMENTO
     //  async openDialog() {

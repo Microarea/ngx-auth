@@ -1,4 +1,4 @@
-import { Injector, EventEmitter } from '@angular/core';
+import { Injector } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
@@ -21,8 +21,6 @@ export declare class TbAuthService {
     loggedOut$: Subject<unknown>;
     errorMessage: string;
     okMessage: string;
-    callLoginAfterOTPRequest: boolean;
-    reLoginAfterOTP: EventEmitter<any>;
     langIt: boolean | undefined;
     get router(): Router;
     constructor(env: TbAuthEnvironment, http: HttpClient, injector: Injector, dialog: MatDialog, snackBar: MatSnackBar);
@@ -78,6 +76,8 @@ export declare class TbAuthService {
     saveCulture(culture: string, uiCulture: string): void;
     openSnackBar(message: string, action: string): void;
     getToken(): string | null;
+    getLoginKey(): string | null;
+    getRedirect(): string | null;
     getAccountName(): string | null;
     getSubscription(): string | null;
     getSubscriptionDescription(): string | null;

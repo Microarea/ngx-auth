@@ -12,6 +12,7 @@ export interface LoginResponse {
     SubscriptionKey: string;
     SubscriptionDesc: string;
     AskingProcess: string;
+    LoginKey: string;
 }
 export declare class ExtraInfo {
     AccountName: string;
