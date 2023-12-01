@@ -40,5 +40,5 @@ export declare class ChangePasswordDialogComponent implements OnInit {
     confirm(): Promise<void>;
     keyUpFunction(event: KeyboardEvent): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ChangePasswordDialogComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ChangePasswordDialogComponent, "app-change-password-dialog", never, {}, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ChangePasswordDialogComponent, "app-change-password-dialog", never, {}, {}, never, never>;
 }

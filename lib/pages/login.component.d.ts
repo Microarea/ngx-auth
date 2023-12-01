@@ -15,6 +15,7 @@ export declare class TbLoginComponent implements AfterContentInit {
     capsLockOn: boolean;
     validate: boolean;
     otp: boolean;
+    useralreadylogged: boolean;
     OLD: boolean;
     loading: boolean;
     loginRequest: LoginRequest;
@@ -61,6 +62,8 @@ export declare class TbLoginComponent implements AfterContentInit {
     chosenAuthApp: string;
     otpText: string;
     otpRequestCode: string;
+    useralreadyloggedMessage: string;
+    useralreadyloggedTitle: string;
     useAuthApp: string;
     oneMethodOnly: string;
     alternativeMethod: string;
@@ -99,5 +102,5 @@ export declare class TbLoginComponent implements AfterContentInit {
     alternativeMethods(twoFactorType: any): void;
     goToStore(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TbLoginComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TbLoginComponent, "tb-login", never, {}, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TbLoginComponent, "tb-login", never, {}, {}, never, never>;
 }
