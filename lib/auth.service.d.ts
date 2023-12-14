@@ -64,7 +64,7 @@ export declare class TbAuthService {
     getCalendar(subscriptionKey: string): Promise<any>;
     getSnapshot(instanceKey: string, subscriptionKey: string): Observable<any>;
     getInstancesMapForAccountUrl(): string;
-    getCalendarUrl(): string;
+    getCalendarUrl(): string | null;
     getUpdateMessage(): string;
     clearStorage(): void;
     storageSubscriptionData(subscriptionKey: string, subscriptionDescription: string): void;

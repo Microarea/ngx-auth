@@ -6,6 +6,7 @@ export declare class LoginRequest {
     subscriptionKey: string;
     processID: string;
     otPassword: string;
+    overwriteLogin: boolean;
 }
 export declare class ChangePasswordInfo {
     AccountName: string;
