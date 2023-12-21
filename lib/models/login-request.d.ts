@@ -7,6 +7,7 @@ export declare class LoginRequest {
     processID: string;
     otPassword: string;
     overwriteLogin: boolean;
+    version: number;
 }
 export declare class ChangePasswordInfo {
     AccountName: string;
