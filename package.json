@@ -1,0 +1,52 @@
+{
+  "name": "@tb/auth",
+  "version": "v2.3.0+106",
+  "dependencies": {
+    "@progress/kendo-angular-buttons": "^8.0.0",
+    "@progress/kendo-angular-common": "^3.0.0",
+    "@progress/kendo-angular-dropdowns": "^7.0.0",
+    "@progress/kendo-angular-inputs": "^9.0.0",
+    "@progress/kendo-angular-intl": "^4.0.0",
+    "@progress/kendo-angular-label": "^4.0.0",
+    "@progress/kendo-angular-l10n": "^4.0.0",
+    "@progress/kendo-angular-popup": "^5.0.0",
+    "@progress/kendo-drawing": "^1.16.3",
+    "@progress/kendo-licensing": "^1.2.1",
+    "@progress/kendo-theme-default": "^5.3.1",
+    "@progress/kendo-angular-treeview": "^7.0.0",
+    "tslib": "^2.0.0"
+  },
+  "peerDependencies": {
+    "@angular/common": "^13.2.0",
+    "@angular/core": "^13.2.0",
+    "@angular/router": "^13.2.0",
+    "bootstrap": "^5.1.3",
+    "moment": "^2.24.0",
+    "lodash": "^4.17.15",
+    "rxjs": "~6.5.4",
+    "scss-bundle": "^3.1.1"
+  },
+  "module": "fesm2015/tb-auth.mjs",
+  "es2020": "fesm2020/tb-auth.mjs",
+  "esm2020": "esm2020/tb-auth.mjs",
+  "fesm2020": "fesm2020/tb-auth.mjs",
+  "fesm2015": "fesm2015/tb-auth.mjs",
+  "typings": "tb-auth.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./tb-auth.d.ts",
+      "esm2020": "./esm2020/tb-auth.mjs",
+      "es2020": "./fesm2020/tb-auth.mjs",
+      "es2015": "./fesm2015/tb-auth.mjs",
+      "node": "./fesm2015/tb-auth.mjs",
+      "default": "./fesm2020/tb-auth.mjs"
+    }
+  },
+  "sideEffects": false,
+  "scripts": {
+    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy in full compilation mode. This is not allowed.\\nPlease delete and rebuild the package with Ivy partial compilation mode, before attempting to publish.\\n')\" && exit 1"
+  }
+}
