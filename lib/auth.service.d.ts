@@ -38,7 +38,7 @@ export declare class TbAuthService {
     login(loginRequest: LoginRequest): Promise<LoginResponse>;
     getLockedUserMessage(messageFromLogin: string): string;
     get2FARequiredMessage(description: string): string;
-    openUpdateAlertDialog(info: string, title: string, dontshow: string, accountName: string, subscriptionKey: string): Promise<void>;
+    openUpdateAlertDialog(info: string, title: string, dontshow: string, accountName: string, subscriptionKey: string, processid: string): Promise<void>;
     openChangePasswordDialog(loginRequest: LoginRequest): Promise<void>;
     isValidToken(authtoken?: string): Promise<OperationResult>;
     getCompaniesForUser(user: string): Observable<any>;
@@ -59,7 +59,7 @@ export declare class TbAuthService {
     logoff(): Promise<LogoffResponse>;
     logoffWithFetch(): void;
     navigateUserGateway(): void;
-    getRedirectUrlForSubscription(accountName: string, subscriptionKey: string): void;
+    getRedirectUrlForSubscription(accountName: string, subscriptionKey: string, processid: string): void;
     getInstancesMapForUser(user: string): Observable<any>;
     getCalendar(subscriptionKey: string): Promise<any>;
     getSnapshot(instanceKey: string, subscriptionKey: string): Observable<any>;

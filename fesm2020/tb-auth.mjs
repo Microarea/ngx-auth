@@ -671,7 +671,7 @@ class TbAuthService {
         return `This Subscription ${description} requires two factor autentication! Please read the Emails for further details.`;
     }
     // ---------------------------------------------------------------------------
-    async openUpdateAlertDialog(info, title, dontshow, accountName, subscriptionKey) {
+    async openUpdateAlertDialog(info, title, dontshow, accountName, subscriptionKey, processid) {
         this.errorMessage = '';
         const dialogRef = this.dialog.open(AlertDialogComponent, {
             data: {
@@ -686,7 +686,7 @@ class TbAuthService {
             this.errorMessage = '';
             if (this.isRedirectExternal()) {
                 console.log('go external.');
-                this.getRedirectUrlForSubscription(accountName, subscriptionKey);
+                this.getRedirectUrlForSubscription(accountName, subscriptionKey, processid);
                 return;
             }
             console.log('go internal!');
@@ -1003,7 +1003,7 @@ class TbAuthService {
         // otherwise, redirect to login
         this.router.navigate([this.getLoginPageUrl()]);
     }
-    getRedirectUrlForSubscription(accountName, subscriptionKey) {
+    getRedirectUrlForSubscription(accountName, subscriptionKey, processid) {
         this.getInstancesMapForUser(accountName).subscribe((res) => {
             const map = res;
             if (!map || map.length === 0) {
@@ -1020,7 +1020,7 @@ class TbAuthService {
                     .filter((i) => i.ServiceType === 'M4FRONTEND' || i.ServiceType === 'APP_FRONTEND')
                     .map((f) => f.Url)[0];
                 console.log(`Designated redirect is ${redirectUrl}`);
-                const baseRedirectUrl = `${redirectUrl}?jwt=${this.getLoginKey()}&subKey=${subscriptionKey}&instanceKey=${currentInstanceKey}`;
+                const baseRedirectUrl = `${redirectUrl}?jwt=${processid}&subKey=${subscriptionKey}&instanceKey=${currentInstanceKey}`;
                 console.log(`Designated final redirect is ${baseRedirectUrl}`);
                 if (this.env.auth.sessionStorage)
                     sessionStorage.setItem(StorageVars.USER_GATEWAY_AUTOREDIRECT, baseRedirectUrl);
@@ -1602,7 +1602,7 @@ class Strings {
     }
 }
 
-const LIB_VERSION = " v2.3.0+105 ";
+const LIB_VERSION = " v2.4.0+104 ";
 
 const _c0 = ["dropdown"];
 function TbLoginComponent_div_5_p_3_Template(rf, ctx) { if (rf & 1) {
@@ -2421,7 +2421,7 @@ class TbLoginComponent {
                             message = message.replace('@@endh', this.FormatEndDateString(scheduledUpdate.scheduledtime, scheduledUpdate.estimatedupgradetime));
                             // non mostro se mi hanno detto di non mostrare piu.
                             if (val !== message) {
-                                this.authService.openUpdateAlertDialog(message, s_translation.getUpdateTitle(), s_translation.getUpdateDontShowMessage(), this.loginRequest.accountName, this.loginRequest.subscriptionKey);
+                                this.authService.openUpdateAlertDialog(message, s_translation.getUpdateTitle(), s_translation.getUpdateDontShowMessage(), this.loginRequest.accountName, this.loginRequest.subscriptionKey, this.loginRequest.processID);
                                 return;
                             }
                         }
@@ -2432,7 +2432,7 @@ class TbLoginComponent {
                 this.authService.errorMessage = '';
                 if (this.authService.isRedirectExternal()) {
                     console.log('go external');
-                    this.authService.getRedirectUrlForSubscription(this.loginRequest.accountName, this.loginRequest.subscriptionKey);
+                    this.authService.getRedirectUrlForSubscription(this.loginRequest.accountName, this.loginRequest.subscriptionKey, this.loginRequest.processID);
                     return;
                 }
                 console.log('go internal');
