@@ -1,8 +1,8 @@
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { TbAuthService } from './auth.service';
 import { TbAuthEnvironment } from './models/auth-environment';
 import * as i0 from "@angular/core";
-export declare class TbAuthGuard implements CanActivate {
+export declare class TbAuthGuard {
     private authService;
     private router;
     private env;
