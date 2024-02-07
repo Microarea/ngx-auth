@@ -21,6 +21,7 @@ export declare class TbAuthService {
     loggedOut$: Subject<unknown>;
     errorMessage: string;
     okMessage: string;
+    useDCS: boolean;
     langIt: boolean | undefined;
     get router(): Router;
     constructor(env: TbAuthEnvironment, http: HttpClient, injector: Injector, dialog: MatDialog, snackBar: MatSnackBar);

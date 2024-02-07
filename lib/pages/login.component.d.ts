@@ -1,7 +1,7 @@
 import { TbAuthService } from '../auth.service';
 import { LoginRequest } from '../models/login-request';
 import { AfterContentInit, Renderer2 } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ExtraInfo } from '../models/login-response';
 import * as i0 from "@angular/core";
@@ -10,6 +10,7 @@ export declare class TbLoginComponent implements AfterContentInit {
     router: Router;
     private dialog;
     private renderer;
+    private route;
     private doc?;
     private cachedCompanies;
     capsLockOn: boolean;
@@ -78,7 +79,7 @@ export declare class TbLoginComponent implements AfterContentInit {
     currentBrowserLanguage: string;
     languageIT: boolean;
     otpInfo: ExtraInfo;
-    constructor(authService: TbAuthService, router: Router, dialog: MatDialog, renderer: Renderer2, doc?: any);
+    constructor(authService: TbAuthService, router: Router, dialog: MatDialog, renderer: Renderer2, route: ActivatedRoute, doc?: any);
     ngAfterContentInit(): void;
     checkConnection(): Promise<void>;
     onSubChange(newValue: any): void;
