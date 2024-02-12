@@ -477,7 +477,7 @@ class TbAuthService {
         this.getChangePasswordUrl = () => this.env.auth.changePasswordUrl;
         this.hasSubscriptionSelection = () => this.env.auth.subscriptionSelection;
         this.showSignUp = () => this.env.auth.showSignUp;
-        this.getAppId = () => this.env.auth.appId; // todo ila intervieni qui per appid personalizzate come dcs
+        this.getAppId = () => { return this.useDCS ? 'DCS' : this.env.auth.appId; };
         this.getPreLoginAppId = () => this.env.auth.preLoginAppId;
         this.isSessionStorage = () => this.env.auth.sessionStorage;
         this.getLogoURL = () => this.env.auth.logoURL;
@@ -1609,7 +1609,7 @@ class Strings {
     }
 }
 
-const LIB_VERSION = " v2.4.0+105 ";
+const LIB_VERSION = " v2.4.0+106 ";
 
 const _c0 = ["dropdown"];
 function TbLoginComponent_div_5_p_3_Template(rf, ctx) { if (rf & 1) {
