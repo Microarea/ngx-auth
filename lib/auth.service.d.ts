@@ -22,6 +22,7 @@ export declare class TbAuthService {
     errorMessage: string;
     okMessage: string;
     useDCS: boolean;
+    isErrorComingFromMago: boolean;
     langIt: boolean | undefined;
     get router(): Router;
     constructor(env: TbAuthEnvironment, http: HttpClient, injector: Injector, dialog: MatDialog, snackBar: MatSnackBar);
