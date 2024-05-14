@@ -504,7 +504,6 @@ class TbAuthService {
         this.errorMessage = '';
         this.okMessage = '';
         this.useDCS = false;
-        this.isErrorComingFromMago = false;
         /**
          * Ritorna la base url del backend,
          * caricata da un file di configurazione caricato dinamicamente (assets/environment.json)
@@ -1033,21 +1032,10 @@ class TbAuthService {
         if (userGatewayUrl !== '') {
             console.log(`Found getUserGatewayUrl ${userGatewayUrl}`);
             document.location.href = userGatewayUrl;
-            if (this.isErrorComingFromMago) {
-                this.router.navigate([this.getLoginPageUrl()]);
-            }
-            else {
-                document.location.href = userGatewayUrl;
-            }
             return;
         }
         // otherwise, redirect to login
-        if (this.isErrorComingFromMago) {
-            this.router.navigate([this.getLoginPageUrl()]);
-        }
-        else {
-            this.router.navigate([this.getLoginPageUrl()]);
-        }
+        this.router.navigate([this.getLoginPageUrl()]);
     }
     getRedirectUrlForSubscription(accountName, subscriptionKey, processid) {
         this.getInstancesMapForUser(accountName).subscribe((res) => {
@@ -1368,17 +1356,11 @@ class TbAuthGuard {
             console.log('login by token...');
             const loginResponse = (await this.authService.login(loginRequest).catch((err) => {
                 this.authService.errorMessage = err.error && err.error.Message;
-                // this.router.navigate(['login']);
-                this.router.navigate(['login'], {
-                    queryParams: { error: this.authService.errorMessage },
-                });
+                this.router.navigate(['login']);
                 return;
             }));
             if (!loginResponse) {
-                // this.router.navigate(['login']);
-                this.router.navigate(['login'], {
-                    queryParams: { error: this.authService.errorMessage },
-                });
+                this.router.navigate(['login']);
                 return false;
             }
             if (loginResponse.Result) {
@@ -1623,7 +1605,7 @@ class Strings {
     }
 }
 
-const LIB_VERSION = " v2.4.0+210 ";
+const LIB_VERSION = " v2.4.0+211 ";
 
 const _c0 = ["dropdown"];
 function TbLoginComponent_div_5_p_3_Template(rf, ctx) { if (rf & 1) {
@@ -2109,7 +2091,7 @@ class TbLoginComponent {
         this.validate = false;
         this.otp = false;
         this.useralreadylogged = false;
-        this.OLD = false;
+        this.OLD = false; //usato per differenziare le versioni obsolete di login
         this.loading = false;
         this.loginRequest = new LoginRequest();
         this.loginSubscriptions = [];
@@ -2243,10 +2225,7 @@ class TbLoginComponent {
         }
         this.route.queryParams.subscribe((params) => {
             const appRedirect = params['appRedirect'];
-            const error = params['error'];
             this.authService.useDCS = appRedirect && appRedirect === 'DCS_APP';
-            this.authService.errorMessage = error ? error : '';
-            this.authService.isErrorComingFromMago = error ? true : false;
         });
     }
     // PROVA PER APERTURA DIALOG DI NOTIFICA AGGIORNAMENTO
@@ -2367,6 +2346,7 @@ class TbLoginComponent {
             this.loginRequest.otPassword = '';
         }
         if (this.otp) {
+            //nelle prime versioni l otp andava nel campo password, poi é stato creato  il campo apposito
             if (this.OLD)
                 this.loginRequest.password = this.inputValue;
             else
@@ -2418,6 +2398,22 @@ class TbLoginComponent {
                 this.authService.errorMessage = err.error && err.error.Message;
                 return;
             });
+            if (!this.otp && result && result.ResultCode === 143) {
+                this.otpInfo = result.ExtraInfo;
+                if (this.otpInfo == null) {
+                    this.OLD = true;
+                    this.otpInfo = new ExtraInfo();
+                }
+                else
+                    this.OLD = false;
+                this.otp = true;
+            }
+            else if (this.otp && result && !result.Result && result.ResultCode === 143) {
+                this.authService.errorMessage = this.languageIT ? 'OTP non valido.' : 'Invalid OTP.';
+            }
+            else {
+                this.loading = false;
+            }
             this.loading = false;
             this.buttonText = this.validate ? this.loginText : this.nextText;
             // todo controlla come vengono mostrati errori sia login sia checkdb
@@ -2441,6 +2437,7 @@ class TbLoginComponent {
                             message = message.replace('@@date', this.FormatDateString(scheduledUpdate.scheduledtime));
                             message = message.replace('@@starth', this.FormatStartDateString(scheduledUpdate.scheduledtime));
                             message = message.replace('@@endh', this.FormatEndDateString(scheduledUpdate.scheduledtime, scheduledUpdate.estimatedupgradetime));
+                            console.log(message);
                             // non mostro se mi hanno detto di non mostrare piu.
                             if (val !== message) {
                                 this.authService.openUpdateAlertDialog(message, s_translation.getUpdateTitle(), s_translation.getUpdateDontShowMessage(), this.loginRequest.accountName, this.loginRequest.subscriptionKey, this.loginRequest.processID);
@@ -2462,7 +2459,8 @@ class TbLoginComponent {
             }
             else {
                 this.loading = false;
-                //116?
+                if (result)
+                    console.log('Error ' + result.ResultCode);
             }
         }
     }
