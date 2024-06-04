@@ -578,7 +578,7 @@ class TbAuthService {
                 if (!loginResponse.Result) {
                     if (loginResponse.ResultCode === 19) {
                         // mi sposto su pagina per cambio password e nuovo tentativo di login
-                        console.log('AuthService: Change Password Needed');
+                        console.log('AuthService(cod.19): Change Password Needed');
                         this.openChangePasswordDialog(loginRequest);
                     }
                     else if (loginResponse.ResultCode === 4) {
@@ -595,7 +595,7 @@ class TbAuthService {
                         loginResponse.Message = this.getLockedUserMessage(loginResponse.Message);
                     }
                     else if (loginResponse.ResultCode === 143) {
-                        console.log('AuthService (cod.143): otp code needed');
+                        console.log('PreLogin(cod.143): otp code needed');
                     }
                     else if (loginResponse.ResultCode === 116) {
                         console.log('AuthService (cod.116): user already logged');
@@ -629,8 +629,7 @@ class TbAuthService {
                     }
                     else if (loginResponse.ResultCode === 143) {
                         // mi sposto su pagina per richiesta otp
-                        console.log('AuthService: otp code Needed');
-                        issue = true;
+                        console.log('Login(cod.143): otp code needed');
                         // todo cose tipo mostrare una maschera che accetti il codice e lo rimandi indietro per il check
                     }
                     else if (loginResponse.ResultCode === 116) {
@@ -685,7 +684,6 @@ class TbAuthService {
             }))
                 .toPromise();
             if (issue) {
-                console.log('issue...');
                 this.fixIssue(loginresponse);
             }
             return loginresponse;
@@ -693,14 +691,7 @@ class TbAuthService {
     }
     // ---------------------------------------------------------------------------
     fixIssue(loginResponse) {
-        if (loginResponse.ResultCode === 143) {
-            //é stato richiesto otp in un momento in cui non é previsto,
-            //quindi rimando alla pagina iniziale di login, sperando che il backend si autosistemi.
-            //o chiama clear?
-            this.errorMessage = loginResponse.Message;
-            this.okMessage = '';
-        }
-        console.log('issue not fixable :(');
+        console.log('Result to manage: ' + loginResponse.ResultCode);
     }
     // ---------------------------------------------------------------------------
     getLockedUserMessage(messageFromLogin) {
@@ -1704,7 +1695,7 @@ class Strings {
     }
 }
 
-const LIB_VERSION = " v2.4.0+107 ";
+const LIB_VERSION = " v2.4.0+108 ";
 
 const _c0 = ["dropdown"];
 function TbLoginComponent_div_5_p_3_Template(rf, ctx) {
