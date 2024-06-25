@@ -1,6 +1,0 @@
-export class IsValidTokenRequest {
-    constructor(token = '') {
-        this.token = token;
-    }
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaXMtdmFsaWQtdG9rZW4tcmVxdWVzdC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL3Byb2plY3RzL3RiL2F1dGgvc3JjL2xpYi9tb2RlbHMvaXMtdmFsaWQtdG9rZW4tcmVxdWVzdC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxNQUFNLE9BQU8sbUJBQW1CO0lBQzVCLFlBQW1CLFFBQVEsRUFBRTtRQUFWLFVBQUssR0FBTCxLQUFLLENBQUs7SUFBRyxDQUFDO0NBQ3BDIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGNsYXNzIElzVmFsaWRUb2tlblJlcXVlc3Qge1xyXG4gICAgY29uc3RydWN0b3IocHVibGljIHRva2VuID0gJycpIHt9XHJcbn1cclxuIl19
