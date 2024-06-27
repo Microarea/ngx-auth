@@ -79,6 +79,7 @@ export declare class TbLoginComponent implements AfterContentInit {
     currentBrowserLanguage: string;
     languageIT: boolean;
     otpInfo: ExtraInfo;
+    isErrorComingFromMago: boolean;
     constructor(authService: TbAuthService, router: Router, dialog: MatDialog, renderer: Renderer2, route: ActivatedRoute, doc?: any);
     ngAfterContentInit(): void;
     checkConnection(): Promise<void>;
