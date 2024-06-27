@@ -1,6 +1,6 @@
 {
   "name": "@tb/auth",
-  "version": "v5.0.0+2",
+  "version": "v2.4.0+214",
   "dependencies": {
     "@progress/kendo-angular-buttons": "^15.1.0",
     "@progress/kendo-angular-navigation": "^15.1.0",
@@ -18,9 +18,9 @@
     "tslib": "^2.0.0"
   },
   "peerDependencies": {
-    "@angular/common": "^18.0.4",
-    "@angular/core": "^18.0.4",
-    "@angular/router": "^18.0.4",
+    "@angular/common": "^17.2.4",
+    "@angular/core": "^17.2.4",
+    "@angular/router": "^17.2.4",
     "bootstrap": "^5.1.3",
     "moment": "^2.24.0",
     "lodash-es": "^4.17.21",
