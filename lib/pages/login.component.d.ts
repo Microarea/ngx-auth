@@ -105,5 +105,5 @@ export declare class TbLoginComponent implements AfterContentInit {
     alternativeMethods(twoFactorType: any): void;
     goToStore(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TbLoginComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TbLoginComponent, "tb-login", never, {}, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TbLoginComponent, "tb-login", never, {}, {}, never, never>;
 }
