@@ -259,7 +259,7 @@ class ChangePasswordDialogComponent {
         const capsOn = event.getModifierState && event.getModifierState('CapsLock');
         this.capsLockOn = capsOn;
     }
-    /** @nocollapse */ static { this.ɵfac = function ChangePasswordDialogComponent_Factory(t) { return new (t || ChangePasswordDialogComponent)(i0.ɵɵdirectiveInject(i1.MatDialogRef), i0.ɵɵdirectiveInject(MAT_DIALOG_DATA), i0.ɵɵdirectiveInject(TbAuthService)); }; }
+    /** @nocollapse */ static { this.ɵfac = function ChangePasswordDialogComponent_Factory(__ngFactoryType__) { return new (__ngFactoryType__ || ChangePasswordDialogComponent)(i0.ɵɵdirectiveInject(i1.MatDialogRef), i0.ɵɵdirectiveInject(MAT_DIALOG_DATA), i0.ɵɵdirectiveInject(TbAuthService)); }; }
     /** @nocollapse */ static { this.ɵcmp = /** @pureOrBreakMyCode */ i0.ɵɵdefineComponent({ type: ChangePasswordDialogComponent, selectors: [["app-change-password-dialog"]], decls: 47, vars: 33, consts: [[2, "max-width", "450px"], [1, "title"], [1, "description", 2, "margin-bottom", "10px"], [2, "margin-bottom", "30px"], [3, "text", "ngClass"], ["kendoTextBox", "", "name", "newpwd", "autocomplete", "current-password", 3, "keyup", "ngModelChange", "ngModel", "type", "ngClass"], ["class", "material-icons icon", 3, "click", 4, "ngIf"], ["kendoTextBox", "", "name", "newpwd2", "autocomplete", "current-password", 3, "keyup", "ngModelChange", "ngModel", "type", "ngClass"], [1, "login-infos"], ["class", "caps-lock panel flex-center margin-bottom-5", 4, "ngIf"], ["class", "login-error panel flex-center margin-bottom-5", 4, "ngIf"], [2, "display", "flex", "flex-direction", "row-reverse", "justify-content", "space-between", "padding", "0 1px", "margin-top", "30px"], [1, "login-footer", 2, "display", "flex", "justify-content", "flex-end"], ["kendoButton", "", 1, "buttons", "ok-button", 3, "click", "disabled"], ["class", "k-icon k-i-loading", 4, "ngIf"], [4, "ngIf"], [1, "login-footer"], ["kendoButton", "", 1, "buttons", "back-button", 3, "click"], [1, "material-icons", "icon", 3, "click"], [1, "caps-lock", "panel", "flex-center", "margin-bottom-5"], [1, "no-margin"], [1, "login-error", "panel", "flex-center", "margin-bottom-5"], [1, "k-icon", "k-i-loading"]], template: function ChangePasswordDialogComponent_Template(rf, ctx) { if (rf & 1) {
             i0.ɵɵelementStart(0, "div", 0)(1, "h1", 1);
             i0.ɵɵtext(2);
@@ -411,7 +411,7 @@ class AlertDialogComponent {
     closeDialog() {
         this.mdDialogRef.close();
     }
-    /** @nocollapse */ static { this.ɵfac = function AlertDialogComponent_Factory(t) { return new (t || AlertDialogComponent)(i0.ɵɵdirectiveInject(MAT_DIALOG_DATA), i0.ɵɵdirectiveInject(i1.MatDialogRef)); }; }
+    /** @nocollapse */ static { this.ɵfac = function AlertDialogComponent_Factory(__ngFactoryType__) { return new (__ngFactoryType__ || AlertDialogComponent)(i0.ɵɵdirectiveInject(MAT_DIALOG_DATA), i0.ɵɵdirectiveInject(i1.MatDialogRef)); }; }
     /** @nocollapse */ static { this.ɵcmp = /** @pureOrBreakMyCode */ i0.ɵɵdefineComponent({ type: AlertDialogComponent, selectors: [["app-alert-dialog"]], decls: 13, vars: 4, consts: [[2, "max-width", "450px"], [1, "title"], [1, "description", 2, "width", "350px", 3, "innerHTML"], [1, "wrap"], ["type", "checkbox", "id", "binding", "data-test", "loginDontShowAnymoreButton", "kendoCheckBox", "", 3, "ngModelChange", "change", "ngModel"], ["for", "binding", 1, "k-checkbox-label"], [2, "display", "flex", "flex-direction", "row-reverse", "justify-content", "space-between", "padding", "0 1px", "margin-top", "30px"], [1, "login-footer", 2, "display", "flex", "justify-content", "flex-end"], ["kendoButton", "", "data-test", "loginUpdateButton", 1, "buttons", "ok-button", 3, "click"]], template: function AlertDialogComponent_Template(rf, ctx) { if (rf & 1) {
             i0.ɵɵelementStart(0, "div", 0)(1, "h1", 1);
             i0.ɵɵtext(2);
@@ -1309,7 +1309,7 @@ class TbAuthService {
         else
             localStorage.getItem(StorageVars.INSTANCEKEY);
     }
-    /** @nocollapse */ static { this.ɵfac = function TbAuthService_Factory(t) { return new (t || TbAuthService)(i0.ɵɵinject('env'), i0.ɵɵinject(i1$1.HttpClient), i0.ɵɵinject(i0.Injector), i0.ɵɵinject(i1.MatDialog), i0.ɵɵinject(i3$1.MatSnackBar)); }; }
+    /** @nocollapse */ static { this.ɵfac = function TbAuthService_Factory(__ngFactoryType__) { return new (__ngFactoryType__ || TbAuthService)(i0.ɵɵinject('env'), i0.ɵɵinject(i1$1.HttpClient), i0.ɵɵinject(i0.Injector), i0.ɵɵinject(i1.MatDialog), i0.ɵɵinject(i3$1.MatSnackBar)); }; }
     /** @nocollapse */ static { this.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: TbAuthService, factory: TbAuthService.ɵfac, providedIn: 'root' }); }
 }
 (() => { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(TbAuthService, [{
@@ -1422,7 +1422,7 @@ class TbAuthGuard {
             return true;
         }
     }
-    /** @nocollapse */ static { this.ɵfac = function TbAuthGuard_Factory(t) { return new (t || TbAuthGuard)(i0.ɵɵinject(TbAuthService), i0.ɵɵinject(i2.Router), i0.ɵɵinject('env')); }; }
+    /** @nocollapse */ static { this.ɵfac = function TbAuthGuard_Factory(__ngFactoryType__) { return new (__ngFactoryType__ || TbAuthGuard)(i0.ɵɵinject(TbAuthService), i0.ɵɵinject(i2.Router), i0.ɵɵinject('env')); }; }
     /** @nocollapse */ static { this.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: TbAuthGuard, factory: TbAuthGuard.ɵfac, providedIn: 'root' }); }
 }
 (() => { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(TbAuthGuard, [{
@@ -1462,7 +1462,7 @@ class TbAuthInterceptor {
          */
         return next.handle(request).pipe();
     }
-    /** @nocollapse */ static { this.ɵfac = function TbAuthInterceptor_Factory(t) { return new (t || TbAuthInterceptor)(i0.ɵɵinject('env'), i0.ɵɵinject(TbAuthService)); }; }
+    /** @nocollapse */ static { this.ɵfac = function TbAuthInterceptor_Factory(__ngFactoryType__) { return new (__ngFactoryType__ || TbAuthInterceptor)(i0.ɵɵinject('env'), i0.ɵɵinject(TbAuthService)); }; }
     /** @nocollapse */ static { this.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: TbAuthInterceptor, factory: TbAuthInterceptor.ɵfac }); }
 }
 (() => { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(TbAuthInterceptor, [{
@@ -1499,7 +1499,7 @@ class ForgotPasswordComponent {
         this.data.TextValue = this.inputValue;
         this.mdDialogRef.close(this.data);
     }
-    /** @nocollapse */ static { this.ɵfac = function ForgotPasswordComponent_Factory(t) { return new (t || ForgotPasswordComponent)(i0.ɵɵdirectiveInject(i1.MatDialogRef), i0.ɵɵdirectiveInject(MAT_DIALOG_DATA)); }; }
+    /** @nocollapse */ static { this.ɵfac = function ForgotPasswordComponent_Factory(__ngFactoryType__) { return new (__ngFactoryType__ || ForgotPasswordComponent)(i0.ɵɵdirectiveInject(i1.MatDialogRef), i0.ɵɵdirectiveInject(MAT_DIALOG_DATA)); }; }
     /** @nocollapse */ static { this.ɵcmp = /** @pureOrBreakMyCode */ i0.ɵɵdefineComponent({ type: ForgotPasswordComponent, selectors: [["forgot-password-dialog"]], decls: 16, vars: 7, consts: [[1, "title"], [1, "description", 2, "width", "350px"], [1, "border-bottom", 3, "text"], ["kendoTextBox", "", "name", "accountName", "type", "text", 1, "normal-state", 3, "ngModelChange", "ngModel"], [2, "display", "flex", "flex-direction", "row-reverse", "justify-content", "space-between", "padding", "0 1px", "margin-top", "30px"], [1, "login-footer", 2, "display", "flex", "justify-content", "flex-end"], ["kendoButton", "", 1, "buttons", "ok-button", 3, "click", "disabled"], [1, "login-footer"], ["kendoButton", "", 1, "buttons", "back-button", 3, "click"]], template: function ForgotPasswordComponent_Template(rf, ctx) { if (rf & 1) {
             i0.ɵɵelementStart(0, "div")(1, "h1", 0);
             i0.ɵɵtext(2);
@@ -1626,7 +1626,7 @@ class Strings {
     }
 }
 
-const LIB_VERSION = " v5.0.0+3 ";
+const LIB_VERSION = " v5.0.0+4 ";
 
 const _c0 = ["dropdown"];
 const _c1 = a0 => ({ "background-image": a0 });
@@ -2694,7 +2694,7 @@ class TbLoginComponent {
     goToStore() {
         window.open(this.authService.getStoreUrl());
     }
-    /** @nocollapse */ static { this.ɵfac = function TbLoginComponent_Factory(t) { return new (t || TbLoginComponent)(i0.ɵɵdirectiveInject(TbAuthService), i0.ɵɵdirectiveInject(i2.Router), i0.ɵɵdirectiveInject(i1.MatDialog), i0.ɵɵdirectiveInject(i0.Renderer2), i0.ɵɵdirectiveInject(i2.ActivatedRoute), i0.ɵɵdirectiveInject(DOCUMENT)); }; }
+    /** @nocollapse */ static { this.ɵfac = function TbLoginComponent_Factory(__ngFactoryType__) { return new (__ngFactoryType__ || TbLoginComponent)(i0.ɵɵdirectiveInject(TbAuthService), i0.ɵɵdirectiveInject(i2.Router), i0.ɵɵdirectiveInject(i1.MatDialog), i0.ɵɵdirectiveInject(i0.Renderer2), i0.ɵɵdirectiveInject(i2.ActivatedRoute), i0.ɵɵdirectiveInject(DOCUMENT)); }; }
     /** @nocollapse */ static { this.ɵcmp = /** @pureOrBreakMyCode */ i0.ɵɵdefineComponent({ type: TbLoginComponent, selectors: [["tb-login"]], viewQuery: function TbLoginComponent_Query(rf, ctx) { if (rf & 1) {
             i0.ɵɵviewQuery(_c0, 5);
         } if (rf & 2) {
@@ -2821,7 +2821,7 @@ class TbLogoffComponent {
             this.authService.navigateUserGateway();
         }
     }
-    /** @nocollapse */ static { this.ɵfac = function TbLogoffComponent_Factory(t) { return new (t || TbLogoffComponent)(i0.ɵɵdirectiveInject(TbAuthService), i0.ɵɵdirectiveInject(i2.Router)); }; }
+    /** @nocollapse */ static { this.ɵfac = function TbLogoffComponent_Factory(__ngFactoryType__) { return new (__ngFactoryType__ || TbLogoffComponent)(i0.ɵɵdirectiveInject(TbAuthService), i0.ɵɵdirectiveInject(i2.Router)); }; }
     /** @nocollapse */ static { this.ɵcmp = /** @pureOrBreakMyCode */ i0.ɵɵdefineComponent({ type: TbLogoffComponent, selectors: [["tb-logoff"]], decls: 0, vars: 0, template: function TbLogoffComponent_Template(rf, ctx) { }, encapsulation: 2 }); }
 }
 (() => { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(TbLogoffComponent, [{
@@ -2834,7 +2834,7 @@ class TbLogoffComponent {
 (() => { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassDebugInfo(TbLogoffComponent, { className: "TbLogoffComponent", filePath: "lib\\logoff.component.ts", lineNumber: 10 }); })();
 
 class AppMaterialModule {
-    /** @nocollapse */ static { this.ɵfac = function AppMaterialModule_Factory(t) { return new (t || AppMaterialModule)(); }; }
+    /** @nocollapse */ static { this.ɵfac = function AppMaterialModule_Factory(__ngFactoryType__) { return new (__ngFactoryType__ || AppMaterialModule)(); }; }
     /** @nocollapse */ static { this.ɵmod = /** @pureOrBreakMyCode */ i0.ɵɵdefineNgModule({ type: AppMaterialModule }); }
     /** @nocollapse */ static { this.ɵinj = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjector({ imports: [MatDialogModule,
             MatFormFieldModule, MatInputModule, MatFormFieldModule,
@@ -3034,7 +3034,7 @@ class TbAuthModule {
             ]
         };
     }
-    /** @nocollapse */ static { this.ɵfac = function TbAuthModule_Factory(t) { return new (t || TbAuthModule)(); }; }
+    /** @nocollapse */ static { this.ɵfac = function TbAuthModule_Factory(__ngFactoryType__) { return new (__ngFactoryType__ || TbAuthModule)(); }; }
     /** @nocollapse */ static { this.ɵmod = /** @pureOrBreakMyCode */ i0.ɵɵdefineNgModule({ type: TbAuthModule }); }
     /** @nocollapse */ static { this.ɵinj = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjector({ imports: [CommonModule,
             FormsModule,
