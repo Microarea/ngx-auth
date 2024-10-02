@@ -1042,10 +1042,8 @@ class TbAuthService {
         // if usergateway url exists, then redirect to it
         if (userGatewayUrl !== '') {
             console.log(`Found getUserGatewayUrl ${userGatewayUrl}`);
-            // document.location.href = userGatewayUrl;
-            this.router.navigate([userGatewayUrl], {
-                queryParams: { error: this.errorMessage },
-            });
+            console.log(`${userGatewayUrl}login?error="${this.errorMessage}"`);
+            document.location.href = `${userGatewayUrl}login?error="${this.errorMessage}"`;
             return;
         }
         // otherwise, redirect to login
@@ -1626,7 +1624,7 @@ class Strings {
     }
 }
 
-const LIB_VERSION = " v5.0.0+4 ";
+const LIB_VERSION = " v5.0.0+5 ";
 
 const _c0 = ["dropdown"];
 const _c1 = a0 => ({ "background-image": a0 });
