@@ -1,0 +1,22 @@
+export class LoginRequest {
+    constructor() {
+        this.token = ''; // se presente, sto facendo una login con token, non ci sará il check password
+        this.appId = 'M4'; // identificativo dell'applicazione che sta effettuando la login
+        this.accountName = '';
+        this.password = '';
+        this.processID = ''; // codice identificativo dello specifico processo di login
+        this.otPassword = ''; // otp
+        this.overwriteLogin = false; // as namedcal
+        this.version = 3; //La versione mi servirá da qui in avanti per modificare il comportamento del backend di login che non riesco a gestire in modalita retrocompatibile. Parto da 3 perche é il numero perfetto.
+    }
+}
+export class ChangePasswordInfo {
+    constructor() {
+        this.AccountName = '';
+        this.Password = '';
+        this.NewPassword = '';
+        this.IgnoreOldPassword = false;
+        this.JWTToken = '';
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibG9naW4tcmVxdWVzdC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL3Byb2plY3RzL3RiL2F1dGgvc3JjL2xpYi9tb2RlbHMvbG9naW4tcmVxdWVzdC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQSxNQUFNLE9BQU8sWUFBWTtJQUF6QjtRQUNJLFVBQUssR0FBRyxFQUFFLENBQUMsQ0FBQyw4RUFBOEU7UUFDMUYsVUFBSyxHQUFHLElBQUksQ0FBQyxDQUFDLGdFQUFnRTtRQUM5RSxnQkFBVyxHQUFHLEVBQUUsQ0FBQztRQUNqQixhQUFRLEdBQUcsRUFBRSxDQUFDO1FBRWQsY0FBUyxHQUFHLEVBQUUsQ0FBQyxDQUFDLDBEQUEwRDtRQUMxRSxlQUFVLEdBQUcsRUFBRSxDQUFDLENBQUMsTUFBTTtRQUN2QixtQkFBYyxHQUFHLEtBQUssQ0FBQyxDQUFDLGNBQWM7UUFDdEMsWUFBTyxHQUFHLENBQUMsQ0FBQyxDQUFDLDZMQUE2TDtJQUM5TSxDQUFDO0NBQUE7QUFFRCxNQUFNLE9BQU8sa0JBQWtCO0lBQS9CO1FBQ0ksZ0JBQVcsR0FBRyxFQUFFLENBQUM7UUFDakIsYUFBUSxHQUFHLEVBQUUsQ0FBQztRQUNkLGdCQUFXLEdBQUcsRUFBRSxDQUFDO1FBQ2pCLHNCQUFpQixHQUFHLEtBQUssQ0FBQztRQUMxQixhQUFRLEdBQUcsRUFBRSxDQUFDO0lBQ2xCLENBQUM7Q0FBQSIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IERhdGVUaW1lIH0gZnJvbSAnbHV4b24nO1xuXG5leHBvcnQgY2xhc3MgTG9naW5SZXF1ZXN0IHtcbiAgICB0b2tlbiA9ICcnOyAvLyBzZSBwcmVzZW50ZSwgc3RvIGZhY2VuZG8gdW5hIGxvZ2luIGNvbiB0b2tlbiwgbm9uIGNpIHNhcsOhIGlsIGNoZWNrIHBhc3N3b3JkXG4gICAgYXBwSWQgPSAnTTQnOyAvLyBpZGVudGlmaWNhdGl2byBkZWxsJ2FwcGxpY2F6aW9uZSBjaGUgc3RhIGVmZmV0dHVhbmRvIGxhIGxvZ2luXG4gICAgYWNjb3VudE5hbWUgPSAnJztcbiAgICBwYXNzd29yZCA9ICcnO1xuICAgIHN1YnNjcmlwdGlvbktleSE6IHN0cmluZzsgLy8gbG9naW4gc3UgdW5hIHNwZWNpZmljYSBTdWJzY3JpcHRpb24sIGEgc2Vjb25kYSBkZWxsJ2FwcGlkIHBvdHJlYmJlIG5vbiBlc3NlcmUgcHJlc2VudGVcbiAgICBwcm9jZXNzSUQgPSAnJzsgLy8gY29kaWNlIGlkZW50aWZpY2F0aXZvIGRlbGxvIHNwZWNpZmljbyBwcm9jZXNzbyBkaSBsb2dpblxuICAgIG90UGFzc3dvcmQgPSAnJzsgLy8gb3RwXG4gICAgb3ZlcndyaXRlTG9naW4gPSBmYWxzZTsgLy8gYXMgbmFtZWRjYWxcbiAgICB2ZXJzaW9uID0gMzsgLy9MYSB2ZXJzaW9uZSBtaSBzZXJ2aXLDoSBkYSBxdWkgaW4gYXZhbnRpIHBlciBtb2RpZmljYXJlIGlsIGNvbXBvcnRhbWVudG8gZGVsIGJhY2tlbmQgZGkgbG9naW4gY2hlIG5vbiByaWVzY28gYSBnZXN0aXJlIGluIG1vZGFsaXRhIHJldHJvY29tcGF0aWJpbGUuIFBhcnRvIGRhIDMgcGVyY2hlIMOpIGlsIG51bWVybyBwZXJmZXR0by5cbn1cblxuZXhwb3J0IGNsYXNzIENoYW5nZVBhc3N3b3JkSW5mbyB7XG4gICAgQWNjb3VudE5hbWUgPSAnJztcbiAgICBQYXNzd29yZCA9ICcnO1xuICAgIE5ld1Bhc3N3b3JkID0gJyc7XG4gICAgSWdub3JlT2xkUGFzc3dvcmQgPSBmYWxzZTtcbiAgICBKV1RUb2tlbiA9ICcnO1xufVxuXG5leHBvcnQgaW50ZXJmYWNlIENVQ2FsZW5kYXJKb2Ige1xuICAgIGpvYmlkOiBudW1iZXI7XG4gICAgY2FsZW5kYXJpZDogbnVtYmVyO1xuICAgIHN1YnNjcmlwdGlvbmtleTogc3RyaW5nO1xuICAgIGN1c3RvbWVyOiBzdHJpbmc7XG4gICAgaW5zdGFuY2VrZXk6IHN0cmluZztcbiAgICBjdXJyZW50bWFwOiBzdHJpbmc7XG4gICAgZGVzdGluYXRpb25tYXA6IHN0cmluZztcbiAgICBzY2hlZHVsZWR0aW1lOiBzdHJpbmc7XG4gICAgZXN0aW1hdGVkdXBncmFkZXRpbWU6IG51bWJlcjtcbiAgICByZWFsdXBncmFkZXRpbWU6IG51bWJlcjtcbiAgICBzdGF0dXM6IG51bWJlcjtcbiAgICBub3Rlczogc3RyaW5nO1xuICAgIGNyZWF0aW9uZGF0ZTogRGF0ZTtcbn1cbiJdfQ==
