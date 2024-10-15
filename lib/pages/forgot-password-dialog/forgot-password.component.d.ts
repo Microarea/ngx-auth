@@ -15,5 +15,5 @@ export declare class ForgotPasswordComponent implements OnInit {
     cancel(): void;
     confirm(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ForgotPasswordComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ForgotPasswordComponent, "forgot-password-dialog", never, {}, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ForgotPasswordComponent, "forgot-password-dialog", never, {}, {}, never, never>;
 }
