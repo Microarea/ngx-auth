@@ -2,13 +2,11 @@ import { TbAuthService } from '../auth.service';
 import { LoginRequest } from '../models/login-request';
 import { AfterContentInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
 import { ExtraInfo } from '../models/login-response';
 import * as i0 from "@angular/core";
 export declare class TbLoginComponent implements AfterContentInit {
     authService: TbAuthService;
     router: Router;
-    private dialog;
     private renderer;
     private route;
     private doc?;
@@ -49,7 +47,7 @@ export declare class TbLoginComponent implements AfterContentInit {
     instance: string;
     buttonBack: string;
     accountName: string;
-    enterAccounName: string;
+    resetPasswordMessage: string;
     welcome: string;
     enterCredentials: string;
     forgetPassword: string;
@@ -80,7 +78,8 @@ export declare class TbLoginComponent implements AfterContentInit {
     languageIT: boolean;
     otpInfo: ExtraInfo;
     isErrorComingFromMago: boolean;
-    constructor(authService: TbAuthService, router: Router, dialog: MatDialog, renderer: Renderer2, route: ActivatedRoute, doc?: any);
+    showResetPasswordMessage: boolean;
+    constructor(authService: TbAuthService, router: Router, renderer: Renderer2, route: ActivatedRoute, doc?: any);
     ngAfterContentInit(): void;
     checkConnection(): Promise<void>;
     onSubChange(newValue: any): void;
@@ -98,12 +97,11 @@ export declare class TbLoginComponent implements AfterContentInit {
     getCompaniesForUser(user: string): Promise<void>;
     private requestAndSortSubscriptions;
     private compareCompanies;
-    goToForgotPassword(): void;
-    forgotpassword(Title: string, Message: string, PlaceHolder: string): Promise<void>;
+    goToResetPassword(): void;
     isDropDownClicked(): void;
     toggle(dropdown: any): void;
     alternativeMethods(twoFactorType: any): void;
     goToStore(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TbLoginComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TbLoginComponent, "tb-login", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TbLoginComponent, "tb-login", never, {}, {}, never, never, false, never>;
 }

@@ -6,14 +6,9 @@ export declare class ForgotPasswordComponent implements OnInit {
     private data;
     title: string;
     message: string;
-    placeHolder: string;
-    inputValue: string;
-    cancelButton: string;
-    sendButton: string;
     constructor(mdDialogRef: MatDialogRef<ForgotPasswordComponent>, data: any);
     ngOnInit(): void;
     cancel(): void;
-    confirm(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ForgotPasswordComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ForgotPasswordComponent, "forgot-password-dialog", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ForgotPasswordComponent, "forgot-password-dialog", never, {}, {}, never, never, false, never>;
 }

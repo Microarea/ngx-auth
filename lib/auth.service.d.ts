@@ -51,13 +51,11 @@ export declare class TbAuthService {
     getChangePasswordApiUrl(): string;
     resendOTPUrl(): string;
     OLDresendOTPUrl(): string;
-    getResetPasswordUrl(): string;
     getSubsKeysForAccountUrl(): string;
     changePassword(cpi: ChangePasswordInfo): Promise<OperationResult>;
     LangIT(): boolean | undefined;
     OLDresendOTP(accname: string, alternative: boolean): Observable<OperationResult>;
     resendOTP2(accname: string, processID: string, alternative: number): Observable<OperationResult>;
-    resetpassword(accname: string): Promise<OperationResult>;
     logoff(): Promise<LogoffResponse>;
     logoffWithFetch(): void;
     navigateUserGateway(): void;
