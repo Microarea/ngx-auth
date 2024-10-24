@@ -1525,7 +1525,7 @@ class Strings {
     }
 }
 
-const LIB_VERSION = " v5.0.0+7 ";
+const LIB_VERSION = " v5.0.0+8 ";
 
 const _c0 = ["dropdown"];
 const _c1 = a0 => ({ "background-image": a0 });
@@ -2098,7 +2098,7 @@ class TbLoginComponent {
             this.instance = 'Istanza';
             this.buttonBack = '< INDIETRO';
             this.accountName = 'Nome utente';
-            this.resetPasswordMessage = 'Per poter reimpostare una nuova password è necessario contattare l’amministratore MWSysAdmin';
+            this.resetPasswordMessage = 'Per poter reimpostare una nuova password è necessario contattare l’amministratore di MagoWeb';
             this.welcome = 'Benvenuto su ' + authService.getBrandName();
             this.enterCredentials = 'Autenticati inserendo nome utente e password.';
             this.forgetPassword = 'Hai dimenticato la password ?';
@@ -2130,7 +2130,7 @@ class TbLoginComponent {
             this.instance = 'Instance';
             this.buttonBack = '< BACK';
             this.accountName = 'Account name';
-            this.resetPasswordMessage = 'Please, contact MySysAdmin administrator to reset your password';
+            this.resetPasswordMessage = 'Please, contact MagoWeb administrator to reset your password';
             this.welcome = 'Welcome to ' + authService.getBrandName();
             this.enterCredentials = 'Authenticate yourself by entering your account name and password.';
             this.forgetPassword = 'Forgot your password ?';
