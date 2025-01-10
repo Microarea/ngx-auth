@@ -73,6 +73,7 @@ export declare class TbLoginComponent implements AfterContentInit {
     alternativeMethod: string;
     manageMethods: string;
     TOTPDescription: string;
+    otpResetTextMagoWeb: string;
     inputValue: string;
     dropDownIsClicked: boolean;
     comboBoxIsClicked: boolean;
