@@ -1,20 +1,14 @@
 {
   "name": "@tb/auth",
-  "version": "v5.1.0+2",
+  "version": "v5.1.0+3",
   "dependencies": {
     "@progress/kendo-angular-buttons": "^16.11.0",
     "@progress/kendo-angular-common": "^16.11.0",
-    "@progress/kendo-angular-dialog": "^16.11.0",
     "@progress/kendo-angular-dropdowns": "^16.11.0",
     "@progress/kendo-angular-icons": "^16.11.0",
     "@progress/kendo-angular-inputs": "^16.11.0",
-    "@progress/kendo-angular-intl": "^16.11.0",
-    "@progress/kendo-angular-l10n": "^16.11.0",
     "@progress/kendo-angular-label": "^16.11.0",
     "@progress/kendo-angular-layout": "^16.11.0",
-    "@progress/kendo-angular-navigation": "^16.11.0",
-    "@progress/kendo-angular-popup": "^16.11.0",
-    "@progress/kendo-angular-treeview": "^16.11.0",
     "@progress/kendo-theme-default": "^10.2.0",
     "@progress/kendo-drawing": "^1.21.2",
     "tslib": "^2.0.0"
