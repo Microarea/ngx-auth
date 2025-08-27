@@ -1,14 +1,14 @@
 {
   "name": "@tb/auth",
-  "version": "v5.1.0+3",
+  "version": "v5.3.0+2",
   "dependencies": {
-    "@progress/kendo-angular-buttons": "^16.11.0",
-    "@progress/kendo-angular-common": "^16.11.0",
-    "@progress/kendo-angular-dropdowns": "^16.11.0",
-    "@progress/kendo-angular-icons": "^16.11.0",
-    "@progress/kendo-angular-inputs": "^16.11.0",
-    "@progress/kendo-angular-label": "^16.11.0",
-    "@progress/kendo-angular-layout": "^16.11.0",
+    "@progress/kendo-angular-buttons": "^20.0.1",
+    "@progress/kendo-angular-common": "^20.0.1",
+    "@progress/kendo-angular-dropdowns": "^20.0.1",
+    "@progress/kendo-angular-icons": "^20.0.1",
+    "@progress/kendo-angular-inputs": "^20.0.1",
+    "@progress/kendo-angular-label": "^20.0.1",
+    "@progress/kendo-angular-layout": "^20.0.1",
     "@progress/kendo-theme-default": "^10.2.0",
     "@progress/kendo-drawing": "^1.21.2",
     "tslib": "^2.0.0"
@@ -31,13 +31,11 @@
     },
     ".": {
       "types": "./index.d.ts",
-      "esm2022": "./esm2022/tb-auth.mjs",
-      "esm": "./esm2022/tb-auth.mjs",
       "default": "./fesm2022/tb-auth.mjs"
     }
   },
   "sideEffects": false,
   "scripts": {
-    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy in full compilation mode. This is not allowed.\\nPlease delete and rebuild the package with Ivy partial compilation mode, before attempting to publish.\\n')\" && exit 1"
+    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled in full compilation mode. This is not allowed.\\nPlease delete and rebuild the package with partial compilation mode, before attempting to publish.\\n')\" && exit 1"
   }
 }
