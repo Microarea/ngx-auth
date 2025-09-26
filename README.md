@@ -16,6 +16,10 @@ Run `ng build auth` to build the project. The build artifacts will be stored in 
 
 After building your library with `ng build auth`, go to the dist folder `cd dist/auth` and run `npm publish`.
 
+## Running unit tests
+
+Run `ng test auth` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
