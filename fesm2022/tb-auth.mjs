@@ -1359,6 +1359,10 @@ class TbAuthGuard {
         }
         if (state.url.includes(this.authService.getLoginPageUrl())) {
             this.authService.clearStorage();
+            // stripping empty parameter
+            if (state.url.endsWith('error=')) {
+                location.replace(state.url.split('?')[0]);
+            }
             return true;
         }
         //store nel local/sessions storage delle info necessarie allo snapshot
@@ -1627,7 +1631,7 @@ class Strings {
     }
 }
 
-const LIB_VERSION = " v5.3.0+8 ";
+const LIB_VERSION = " v5.3.0+9 ";
 
 const _c0 = ["dropdown"];
 const _c1 = a0 => ({ "background-image": a0 });
