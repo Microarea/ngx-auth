@@ -8,6 +8,8 @@ import * as i1 from '@angular/material/dialog';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import * as i5 from '@angular/material/snack-bar';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import * as i2 from '@angular/material/form-field';
+import * as i3 from '@angular/material/input';
 import * as i4 from '@angular/material/checkbox';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import * as i6 from '@angular/common';
@@ -17,8 +19,6 @@ import * as i9 from '@progress/kendo-angular-label';
 import * as i10 from '@progress/kendo-angular-inputs';
 import * as i11 from '@angular/platform-browser';
 import * as i12 from '@angular/platform-browser/animations';
-import * as i2 from '@angular/material/form-field';
-import * as i3 from '@angular/material/input';
 
 declare class LoginRequest {
     token: string;
@@ -295,6 +295,12 @@ declare class TbAuthInterceptor implements HttpInterceptor {
     static ɵprov: i0.ɵɵInjectableDeclaration<TbAuthInterceptor>;
 }
 
+declare class AppMaterialModule {
+    static ɵfac: i0.ɵɵFactoryDeclaration<AppMaterialModule, never>;
+    static ɵmod: i0.ɵɵNgModuleDeclaration<AppMaterialModule, never, [typeof i1.MatDialogModule, typeof i2.MatFormFieldModule, typeof i3.MatInputModule, typeof i2.MatFormFieldModule, typeof i4.MatCheckboxModule, typeof i5.MatSnackBarModule], [typeof i1.MatDialogModule, typeof i2.MatFormFieldModule, typeof i4.MatCheckboxModule, typeof i5.MatSnackBarModule]>;
+    static ɵinj: i0.ɵɵInjectorDeclaration<AppMaterialModule>;
+}
+
 declare class TbLoginComponent implements AfterContentInit {
     authService: TbAuthService;
     router: Router;
@@ -487,12 +493,6 @@ declare class AlertDialogComponent implements OnInit {
     closeDialog(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<AlertDialogComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<AlertDialogComponent, "app-alert-dialog", never, {}, {}, never, never, false, never>;
-}
-
-declare class AppMaterialModule {
-    static ɵfac: i0.ɵɵFactoryDeclaration<AppMaterialModule, never>;
-    static ɵmod: i0.ɵɵNgModuleDeclaration<AppMaterialModule, never, [typeof i1.MatDialogModule, typeof i2.MatFormFieldModule, typeof i3.MatInputModule, typeof i2.MatFormFieldModule, typeof i4.MatCheckboxModule, typeof i5.MatSnackBarModule], [typeof i1.MatDialogModule, typeof i2.MatFormFieldModule, typeof i4.MatCheckboxModule, typeof i5.MatSnackBarModule]>;
-    static ɵinj: i0.ɵɵInjectorDeclaration<AppMaterialModule>;
 }
 
 declare class TbAuthModule {
