@@ -1810,7 +1810,7 @@ class Strings {
     }
 }
 
-const LIB_VERSION = " v5.3.0+15 ";
+const LIB_VERSION = " v5.3.0+16 ";
 
 const _c0 = ["dropdown"];
 const _c1 = a0 => ({ "background-image": a0 });
