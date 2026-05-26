@@ -380,6 +380,7 @@ declare class TbLoginComponent implements AfterContentInit {
     otpInfo: ExtraInfo;
     isErrorComingFromMago: boolean;
     showResetPasswordMessage: boolean;
+    otpSendingErrorMessage: string;
     constructor(authService: TbAuthService, router: Router, dialog: MatDialog, renderer: Renderer2, route: ActivatedRoute, doc?: any | undefined);
     ngAfterContentInit(): void;
     checkConnection(): Promise<void>;
