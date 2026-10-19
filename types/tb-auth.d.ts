@@ -1,7 +1,7 @@
 import * as i0 from "@angular/core";
 import { AfterContentInit, Injector, ModuleWithProviders, OnInit, Renderer2 } from "@angular/core";
 import { HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
-import * as i17 from "@angular/router";
+import * as i16 from "@angular/router";
 import { ActivatedRoute, ActivatedRouteSnapshot, Router, RouterStateSnapshot } from "@angular/router";
 import { Observable, Subject } from "rxjs";
 import * as i1 from "@angular/material/dialog";
@@ -17,7 +17,6 @@ import * as i8 from "@progress/kendo-angular-dropdowns";
 import * as i9 from "@progress/kendo-angular-label";
 import * as i10 from "@progress/kendo-angular-inputs";
 import * as i11 from "@angular/platform-browser";
-import * as i12 from "@angular/platform-browser/animations";
 export declare class LoginRequest {
   token: string;
   appId: string;
@@ -479,7 +478,7 @@ declare class AlertDialogComponent implements OnInit {
 export declare class TbAuthModule {
   static forRoot(): ModuleWithProviders<TbAuthModule>;
   static ɵfac: i0.ɵɵFactoryDeclaration<TbAuthModule, never>;
-  static ɵmod: i0.ɵɵNgModuleDeclaration<TbAuthModule, [typeof TbLoginComponent, typeof TbLogoffComponent, typeof ForgotPasswordComponent, typeof ChangePasswordDialogComponent, typeof AlertDialogComponent], [typeof i6.CommonModule, typeof i7.FormsModule, typeof i8.DropDownsModule, typeof i9.LabelModule, typeof i10.InputsModule, typeof i9.FloatingLabelModule, typeof i11.BrowserModule, typeof i12.BrowserAnimationsModule, typeof AppMaterialModule, typeof i1.MatDialogModule, typeof i3.MatInputModule, typeof i2.MatFormFieldModule, typeof i17.RouterModule], [typeof TbLoginComponent, typeof TbLogoffComponent, typeof i17.RouterModule, typeof AppMaterialModule]>;
+  static ɵmod: i0.ɵɵNgModuleDeclaration<TbAuthModule, [typeof TbLoginComponent, typeof TbLogoffComponent, typeof ForgotPasswordComponent, typeof ChangePasswordDialogComponent, typeof AlertDialogComponent], [typeof i6.CommonModule, typeof i7.FormsModule, typeof i8.DropDownsModule, typeof i9.LabelModule, typeof i10.InputsModule, typeof i9.FloatingLabelModule, typeof i11.BrowserModule, typeof AppMaterialModule, typeof i1.MatDialogModule, typeof i3.MatInputModule, typeof i2.MatFormFieldModule, typeof i16.RouterModule], [typeof TbLoginComponent, typeof TbLogoffComponent, typeof i16.RouterModule, typeof AppMaterialModule]>;
   static ɵinj: i0.ɵɵInjectorDeclaration<TbAuthModule>;
 }
 export {};
