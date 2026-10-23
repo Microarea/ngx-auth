@@ -1927,7 +1927,7 @@ var Strings = class {
 		else return authService.getUpdateMessage_EN();
 	}
 };
-const LIB_VERSION = " v6.2.0+3 ";
+const LIB_VERSION = " v6.2.0+5 ";
 const _c0 = ["dropdown"];
 const _c1 = (a0) => ({ "background-image": a0 });
 const _c2 = () => ({ standalone: true });
@@ -2910,19 +2910,30 @@ var TbLoginComponent = class TbLoginComponent {
 			this.loginRequest.appId = "MCloudPreLogin";
 			this.loginRequest.subscriptionKey = "";
 			console.log("calling prelogin... ");
-			await this.authService.prelogin(this.loginRequest).catch((err1) => {
+			const result1 = await this.authService.prelogin(this.loginRequest).catch((err1) => {
 				this.loading = false;
 				this.authService.errorMessage = err1.error && err1.error.Message;
 			});
 			this.loading = false;
 			this.buttonText = this.validate ? this.loginText : this.nextText;
-			this.otp = false;
-			this.validate = true;
-			this.buttonText = this.validate ? this.loginText : this.nextText;
-			this.getCompaniesForUser(this.loginRequest.accountName);
-			console.log("collecting subscriptions...");
-			this.authService.errorMessage = "";
-			this.authService.okMessage = "";
+			if (result1 && result1.Result) {
+				this.otp = false;
+				this.validate = true;
+				this.buttonText = this.validate ? this.loginText : this.nextText;
+				this.getCompaniesForUser(this.loginRequest.accountName);
+				console.log("collecting subscriptions...");
+				this.authService.errorMessage = "";
+				this.authService.okMessage = "";
+			} else if (!this.otp && result1 && (result1.ResultCode === 143 || result1.Message === this.otpSendingErrorMessage)) {
+				this.otpInfo = result1.ExtraInfo;
+				if (this.otpInfo == null) {
+					this.OLD = true;
+					this.otpInfo = new ExtraInfo();
+				} else this.OLD = false;
+				this.otp = true;
+				this.authService.errorMessage = result1.Message === this.otpSendingErrorMessage ? result1.Message : "";
+			} else if (this.otp && result1 && !result1.Result && result1.ResultCode === 143) this.authService.errorMessage = this.languageIT ? "OTP non valido." : "Invalid OTP.";
+			else this.loading = false;
 		} else {
 			this.loginRequest.appId = this.authService.getAppId();
 			console.log("calling login... ");
