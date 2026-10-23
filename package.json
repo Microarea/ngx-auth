@@ -1,6 +1,6 @@
 {
   "name": "@tb/auth",
-  "version": "v6.2.0+2",
+  "version": "v6.2.0+3",
   "dependencies": {
     "@progress/kendo-angular-buttons": "25.3.0",
     "@progress/kendo-angular-common": "25.3.0",
