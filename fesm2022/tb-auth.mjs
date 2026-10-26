@@ -1927,7 +1927,7 @@ var Strings = class {
 		else return authService.getUpdateMessage_EN();
 	}
 };
-const LIB_VERSION = " v6.2.0+5 ";
+const LIB_VERSION = " v6.2.0+6 ";
 const _c0 = ["dropdown"];
 const _c1 = (a0) => ({ "background-image": a0 });
 const _c2 = () => ({ standalone: true });
