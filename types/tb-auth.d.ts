@@ -183,14 +183,14 @@ export declare class TbAuthService {
   getLoginPageUrl: () => string;
   getStoreUrl: () => string;
   getAuthorizationHeader(): string;
-  prelogin(loginRequest: LoginRequest): Promise<LoginResponse>;
-  login(loginRequest: LoginRequest): Promise<LoginResponse>;
-  fixIssue(loginResponse: LoginResponse): void;
+  prelogin(loginRequest: LoginRequest): Promise<LoginResponse | undefined>;
+  login(loginRequest: LoginRequest): Promise<LoginResponse | undefined>;
+  fixIssue(loginResponse: LoginResponse | undefined): void;
   getLockedUserMessage(messageFromLogin: string): string;
   get2FARequiredMessage(description: string): string;
   openUpdateAlertDialog(info: string, title: string, dontshow: string, accountName: string, subscriptionKey: string, processid: string): Promise<void>;
   openChangePasswordDialog(loginRequest: LoginRequest): Promise<void>;
-  isValidToken(authtoken?: string): Promise<OperationResult>;
+  isValidToken(authtoken?: string): Promise<OperationResult | undefined>;
   getCompaniesForUser(user: string): Observable<any>;
   getIsValidTokenUrl(): string;
   getLoginUrl(): string;
@@ -221,7 +221,7 @@ export declare class TbAuthService {
   storageQueryParams(subscriptionKey: string, instanceKey: string): void;
   private getName;
   private storageData;
-  getSymbolsToPromise(): Promise<OperationResult>;
+  getSymbolsToPromise(): Promise<OperationResult | undefined>;
   getSymbolsUrl(): string;
   saveCulture(culture: string, uiCulture: string): void;
   openSnackBar(message: string, action: string): void;
@@ -321,7 +321,7 @@ export declare class TbLoginComponent implements AfterContentInit {
   hide: boolean;
   hideOtp: boolean;
   instancekey: string;
-  isConnected: boolean;
+  isConnected: boolean | undefined;
   document?: Document;
   lib_version: string;
   chooseSubscription: string;
